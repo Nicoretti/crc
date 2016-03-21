@@ -2,6 +2,16 @@ import abc
 import enum
 import numbers
 
+MAJOR_VERSION = 1
+MINOR_VERSION = 0
+PATCH_VERSION = 0
+
+VERSION_TEMPLATE = '{major}.{minor}.{patch}'
+LIBRARY_VERSION = VERSION_TEMPLATE.format(major=MAJOR_VERSION, minor=MINOR_VERSION, patch=PATCH_VERSION)
+
+__author__ = 'Nicola Coretti'
+__email__ = 'nico.coretti@gmail.com'
+__version__ = LIBRARY_VERSION
 
 class Byte(numbers.Number):
 

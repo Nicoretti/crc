@@ -1,8 +1,8 @@
-import enum
 import string
 import unittest
+
 from crc.crc import Byte, CrcRegister, crc8, is_crc_configruation
-from crc.crc import CrcConfiguration, Crc8, Crc16, Crc32, CrcCalculator
+from crc.crc import CrcConfiguration, Crc8, CrcCalculator
 from collections import namedtuple
 
 
@@ -111,7 +111,6 @@ class CrcRegisterTest(unittest.TestCase):
         crc_register = CrcRegister(config)
 
 
-
 class Crc8Test(unittest.TestCase):
 
     def setUp(self):
@@ -135,11 +134,14 @@ class Crc8Test(unittest.TestCase):
         for test in self.crc8_test_suit:
             self.assertEqual(calculator.calculate_checksum(test.data.encode('utf-8')), test.checksum)
 
+
 class Crc16Test(unittest.TestCase):
     pass
 
+
 class Crc32Test(unittest.TestCase):
     pass
+
 
 if __name__ == '__main__':
     unittest.main()

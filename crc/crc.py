@@ -13,6 +13,7 @@ __author__ = 'Nicola Coretti'
 __email__ = 'nico.coretti@gmail.com'
 __version__ = LIBRARY_VERSION
 
+
 class Byte(numbers.Number):
 
     def __init__(self, value=0x00):

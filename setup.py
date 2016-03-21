@@ -1,5 +1,5 @@
 from setuptools import setup, find_packages
-from crc import LIBRARY_VERSION
+from crc.crc import LIBRARY_VERSION
 
 setup(
         name='crc',

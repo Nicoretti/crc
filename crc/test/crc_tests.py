@@ -1,8 +1,8 @@
 import enum
 import string
 import unittest
-from crc import Byte, CrcRegister, crc8, is_crc_configruation
-from crc import CrcConfiguration, Crc8, Crc16, Crc32, CrcCalculator
+from crc.crc import Byte, CrcRegister, crc8, is_crc_configruation
+from crc.crc import CrcConfiguration, Crc8, Crc16, Crc32, CrcCalculator
 from collections import namedtuple
 
 

@@ -5,13 +5,13 @@ Status
 ------
 
 .. image:: https://travis-ci.org/Nicoretti/crc.svg?branch=master
-:target: https://travis-ci.org/Nicoretti/crc
+    :target: https://travis-ci.org/Nicoretti/crc
 
 .. image:: https://coveralls.io/repos/Nicoretti/crc/badge.svg?branch=master&service=github
-:target: https://coveralls.io/github/Nicoretti/crc?branch=master
+    :target: https://coveralls.io/github/Nicoretti/crc?branch=master
 
 .. image:: https://landscape.io/github/Nicoretti/crc/master/landscape.svg?style=flat
-:target: https://landscape.io/github/Nicoretti/crc/master
+    :target: https://landscape.io/github/Nicoretti/crc/master
     :alt: Code Health
 
 Tickets

@@ -18,6 +18,11 @@ Status
     :target: http://py-crc.readthedocs.org/en/latest/?badge=latest
     :alt: Documentation Status
 
+.. image:: https://gemnasium.com/Nicoretti/crc.svg
+    :target: https://gemnasium.com/Nicoretti/crc)
+    :alt: Dependency Status
+
+
 Tickets
 -------
 

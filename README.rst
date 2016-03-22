@@ -14,6 +14,10 @@ Status
     :target: https://landscape.io/github/Nicoretti/crc/master
     :alt: Code Health
 
+.. image:: https://readthedocs.org/projects/py-crc/badge/?version=latest
+    :target: http://py-crc.readthedocs.org/en/latest/?badge=latest
+    :alt: Documentation Status
+
 Tickets
 -------
 

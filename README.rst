@@ -41,14 +41,6 @@ Requirements
 ------------
 * Python 3.5 and newer
 
-Dependencies
-------------
-.. image::  https://gemnasium.com/nicoretti/crc.svg
-    :target: https://gemnasium.com/nicoretti/crc
-    :alt: gemnasium
-
-* `docopt <https://github.com/docopt/docopt>`_
-
 Installation
 ------------
 

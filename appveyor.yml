@@ -6,14 +6,14 @@ environment:
     - python_version: "C:\\Python35-x64"
 
 install:
-  - SET PATH=%python_version%\bin;%PATH%
-  - pip install --upgrade pip
-  - pip install setuptools
-  - pip install --upgrade setuptools
-  - pip install requirements.txt
-  - pip install -e .
+  - "SET PATH=%python_version%\bin;%PATH%"
+  - "pip install --upgrade pip"
+  - "pip install setuptools"
+  - "pip install --upgrade setuptools"
+  - "pip install requirements.txt"
+  - "pip install -e ."
 
 test_script:
-  - python setup.py test
+  - "python setup.py test"
 
  build: off

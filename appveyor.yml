@@ -6,13 +6,8 @@ environment:
     - python_version: "C:\\Python35-x64"
 
 install:
-  - "SET PATH=%python_version%\\bin;%PATH%"
+  - "SET PATH=%python_version%;%python_version%\\Scripts;%PATH%"
   - "python --version"
-  - "dir C:\\"
-  - "cd C:\\Python35"
-  - "dir"
-  - "cd scripts"
-  - "dir"
   - "pip install --upgrade pip"
   - "pip install setuptools"
   - "pip install --upgrade setuptools"

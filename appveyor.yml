@@ -7,4 +7,13 @@ environment:
 
 install:
   - SET PATH=%python_version%\bin;%PATH%
-  - dir
+  - pip install --upgrade pip
+  - pip install setuptools
+  - pip install --upgrade setuptools
+  - pip install requirements.txt
+  - pip install -e .
+
+ test_script:
+  - python setup.py test
+
+ build: off

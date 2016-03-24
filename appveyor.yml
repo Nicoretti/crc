@@ -7,6 +7,9 @@ environment:
 
 install:
   - "SET PATH=%python_version%\bin;%PATH%"
+  - "python --version"
+  - "dir"
+  - "dir C:\\"
   - "pip install --upgrade pip"
   - "pip install setuptools"
   - "pip install --upgrade setuptools"

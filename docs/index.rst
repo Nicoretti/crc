@@ -15,7 +15,6 @@ Contents:
    license
 
 
-
 Indices and tables
 ==================
 

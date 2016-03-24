@@ -2,8 +2,9 @@ os: Windows Server 2012
 
 environment:
   matrix:
-    - python35_x64 = "C:\Python35"
-    - python35_x86 = "C:\Python35-x64"
+    - python_version = "C:\Python35"
+    - python_version = "C:\Python35-x64"
 
 install:
-  - ls
+  - SET PATH=%python_version%\bin;%PATH%
+  - dir

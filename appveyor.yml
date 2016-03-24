@@ -8,7 +8,6 @@ environment:
 install:
   - "SET PATH=%python_version%;%python_version%\\Scripts;%PATH%"
   - "python --version"
-  - "pip install --upgrade pip"
   - "pip install setuptools"
   - "pip install --upgrade setuptools"
   - "pip install requirements.txt"

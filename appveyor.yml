@@ -10,6 +10,7 @@ install:
   - "python --version"
   - "dir"
   - "dir C:\\"
+  - "dir C:\\Python35\bin"
   - "pip install --upgrade pip"
   - "pip install setuptools"
   - "pip install --upgrade setuptools"

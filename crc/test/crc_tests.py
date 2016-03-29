@@ -1,10 +1,11 @@
 import string
 import unittest
 
-from crc.crc import Byte, CrcRegister, crc8, is_crc_configruation
-from crc.crc import CrcConfiguration, Crc8, CrcCalculator
+from crc.crc import Byte, CrcRegister, is_crc_configruation
+from crc.crc import CrcConfiguration, Crc8, Crc16
 from collections import namedtuple
 
+CrcTestData = namedtuple('CrcTestData', 'data checksum')
 
 class ByteTest(unittest.TestCase):
 
@@ -103,44 +104,70 @@ class CrcModuleTest(unittest.TestCase):
 
 class CrcRegisterTest(unittest.TestCase):
 
-    def setUp(self):
-        pass
-
     def test_init_works_with_enum(self):
         config = Crc8.CCITT
         crc_register = CrcRegister(config)
 
-
-class Crc8Test(unittest.TestCase):
-
-    def setUp(self):
-        CrcTestData = namedtuple('CrcTestData', 'data checksum')
-        self.crc8_test_suit = [
+    def test_crc8_ccitt(self):
+        config = Crc8.CCITT
+        crc_register = CrcRegister(config)
+        test_suit = [
             CrcTestData(data='', checksum=0x00),
             CrcTestData(data=string.digits[1:], checksum=0xF4),
             CrcTestData(data=string.digits[1:][::-1], checksum=0x91),
             CrcTestData(data=string.digits, checksum=0x45),
             CrcTestData(data=string.digits[::-1], checksum=0x6E),
         ]
+        for test in test_suit:
+            crc_register.init()
+            crc_register.update(test.data.encode('utf-8'))
+            self.assertEqual(test.checksum, crc_register.digest())
 
-    def test_crc8_smoke_test(self):
-        data = string.digits[1:]
-        expected = 0xF4
-        checksum = crc8(data)
-        self.assertEqual(checksum, expected)
+    def test_crc8_saej1850(self):
+        config = Crc8.SAEJ1850
+        crc_register = CrcRegister(config)
+        test_suit = [
+            CrcTestData(data='', checksum=0x00),
+            CrcTestData(data=string.digits[1:], checksum=0x37),
+            CrcTestData(data=string.digits[1:][::-1], checksum=0xAA),
+            CrcTestData(data=string.digits, checksum=0x8A),
+            CrcTestData(data=string.digits[::-1], checksum=0x39),
+        ]
+        for test in test_suit:
+            crc_register.init()
+            crc_register.update(test.data.encode('utf-8'))
+            self.assertEqual(test.checksum, crc_register.digest())
 
-    def test_crc8_test_suit(self):
-        calculator = CrcCalculator(Crc8.CCITT)
-        for test in self.crc8_test_suit:
-            self.assertEqual(calculator.calculate_checksum(test.data.encode('utf-8')), test.checksum)
+    def test_crc16_ccit(self):
+        config = Crc16.CCIT
+        crc_register = CrcRegister(config)
+        test_suit = [
+            CrcTestData(data='', checksum=0x0000),
+            CrcTestData(data=string.digits[1:], checksum=0x31C3),
+            CrcTestData(data=string.digits[1:][::-1], checksum=0x9CAD),
+            CrcTestData(data=string.digits, checksum=0x9C58),
+            CrcTestData(data=string.digits[::-1], checksum=0xD966),
+        ]
+        for test in test_suit:
+            crc_register.init()
+            crc_register.update(test.data.encode('utf-8'))
+            self.assertEqual(test.checksum, crc_register.digest())
 
 
-class Crc16Test(unittest.TestCase):
-    pass
+class TableBasedCrcRegisterTest(unittest.TestCase):
 
+    def setUp(self):
+        pass
 
-class Crc32Test(unittest.TestCase):
-    pass
+    def test_init_works_with_enum(self):
+        pass
+
+    def test_crc8_ccitt(self):
+        pass
+
+    def test_crc8_saej1850(self):
+        pass
+
 
 
 if __name__ == '__main__':

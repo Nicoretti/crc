@@ -1,6 +1,7 @@
 import abc
 import enum
 import numbers
+from array import array
 
 MAJOR_VERSION = 1
 MINOR_VERSION = 0
@@ -111,14 +112,13 @@ class CrcConfiguration(object):
 
 @enum.unique
 class Crc8(enum.Enum):
-
     CCITT = CrcConfiguration(8, 0x07, 0, 0, False, False)
     SAEJ1850 = CrcConfiguration(8, 0x1D, 0, 0, False, False)
 
 
 @enum.unique
 class Crc16(enum.Enum):
-    pass
+    CCIT = CrcConfiguration(16, 0x1021, False, False)
 
 
 @enum.unique
@@ -275,12 +275,18 @@ class CrcRegister(CrcRegisterBase):
 
 class TableBasedCrcRegister(CrcRegisterBase):
 
-    def __init__(self, configuration):
+    def __init__(self, configuration, lookup_table):
         super().__init__(configuration)
-        self._lookup_table = None
+        self._lookup_table = lookup_table
 
     def update(self, data):
-        raise NotImplementedError
+        for byte in data:
+            byte = Byte(byte)
+            if self._config.reverse_input:
+                byte = byte.reversed()
+            index = byte ^ (self.register >> (self._config.width - 8))
+            self.register = self._lookup_table[index] ^ (self.register << 8)
+        return self.register
 
 
 class CrcCalculator(object):
@@ -294,14 +300,6 @@ class CrcCalculator(object):
         return self._crc_register.digest()
 
 
-def crc8(data, init_value=0x00, polynom=0x07, final_xor=0x00, reversed_input=False, reversed_output=False):
-    config = CrcConfiguration(8, polynom, init_value, final_xor, reversed_input, reversed_output)
-    crc_register = CrcRegister(config)
-    if isinstance(data, str):
-        data = data.encode('utf-8')
-    return 244 #crc_register.calculate_checksum(data)
-
-from array import array
 LOOKUP_TABLES = {
     Crc8: {
        Crc8.CCITT: array('B',

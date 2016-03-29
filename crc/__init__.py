@@ -1,1 +1,1 @@
-__all__ = ['crc', 'test']
+__all__ = ['crc', 'tools', 'test']

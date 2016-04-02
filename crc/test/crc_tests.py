@@ -54,8 +54,12 @@ class ByteTest(unittest.TestCase):
         self.assertEqual(lhs._value, rhs._value)
 
     def test_reversed(self):
-        byte = Byte(0xF0)
-        self.assertEqual(int(byte.reversed()), 0x0F)
+        self.assertEqual(int(Byte(0x80).reversed()), 0x01)
+        self.assertEqual(int(Byte(0x10).reversed()), 0x08)
+        self.assertEqual(int(Byte(0x01).reversed()), 0x80)
+        self.assertEqual(int(Byte(0x11).reversed()), 0x88)
+        self.assertEqual(int(Byte(0xF0).reversed()), 0x0F)
+        self.assertEqual(int(Byte(0x0F).reversed()), 0xF0)
 
 
 class CrcConfigurationTest(unittest.TestCase):

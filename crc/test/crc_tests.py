@@ -2,7 +2,7 @@ import string
 import unittest
 
 from crc.crc import Byte, CrcRegister, is_crc_configruation
-from crc.crc import CrcConfiguration, Crc8, Crc16
+from crc.crc import Configuration, Crc8, Crc16
 from collections import namedtuple
 
 CrcTestData = namedtuple('CrcTestData', 'data checksum')
@@ -53,6 +53,10 @@ class ByteTest(unittest.TestCase):
         lhs += rhs
         self.assertEqual(lhs._value, rhs._value)
 
+    def test_reversed(self):
+        byte = Byte(0xF0)
+        self.assertEqual(int(byte.reversed()), 0x0F)
+
 
 class CrcConfigurationTest(unittest.TestCase):
 
@@ -65,7 +69,7 @@ class CrcConfigurationTest(unittest.TestCase):
         self.reverse_output = True
 
     def test_init_using_defaults(self):
-        configuration = CrcConfiguration(self.width, self.polynom)
+        configuration = Configuration(self.width, self.polynom)
         self.assertEqual(configuration.width, self.width)
         self.assertEqual(configuration.polynom, self.polynom)
         self.assertEqual(configuration.init_value, 0)
@@ -74,12 +78,12 @@ class CrcConfigurationTest(unittest.TestCase):
         self.assertEqual(configuration.reverse_output, False)
 
     def test_init(self):
-        configuration = CrcConfiguration(self.width,
-                                         self.polynom,
-                                         self.init_value,
-                                         self.final_xor_value,
-                                         self.reverse_input,
-                                         self.reverse_output)
+        configuration = Configuration(self.width,
+                                      self.polynom,
+                                      self.init_value,
+                                      self.final_xor_value,
+                                      self.reverse_input,
+                                      self.reverse_output)
 
         self.assertEqual(configuration.width, self.width)
         self.assertEqual(configuration.polynom, self.polynom)
@@ -92,7 +96,7 @@ class CrcConfigurationTest(unittest.TestCase):
 class CrcModuleTest(unittest.TestCase):
 
     def test_if_is_crc_configuration_returns_true_for_crc_configuration(self):
-        configurations = [CrcConfiguration(0,0), Crc8.CCITT, Crc8.SAEJ1850]
+        configurations = [Configuration(0, 0), Crc8.CCITT, Crc8.SAEJ1850]
         for configuration in configurations:
             self.assertTrue(is_crc_configruation(configuration))
 
@@ -138,8 +142,8 @@ class CrcRegisterTest(unittest.TestCase):
             crc_register.update(test.data.encode('utf-8'))
             self.assertEqual(test.checksum, crc_register.digest())
 
-    def test_crc16_ccit(self):
-        config = Crc16.CCIT
+    def test_crc16_ccitt(self):
+        config = Crc16.CCITT
         crc_register = CrcRegister(config)
         test_suit = [
             CrcTestData(data='', checksum=0x0000),
@@ -147,6 +151,21 @@ class CrcRegisterTest(unittest.TestCase):
             CrcTestData(data=string.digits[1:][::-1], checksum=0x9CAD),
             CrcTestData(data=string.digits, checksum=0x9C58),
             CrcTestData(data=string.digits[::-1], checksum=0xD966),
+        ]
+        for test in test_suit:
+            crc_register.init()
+            crc_register.update(test.data.encode('utf-8'))
+            self.assertEqual(test.checksum, crc_register.digest())
+
+    def test_crc16_with_reflected_input(self):
+        config = Configuration(16, 0x1021, 0, 0, True, False)
+        crc_register = CrcRegister(config)
+        test_suit = [
+            CrcTestData(data='', checksum=0x0000),
+            CrcTestData(data=string.digits[1:], checksum=0x9184),
+            CrcTestData(data=string.digits[1:][::-1], checksum=0xF92C),
+            CrcTestData(data=string.digits, checksum=0x76FA),
+            CrcTestData(data=string.digits[::-1], checksum=0x232),
         ]
         for test in test_suit:
             crc_register.init()

@@ -207,12 +207,13 @@ class CrcRegisterBase(AbstractCrcRegister):
         self._register = configuration.init_value & self._bitmask
 
     def __len__(self):
-        return self._config.width
+        return self._config.width // 8
 
-    def __getitem__(self, item):
-        if item >= self._config.width or item < 0:
+    def __getitem__(self, index):
+        if index >= (self._config.width / 8) or index < 0:
             raise IndexError
-        return (self.register & (1 << item)) >> item
+        shift_offset = index * 8
+        return (self.register & (0xFF << shift_offset)) >> shift_offset
 
     def init(self):
         self.register = self._config.init_value
@@ -237,9 +238,9 @@ class CrcRegisterBase(AbstractCrcRegister):
     def reverse(self):
         index = 0
         reversed_value = 0
-        for bit in reversed(self):
-            reversed_value += self[index] << index
-            index += 1
+        for byte in reversed(self):
+            reversed_value += int(Byte(byte).reversed()) << index
+            index += 8
         return reversed_value
 
     def _is_division_possible(self):

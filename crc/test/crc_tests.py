@@ -176,6 +176,21 @@ class CrcRegisterTest(unittest.TestCase):
             crc_register.update(test.data.encode('utf-8'))
             self.assertEqual(test.checksum, crc_register.digest())
 
+    def test_crc16_with_reflected_output(self):
+        config = Configuration(16, 0x1021, 0, 0, False, True)
+        crc_register = CrcRegister(config)
+        test_suit = [
+            CrcTestData(data='', checksum=0x0000),
+            CrcTestData(data=string.digits[1:], checksum=0xC38C),
+            CrcTestData(data=string.digits[1:][::-1], checksum=0xB539),
+            CrcTestData(data=string.digits, checksum=0x1A39),
+            CrcTestData(data=string.digits[::-1], checksum=0x669B),
+        ]
+        for test in test_suit:
+            crc_register.init()
+            crc_register.update(test.data.encode('utf-8'))
+            self.assertEqual(test.checksum, crc_register.digest())
+
 
 class TableBasedCrcRegisterTest(unittest.TestCase):
 

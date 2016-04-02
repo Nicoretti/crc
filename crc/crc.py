@@ -290,6 +290,25 @@ class TableBasedCrcRegister(CrcRegisterBase):
         return self.register
 
 
+def create_lookup_table(width, polynom):
+    """
+    Creates a crc lookup table.
+
+    :param int width: of the crc checksum.
+    :parma int polynom: which is used for the crc calculation.
+    """
+    config = Configuration(width=width, polynom=polynom)
+    crc_register = CrcRegister(config)
+    lookup_table = list()
+    for index in range(0, 256):
+        crc_register.init()
+        data = bytes((index).to_bytes(1, byteorder='big'))
+        crc_register.update(data)
+        lookup_table.append(crc_register.digest())
+
+    return lookup_table
+
+
 class CrcCalculator(object):
 
     def __init__(self, configuration, table_based=True):

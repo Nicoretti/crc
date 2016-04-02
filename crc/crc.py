@@ -64,16 +64,16 @@ class Byte(numbers.Number):
 
     def reversed(self):
         value = 0
-        index = 0
+        index = 7
         for bit in reversed(self):
             value += self[index] << index
-            index += 1
+            index -= 1
         return Byte(value)
 
 
-class CrcConfiguration(object):
+class Configuration(object):
     """
-    A CrcConfiguration provides all settings necessary to determine the concrete
+    A Configuration provides all settings necessary to determine the concrete
     implementation of a specific crc algorithm/register.
     """
 
@@ -112,13 +112,13 @@ class CrcConfiguration(object):
 
 @enum.unique
 class Crc8(enum.Enum):
-    CCITT = CrcConfiguration(8, 0x07, 0, 0, False, False)
-    SAEJ1850 = CrcConfiguration(8, 0x1D, 0, 0, False, False)
+    CCITT = Configuration(8, 0x07, 0, 0, False, False)
+    SAEJ1850 = Configuration(8, 0x1D, 0, 0, False, False)
 
 
 @enum.unique
 class Crc16(enum.Enum):
-    CCIT = CrcConfiguration(16, 0x1021, False, False)
+    CCITT = Configuration(16, 0x1021, False, False)
 
 
 @enum.unique
@@ -134,7 +134,7 @@ def is_crc_configruation(configuration):
 
     :return: True if it is a valid crc configuration, otherwise False.
     """
-    return isinstance(configuration, CrcConfiguration) \
+    return isinstance(configuration, Configuration) \
            or isinstance(configuration, Crc8) \
            or isinstance(configuration, Crc16) \
            or isinstance(configuration, Crc32)
@@ -217,8 +217,16 @@ class CrcRegisterBase(AbstractCrcRegister):
     def init(self):
         self.register = self._config.init_value
 
-    @abc.abstractmethod
     def update(self, data):
+        for byte in data:
+            byte = Byte(byte)
+            if self._config.reverse_input:
+                byte = byte.reversed()
+            self._register = self._process_byte(byte)
+        return self.register
+
+    @abc.abstractmethod
+    def _process_byte(self, byte):
         pass
 
     def digest(self):
@@ -259,17 +267,13 @@ class CrcRegister(CrcRegisterBase):
     def __init__(self, configuration):
         super().__init__(configuration)
 
-    def update(self, data):
-        for byte in data:
-            byte = Byte(byte)
-            if self._config.reverse_input:
-                byte = byte.reversed()
-            self.register ^= int(byte) << (self._config.width - 8)
-            for bit in byte:
-                if self._is_division_possible():
-                    self.register = (self.register << 1) ^ self._config.polynom
-                else:
-                    self.register <<= 1
+    def _process_byte(self, byte):
+        self.register ^= int(byte) << (self._config.width - 8)
+        for bit in byte:
+            if self._is_division_possible():
+                self.register = (self.register << 1) ^ self._config.polynom
+            else:
+                self.register <<= 1
         return self.register
 
 
@@ -279,19 +283,15 @@ class TableBasedCrcRegister(CrcRegisterBase):
         super().__init__(configuration)
         self._lookup_table = lookup_table
 
-    def update(self, data):
-        for byte in data:
-            byte = Byte(byte)
-            if self._config.reverse_input:
-                byte = byte.reversed()
-            index = byte ^ (self.register >> (self._config.width - 8))
-            self.register = self._lookup_table[index] ^ (self.register << 8)
+    def _process_byte(self, byte):
+        index = byte ^ (self.register >> (self._config.width - 8))
+        self.register = self._lookup_table[index] ^ (self.register << 8)
         return self.register
 
 
 class CrcCalculator(object):
 
-    def __init__(self, configuration, table_driven_calculation=False):
+    def __init__(self, configuration, table_based=True):
         self._crc_register = CrcRegister(configuration)
 
     def calculate_checksum(self, data):
@@ -302,10 +302,10 @@ class CrcCalculator(object):
 
 LOOKUP_TABLES = {
     Crc8: {
-       Crc8.CCITT: array('B',
+       0x07: array('B',
                          []
                          ),
-       Crc8.SAEJ1850: array('B',
+       0x1D: array('B',
                             []
                            )
     },

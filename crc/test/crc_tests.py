@@ -169,7 +169,7 @@ class CrcRegisterTest(unittest.TestCase):
             CrcTestData(data=string.digits[1:], checksum=0x9184),
             CrcTestData(data=string.digits[1:][::-1], checksum=0xF92C),
             CrcTestData(data=string.digits, checksum=0x76FA),
-            CrcTestData(data=string.digits[::-1], checksum=0x232),
+            CrcTestData(data=string.digits[::-1], checksum=0x93BA),
         ]
         for test in test_suit:
             crc_register.init()

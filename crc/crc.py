@@ -64,10 +64,10 @@ class Byte(numbers.Number):
 
     def reversed(self):
         value = 0
-        index = 7
+        index = 0
         for bit in reversed(self):
-            value += self[index] << index
-            index -= 1
+            value += bit << index
+            index += 1
         return Byte(value)
 
 

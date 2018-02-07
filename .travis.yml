@@ -4,6 +4,7 @@ os:
   - linux
 
 python:
+  - "3.6"
   - "3.5"
 
 install:

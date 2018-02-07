@@ -1,6 +1,12 @@
 crc
 ====
 
+The crc module provides classes to easily implement and calculate arbitrary crc algorithms CRC-8, 16, 24, 32.
+It also commes with 3 handy tools:
+
+* **crc-table** which can be used to generate a crc table for a specific crc algorithm/polynom.
+* **crc** 
+
 Status
 ------
 
@@ -35,7 +41,7 @@ The crc module provides provides functionality to handle and calculate various k
 
 Links
 -----
-* ``
+* `A Painless guide to crc error detection algorithms <http://www.zlib.net/crc_v3.txt>`_
 * `Project on Github <https://github.com/Nicoretti/crc>`_
 
 Requirements
@@ -45,14 +51,13 @@ Requirements
 Installation
 ------------
 
-From PyPi
-+++++++++
+TBD
 
+Usage
+------
 
-From Github
-+++++++++++
+.. code-block::
 
-
-From Source
-+++++++++++
+    data = b"foo bar need crc"
+    crc8.CCITT
 

@@ -1,1 +1,1 @@
-__all__ = ['table_generator']
+__all__ = ['table_generator', 'crc']

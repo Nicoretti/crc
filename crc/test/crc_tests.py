@@ -1,8 +1,8 @@
 import string
 import unittest
 
-from crc.crc import Byte, CrcRegister, is_crc_configruation
-from crc.crc import Configuration, Crc8, Crc16
+from crc.crc import Byte, CrcRegister, TableBasedCrcRegister, is_crc_configruation
+from crc.crc import Configuration, Crc8, Crc16, LOOKUP_TABLES
 from collections import namedtuple
 
 CrcTestData = namedtuple('CrcTestData', 'data checksum')
@@ -197,16 +197,32 @@ class TableBasedCrcRegisterTest(unittest.TestCase):
     def setUp(self):
         pass
 
-    def test_init_works_with_enum(self):
-        pass
-
     def test_crc8_ccitt(self):
         pass
 
     def test_crc8_saej1850(self):
         pass
 
+    def test_crc16_ccitt(self):
+        config = Crc16.CCITT
+        lookup_table = LOOKUP_TABLES[Crc16][0x1021]
+        crc_register = TableBasedCrcRegister(config, lookup_table)
+        test_suit = [
+            CrcTestData(data='', checksum=0x0000),
+            CrcTestData(data=string.digits[1:], checksum=0x31C3),
+            CrcTestData(data=string.digits[1:][::-1], checksum=0x9CAD),
+            CrcTestData(data=string.digits, checksum=0x9C58),
+            CrcTestData(data=string.digits[::-1], checksum=0xD966),
+        ]
+        for test in test_suit:
+            crc_register.init()
+            crc_register.update(test.data.encode('utf-8'))
+            self.assertEqual(test.checksum, crc_register.digest())
+
+    def test_crc32(self):
+        pass
 
 
 if __name__ == '__main__':
     unittest.main()
+

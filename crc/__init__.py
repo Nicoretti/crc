@@ -1,1 +1,1 @@
-__all__ = ['crc', 'tools', 'test']
+__all__ = ['crc', 'tools', 'test', 'lookup_tables']

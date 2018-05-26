@@ -34,13 +34,6 @@ Requirements
 ------------
 * Python 3.6 and newer
 
-Installation
-------------
-TBD
-
-Usage
-------
-
 
 Calculate and verify crc checksum using provided crc algorithm
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

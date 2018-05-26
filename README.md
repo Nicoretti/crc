@@ -5,7 +5,6 @@
 ![https://coveralls.io/github/Nicoretti/crc?branch=master](https://coveralls.io/repos/Nicoretti/crc/badge.svg?branch=master&service=github)
 ![https://landscape.io/github/Nicoretti/crc/master](https://landscape.io/github/Nicoretti/crc/master/landscape.svg?style=flat)
 ![http://py-crc.readthedocs.org/en/latest/?badge=latest](https://readthedocs.org/projects/py-crc/badge/?version=latest)
-![https://gemnasium.com/Nicoretti/crc](https://gemnasium.com/Nicoretti/crc.svg)
 
 # Overview
 The crc package provides provides support for the most common functionality to handle and calculate various kinds of crc checksums.

@@ -2,3 +2,6 @@
 __pycache__/*
 docs/_build/*
 .coverage
+*.egg-info/
+*.pyc
+*/__pychache__/*

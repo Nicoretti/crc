@@ -29,9 +29,6 @@ The crc package provides provides support for the most common functionality to h
 (e.g. Crc8, Crc16, Crc32)
 
 Supported CRC Algorithms:
-*
-*
-*
 
 Requirements
 ------------

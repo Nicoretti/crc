@@ -8,8 +8,8 @@ import enum
 import numbers
 import functools
 
-MAJOR_VERSION = 2
-MINOR_VERSION = 0
+MAJOR_VERSION = 0
+MINOR_VERSION = 3
 PATCH_VERSION = 0
 
 VERSION_TEMPLATE = '{major}.{minor}.{patch}'

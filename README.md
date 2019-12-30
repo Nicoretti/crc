@@ -28,7 +28,7 @@ crc_calculator = CrcCalculator(Crc8.CCITT)
 checksum = crc_calculator.calculate_checksum(data)
 
 assert checksum == expected_checksum
-assert crc_calculator.verfify_checksum(data, expected_checksum)
+assert crc_calculator.verify_checksum(data, expected_checksum)
 ```
 
 ### Calculate crc using the CrcRegister class

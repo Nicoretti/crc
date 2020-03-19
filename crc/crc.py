@@ -9,7 +9,7 @@ import numbers
 import functools
 
 MAJOR_VERSION = 0
-MINOR_VERSION = 3
+MINOR_VERSION = 4
 PATCH_VERSION = 0
 
 VERSION_TEMPLATE = '{major}.{minor}.{patch}'
@@ -251,6 +251,8 @@ class TableBasedCrcRegister(CrcRegisterBase):
                     fact that some lookup tables need to be calculated/initialized .
         """
         super().__init__(configuration)
+        if isinstance(configuration, enum.Enum):
+            configuration = configuration.value
         self._lookup_table = create_lookup_table(configuration.width, configuration.polynomial)
 
     def _process_byte(self, byte):

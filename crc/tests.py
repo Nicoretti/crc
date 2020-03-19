@@ -2,14 +2,13 @@
 #
 # Copyright (c) 2018, Nicola Coretti
 # All rights reserved.
-import docopt
 import string
 import unittest
 
-from unittest.mock import Mock, patch
+from unittest.mock import patch
 
 from crc import tools
-from crc.crc import Byte, CrcRegister, create_lookup_table
+from crc.crc import Byte, CrcRegister, create_lookup_table, CrcCalculator
 from crc.crc import Configuration, Crc8, Crc16
 from collections import namedtuple
 
@@ -48,6 +47,7 @@ class ByteTest(unittest.TestCase):
         lhs = Byte(0xFA)
         rhs = Byte(0xFA)
         expected_result = Byte(0xFA + 0xFA)
+        self.assertEqual(expected_result, lhs + rhs)
 
     def test_adding_an_integer_to_a_byte_with_overflow(self):
         lhs = 0xFA
@@ -193,6 +193,9 @@ class TableBasedCrcRegisterTest(unittest.TestCase):
     def setUp(self):
         pass
 
+    def test_crc8_autosar(self):
+        pass
+
     def test_crc8_ccitt(self):
         pass
 
@@ -204,6 +207,33 @@ class TableBasedCrcRegisterTest(unittest.TestCase):
 
     def test_crc32(self):
         pass
+
+
+class CrcCalculatorTest(unittest.TestCase):
+
+    def test_register_based(self):
+        calculator = CrcCalculator(Crc8.CCITT)
+        test_suit = [
+            CrcTestData(data='', checksum=0x00),
+            CrcTestData(data=string.digits[1:], checksum=0xF4),
+            CrcTestData(data=string.digits[1:][::-1], checksum=0x91),
+            CrcTestData(data=string.digits, checksum=0x45),
+            CrcTestData(data=string.digits[::-1], checksum=0x6E),
+        ]
+        for test in test_suit:
+            calculator.verify_checksum(test.data.encode('utf-8'), test.checksum)
+
+    def test_table_based_calculator(self):
+        calculator = CrcCalculator(Crc8.CCITT, True)
+        test_suit = [
+            CrcTestData(data='', checksum=0x00),
+            CrcTestData(data=string.digits[1:], checksum=0xF4),
+            CrcTestData(data=string.digits[1:][::-1], checksum=0x91),
+            CrcTestData(data=string.digits, checksum=0x45),
+            CrcTestData(data=string.digits[::-1], checksum=0x6E),
+        ]
+        for test in test_suit:
+            calculator.verify_checksum(test.data.encode('utf-8'), test.checksum)
 
 
 class CreateLookupTableTest(unittest.TestCase):

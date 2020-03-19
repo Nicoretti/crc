@@ -1,31 +1,25 @@
 language:
-  - python
+- python
 os:
-  - linux
-
+- linux
 python:
-  - "3.6"
-  - "3.5"
-
+- '3.6'
+- '3.5'
 install:
-  - pip install --upgrade pip
-  - pip install setuptools
-  - pip install --upgrade setuptools
-  - pip install coveralls
-  - pip install -e .
-  - pip list
-
+- pip install --upgrade pip
+- pip install setuptools
+- pip install --upgrade setuptools
+- pip install coveralls
+- pip install -e .
+- pip list
 script:
-  - python setup.py test
-  - coverage run --source="crc/crc.py" setup.py test
-
+- python setup.py test
+- coverage run --source="crc/crc.py" setup.py test
 after_success: coveralls
-
 deploy:
   provider: pypi
-  user: nicoretti
+  user: "__token__"
   password:
-    secure: "l8buaZD5wOZyD3qW5vhXVWDD2EcS66bZuf0Ls8oWb9mmzDXXLTzdFlO2jdEGdFtdJXDYQ4XDLI+X4a/4Qi6A9hpOEjUjls74yYC0Kat8dMGnWUvKKBubcfY3fGvvf9yR84y60E0FNzbIi+o3i4ihYdX4q2YI34dvx6Zpi8lYuerYot+VuRakd3Fi9jfQ7L496As7FXpSeB4Wux3LwsmpzbnUL2NfPiTEs3Pi668cy2hXBJpVSFMLqDQML3gJgR3oxLnRZA11xDgTaTKMcdR9c65ruWEGkNIZACZBtsOdtmJCgY6o2ATKOQbng0pECUbAsIx0ogFnqRxyE8s795JZPIawYkaWxlM+8nnQeAa95AfRRSXFtbfpcyNXRAzWk2u1vHnXwB5kFq+LYT5QpyuTieu0bSBTYTiLswsBwMX6cl2z/CIrBCu67FjXCKvXDaeed3jKz62mYHozWKh72+qqc6zYUqTW5MhMp83143ThmBV7QFWH1SOi7QMEwVgI3QoFFmled7JlEuHv7yy5HmRvcJT8l0prAsoFDdDRfirIPYGIe95t8cPkn+MIZ3hUyLqMZfC3/8EybDcqgY92Ll8jdtiyPsJpcDeLuOk2FjyMiL+iIjtvO+DJYUmIGbkSwM7I/B2CvJzE9lgX1j4fr/O/NeXvWEmLUtNKCqlhc0qou4s="
+    secure: AIGEEHerHVkn7wnKUe3bBIQCLXtpvQZCMHJeXbXqvH/tktoF8Ula5ZWgGwia8hVbIx9eOXJ0s2G0QL/2NmhbtITluqLZUg/wdBtgE9EFCoAKTtSthGrMyUTr/UMT5fC4zSP3YAtLixrIMSphLHQJtelDEVyILvpkTrXi88SIei7YWSGCjokAlmxHAeqK31yhw2yilsRUysXQXbCTcyI8M3re8zzpp5jyHU7PP7GLYyyIPD4WO7SKqXAmg2blbEArv178U6n6d2mq18iJdoepXhzQ4Tc8IYXtPHCJ9yWqWyxRhcyHXWIvwmd1m3AYUb9hsamwLGQF7A4iqFogCAUx73Ks2uag6MSjnVHE1IFopwNru0E3zk+lAYnb4mE9KTIVOGKrCjlAI8odFx+DTN9oLHOE7wlba8bB3OSrcFyhQIddSVPWUsekiPJVevcGfgaSxaoJfwFtD5icB1F5vjWnM+GZeoQC59RCXJPH9AIVIGYKhuJUMSbqfURkE0AWsHAyfxGzB8iDUCr/i/f4S20UuUtR0ju/vuxRDpqOBdlpYIsfzp+ex1lRUt9yDP2sLk7y4QrT2VLCJCpb6HzQB54Els3mK/xFQUH4XouxOcERM6d2SZ+9+oZzK9l5U9cGG4QiZsOw0j2f+BBV5Yr902+WheTYVu1ak5rOgNtqjzk5qDA=
   on:
     tags: true
-

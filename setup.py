@@ -5,7 +5,7 @@ setup(
     name='crc',
     version=LIBRARY_VERSION,
     packages=find_packages(),
-    install_requires=['docopt'],
+    install_requires=['docopt>=0.6.2'],
     url='https://github.com/Nicoretti/crc',
     license='BSD',
     author='Nicola Coretti',

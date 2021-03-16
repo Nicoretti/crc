@@ -6,11 +6,30 @@
 ![http://py-crc.readthedocs.org/en/latest/?badge=latest](https://readthedocs.org/projects/py-crc/badge/?version=latest)
 
 # Overview
-The crc package provides provides support for the most common functionality to handle and calculate various kinds of crc checksums.
+The `crc` package provides support for the most common functionality to handle and calculate various kinds of crc checksums.
 (e.g. Crc8, Crc16, Crc32)
 
-## Supported CRC Algorithms:
-TBD
+## Provided Default Configuration(s) of CRC Algorithms:
+
+### CRC 8
+* CCITT
+* SAJ1850
+* AUTOSAR
+* BLUETOOTH
+
+### CRC 16
+* CCITT
+* GSM
+* PROFIBUS
+
+### CRC 32
+* CRC32
+* AUTOSAR
+* BZIP2
+* POSIX
+
+### CRC 64
+* CRC64
 
 ## Requirements
 * Python 3.6 and newer
@@ -75,7 +94,6 @@ crc_calculator = CrcCalculator(Crc8.CCITT)
 
 ### cli extension point
 name:  crc.cli.command
-description: TBD
 
 ### crc
 A set of crc checksum related command line tools.

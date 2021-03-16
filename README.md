@@ -3,7 +3,6 @@
 ![https://travis-ci.org/Nicoretti/crc](https://travis-ci.org/Nicoretti/crc.svg?branch=master)
 ![https://ci.appveyor.com/project/Nicoretti/crc](https://ci.appveyor.com/api/projects/status/1tkrwbp3tiv0ikib/branch/master?svg=true)
 ![https://coveralls.io/github/Nicoretti/crc?branch=master](https://coveralls.io/repos/Nicoretti/crc/badge.svg?branch=master&service=github)
-![https://landscape.io/github/Nicoretti/crc/master](https://landscape.io/github/Nicoretti/crc/master/landscape.svg?style=flat)
 ![http://py-crc.readthedocs.org/en/latest/?badge=latest](https://readthedocs.org/projects/py-crc/badge/?version=latest)
 
 # Overview
@@ -16,6 +15,18 @@ TBD
 ## Requirements
 * Python 3.6 and newer
 
+```
+
+### Calculate crc using the CrcRegister class
+```python
+data = [0, 1, 2, 3, 4, 5 ]
+expected_checksum = 0xff
+crc_calculator = CrcCalculator(Crc8.CCITT)
+```
+
+### Speed up calculation (TableBasedRegister)
+```python
+data = [0, 1, 2, 3, 4, 5 ]
 
 ## Usage
 
@@ -29,18 +40,6 @@ checksum = crc_calculator.calculate_checksum(data)
 
 assert checksum == expected_checksum
 assert crc_calculator.verify_checksum(data, expected_checksum)
-```
-
-### Calculate crc using the CrcRegister class
-```python
-data = [0, 1, 2, 3, 4, 5 ]
-expected_checksum = 0xff
-crc_calculator = CrcCalculator(Crc8.CCITT)
-```
-
-### Speed up calculation (TableBasedRegister)
-```python
-data = [0, 1, 2, 3, 4, 5 ]
 expected_checksum = 0xff
 crc_calculator = CrcCalculator(Crc8.CCITT)
 ```

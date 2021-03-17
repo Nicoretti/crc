@@ -22,6 +22,8 @@ if __name__ == '__main__':
         packages=find_packages(),
         classifiers=[
             'Programming Language :: Python :: 3.6',
+            'Programming Language :: Python :: 3.7',
+            'Programming Language :: Python :: 3.8',
         ],
         install_requires=['docopt>=0.6.2'],
         url='https://github.com/Nicoretti/crc',

@@ -7,10 +7,7 @@ import docopt
 import pkg_resources
 from functools import reduce
 from collections import defaultdict
-if __name__ == '__main__':
-    from crc import create_lookup_table
-else:
-    from crc.crc import create_lookup_table
+from crc.crc import create_lookup_table
 
 EXTENSION_POINT = 'crc.cli.command'
 

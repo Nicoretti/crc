@@ -7,7 +7,7 @@ current = pathlib.Path(__file__).parent.resolve()
 
 
 def tests():
-    return unittest.defaultTestLoader.discover(start_dir=f'{current.resolve()}', pattern='*tests.py')
+    return unittest.defaultTestLoader.discover(start_dir=f'{current.resolve()}', pattern='*test*.py')
 
 
 def readme():

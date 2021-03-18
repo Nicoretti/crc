@@ -1,56 +1,29 @@
-# Status
-
+# Overview
 ![https://travis-ci.org/Nicoretti/crc](https://travis-ci.org/Nicoretti/crc.svg?branch=master)
 ![https://ci.appveyor.com/project/Nicoretti/crc](https://ci.appveyor.com/api/projects/status/1tkrwbp3tiv0ikib/branch/master?svg=true)
 ![https://coveralls.io/github/Nicoretti/crc?branch=master](https://coveralls.io/repos/Nicoretti/crc/badge.svg?branch=master&service=github)
 ![http://py-crc.readthedocs.org/en/latest/?badge=latest](https://readthedocs.org/projects/py-crc/badge/?version=latest)
 
-# Overview
-The `crc` package provides support for the most common functionality to handle and calculate various kinds of crc checksums.
-(e.g. Crc8, Crc16, Crc32)
+Library and CLI tool for calculating and verifying CRC checksums.
 
 ## Provided Default Configuration(s) of CRC Algorithms:
 
-### CRC 8
-* CCITT
-* SAJ1850
-* AUTOSAR
-* BLUETOOTH
-
-### CRC 16
-* CCITT
-* GSM
-* PROFIBUS
-
-### CRC 32
-* CRC32
-* AUTOSAR
-* BZIP2
-* POSIX
-
-### CRC 64
-* CRC64
+| CRC8 | CRC16 | CRC32 | CRC64 |
+|------|-------|-------|-------|
+| CCITT | CCITT | CRC32 | CRC64 |
+| AUTOSAR | GSM | AUTOSAR | |
+| SAJ1850 | PROFIBUS | BZIP2 | |
+| BLUETOOTH | | POSIX | |
 
 ## Requirements
 * Python 3.6 and newer
+* docopt >= 0.6.2
 
-```
+## Examples
 
-### Calculate crc using the CrcRegister class
+### Calculate crc using the `CrcCalculator`
 ```python
-data = [0, 1, 2, 3, 4, 5 ]
-expected_checksum = 0xff
-crc_calculator = CrcCalculator(Crc8.CCITT)
-```
-
-### Speed up calculation (TableBasedRegister)
-```python
-data = [0, 1, 2, 3, 4, 5 ]
-
-## Usage
-
-### Calculate and verify crc checksum using provided crc algorithm
-```python
+from crc.crc import CrcCalculator, Crc8
 data = [0, 1, 2, 3, 4, 5 ]
 expected_checksum = 0xff
 crc_calculator = CrcCalculator(Crc8.CCITT)
@@ -59,41 +32,69 @@ checksum = crc_calculator.calculate_checksum(data)
 
 assert checksum == expected_checksum
 assert crc_calculator.verify_checksum(data, expected_checksum)
-expected_checksum = 0xff
-crc_calculator = CrcCalculator(Crc8.CCITT)
 ```
 
-### How to create a custom crc configuration
+### Speed up the calculation by using a table based `CrcCalculator`
 ```python
+from crc.crc import CrcCalculator, Crc8
+
 data = [0, 1, 2, 3, 4, 5 ]
 expected_checksum = 0xff
-crc_calculator = CrcCalculator(Crc8.CCITT)
+use_table = True
+crc_calculator = CrcCalculator(Crc8.CCITT, use_table)
+
+checksum = crc_calculator.calculate_checksum(data)
+
+assert checksum == expected_checksum
+assert crc_calculator.verify_checksum(data, expected_checksum)
 ```
 
-### Write your own CrcRegister based on CrcRegisterBase
-
-#### Based on CrcRegisterBase
-
+### Create a custom crc configuration for the crc calculation 
 ```python
+from crc.crc import CrcCalculator, Configuration
+
 data = [0, 1, 2, 3, 4, 5 ]
 expected_checksum = 0xff
-crc_calculator = CrcCalculator(Crc8.CCITT)
+
+width = 8
+poly=0x07,
+init_value=0x00,
+final_xor_value=0x00,
+reverse_input=False,
+reverse_output=False
+configuration = Configuration(width, poly, init_value, final_xor_value, reverse_input, reverse_output)
+
+use_table = True
+crc_calculator = CrcCalculator(configuration, use_table)
+
+checksum = crc_calculator.calculate_checksum(data)
+assert checksum == expected_checksum
+assert crc_calculator.verify_checksum(data, expected_checksum)
 ```
-.. code-block::
 
-
-#### Based on AbstractCrcRegister
+### Use bare bones crc registers
 ```python
+from crc.crc import Crc8, TableBasedCrcRegister, CrcRegister
+
 data = [0, 1, 2, 3, 4, 5 ]
 expected_checksum = 0xff
-crc_calculator = CrcCalculator(Crc8.CCITT)
-```
 
+reg = CrcRegister(Crc8.CCITT)
+table_reg = TableBasedCrcRegister(Crc8.CCITT)
+
+reg.init()
+reg.update(data)
+assert expected_checksum == reg.digest()
+
+table_reg.init()
+table_reg.update(data)
+assert expected_checksum == table_reg.digest()
+```
 
 ## Command line tools
 
 ### cli extension point
-name:  crc.cli.command
+* `crc.cli.command`
 
 ### crc
 A set of crc checksum related command line tools.
@@ -113,8 +114,7 @@ A set of crc checksum related command line tools.
         calcualte   calculates the crc checksum for the specified data.
 ```
 
-table
------
+#### subcommand table
 Command line tool to create crc lookup tables.
 ```
     usage:
@@ -127,13 +127,6 @@ Command line tool to create crc lookup tables.
         -h, --help
         --version
 ```
-
-Tips & Tricks
--------------
-Info:
-Main code -> crc.py works without any dependencies -> copy and paste into project
-but gererally highly recommend -> install using pip -> tests etc
-
 
 References & Resources
 -----------------------

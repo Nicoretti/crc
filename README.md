@@ -1,7 +1,7 @@
 # Overview
-[![travis-ci](https://travis-ci.org/Nicoretti/crc.svg?branch=master)](https://travis-ci.org/Nicoretti/crc.svg?branch=master)
+[![travis-ci](https://travis-ci.org/Nicoretti/crc.svg?branch=master)](https://travis-ci.org/Nicoretti/crc)
 [![appveyor](https://ci.appveyor.com/api/projects/status/1tkrwbp3tiv0ikib/branch/master?svg=true)](https://ci.appveyor.com/project/Nicoretti/crc)
-[![coveralls](https://coveralls.io/repos/Nicoretti/crc/badge.svg?branch=master&service=github)](https://travis-ci.org/Nicoretti/crc.svg?branch=master)
+[![coveralls](https://coveralls.io/repos/Nicoretti/crc/badge.svg?branch=master&service=github)](https://coveralls.io/github/Nicoretti/crc)
 
 
 Library and CLI tool for calculating and verifying CRC checksums.

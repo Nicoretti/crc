@@ -8,7 +8,7 @@ import unittest
 from unittest.mock import patch
 
 from crc import tools
-from crc.crc import Byte, CrcRegister, create_lookup_table, CrcCalculator
+from crc.crc import Byte, CrcRegister, TableBasedCrcRegister, create_lookup_table, CrcCalculator
 from crc.crc import Configuration, Crc8, Crc16
 from collections import namedtuple
 
@@ -108,101 +108,88 @@ class CrcConfigurationTest(unittest.TestCase):
 
 class CrcRegisterTest(unittest.TestCase):
 
+    def setUp(self):
+        self._register_types = [CrcRegister, TableBasedCrcRegister]
+
     def test_crc8_ccitt(self):
         config = Crc8.CCITT
-        crc_register = CrcRegister(config)
-        test_suit = [
-            CrcTestData(data='', checksum=0x00),
-            CrcTestData(data=string.digits[1:], checksum=0xF4),
-            CrcTestData(data=string.digits[1:][::-1], checksum=0x91),
-            CrcTestData(data=string.digits, checksum=0x45),
-            CrcTestData(data=string.digits[::-1], checksum=0x6E),
-        ]
-        for test in test_suit:
-            crc_register.init()
-            crc_register.update(test.data.encode('utf-8'))
-            self.assertEqual(test.checksum, crc_register.digest())
+        for register_type in self._register_types:
+            crc_register = register_type(config)
+            test_suit = [
+                CrcTestData(data='', checksum=0x00),
+                CrcTestData(data=string.digits[1:], checksum=0xF4),
+                CrcTestData(data=string.digits[1:][::-1], checksum=0x91),
+                CrcTestData(data=string.digits, checksum=0x45),
+                CrcTestData(data=string.digits[::-1], checksum=0x6E),
+            ]
+            for test in test_suit:
+                crc_register.init()
+                crc_register.update(test.data.encode('utf-8'))
+                self.assertEqual(test.checksum, crc_register.digest())
 
     def test_crc8_saej1850(self):
         config = Crc8.SAEJ1850
-        crc_register = CrcRegister(config)
-        test_suit = [
-            CrcTestData(data='', checksum=0x00),
-            CrcTestData(data=string.digits[1:], checksum=0x37),
-            CrcTestData(data=string.digits[1:][::-1], checksum=0xAA),
-            CrcTestData(data=string.digits, checksum=0x8A),
-            CrcTestData(data=string.digits[::-1], checksum=0x39),
-        ]
-        for test in test_suit:
-            crc_register.init()
-            crc_register.update(test.data.encode('utf-8'))
-            self.assertEqual(test.checksum, crc_register.digest())
+        for register_type in self._register_types:
+            crc_register = register_type(config)
+            test_suit = [
+                CrcTestData(data='', checksum=0x00),
+                CrcTestData(data=string.digits[1:], checksum=0x37),
+                CrcTestData(data=string.digits[1:][::-1], checksum=0xAA),
+                CrcTestData(data=string.digits, checksum=0x8A),
+                CrcTestData(data=string.digits[::-1], checksum=0x39),
+            ]
+            for test in test_suit:
+                crc_register.init()
+                crc_register.update(test.data.encode('utf-8'))
+                self.assertEqual(test.checksum, crc_register.digest())
 
     def test_crc16_ccitt(self):
         config = Crc16.CCITT
-        crc_register = CrcRegister(config)
-        test_suit = [
-            CrcTestData(data='', checksum=0x0000),
-            CrcTestData(data=string.digits[1:], checksum=0x31C3),
-            CrcTestData(data=string.digits[1:][::-1], checksum=0x9CAD),
-            CrcTestData(data=string.digits, checksum=0x9C58),
-            CrcTestData(data=string.digits[::-1], checksum=0xD966),
-        ]
-        for test in test_suit:
-            crc_register.init()
-            crc_register.update(test.data.encode('utf-8'))
-            self.assertEqual(test.checksum, crc_register.digest())
+        for register_type in self._register_types:
+            crc_register = register_type(config)
+            test_suit = [
+                CrcTestData(data='', checksum=0x0000),
+                CrcTestData(data=string.digits[1:], checksum=0x31C3),
+                CrcTestData(data=string.digits[1:][::-1], checksum=0x9CAD),
+                CrcTestData(data=string.digits, checksum=0x9C58),
+                CrcTestData(data=string.digits[::-1], checksum=0xD966),
+            ]
+            for test in test_suit:
+                crc_register.init()
+                crc_register.update(test.data.encode('utf-8'))
+                self.assertEqual(test.checksum, crc_register.digest())
 
     def test_crc16_with_reflected_input(self):
         config = Configuration(16, 0x1021, 0, 0, True, False)
-        crc_register = CrcRegister(config)
-        test_suit = [
-            CrcTestData(data='', checksum=0x0000),
-            CrcTestData(data=string.digits[1:], checksum=0x9184),
-            CrcTestData(data=string.digits[1:][::-1], checksum=0xF92C),
-            CrcTestData(data=string.digits, checksum=0x76FA),
-            CrcTestData(data=string.digits[::-1], checksum=0x93BA),
-        ]
-        for test in test_suit:
-            crc_register.init()
-            crc_register.update(test.data.encode('utf-8'))
-            self.assertEqual(test.checksum, crc_register.digest())
+        for register_type in self._register_types:
+            crc_register = register_type(config)
+            test_suit = [
+                CrcTestData(data='', checksum=0x0000),
+                CrcTestData(data=string.digits[1:], checksum=0x9184),
+                CrcTestData(data=string.digits[1:][::-1], checksum=0xF92C),
+                CrcTestData(data=string.digits, checksum=0x76FA),
+                CrcTestData(data=string.digits[::-1], checksum=0x93BA),
+            ]
+            for test in test_suit:
+                crc_register.init()
+                crc_register.update(test.data.encode('utf-8'))
+                self.assertEqual(test.checksum, crc_register.digest())
 
     def test_crc16_with_reflected_output(self):
         config = Configuration(16, 0x1021, 0, 0, False, True)
-        crc_register = CrcRegister(config)
-        test_suit = [
-            CrcTestData(data='', checksum=0x0000),
-            CrcTestData(data=string.digits[1:], checksum=0xC38C),
-            CrcTestData(data=string.digits[1:][::-1], checksum=0xB539),
-            CrcTestData(data=string.digits, checksum=0x1A39),
-            CrcTestData(data=string.digits[::-1], checksum=0x669B),
-        ]
-        for test in test_suit:
-            crc_register.init()
-            crc_register.update(test.data.encode('utf-8'))
-            self.assertEqual(test.checksum, crc_register.digest())
-
-
-class TableBasedCrcRegisterTest(unittest.TestCase):
-
-    def setUp(self):
-        pass
-
-    def test_crc8_autosar(self):
-        pass
-
-    def test_crc8_ccitt(self):
-        pass
-
-    def test_crc8_saej1850(self):
-        pass
-
-    def test_crc16_ccitt(self):
-        pass
-
-    def test_crc32(self):
-        pass
+        for register_type in self._register_types:
+            crc_register = register_type(config)
+            test_suit = [
+                CrcTestData(data='', checksum=0x0000),
+                CrcTestData(data=string.digits[1:], checksum=0xC38C),
+                CrcTestData(data=string.digits[1:][::-1], checksum=0xB539),
+                CrcTestData(data=string.digits, checksum=0x1A39),
+                CrcTestData(data=string.digits[::-1], checksum=0x669B),
+            ]
+            for test in test_suit:
+                crc_register.init()
+                crc_register.update(test.data.encode('utf-8'))
+                self.assertEqual(test.checksum, crc_register.digest())
 
 
 class CrcCalculatorTest(unittest.TestCase):

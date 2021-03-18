@@ -108,10 +108,6 @@ class CrcConfigurationTest(unittest.TestCase):
 
 class CrcRegisterTest(unittest.TestCase):
 
-    def test_init_works_with_enum(self):
-        config = Crc8.CCITT
-        crc_register = CrcRegister(config)
-
     def test_crc8_ccitt(self):
         config = Crc8.CCITT
         crc_register = CrcRegister(config)

@@ -351,21 +351,5 @@ class CreateLookupTableTest(unittest.TestCase):
                 self.assertEqual(table, create_lookup_table(32, polynom))
 
 
-class CrcCommandTest(unittest.TestCase):
-
-    @patch('sys.argv', ('crc', '--help'))
-    @patch('builtins.print')
-    def test_prints_help(self, print_mock):
-        with self.assertRaises(SystemExit):
-            tools.main()
-        print_mock.assert_called_with(tools.main.__doc__.strip('\n'))
-
-    @patch('sys.argv', ('crc', 'table'))
-    def test_prints_table_usage(self):
-        # Docopt will print usage and call system exit if params are not sufficient or invalid
-        # FIXME: also add a check if the correct usage is printed
-        self.assertRaises(SystemExit, tools.main)
-
-
 if __name__ == '__main__':
     unittest.main()

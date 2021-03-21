@@ -91,42 +91,12 @@ table_reg.update(data)
 assert expected_checksum == table_reg.digest()
 ```
 
-## Command line tools
+## Command line tool
+See `crc --help`
 
-### cli extension point
-* `crc.cli.command`
-
-### crc
-A set of crc checksum related command line tools.
-
-```
-    usage:
-        crc [--version][--help] <command> [<args>...]
-
-    options:
-
-        -h, --help      prints this help dialoge
-        --version       version
-
-    commands:
-        table       creates a crc lookup table.
-        verfiy      verfies a already calcualted crc for the specified data.
-        calcualte   calculates the crc checksum for the specified data.
-```
-
-#### subcommand table
-Command line tool to create crc lookup tables.
-```
-    usage:
-        crc table [options] <width> <polynom>
-
-    arguments:
-        <polynom>       hex value of the polynom used for calculating the crc table.
-
-    options:
-        -h, --help
-        --version
-```
+### subcommand(s)
+#### table
+Subcommand to pre-compute crc lookup tables. Also see `crc table --help`.
 
 References & Resources
 -----------------------

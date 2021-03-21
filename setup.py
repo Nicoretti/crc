@@ -25,7 +25,6 @@ if __name__ == '__main__':
             'Programming Language :: Python :: 3.7',
             'Programming Language :: Python :: 3.8',
         ],
-        install_requires=['docopt>=0.6.2'],
         url='https://github.com/Nicoretti/crc',
         license='BSD',
         author='Nicola Coretti',
@@ -38,6 +37,5 @@ if __name__ == '__main__':
             'console_scripts': [
                 'crc=crc.tools:main',
             ],
-            'crc.cli.command': ['table=crc.tools:table']
         }
     )

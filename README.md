@@ -104,5 +104,5 @@ References & Resources
 -----------------------
 * [A Painless guide to crc error detection algorithms](http://www.zlib.net/crc_v3.txt)
 * [Project on Github](https://github.com/Nicoretti/crc)
-* [CRC-Catalouge](http://reveng.sourceforge.net/crc-catalogue/all.htm)
+* [CRC-Catalogue](http://reveng.sourceforge.net/crc-catalogue/all.htm)
 

@@ -17,7 +17,6 @@ Library and CLI tool for calculating and verifying CRC checksums.
 
 ## Requirements
 * Python 3.6 and newer
-* docopt >= 0.6.2
 
 ## Examples
 

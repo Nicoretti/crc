@@ -7,8 +7,8 @@ class CrcRegisterBenchTest(unittest.TestCase):
     def test_crc_reg_vs_table_based_reg(self):
         reg = "\n".join([
             "import string",
-            "from crc.crc import CrcRegister",
-            "from crc.crc import Configuration, Crc8",
+            "from crc import CrcRegister",
+            "from crc import Configuration, Crc8",
             "from collections import namedtuple",
             "CrcTestData = namedtuple('CrcTestData', 'data checksum')",
             "config = Crc8.CCITT",
@@ -29,8 +29,8 @@ class CrcRegisterBenchTest(unittest.TestCase):
 
         table_reg = "\n".join([
             "import string",
-            "from crc.crc import TableBasedCrcRegister",
-            "from crc.crc import Configuration, Crc8",
+            "from crc import TableBasedCrcRegister",
+            "from crc import Configuration, Crc8",
             "from collections import namedtuple",
             "CrcTestData = namedtuple('CrcTestData', 'data checksum')",
             "config = Crc8.CCITT",

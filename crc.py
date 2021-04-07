@@ -3,14 +3,16 @@
 # Copyright (c) 2018, Nicola Coretti
 # All rights reserved.
 
+import sys
 import abc
 import enum
 import numbers
 import functools
+import argparse
 
 MAJOR_VERSION = 0
-MINOR_VERSION = 4
-PATCH_VERSION = 7
+MINOR_VERSION = 9
+PATCH_VERSION = 0
 
 VERSION_TEMPLATE = '{major}.{minor}.{patch}'
 LIBRARY_VERSION = VERSION_TEMPLATE.format(major=MAJOR_VERSION, minor=MINOR_VERSION, patch=PATCH_VERSION)
@@ -265,7 +267,6 @@ class TableBasedCrcRegister(CrcRegisterBase):
 
 
 class Byte(numbers.Number):
-
     BIT_LENGTH = 8
     BIT_MASK = 0xFF
 
@@ -368,7 +369,6 @@ class CrcCalculator(object):
 
 @enum.unique
 class Crc8(enum.Enum):
-
     CCITT = Configuration(
         width=8,
         polynomial=0x07,
@@ -408,7 +408,6 @@ class Crc8(enum.Enum):
 
 @enum.unique
 class Crc16(enum.Enum):
-
     CCITT = Configuration(
         width=16,
         polynomial=0x1021,
@@ -439,7 +438,6 @@ class Crc16(enum.Enum):
 
 @enum.unique
 class Crc32(enum.Enum):
-
     CRC32 = Configuration(
         width=32,
         polynomial=0x04C11DB7,
@@ -479,7 +477,6 @@ class Crc32(enum.Enum):
 
 @enum.unique
 class Crc64(enum.Enum):
-
     CRC64 = Configuration(
         width=64,
         polynomial=0x42F0E1EBA9EA3693,
@@ -489,3 +486,76 @@ class Crc64(enum.Enum):
         reverse_output=False
     )
 
+
+CRC_TYPES = {
+    Crc8.__name__: Crc8,
+    Crc16.__name__: Crc16,
+    Crc32.__name__: Crc32,
+    Crc64.__name__: Crc64
+}
+
+
+def argument_parser():
+    into_int = functools.partial(int, base=0)
+    prog = 'crc'
+    description = 'A set of crc checksum related command line tools.'
+    parser = argparse.ArgumentParser(prog=prog, description=description,
+                                     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+
+    subparsers = parser.add_subparsers()
+
+    t = subparsers.add_parser('table', help='Generates lookup tables for various crc algorithm settings')
+    t.add_argument('width', metavar='<width>', type=into_int,
+                   help='width of the crc algorithm, common width\'s are 8, 16, 32, 64')
+    t.add_argument('polynom', metavar='<polynom>', type=into_int,
+                   help='hex value of the polynom used for calculating the crc table')
+    t.set_defaults(func=table)
+
+    c = subparsers.add_parser('checksum', help='Calculate checksum(s) for the specified input(s)')
+    c.add_argument('inputs', nargs='*', type=argparse.FileType('r'), default=[sys.stdin],
+                   help='who will be feed into the crc calculation')
+    c.add_argument('-c', '--category', choices=[t for t in CRC_TYPES], default=Crc8.__name__,
+                   help='of crc algorithms which shall be used for calculation')
+    c.set_defaults(func=checksum)
+
+    return parser
+
+
+def table(args):
+    width = args.width
+    polynom = args.polynom
+    lookup_table = create_lookup_table(width, polynom)
+    fmt_spec = '{{:0<0{}X}}'.format(width // 4)
+    template = "0x{} ".format(fmt_spec)
+    for id, entry in enumerate(lookup_table):
+        if (id != 0) and (id % 8 == 0): print()
+        print(template.format(entry), end='')
+    print()
+    return True
+
+
+def checksum(args):
+    data = bytearray()
+    for input in args.inputs:
+        data.extend(bytes(input.read(), 'utf-8'))
+    category = CRC_TYPES[args.category]
+    for algorithm in sorted(category, key=str):
+        name = f'{algorithm}'.split('.')[1]
+        calculator = CrcCalculator(algorithm, True)
+        print(f'{name}: 0x{calculator.calculate_checksum(data):X}')
+    return True
+
+
+def main(argv=None):
+    parser = argument_parser()
+    args = parser.parse_args(argv)
+    if 'func' in args:
+        exit_code = 0 if args.func(args) else -1
+        sys.exit(exit_code)
+    else:
+        parser.print_help()
+        sys.exit(-1)
+
+
+if __name__ == '__main__':
+    main()

@@ -5,11 +5,8 @@
 import string
 import unittest
 
-from unittest.mock import patch
-
-from crc import tools
-from crc.crc import Byte, CrcRegister, TableBasedCrcRegister, create_lookup_table, CrcCalculator
-from crc.crc import Configuration, Crc8, Crc16
+from crc import Byte, CrcRegister, TableBasedCrcRegister, create_lookup_table, CrcCalculator
+from crc import Configuration, Crc8, Crc16
 from collections import namedtuple
 
 CrcTestData = namedtuple('CrcTestData', 'data checksum')

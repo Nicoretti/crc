@@ -1,6 +1,6 @@
 import pathlib
 import unittest
-from crc.crc import LIBRARY_VERSION
+from crc import LIBRARY_VERSION
 from setuptools import setup, find_packages
 
 current = pathlib.Path(__file__).parent.resolve()
@@ -19,7 +19,7 @@ if __name__ == '__main__':
         name='crc',
         version=LIBRARY_VERSION,
         test_suite='setup.tests',
-        packages=find_packages(),
+        py_modules=['crc'],
         classifiers=[
             'Programming Language :: Python :: 3.6',
             'Programming Language :: Python :: 3.7',
@@ -35,7 +35,7 @@ if __name__ == '__main__':
         long_description_content_type='text/markdown',
         entry_points={
             'console_scripts': [
-                'crc=crc.tools:main',
+                'crc=crc:main',
             ],
         }
     )

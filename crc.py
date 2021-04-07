@@ -112,7 +112,7 @@ class Configuration(object):
 class CrcRegisterBase(AbstractCrcRegister):
     """
     Implements the common crc algorithm, assuming a user of this base
-    class will provide an overwrite for the _proces_byte method.
+    class will provide an overwrite for the _process_byte method.
     """
 
     def __init__(self, configuration):
@@ -213,7 +213,7 @@ class CrcRegister(CrcRegisterBase):
 
     .. note:
 
-        If performance is an important issue for the crc calcualation use table
+        If performance is an important issue for the crc calculation use a table
         based register.
     """
 
@@ -249,7 +249,7 @@ class TableBasedCrcRegister(CrcRegisterBase):
 
         :param configuration: used for the crc algorithm.
 
-        :attention: creating a table based register initaliy might take some extra time, due to the
+        :attention: creating a table based register initially might take some extra time, due to the
                     fact that some lookup tables need to be calculated/initialized .
         """
         super().__init__(configuration)
@@ -347,10 +347,10 @@ class CrcCalculator(object):
         """
         Creates a new CrcCalculator.
 
-        :param configuration: for the crc algortihm.
+        :param configuration: for the crc algorithm.
         :param table_based: if true a tables based register will be used for the calculations.
 
-        :attention: initalizing a table based calculator might take some extra time, due to the
+        :attention: initializing a table based calculator might take some extra time, due to the
                     fact that the lookup table need to be initialized.
         """
         if table_based:
@@ -497,9 +497,9 @@ CRC_TYPES = {
 
 def argument_parser():
     into_int = functools.partial(int, base=0)
-    prog = 'crc'
+    program = 'crc'
     description = 'A set of crc checksum related command line tools.'
-    parser = argparse.ArgumentParser(prog=prog, description=description,
+    parser = argparse.ArgumentParser(prog=program, description=description,
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     subparsers = parser.add_subparsers()

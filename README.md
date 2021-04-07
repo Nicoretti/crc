@@ -98,7 +98,7 @@ See `crc --help`
 #### table
 Subcommand to pre-compute crc lookup tables. See also `crc table --help`.
 #### checksum
-Subcommand to calculate crc checksums of input file(s). See also `crc checksu --help`.
+Subcommand to calculate crc checksums of input file(s). See also `crc checksum --help`.
 
 References & Resources
 -----------------------

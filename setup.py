@@ -1,7 +1,7 @@
 import pathlib
 import unittest
 from crc import LIBRARY_VERSION
-from setuptools import setup, find_packages
+from setuptools import setup
 
 current = pathlib.Path(__file__).parent.resolve()
 

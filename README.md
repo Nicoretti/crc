@@ -2,6 +2,7 @@
 [![travis-ci](https://travis-ci.org/Nicoretti/crc.svg?branch=master)](https://travis-ci.org/Nicoretti/crc)
 [![appveyor](https://ci.appveyor.com/api/projects/status/1tkrwbp3tiv0ikib/branch/master?svg=true)](https://ci.appveyor.com/project/Nicoretti/crc)
 [![coveralls](https://coveralls.io/repos/github/Nicoretti/crc/badge.svg?branch=master)](https://coveralls.io/github/Nicoretti/crc)
+[![pypi-package-available](https://img.shields.io/badge/pypi%20package-available-blue.svg)](https://pypi.org/project/crc/)
 
 
 Library and CLI tool for calculating and verifying CRC checksums.

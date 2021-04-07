@@ -29,7 +29,7 @@ if __name__ == '__main__':
         license='BSD',
         author='Nicola Coretti',
         author_email='nico.coretti@gmail.com',
-        description='Library and CLI tool for calculating and verifying CRC checksums.',
+        description='Library and CLI to calculate and verify all kinds of CRC checksums.',
         keywords=['CRC', 'CRC8', 'CRC16', 'CRC32', 'CRC64'],
         long_description=readme(),
         long_description_content_type='text/markdown',

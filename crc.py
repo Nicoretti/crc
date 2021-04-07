@@ -528,7 +528,8 @@ def table(args):
     fmt_spec = '{{:0<0{}X}}'.format(width // 4)
     template = "0x{} ".format(fmt_spec)
     for id, entry in enumerate(lookup_table):
-        if (id != 0) and (id % 8 == 0): print()
+        if (id != 0) and (id % 8 == 0):
+            print()
         print(template.format(entry), end='')
     print()
     return True

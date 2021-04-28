@@ -15,7 +15,7 @@ install:
 - pip list
 script:
 - python setup.py test
-- coverage run --source="crc.crc" setup.py test
+- coverage run --source="crc" setup.py test
 after_success: coveralls
 deploy:
   provider: pypi

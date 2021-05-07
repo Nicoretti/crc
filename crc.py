@@ -522,6 +522,8 @@ def argument_parser():
 
 
 def table(args):
+    if not (args.width and args.polynom):
+        return False
     width = args.width
     polynom = args.polynom
     lookup_table = create_lookup_table(width, polynom)

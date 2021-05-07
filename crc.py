@@ -15,8 +15,7 @@ MAJOR_VERSION = 0
 MINOR_VERSION = 10
 PATCH_VERSION = 0
 
-VERSION_TEMPLATE = '{major}.{minor}.{patch}'
-LIBRARY_VERSION = VERSION_TEMPLATE.format(major=MAJOR_VERSION, minor=MINOR_VERSION, patch=PATCH_VERSION)
+LIBRARY_VERSION = f'{MAJOR_VERSION}.{MINOR_VERSION}.{PATCH_VERSION}'
 
 __author__ = 'Nicola Coretti'
 __email__ = 'nico.coretti@gmail.com'

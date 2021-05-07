@@ -17,7 +17,7 @@ Library and CLI tool for calculating and verifying CRC checksums.
 | BLUETOOTH | | POSIX | |
 
 ## Requirements
-* Python 3.6 and newer
+* Python 3.7 and newer
 
 ## Examples
 

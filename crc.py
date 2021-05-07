@@ -9,6 +9,7 @@ import enum
 import numbers
 import functools
 import argparse
+from dataclasses import dataclass
 
 MAJOR_VERSION = 0
 MINOR_VERSION = 9
@@ -70,43 +71,18 @@ class AbstractCrcRegister(metaclass=abc.ABCMeta):
         pass
 
 
+@dataclass(frozen=True)
 class Configuration(object):
     """
     A Configuration provides all settings necessary to determine the concrete
     implementation of a specific crc algorithm/register.
     """
-
-    def __init__(self, width, polynomial, init_value=0, final_xor_value=0, reverse_input=False, reverse_output=False):
-        self._width = width
-        self._polynomial = polynomial
-        self._init_value = init_value
-        self._final_xor_value = final_xor_value
-        self._reverse_input = reverse_input
-        self._reverse_output = reverse_output
-
-    @property
-    def width(self):
-        return self._width
-
-    @property
-    def polynomial(self):
-        return self._polynomial
-
-    @property
-    def init_value(self):
-        return self._init_value
-
-    @property
-    def final_xor_value(self):
-        return self._final_xor_value
-
-    @property
-    def reverse_input(self):
-        return self._reverse_input
-
-    @property
-    def reverse_output(self):
-        return self._reverse_output
+    width: int
+    polynomial: int
+    init_value: int = 0
+    final_xor_value: int = 0
+    reverse_input: bool = False
+    reverse_output: bool = False
 
 
 class CrcRegisterBase(AbstractCrcRegister):

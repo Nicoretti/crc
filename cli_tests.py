@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+#
+# Copyright (c) 2021, Nicola Coretti
+# All rights reserved.
 import unittest
 from unittest.mock import patch, call
 from crc import main

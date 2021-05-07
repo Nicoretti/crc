@@ -21,7 +21,6 @@ if __name__ == '__main__':
         test_suite='setup.tests',
         py_modules=['crc'],
         classifiers=[
-            'Programming Language :: Python :: 3.6',
             'Programming Language :: Python :: 3.7',
             'Programming Language :: Python :: 3.8',
         ],

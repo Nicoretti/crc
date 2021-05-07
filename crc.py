@@ -12,8 +12,8 @@ import argparse
 from dataclasses import dataclass
 
 MAJOR_VERSION = 0
-MINOR_VERSION = 9
-PATCH_VERSION = 5
+MINOR_VERSION = 10
+PATCH_VERSION = 0
 
 VERSION_TEMPLATE = '{major}.{minor}.{patch}'
 LIBRARY_VERSION = VERSION_TEMPLATE.format(major=MAJOR_VERSION, minor=MINOR_VERSION, patch=PATCH_VERSION)

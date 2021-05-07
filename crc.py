@@ -11,8 +11,8 @@ import functools
 import argparse
 from dataclasses import dataclass
 
-MAJOR_VERSION = 0
-MINOR_VERSION = 10
+MAJOR_VERSION = 1
+MINOR_VERSION = 0
 PATCH_VERSION = 0
 
 LIBRARY_VERSION = f'{MAJOR_VERSION}.{MINOR_VERSION}.{PATCH_VERSION}'

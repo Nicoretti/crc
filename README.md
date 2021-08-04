@@ -25,7 +25,7 @@ Library and CLI tool for calculating and verifying CRC checksums.
 ```python
 from crc import CrcCalculator, Crc8
 data = [0, 1, 2, 3, 4, 5 ]
-expected_checksum = 0xff
+expected_checksum = 0xBC
 crc_calculator = CrcCalculator(Crc8.CCITT)
 
 checksum = crc_calculator.calculate_checksum(data)
@@ -39,7 +39,7 @@ assert crc_calculator.verify_checksum(data, expected_checksum)
 from crc import CrcCalculator, Crc8
 
 data = [0, 1, 2, 3, 4, 5 ]
-expected_checksum = 0xff
+expected_checksum = 0xBC
 use_table = True
 crc_calculator = CrcCalculator(Crc8.CCITT, use_table)
 
@@ -54,14 +54,15 @@ assert crc_calculator.verify_checksum(data, expected_checksum)
 from crc import CrcCalculator, Configuration
 
 data = [0, 1, 2, 3, 4, 5 ]
-expected_checksum = 0xff
+expected_checksum = 0xBC
 
 width = 8
-poly=0x07,
-init_value=0x00,
-final_xor_value=0x00,
-reverse_input=False,
+poly=0x07
+init_value=0x00
+final_xor_value=0x00
+reverse_input=False
 reverse_output=False
+
 configuration = Configuration(width, poly, init_value, final_xor_value, reverse_input, reverse_output)
 
 use_table = True
@@ -77,7 +78,7 @@ assert crc_calculator.verify_checksum(data, expected_checksum)
 from crc import Crc8, TableBasedCrcRegister, CrcRegister
 
 data = [0, 1, 2, 3, 4, 5 ]
-expected_checksum = 0xff
+expected_checksum = 0xBC
 
 reg = CrcRegister(Crc8.CCITT)
 table_reg = TableBasedCrcRegister(Crc8.CCITT)

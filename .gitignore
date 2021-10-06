@@ -1,7 +1,7 @@
 .idea
+.tox
 venv/
 __pycache__/*
-venv/
 docs/_build/*
 .coverage
 *.egg-info/

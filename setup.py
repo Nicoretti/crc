@@ -23,7 +23,6 @@ if __name__ == '__main__':
         classifiers=[
             'Programming Language :: Python :: 3.7',
             'Programming Language :: Python :: 3.8',
-            'Programming Language :: Python :: 3.9',
         ],
         url='https://github.com/Nicoretti/crc',
         license='BSD',

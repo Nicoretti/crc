@@ -2,19 +2,13 @@ os: Windows Server 2012
 
 environment:
   matrix:
-    - python_version: "C:\\Python37"
-    - python_version: "C:\\Python37-x64"
-    - python_version: "C:\\Python38"
-    - python_version: "C:\\Python38-x64"
+    - TOXENV: py37
+    - TOXENV: py38
 
 install:
-  - "SET PATH=%python_version%;%python_version%\\Scripts;%PATH%"
-  - "pip install setuptools"
-  - "pip install --upgrade setuptools"
-  - "pip install -e ."
-  - "pip list"
+  - C:\Python37\python -m pip install -U -r test-requirements.txt
 
 test_script:
-  - "python setup.py test"
+  - C:\Python37\scripts\tox
 
 build: off

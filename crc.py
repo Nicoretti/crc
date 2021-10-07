@@ -37,7 +37,6 @@ class AbstractCrcRegister(metaclass=abc.ABCMeta):
         """
         Initializes the crc register.
         """
-        pass
 
     @abc.abstractmethod
     def update(self, data):
@@ -48,7 +47,6 @@ class AbstractCrcRegister(metaclass=abc.ABCMeta):
                      like object using the built in bytes() function.
         :return: the current value of the crc register.
         """
-        pass
 
     @abc.abstractmethod
     def digest(self):
@@ -58,7 +56,6 @@ class AbstractCrcRegister(metaclass=abc.ABCMeta):
         :return: the final crc checksum.
         :rtype: int.
         """
-        pass
 
     @abc.abstractmethod
     def reverse(self):
@@ -67,11 +64,10 @@ class AbstractCrcRegister(metaclass=abc.ABCMeta):
 
         :return: the the reversed value of the crc register.
         """
-        pass
 
 
 @dataclass(frozen=True)
-class Configuration(object):
+class Configuration:
     """
     A Configuration provides all settings necessary to determine the concrete
     implementation of a specific crc algorithm/register.
@@ -149,7 +145,6 @@ class CrcRegisterBase(AbstractCrcRegister):
         :param byte: the byte which shall be processed by the crc register.
         :return: the new value of the crc register will have after the byte have been processed.
         """
-        pass
 
     def digest(self):
         """
@@ -192,15 +187,12 @@ class CrcRegister(CrcRegisterBase):
         based register.
     """
 
-    def __init__(self, configuration):
-        super().__init__(configuration)
-
     def _process_byte(self, byte):
         """
         See CrcRegisterBase._process_byte
         """
         self.register ^= int(byte) << (self._config.width - 8)
-        for bit in byte:
+        for _ in byte:
             if self._is_division_possible():
                 self.register = (self.register << 1) ^ self._config.polynomial
             else:
@@ -307,7 +299,7 @@ def create_lookup_table(width, polynom):
     """
     config = Configuration(width=width, polynomial=polynom)
     crc_register = CrcRegister(config)
-    lookup_table = list()
+    lookup_table = []
     for index in range(0, 256):
         crc_register.init()
         data = bytes((index).to_bytes(1, byteorder='big'))
@@ -316,7 +308,7 @@ def create_lookup_table(width, polynom):
     return lookup_table
 
 
-class CrcCalculator(object):
+class CrcCalculator:
 
     def __init__(self, configuration, table_based=False):
         """
@@ -489,7 +481,7 @@ def argument_parser():
     c = subparsers.add_parser('checksum', help='Calculate checksum(s) for the specified input(s)')
     c.add_argument('inputs', nargs='*', type=argparse.FileType('r'), default=[sys.stdin],
                    help='who will be feed into the crc calculation')
-    c.add_argument('-c', '--category', choices=[t for t in CRC_TYPES], default=Crc8.__name__,
+    c.add_argument('-c', '--category', choices=list(CRC_TYPES), default=Crc8.__name__,
                    help='of crc algorithms which shall be used for calculation')
     c.set_defaults(func=checksum)
 

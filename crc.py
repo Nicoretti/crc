@@ -496,8 +496,8 @@ def table(args):
     lookup_table = create_lookup_table(width, polynom)
     fmt_spec = '{{:0<0{}X}}'.format(width // 4)
     template = "0x{} ".format(fmt_spec)
-    for id, entry in enumerate(lookup_table):
-        if (id != 0) and (id % 8 == 0):
+    for i, entry in enumerate(lookup_table):
+        if (i != 0) and (i % 8 == 0):
             print()
         print(template.format(entry), end='')
     print()
@@ -506,8 +506,8 @@ def table(args):
 
 def checksum(args):
     data = bytearray()
-    for input in args.inputs:
-        data.extend(bytes(input.read(), 'utf-8'))
+    for input_src in args.inputs:
+        data.extend(bytes(input_src.read(), 'utf-8'))
     category = CRC_TYPES[args.category]
     for algorithm in sorted(category, key=str):
         name = f'{algorithm}'.split('.')[1]

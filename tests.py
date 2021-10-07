@@ -14,9 +14,6 @@ CrcTestData = namedtuple('CrcTestData', 'data checksum')
 
 class ByteTest(unittest.TestCase):
 
-    def setUp(self):
-        pass
-
     def test_conversion_to_int(self):
         int_value = 0x01
         byte = Byte(int_value)
@@ -27,6 +24,15 @@ class ByteTest(unittest.TestCase):
         for value in range(0, 256):
             self.assertEqual(Byte(value) == Byte(value), True)
             self.assertEqual(Byte(value) == Byte(value + 1), False)
+
+    def test_is_equal_operator_raises_type_error(self):
+        with self.assertRaises(TypeError):
+            lhs = Byte(1)
+            rhs = 1
+            lhs == rhs
+
+    def test_hash_byte(self):
+        self.assertEqual(hash(1), hash(Byte(1)))
 
     def test_adding_two_bytes_without_overflow(self):
         lhs = Byte(0x02)
@@ -107,6 +113,13 @@ class CrcRegisterTest(unittest.TestCase):
 
     def setUp(self):
         self._register_types = [CrcRegister, TableBasedCrcRegister]
+
+    def test_crc_register_index_error(self):
+        config = Crc8.CCITT
+        for register_type in self._register_types:
+            crc_register = register_type(config)
+            with self.assertRaises(IndexError):
+                crc_register[10]
 
     def test_crc8_ccitt(self):
         config = Crc8.CCITT

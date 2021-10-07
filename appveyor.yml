@@ -6,7 +6,7 @@ environment:
     - TOXENV: py38
 
 install:
-  - C:\Python37\python -m pip install -U -r test-requirements.txt
+  - C:\Python37\python -m pip install -U -r requirements.txt
 
 test_script:
   - C:\Python37\scripts\tox

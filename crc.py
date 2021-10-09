@@ -290,14 +290,14 @@ class Byte(numbers.Number):
 
 
 @functools.lru_cache()
-def create_lookup_table(width, polynom):
+def create_lookup_table(width, polynomial):
     """
     Creates a crc lookup table.
 
     :param int width: of the crc checksum.
-    :parma int polynom: which is used for the crc calculation.
+    :parma int polynomial: which is used for the crc calculation.
     """
-    config = Configuration(width=width, polynomial=polynom)
+    config = Configuration(width=width, polynomial=polynomial)
     crc_register = CrcRegister(config)
     lookup_table = []
     for index in range(0, 256):
@@ -474,8 +474,8 @@ def argument_parser():
     t = subparsers.add_parser('table', help='Generates lookup tables for various crc algorithm settings')
     t.add_argument('width', metavar='<width>', type=into_int,
                    help='width of the crc algorithm, common width\'s are 8, 16, 32, 64')
-    t.add_argument('polynom', metavar='<polynom>', type=into_int,
-                   help='hex value of the polynom used for calculating the crc table')
+    t.add_argument('polynomial', metavar='<polynomial>', type=into_int,
+                   help='hex value of the polynomial used for calculating the crc table')
     t.set_defaults(func=table)
 
     c = subparsers.add_parser('checksum', help='Calculate checksum(s) for the specified input(s)')
@@ -489,11 +489,11 @@ def argument_parser():
 
 
 def table(args):
-    if not (args.width and args.polynom):
+    if not (args.width and args.polynomial):
         return False
     width = args.width
-    polynom = args.polynom
-    lookup_table = create_lookup_table(width, polynom)
+    polynomial = args.polynomial
+    lookup_table = create_lookup_table(width, polynomial)
     fmt_spec = '{{:0<0{}X}}'.format(width // 4)
     template = "0x{} ".format(fmt_spec)
     for i, entry in enumerate(lookup_table):

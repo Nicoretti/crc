@@ -2,13 +2,13 @@
 #
 # Copyright (c) 2018, Nicola Coretti
 # All rights reserved.
-
 import sys
 import abc
 import enum
 import numbers
 import functools
 import argparse
+from itertools import chain
 from dataclasses import dataclass
 
 MAJOR_VERSION = 1
@@ -491,28 +491,35 @@ def argument_parser():
 def table(args):
     if not (args.width and args.polynomial):
         return False
+    columns = 8
     width = args.width
     polynomial = args.polynomial
     lookup_table = create_lookup_table(width, polynomial)
-    fmt_spec = '{{:0<0{}X}}'.format(width // 4)
-    template = "0x{} ".format(fmt_spec)
-    for i, entry in enumerate(lookup_table):
-        if (i != 0) and (i % 8 == 0):
-            print()
-        print(template.format(entry), end='')
-    print()
+    template = '0x{{:0<0{digits}X}}'.format(digits=width // 4)
+    rows = (lookup_table[i:i + columns] for i in range(0, len(lookup_table), columns))
+    print(
+        "\n".join(
+            (" ".join(
+                (template.format(value) for value in r)
+            ) for r in rows)
+        )
+    )
     return True
 
 
 def checksum(args):
-    data = bytearray()
-    for input_src in args.inputs:
-        data.extend(bytes(input_src.read(), 'utf-8'))
     category = CRC_TYPES[args.category]
+    data = bytearray(
+        chain.from_iterable(
+            bytes(src.read(), 'utf-8') for src in args.inputs
+        )
+    )
     for algorithm in sorted(category, key=str):
-        name = f'{algorithm}'.split('.')[1]
-        calculator = CrcCalculator(algorithm, True)
-        print(f'{name}: 0x{calculator.calculate_checksum(data):X}')
+        print(
+            '{name}: 0x{result:X}'.format(
+                name=f'{algorithm}'.split('.')[1],
+                result=CrcCalculator(algorithm, True).calculate_checksum(data))
+        )
     return True
 
 

@@ -24,7 +24,7 @@ Library and CLI tool for calculating and verifying CRC checksums.
 ### Calculate crc using the `CrcCalculator`
 ```python
 from crc import CrcCalculator, Crc8
-data = [0, 1, 2, 3, 4, 5 ]
+data = bytes([0, 1, 2, 3, 4, 5 ])
 expected_checksum = 0xBC
 crc_calculator = CrcCalculator(Crc8.CCITT)
 
@@ -38,7 +38,7 @@ assert crc_calculator.verify_checksum(data, expected_checksum)
 ```python
 from crc import CrcCalculator, Crc8
 
-data = [0, 1, 2, 3, 4, 5 ]
+data = bytes([0, 1, 2, 3, 4, 5 ])
 expected_checksum = 0xBC
 use_table = True
 crc_calculator = CrcCalculator(Crc8.CCITT, use_table)
@@ -53,7 +53,7 @@ assert crc_calculator.verify_checksum(data, expected_checksum)
 ```python
 from crc import CrcCalculator, Configuration
 
-data = [0, 1, 2, 3, 4, 5 ]
+data = bytes([0, 1, 2, 3, 4, 5 ])
 expected_checksum = 0xBC
 
 width = 8
@@ -77,7 +77,7 @@ assert crc_calculator.verify_checksum(data, expected_checksum)
 ```python
 from crc import Crc8, TableBasedCrcRegister, CrcRegister
 
-data = [0, 1, 2, 3, 4, 5 ]
+data = bytes([0, 1, 2, 3, 4, 5 ])
 expected_checksum = 0xBC
 
 reg = CrcRegister(Crc8.CCITT)

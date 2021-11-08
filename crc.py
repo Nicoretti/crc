@@ -12,7 +12,7 @@ from itertools import chain
 from dataclasses import dataclass
 
 MAJOR_VERSION = 1
-MINOR_VERSION = 0
+MINOR_VERSION = 1
 PATCH_VERSION = 2
 
 LIBRARY_VERSION = f'{MAJOR_VERSION}.{MINOR_VERSION}.{PATCH_VERSION}'

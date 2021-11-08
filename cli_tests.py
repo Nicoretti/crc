@@ -79,6 +79,7 @@ class CliTests(unittest.TestCase):
         AUTOSAR: 0x43
         BLUETOOTH: 0xB3
         CCITT: 0x9E
+        MAXIM_DOW: 0x73
         SAEJ1850: 0x5B
         """) + "\n")
         expected_exit_code = 0

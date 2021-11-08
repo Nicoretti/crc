@@ -15,6 +15,7 @@ Library and CLI tool for calculating and verifying CRC checksums.
 | AUTOSAR | GSM | AUTOSAR | |
 | SAJ1850 | PROFIBUS | BZIP2 | |
 | BLUETOOTH | | POSIX | |
+| MAXIM-DOW | | | | |
 
 ## Requirements
 * Python 3.7 and newer

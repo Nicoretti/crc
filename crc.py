@@ -372,6 +372,15 @@ class Crc8(enum.Enum):
         reverse_output=True
     )
 
+    MAXIM_DOW = Configuration(
+        width=8,
+        polynomial=0x31,
+        init_value=0,
+        final_xor_value=0,
+        reverse_input=True,
+        reverse_output=True,
+    )
+
 
 @enum.unique
 class Crc16(enum.Enum):

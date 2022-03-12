@@ -504,7 +504,7 @@ def table(args):
     width = args.width
     polynomial = args.polynomial
     lookup_table = create_lookup_table(width, polynomial)
-    template = '0x%%0%dx'%((width+3) // 4)
+    template = '0x%%0%dX'%((width+3) // 4)
     rows = (lookup_table[i:i + columns] for i in range(0, len(lookup_table), columns))
     print(
         "\n".join(

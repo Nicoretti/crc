@@ -23,7 +23,7 @@ homepage = "https://github.com/Nicoretti/crc"
 crc = "crc:main"
 
 [tool.poetry.dependencies]
-python = ">=3.7"
+python = "^3.7"
 nox = "^2022.1.7"
 
 [tool.poetry.dev-dependencies]

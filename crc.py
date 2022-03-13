@@ -478,47 +478,47 @@ def argument_parser():
 
     subparsers = parser.add_subparsers()
 
-    t = subparsers.add_parser(
+    table_command = subparsers.add_parser(
         "table", help="Generates lookup tables for various crc algorithm settings"
     )
-    t.add_argument(
+    table_command.add_argument(
         "width",
         metavar="<width>",
         type=into_int,
         help="width of the crc algorithm, common width's are 8, 16, 32, 64",
     )
-    t.add_argument(
+    table_command.add_argument(
         "polynomial",
         metavar="<polynomial>",
         type=into_int,
         help="hex value of the polynomial used for calculating the crc table",
     )
-    t.set_defaults(func=table)
+    table_command.set_defaults(func=table)
 
-    c = subparsers.add_parser(
+    checksum_command = subparsers.add_parser(
         "checksum", help="Calculate checksum(s) for the specified input(s)"
     )
-    c.add_argument(
+    checksum_command.add_argument(
         "inputs",
         nargs="*",
         type=argparse.FileType("rb"),
         default=[sys.stdin.buffer],
         help="who will be feed into the crc calculation",
     )
-    c.add_argument(
+    checksum_command.add_argument(
         "-c",
         "--category",
         choices=list(CRC_TYPES),
         default=Crc8.__name__,
         help="of crc algorithms which shall be used for calculation",
     )
-    c.set_defaults(func=checksum)
+    checksum_command.set_defaults(func=checksum)
 
     return parser
 
 
 def _generate_template(width):
-    return "0x{{:0{}X}}".format((width + 3) // 4)
+    return f"0x{{:0{(width + 3) // 4}X}}"
 
 
 def table(args):

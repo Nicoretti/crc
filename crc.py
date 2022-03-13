@@ -524,7 +524,7 @@ def checksum(args):
     category = CRC_TYPES[args.category]
     data = bytearray(
         chain.from_iterable(
-            bytes(src.read()) for src in args.inputs
+            src.read() for src in args.inputs
         )
     )
     for algorithm in sorted(category, key=str):

@@ -13,7 +13,7 @@ from dataclasses import dataclass
 
 MAJOR_VERSION = 1
 MINOR_VERSION = 1
-PATCH_VERSION = 2
+PATCH_VERSION = 3
 
 LIBRARY_VERSION = f'{MAJOR_VERSION}.{MINOR_VERSION}.{PATCH_VERSION}'
 
@@ -504,7 +504,7 @@ def table(args):
     width = args.width
     polynomial = args.polynomial
     lookup_table = create_lookup_table(width, polynomial)
-    template = '0x{{:0<0{digits}X}}'.format(digits=width // 4)
+    template = '0x{{:0{}X}}'.format((width + 3) // 4)
     rows = (lookup_table[i:i + columns] for i in range(0, len(lookup_table), columns))
     print(
         "\n".join(

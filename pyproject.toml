@@ -45,7 +45,7 @@ source = [
 ]
 
 [tool.pylint.master]
-fail-under = 8
+fail-under = 8.7
 
 [tool.pylint.format]
 max-line-length = 88
@@ -59,6 +59,6 @@ line-length = 88
 verbose = true
 include = "\\.pyi?$"
 
-[too.isort]
+[tool.isort]
 profile = "black"
-skip = [".gitignore"]
+skip = [".gitignore", "venv", ".nox"]

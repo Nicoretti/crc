@@ -7,38 +7,36 @@ BASEPATH = Path(__file__).parent.resolve()
 nox.options.sessions = ["unit", "check", "lint", "coverage"]
 
 
-def _install(session):
-    session.install("--upgrade", "pip")
-    session.install("poetry")
-    session.run("poetry", "install")
-
-
-@nox.session
+@nox.session(python=False)
 def coverage(session):
-    _install(session)
-    session.run("poetry", "run", "python", "-m", "coverage", "run", "-m", "pytest", ".")
     session.run(
-        "poetry", "run", "python", "-m", "coverage", "report", "--fail-under=99"
+        "poetry",
+        "run",
+        "python",
+        "-m",
+        "coverage",
+        "run",
+        "-m",
+        "pytest",
+        f"{BASEPATH}",
+    )
+    session.run(
+        "poetry", "run", "python", "-m", "coverage", "report", "--fail-under=98"
     )
 
 
-@nox.session
+@nox.session(python=False)
 def lint(session):
-    _install(session)
-    session.run(
-        "poetry", "run", "python", "-m", "pylint", "--rcfile", "pylintrc", "crc.py"
-    )
+    session.run("poetry", "run", "python", "-m", "pylint", "crc.py")
 
 
-@nox.session
+@nox.session(python=False)
 def unit(session):
-    _install(session)
     session.run("poetry", "run", "python", "-m", "pytest", ".")
 
 
-@nox.session
+@nox.session(python=False)
 def check(session):
-    _install(session)
     session.run(
         "poetry", "run", "python", "-m", "isort", "-v", "--check", f"{BASEPATH}"
     )
@@ -55,9 +53,8 @@ def check(session):
     )
 
 
-@nox.session
+@nox.session(python=False)
 def fix(session):
-    _install(session)
     session.run("poetry", "run", "python", "-m", "isort", "-v", f"{BASEPATH}")
     session.run(
         "poetry",

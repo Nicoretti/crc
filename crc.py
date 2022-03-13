@@ -11,15 +11,9 @@ import argparse
 from itertools import chain
 from dataclasses import dataclass
 
-MAJOR_VERSION = 1
-MINOR_VERSION = 1
-PATCH_VERSION = 3
-
-LIBRARY_VERSION = f'{MAJOR_VERSION}.{MINOR_VERSION}.{PATCH_VERSION}'
 
 __author__ = 'Nicola Coretti'
 __email__ = 'nico.coretti@gmail.com'
-__version__ = LIBRARY_VERSION
 
 
 class AbstractCrcRegister(metaclass=abc.ABCMeta):

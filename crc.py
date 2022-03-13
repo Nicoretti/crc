@@ -2,24 +2,17 @@
 #
 # Copyright (c) 2018, Nicola Coretti
 # All rights reserved.
-import sys
 import abc
-import enum
-import numbers
-import functools
 import argparse
-from itertools import chain
+import enum
+import functools
+import numbers
+import sys
 from dataclasses import dataclass
+from itertools import chain
 
-MAJOR_VERSION = 1
-MINOR_VERSION = 1
-PATCH_VERSION = 3
-
-LIBRARY_VERSION = f'{MAJOR_VERSION}.{MINOR_VERSION}.{PATCH_VERSION}'
-
-__author__ = 'Nicola Coretti'
-__email__ = 'nico.coretti@gmail.com'
-__version__ = LIBRARY_VERSION
+__author__ = "Nicola Coretti"
+__email__ = "nico.coretti@gmail.com"
 
 
 class AbstractCrcRegister(metaclass=abc.ABCMeta):
@@ -72,6 +65,7 @@ class Configuration:
     A Configuration provides all settings necessary to determine the concrete
     implementation of a specific crc algorithm/register.
     """
+
     width: int
     polynomial: int
     init_value: int = 0
@@ -95,7 +89,7 @@ class CrcRegisterBase(AbstractCrcRegister):
         if isinstance(configuration, enum.Enum):
             configuration = configuration.value
         self._topbit = 1 << (configuration.width - 1)
-        self._bitmask = 2 ** configuration.width - 1
+        self._bitmask = 2**configuration.width - 1
         self._config = configuration
         self._register = configuration.init_value & self._bitmask
 
@@ -222,7 +216,9 @@ class TableBasedCrcRegister(CrcRegisterBase):
         super().__init__(configuration)
         if isinstance(configuration, enum.Enum):
             configuration = configuration.value
-        self._lookup_table = create_lookup_table(configuration.width, configuration.polynomial)
+        self._lookup_table = create_lookup_table(
+            configuration.width, configuration.polynomial
+        )
 
     def _process_byte(self, byte):
         """
@@ -255,7 +251,7 @@ class Byte(numbers.Number):
 
     def __eq__(self, other):
         if not isinstance(other, Byte):
-            raise TypeError('unsupported operand')
+            raise TypeError("unsupported operand")
         return self.value == other.value
 
     def __hash__(self):
@@ -302,14 +298,13 @@ def create_lookup_table(width, polynomial):
     lookup_table = []
     for index in range(0, 256):
         crc_register.init()
-        data = bytes((index).to_bytes(1, byteorder='big'))
+        data = bytes((index).to_bytes(1, byteorder="big"))
         crc_register.update(data)
         lookup_table.append(crc_register.digest())
     return lookup_table
 
 
 class CrcCalculator:
-
     def __init__(self, configuration, table_based=False):
         """
         Creates a new CrcCalculator.
@@ -342,7 +337,7 @@ class Crc8(enum.Enum):
         init_value=0x00,
         final_xor_value=0x00,
         reverse_input=False,
-        reverse_output=False
+        reverse_output=False,
     )
 
     SAEJ1850 = Configuration(
@@ -351,7 +346,7 @@ class Crc8(enum.Enum):
         init_value=0x00,
         final_xor_value=0x00,
         reverse_input=False,
-        reverse_output=False
+        reverse_output=False,
     )
 
     AUTOSAR = Configuration(
@@ -360,7 +355,7 @@ class Crc8(enum.Enum):
         init_value=0xFF,
         final_xor_value=0xFF,
         reverse_input=False,
-        reverse_output=False
+        reverse_output=False,
     )
 
     BLUETOOTH = Configuration(
@@ -369,7 +364,7 @@ class Crc8(enum.Enum):
         init_value=0x00,
         final_xor_value=0x00,
         reverse_input=True,
-        reverse_output=True
+        reverse_output=True,
     )
 
     MAXIM_DOW = Configuration(
@@ -390,7 +385,7 @@ class Crc16(enum.Enum):
         init_value=0x0000,
         final_xor_value=0x0000,
         reverse_input=False,
-        reverse_output=False
+        reverse_output=False,
     )
 
     GSM = Configuration(
@@ -399,7 +394,7 @@ class Crc16(enum.Enum):
         init_value=0x0000,
         final_xor_value=0xFFFF,
         reverse_input=False,
-        reverse_output=False
+        reverse_output=False,
     )
 
     PROFIBUS = Configuration(
@@ -408,7 +403,7 @@ class Crc16(enum.Enum):
         init_value=0xFFFF,
         final_xor_value=0xFFFF,
         reverse_input=False,
-        reverse_output=False
+        reverse_output=False,
     )
 
 
@@ -420,7 +415,7 @@ class Crc32(enum.Enum):
         init_value=0xFFFFFFFF,
         final_xor_value=0xFFFFFFFF,
         reverse_input=True,
-        reverse_output=True
+        reverse_output=True,
     )
 
     AUTOSAR = Configuration(
@@ -429,7 +424,7 @@ class Crc32(enum.Enum):
         init_value=0xFFFFFFFF,
         final_xor_value=0xFFFFFFFF,
         reverse_input=True,
-        reverse_output=True
+        reverse_output=True,
     )
 
     BZIP2 = Configuration(
@@ -438,7 +433,7 @@ class Crc32(enum.Enum):
         init_value=0xFFFFFFFF,
         final_xor_value=0xFFFFFFFF,
         reverse_input=False,
-        reverse_output=False
+        reverse_output=False,
     )
 
     POSIX = Configuration(
@@ -447,7 +442,7 @@ class Crc32(enum.Enum):
         init_value=0x00000000,
         final_xor_value=0xFFFFFFFF,
         reverse_input=False,
-        reverse_output=False
+        reverse_output=False,
     )
 
 
@@ -459,7 +454,7 @@ class Crc64(enum.Enum):
         init_value=0x0000000000000000,
         final_xor_value=0x0000000000000000,
         reverse_input=False,
-        reverse_output=False
+        reverse_output=False,
     )
 
 
@@ -467,38 +462,63 @@ CRC_TYPES = {
     Crc8.__name__: Crc8,
     Crc16.__name__: Crc16,
     Crc32.__name__: Crc32,
-    Crc64.__name__: Crc64
+    Crc64.__name__: Crc64,
 }
 
 
 def argument_parser():
     into_int = functools.partial(int, base=0)
-    program = 'crc'
-    description = 'A set of crc checksum related command line tools.'
-    parser = argparse.ArgumentParser(prog=program, description=description,
-                                     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    program = "crc"
+    description = "A set of crc checksum related command line tools."
+    parser = argparse.ArgumentParser(
+        prog=program,
+        description=description,
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+    )
 
     subparsers = parser.add_subparsers()
 
-    t = subparsers.add_parser('table', help='Generates lookup tables for various crc algorithm settings')
-    t.add_argument('width', metavar='<width>', type=into_int,
-                   help='width of the crc algorithm, common width\'s are 8, 16, 32, 64')
-    t.add_argument('polynomial', metavar='<polynomial>', type=into_int,
-                   help='hex value of the polynomial used for calculating the crc table')
+    t = subparsers.add_parser(
+        "table", help="Generates lookup tables for various crc algorithm settings"
+    )
+    t.add_argument(
+        "width",
+        metavar="<width>",
+        type=into_int,
+        help="width of the crc algorithm, common width's are 8, 16, 32, 64",
+    )
+    t.add_argument(
+        "polynomial",
+        metavar="<polynomial>",
+        type=into_int,
+        help="hex value of the polynomial used for calculating the crc table",
+    )
     t.set_defaults(func=table)
 
-    c = subparsers.add_parser('checksum', help='Calculate checksum(s) for the specified input(s)')
-    c.add_argument('inputs', nargs='*', type=argparse.FileType('rb'), default=[sys.stdin.buffer],
-                   help='who will be feed into the crc calculation')
-    c.add_argument('-c', '--category', choices=list(CRC_TYPES), default=Crc8.__name__,
-                   help='of crc algorithms which shall be used for calculation')
+    c = subparsers.add_parser(
+        "checksum", help="Calculate checksum(s) for the specified input(s)"
+    )
+    c.add_argument(
+        "inputs",
+        nargs="*",
+        type=argparse.FileType("rb"),
+        default=[sys.stdin.buffer],
+        help="who will be feed into the crc calculation",
+    )
+    c.add_argument(
+        "-c",
+        "--category",
+        choices=list(CRC_TYPES),
+        default=Crc8.__name__,
+        help="of crc algorithms which shall be used for calculation",
+    )
     c.set_defaults(func=checksum)
 
     return parser
 
 
 def _generate_template(width):
-    return '0x{{:0{}X}}'.format((width + 3) // 4)
+    return "0x{{:0{}X}}".format((width + 3) // 4)
 
 
 def table(args):
@@ -509,29 +529,20 @@ def table(args):
     polynomial = args.polynomial
     lookup_table = create_lookup_table(width, polynomial)
     template = _generate_template(width)
-    rows = (lookup_table[i:i + columns] for i in range(0, len(lookup_table), columns))
-    print(
-        "\n".join(
-            (" ".join(
-                (template.format(value) for value in r)
-            ) for r in rows)
-        )
-    )
+    rows = (lookup_table[i : i + columns] for i in range(0, len(lookup_table), columns))
+    print("\n".join((" ".join((template.format(value) for value in r)) for r in rows)))
     return True
 
 
 def checksum(args):
     category = CRC_TYPES[args.category]
-    data = bytearray(
-        chain.from_iterable(
-            src.read() for src in args.inputs
-        )
-    )
+    data = bytearray(chain.from_iterable(src.read() for src in args.inputs))
     for algorithm in sorted(category, key=str):
         print(
-            '{name}: 0x{result:X}'.format(
-                name=f'{algorithm}'.split('.')[1],
-                result=CrcCalculator(algorithm, True).calculate_checksum(data))
+            "{name}: 0x{result:X}".format(
+                name=f"{algorithm}".split(".")[1],
+                result=CrcCalculator(algorithm, True).calculate_checksum(data),
+            )
         )
     return True
 
@@ -539,7 +550,7 @@ def checksum(args):
 def main(argv=None):
     parser = argument_parser()
     args = parser.parse_args(argv)
-    if 'func' in args:
+    if "func" in args:
         exit_code = 0 if args.func(args) else -1
         sys.exit(exit_code)
     else:
@@ -547,5 +558,5 @@ def main(argv=None):
         sys.exit(-1)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

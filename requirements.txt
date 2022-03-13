@@ -1,5 +1,0 @@
-setuptools
-coveralls
-pylint
-pytest
-tox

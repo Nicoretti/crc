@@ -2,33 +2,35 @@
 #
 # Copyright (c) 2021, Nicola Coretti
 # All rights reserved.
-import io
 import inspect
+import io
 import unittest
-from unittest.mock import patch, call
+from unittest.mock import call, patch
+
 from crc import main
 
 
 class CliTests(unittest.TestCase):
-
     def test_cli_no_arguments_provided(self):
         expected_exit_code = -1
         argv = []
-        with patch('sys.exit') as exit_mock:
+        with patch("sys.exit") as exit_mock:
             main(argv)
             self.assertTrue(exit_mock.called)
             self.assertEqual(exit_mock.call_args, (call(expected_exit_code)))
 
     def test_table_subcommand_with_no_additional_arguments(self):
         expected_exit_code = -1
-        argv = ['table']
-        with patch('sys.exit') as exit_mock:
+        argv = ["table"]
+        with patch("sys.exit") as exit_mock:
             main(argv)
             self.assertTrue(exit_mock.called)
             self.assertEqual(exit_mock.call_args, (call(expected_exit_code)))
 
     def test_table_generation_for_width_8_and_poly_0x1D(self):
-        expected_output = io.StringIO(inspect.cleandoc("""
+        expected_output = io.StringIO(
+            inspect.cleandoc(
+                """
             0x00 0x1D 0x3A 0x27 0x74 0x69 0x4E 0x53
             0xE8 0xF5 0xD2 0xCF 0x9C 0x81 0xA6 0xBB
             0xCD 0xD0 0xF7 0xEA 0xB9 0xA4 0x83 0x9E
@@ -61,41 +63,53 @@ class CliTests(unittest.TestCase):
             0x5A 0x47 0x60 0x7D 0x2E 0x33 0x14 0x09
             0x7F 0x62 0x45 0x58 0x0B 0x16 0x31 0x2C
             0x97 0x8A 0xAD 0xB0 0xE3 0xFE 0xD9 0xC4
-        """) + "\n")
+        """
+            )
+            + "\n"
+        )
         expected_exit_code = 0
-        argv = ['table', '8', '0x1D']
-        with patch('sys.exit') as exit, patch('sys.stdout', new_callable=io.StringIO) as stdout:
+        argv = ["table", "8", "0x1D"]
+        with patch("sys.exit") as exit, patch(
+            "sys.stdout", new_callable=io.StringIO
+        ) as stdout:
             main(argv)
 
             stdout.seek(0)
-            actual = stdout.read().split('\n')
-            expected = expected_output.read().split('\n')
+            actual = stdout.read().split("\n")
+            expected = expected_output.read().split("\n")
 
             self.assertEqual(expected, actual)
             self.assertEqual(exit.call_args, (call(expected_exit_code)))
 
     def test_checksum_command(self):
-        expected_output = io.StringIO(inspect.cleandoc("""
+        expected_output = io.StringIO(
+            inspect.cleandoc(
+                """
         AUTOSAR: 0x43
         BLUETOOTH: 0xB3
         CCITT: 0x9E
         MAXIM_DOW: 0x73
         SAEJ1850: 0x5B
-        """) + "\n")
+        """
+            )
+            + "\n"
+        )
         expected_exit_code = 0
-        argv = ['checksum']
-        with patch('sys.exit') as exit, patch('sys.stdout', new_callable=io.StringIO) as stdout:
-            with patch('sys.stdin') as stdin:
+        argv = ["checksum"]
+        with patch("sys.exit") as exit, patch(
+            "sys.stdout", new_callable=io.StringIO
+        ) as stdout:
+            with patch("sys.stdin") as stdin:
                 stdin.buffer = io.BytesIO(b"Some Data To Checksum")
                 main(argv)
 
                 stdout.seek(0)
-                actual = stdout.read().split('\n')
-                expected = expected_output.read().split('\n')
+                actual = stdout.read().split("\n")
+                expected = expected_output.read().split("\n")
 
                 self.assertEqual(expected, actual)
                 self.assertEqual(exit.call_args, (call(expected_exit_code)))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

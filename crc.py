@@ -3,7 +3,6 @@
 # Copyright (c) 2018, Nicola Coretti
 # All rights reserved.
 import sys
-import io
 import abc
 import enum
 import numbers
@@ -489,11 +488,7 @@ def argument_parser():
     t.set_defaults(func=table)
 
     c = subparsers.add_parser('checksum', help='Calculate checksum(s) for the specified input(s)')
-    try:
-        stdinraw=sys.stdin.buffer
-    except AttributeError:
-        stdinraw=io.BytesIO(sys.stdin.read().encode('ascii'))
-    c.add_argument('inputs', nargs='*', type=argparse.FileType('rb'), default=[stdinraw],
+    c.add_argument('inputs', nargs='*', type=argparse.FileType('rb'), default=[sys.stdin.buffer],
                    help='who will be feed into the crc calculation')
     c.add_argument('-c', '--category', choices=list(CRC_TYPES), default=Crc8.__name__,
                    help='of crc algorithms which shall be used for calculation')

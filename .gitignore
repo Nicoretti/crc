@@ -1,4 +1,5 @@
 .idea
+dist
 .tox
 venv/
 __pycache__/*

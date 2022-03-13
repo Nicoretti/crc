@@ -76,6 +76,6 @@ def release(session):
     session.run("git", "add", ".")
     session.run("git", "commit")
     session.run("git", "tag", version)
-    session.run("poetry", "publish")
+    session.run("poetry", "publish", "--build")
     session.run("git", "push")
     session.run("git", "push", "origin", version)

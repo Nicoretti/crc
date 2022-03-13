@@ -3,6 +3,7 @@
 # Copyright (c) 2018, Nicola Coretti
 # All rights reserved.
 import sys
+import io
 import abc
 import enum
 import numbers

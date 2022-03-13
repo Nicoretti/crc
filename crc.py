@@ -488,7 +488,7 @@ def argument_parser():
     t.set_defaults(func=table)
 
     c = subparsers.add_parser('checksum', help='Calculate checksum(s) for the specified input(s)')
-    c.add_argument('inputs', nargs='*', type=argparse.FileType('r'), default=[sys.stdin],
+    c.add_argument('inputs', nargs='*', type=argparse.FileType('rb'), default=[sys.stdin.buffer],
                    help='who will be feed into the crc calculation')
     c.add_argument('-c', '--category', choices=list(CRC_TYPES), default=Crc8.__name__,
                    help='of crc algorithms which shall be used for calculation')
@@ -524,7 +524,7 @@ def checksum(args):
     category = CRC_TYPES[args.category]
     data = bytearray(
         chain.from_iterable(
-            bytes(src.read(), 'utf-8') for src in args.inputs
+            src.read() for src in args.inputs
         )
     )
     for algorithm in sorted(category, key=str):

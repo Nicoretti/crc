@@ -16,27 +16,35 @@ def _install(session):
 @nox.session
 def coverage(session):
     _install(session)
-    session.run("python", "-m", "coverage", "run", "-m", "pytest", ".")
-    session.run("python", "-m", "coverage", "report", "--fail-under=99")
+    session.run("poetry", "run", "python", "-m", "coverage", "run", "-m", "pytest", ".")
+    session.run(
+        "poetry", "run", "python", "-m", "coverage", "report", "--fail-under=99"
+    )
 
 
 @nox.session
 def lint(session):
     _install(session)
-    session.run("python", "-m", "pylint", "--rcfile", "pylintrc", "crc.py")
+    session.run(
+        "poetry", "run", "python", "-m", "pylint", "--rcfile", "pylintrc", "crc.py"
+    )
 
 
 @nox.session
 def unit(session):
     _install(session)
-    session.run("python", "-m", "pytest", ".")
+    session.run("poetry", "run", "python", "-m", "pytest", ".")
 
 
 @nox.session
 def check(session):
     _install(session)
-    session.run("python", "-m", "isort", "-v", "--check", f"{BASEPATH}")
     session.run(
+        "poetry", "run", "python", "-m", "isort", "-v", "--check", f"{BASEPATH}"
+    )
+    session.run(
+        "poetry",
+        "run",
         "python",
         "-m",
         "black",
@@ -50,8 +58,10 @@ def check(session):
 @nox.session
 def fix(session):
     _install(session)
-    session.run("python", "-m", "isort", "-v", f"{BASEPATH}")
+    session.run("poetry", "run", "python", "-m", "isort", "-v", f"{BASEPATH}")
     session.run(
+        "poetry",
+        "run",
         "python",
         "-m",
         "black",

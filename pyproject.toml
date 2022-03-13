@@ -24,12 +24,11 @@ crc = "crc:main"
 
 [tool.poetry.dependencies]
 python = "^3.7"
-nox = "^2022.1.7"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.0.1"
 pylint = "^2.12.2"
-tox = "^3.24.5"
+nox = "^2022.1.7"
 coveralls = "^3.3.1"
 
 

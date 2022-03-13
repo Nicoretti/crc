@@ -4,28 +4,36 @@
 # All rights reserved.
 import string
 import unittest
-
-from crc import Byte, CrcRegister, TableBasedCrcRegister, create_lookup_table, CrcCalculator, _generate_template
-from crc import Configuration, Crc8, Crc16
 from collections import namedtuple
 
-CrcTestData = namedtuple('CrcTestData', 'data checksum')
+from crc import (
+    Byte,
+    Configuration,
+    Crc8,
+    Crc16,
+    CrcCalculator,
+    CrcRegister,
+    TableBasedCrcRegister,
+    _generate_template,
+    create_lookup_table,
+)
+
+CrcTestData = namedtuple("CrcTestData", "data checksum")
 
 
 class TemplateTest(unittest.TestCase):
-
     def test_generate_template(self):
         test_data = (
-            (1, '0x{:01X}'),
-            (4, '0x{:01X}'),
-            (7, '0x{:02X}'),
-            (8, '0x{:02X}'),
-            (15, '0x{:04X}'),
-            (16, '0x{:04X}'),
-            (31, '0x{:08X}'),
-            (32, '0x{:08X}'),
-            (63, '0x{:016X}'),
-            (64, '0x{:016X}'),
+            (1, "0x{:01X}"),
+            (4, "0x{:01X}"),
+            (7, "0x{:02X}"),
+            (8, "0x{:02X}"),
+            (15, "0x{:04X}"),
+            (16, "0x{:04X}"),
+            (31, "0x{:08X}"),
+            (32, "0x{:08X}"),
+            (63, "0x{:016X}"),
+            (64, "0x{:016X}"),
         )
         for width, expected in test_data:
             with self.subTest(width=width):
@@ -33,23 +41,20 @@ class TemplateTest(unittest.TestCase):
 
     def test_render_template(self):
         test_data = (
-            (1, 1, '0x1'),
-            (1, 15, '0xF'),
-
-            (4, 1, '0x1'),
-            (8, 1, '0x01'),
-            (16, 1, '0x0001'),
-            (32, 1, '0x00000001'),
-            (64, 1, '0x0000000000000001'),
-
-            (8, 16, '0x10'),
-            (16, 16, '0x0010'),
-            (32, 16, '0x00000010'),
-            (64, 16, '0x0000000000000010'),
-
-            (16, 0x0840, '0x0840'),
-            (32, 0x0840, '0x00000840'),
-            (64, 0x0840, '0x0000000000000840'),
+            (1, 1, "0x1"),
+            (1, 15, "0xF"),
+            (4, 1, "0x1"),
+            (8, 1, "0x01"),
+            (16, 1, "0x0001"),
+            (32, 1, "0x00000001"),
+            (64, 1, "0x0000000000000001"),
+            (8, 16, "0x10"),
+            (16, 16, "0x0010"),
+            (32, 16, "0x00000010"),
+            (64, 16, "0x0000000000000010"),
+            (16, 0x0840, "0x0840"),
+            (32, 0x0840, "0x00000840"),
+            (64, 0x0840, "0x0000000000000840"),
         )
         for width, value, expected in test_data:
             with self.subTest(width=width):
@@ -58,7 +63,6 @@ class TemplateTest(unittest.TestCase):
 
 
 class ByteTest(unittest.TestCase):
-
     def test_conversion_to_int(self):
         int_value = 0x01
         byte = Byte(int_value)
@@ -120,7 +124,6 @@ class ByteTest(unittest.TestCase):
 
 
 class CrcConfigurationTest(unittest.TestCase):
-
     def setUp(self):
         self.width = 8
         self.polynom = 0x07
@@ -139,12 +142,14 @@ class CrcConfigurationTest(unittest.TestCase):
         self.assertEqual(configuration.reverse_output, False)
 
     def test_init(self):
-        configuration = Configuration(self.width,
-                                      self.polynom,
-                                      self.init_value,
-                                      self.final_xor_value,
-                                      self.reverse_input,
-                                      self.reverse_output)
+        configuration = Configuration(
+            self.width,
+            self.polynom,
+            self.init_value,
+            self.final_xor_value,
+            self.reverse_input,
+            self.reverse_output,
+        )
 
         self.assertEqual(configuration.width, self.width)
         self.assertEqual(configuration.polynomial, self.polynom)
@@ -155,7 +160,6 @@ class CrcConfigurationTest(unittest.TestCase):
 
 
 class CrcRegisterTest(unittest.TestCase):
-
     def setUp(self):
         self._register_types = [CrcRegister, TableBasedCrcRegister]
 
@@ -171,7 +175,7 @@ class CrcRegisterTest(unittest.TestCase):
         for register_type in self._register_types:
             crc_register = register_type(config)
             test_suit = [
-                CrcTestData(data='', checksum=0x00),
+                CrcTestData(data="", checksum=0x00),
                 CrcTestData(data=string.digits[1:], checksum=0xF4),
                 CrcTestData(data=string.digits[1:][::-1], checksum=0x91),
                 CrcTestData(data=string.digits, checksum=0x45),
@@ -179,7 +183,7 @@ class CrcRegisterTest(unittest.TestCase):
             ]
             for test in test_suit:
                 crc_register.init()
-                crc_register.update(test.data.encode('utf-8'))
+                crc_register.update(test.data.encode("utf-8"))
                 self.assertEqual(test.checksum, crc_register.digest())
 
     def test_crc8_saej1850(self):
@@ -187,7 +191,7 @@ class CrcRegisterTest(unittest.TestCase):
         for register_type in self._register_types:
             crc_register = register_type(config)
             test_suit = [
-                CrcTestData(data='', checksum=0x00),
+                CrcTestData(data="", checksum=0x00),
                 CrcTestData(data=string.digits[1:], checksum=0x37),
                 CrcTestData(data=string.digits[1:][::-1], checksum=0xAA),
                 CrcTestData(data=string.digits, checksum=0x8A),
@@ -195,7 +199,7 @@ class CrcRegisterTest(unittest.TestCase):
             ]
             for test in test_suit:
                 crc_register.init()
-                crc_register.update(test.data.encode('utf-8'))
+                crc_register.update(test.data.encode("utf-8"))
                 self.assertEqual(test.checksum, crc_register.digest())
 
     def test_crc16_ccitt(self):
@@ -203,7 +207,7 @@ class CrcRegisterTest(unittest.TestCase):
         for register_type in self._register_types:
             crc_register = register_type(config)
             test_suit = [
-                CrcTestData(data='', checksum=0x0000),
+                CrcTestData(data="", checksum=0x0000),
                 CrcTestData(data=string.digits[1:], checksum=0x31C3),
                 CrcTestData(data=string.digits[1:][::-1], checksum=0x9CAD),
                 CrcTestData(data=string.digits, checksum=0x9C58),
@@ -211,7 +215,7 @@ class CrcRegisterTest(unittest.TestCase):
             ]
             for test in test_suit:
                 crc_register.init()
-                crc_register.update(test.data.encode('utf-8'))
+                crc_register.update(test.data.encode("utf-8"))
                 self.assertEqual(test.checksum, crc_register.digest())
 
     def test_crc16_with_reflected_input(self):
@@ -219,7 +223,7 @@ class CrcRegisterTest(unittest.TestCase):
         for register_type in self._register_types:
             crc_register = register_type(config)
             test_suit = [
-                CrcTestData(data='', checksum=0x0000),
+                CrcTestData(data="", checksum=0x0000),
                 CrcTestData(data=string.digits[1:], checksum=0x9184),
                 CrcTestData(data=string.digits[1:][::-1], checksum=0xF92C),
                 CrcTestData(data=string.digits, checksum=0x76FA),
@@ -227,7 +231,7 @@ class CrcRegisterTest(unittest.TestCase):
             ]
             for test in test_suit:
                 crc_register.init()
-                crc_register.update(test.data.encode('utf-8'))
+                crc_register.update(test.data.encode("utf-8"))
                 self.assertEqual(test.checksum, crc_register.digest())
 
     def test_crc16_with_reflected_output(self):
@@ -235,7 +239,7 @@ class CrcRegisterTest(unittest.TestCase):
         for register_type in self._register_types:
             crc_register = register_type(config)
             test_suit = [
-                CrcTestData(data='', checksum=0x0000),
+                CrcTestData(data="", checksum=0x0000),
                 CrcTestData(data=string.digits[1:], checksum=0xC38C),
                 CrcTestData(data=string.digits[1:][::-1], checksum=0xB539),
                 CrcTestData(data=string.digits, checksum=0x1A39),
@@ -243,40 +247,39 @@ class CrcRegisterTest(unittest.TestCase):
             ]
             for test in test_suit:
                 crc_register.init()
-                crc_register.update(test.data.encode('utf-8'))
+                crc_register.update(test.data.encode("utf-8"))
                 self.assertEqual(test.checksum, crc_register.digest())
 
 
 class CrcCalculatorTest(unittest.TestCase):
-
     def test_register_based(self):
         calculator = CrcCalculator(Crc8.CCITT)
         test_suit = [
-            CrcTestData(data='', checksum=0x00),
+            CrcTestData(data="", checksum=0x00),
             CrcTestData(data=string.digits[1:], checksum=0xF4),
             CrcTestData(data=string.digits[1:][::-1], checksum=0x91),
             CrcTestData(data=string.digits, checksum=0x45),
             CrcTestData(data=string.digits[::-1], checksum=0x6E),
         ]
         for test in test_suit:
-            calculator.verify_checksum(test.data.encode('utf-8'), test.checksum)
+            calculator.verify_checksum(test.data.encode("utf-8"), test.checksum)
 
     def test_table_based_calculator(self):
         calculator = CrcCalculator(Crc8.CCITT, True)
         test_suit = [
-            CrcTestData(data='', checksum=0x00),
+            CrcTestData(data="", checksum=0x00),
             CrcTestData(data=string.digits[1:], checksum=0xF4),
             CrcTestData(data=string.digits[1:][::-1], checksum=0x91),
             CrcTestData(data=string.digits, checksum=0x45),
             CrcTestData(data=string.digits[::-1], checksum=0x6E),
         ]
         for test in test_suit:
-            calculator.verify_checksum(test.data.encode('utf-8'), test.checksum)
+            calculator.verify_checksum(test.data.encode("utf-8"), test.checksum)
 
 
 class CreateLookupTableTest(unittest.TestCase):
-
     def test_create_crc8_lookup_table(self):
+        # fmt: off
         tables = {
             0x07: [
                 0x00, 0x07, 0x0E, 0x09, 0x1C, 0x1B, 0x12, 0x15, 0x38, 0x3F, 0x36, 0x31, 0x24, 0x23, 0x2A, 0x2D,
@@ -321,11 +324,13 @@ class CreateLookupTableTest(unittest.TestCase):
                  0x7F, 0x62, 0x45, 0x58, 0x0B, 0x16, 0x31, 0x2C, 0x97, 0x8A, 0xAD, 0xB0,
                  0xE3, 0xFE, 0xD9, 0xC4]
         }
+        # fmt: on
         for polynom, table in tables.items():
             with self.subTest(polynom=polynom, table=table):
                 self.assertEqual(table, create_lookup_table(8, polynom))
 
     def test_create_crc16_lookup_table(self):
+        # fmt: off
         tables = {
             0x1021:
                 [0x0000, 0x1021, 0x2042, 0x3063, 0x4084, 0x50A5, 0x60C6, 0x70E7,
@@ -361,11 +366,13 @@ class CreateLookupTableTest(unittest.TestCase):
                  0xEF1F, 0xFF3E, 0xCF5D, 0xDF7C, 0xAF9B, 0xBFBA, 0x8FD9, 0x9FF8,
                  0x6E17, 0x7E36, 0x4E55, 0x5E74, 0x2E93, 0x3EB2, 0x0ED1, 0x1EF0]
         }
+        # fmt: on
         for polynom, table in tables.items():
             with self.subTest(polynom=polynom, table=table):
                 self.assertEqual(table, create_lookup_table(16, polynom))
 
     def test_create_crc32_lookup_table(self):
+        # fmt: off
         tables = {
             0x4C11DB7:
                 [0x00000000, 0x04C11DB7, 0x09823B6E, 0x0D4326D9, 0x130476DC, 0x17C56B6B, 0x1A864DB2, 0x1E475005,
@@ -401,10 +408,11 @@ class CreateLookupTableTest(unittest.TestCase):
                  0x89B8FD09, 0x8D79E0BE, 0x803AC667, 0x84FBDBD0, 0x9ABC8BD5, 0x9E7D9662, 0x933EB0BB, 0x97FFAD0C,
                  0xAFB010B1, 0xAB710D06, 0xA6322BDF, 0xA2F33668, 0xBCB4666D, 0xB8757BDA, 0xB5365D03, 0xB1F740B4]
         }
+        # fmt: on
         for polynom, table in tables.items():
             with self.subTest(polynom=polynom, table=table):
                 self.assertEqual(table, create_lookup_table(32, polynom))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

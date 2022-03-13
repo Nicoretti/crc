@@ -1,13 +1,8 @@
 import pathlib
-import unittest
 from crc import LIBRARY_VERSION
 from setuptools import setup
 
 current = pathlib.Path(__file__).parent.resolve()
-
-
-def tests():
-    return unittest.defaultTestLoader.discover(start_dir=f'{current.resolve()}', pattern='*test*.py')
 
 
 def readme():
@@ -18,11 +13,11 @@ if __name__ == '__main__':
     setup(
         name='crc',
         version=LIBRARY_VERSION,
-        test_suite='setup.tests',
         py_modules=['crc'],
         classifiers=[
             'Programming Language :: Python :: 3.7',
             'Programming Language :: Python :: 3.8',
+            'Programming Language :: Python :: 3.9',
         ],
         url='https://github.com/Nicoretti/crc',
         license='BSD',

@@ -85,7 +85,8 @@ class CliTests(unittest.TestCase):
         expected_exit_code = 0
         argv = ['checksum']
         with patch('sys.exit') as exit, patch('sys.stdout', new_callable=io.StringIO) as stdout:
-            with patch('sys.stdin', io.StringIO("Some Data To Checksum")) as stdin:
+            with patch('sys.stdin') as stdin:
+                stdin.buffer = io.BytesIO(b"Some Data To Checksum")
                 main(argv)
 
                 stdout.seek(0)

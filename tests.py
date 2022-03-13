@@ -5,11 +5,56 @@
 import string
 import unittest
 
-from crc import Byte, CrcRegister, TableBasedCrcRegister, create_lookup_table, CrcCalculator
+from crc import Byte, CrcRegister, TableBasedCrcRegister, create_lookup_table, CrcCalculator, _generate_template
 from crc import Configuration, Crc8, Crc16
 from collections import namedtuple
 
 CrcTestData = namedtuple('CrcTestData', 'data checksum')
+
+
+class TemplateTest(unittest.TestCase):
+
+    def test_generate_template(self):
+        test_data = (
+            (1, '0x{:01X}'),
+            (4, '0x{:01X}'),
+            (7, '0x{:02X}'),
+            (8, '0x{:02X}'),
+            (15, '0x{:04X}'),
+            (16, '0x{:04X}'),
+            (31, '0x{:08X}'),
+            (32, '0x{:08X}'),
+            (63, '0x{:016X}'),
+            (64, '0x{:016X}'),
+        )
+        for width, expected in test_data:
+            with self.subTest(width=width):
+                self.assertEqual(expected, _generate_template(width))
+
+    def test_render_template(self):
+        test_data = (
+            (1, 1, '0x1'),
+            (1, 15, '0xF'),
+
+            (4, 1, '0x1'),
+            (8, 1, '0x01'),
+            (16, 1, '0x0001'),
+            (32, 1, '0x00000001'),
+            (64, 1, '0x0000000000000001'),
+
+            (8, 16, '0x10'),
+            (16, 16, '0x0010'),
+            (32, 16, '0x00000010'),
+            (64, 16, '0x0000000000000010'),
+
+            (16, 0x0840, '0x0840'),
+            (32, 0x0840, '0x00000840'),
+            (64, 0x0840, '0x0000000000000840'),
+        )
+        for width, value, expected in test_data:
+            with self.subTest(width=width):
+                template = _generate_template(width)
+                self.assertEqual(expected, template.format(value))
 
 
 class ByteTest(unittest.TestCase):

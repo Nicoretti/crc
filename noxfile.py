@@ -65,3 +65,17 @@ def fix(session):
         "--color",
         f"{BASEPATH}",
     )
+
+
+@nox.session(python=False)
+def release(session):
+    if not session.posargs:
+        session.error("No versio argument specified")
+    version = session.posargs[0]
+    session.run("poetry", "version", version)
+    session.run("git", "add", ".")
+    session.run("git", "commit")
+    session.run("git", "tag", version)
+    session.run("poetry", "publish")
+    session.run("git", "push")
+    session.run("git", "push", "origin", version)

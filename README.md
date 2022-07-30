@@ -1,7 +1,11 @@
 # Overview
+[![Unit-Test](https://github.com/Nicoretti/crc/actions/workflows/unit.yaml/badge.svg)](https://github.com/Nicoretti/crc/actions/workflows/unit.yaml)
+[![Lint](https://github.com/Nicoretti/crc/actions/workflows/lint.yaml/badge.svg)](https://github.com/Nicoretti/crc/actions/workflows/lint.yaml)
 [![coveralls](https://coveralls.io/repos/github/Nicoretti/crc/badge.svg?branch=master)](https://coveralls.io/github/Nicoretti/crc)
-[![pypi-package-available](https://img.shields.io/badge/pypi%20package-available-blue.svg)](https://pypi.org/project/crc/)
-
+[![python](https://img.shields.io/pypi/pyversions/crc)](https://pypi.org/project/crc/)
+[![pypi](https://img.shields.io/pypi/v/crc)](https://pypi.org/project/crc/)
+[![downloads](https://img.shields.io/pypi/dm/crc)](https://pypi.org/project/crc/)
+[![license](https://img.shields.io/pypi/l/crc)](https://opensource.org/licenses/BSD-2-Clause)
 
 Library and CLI tool for calculating and verifying CRC checksums.
 

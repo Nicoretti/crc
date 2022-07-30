@@ -1,6 +1,5 @@
 # Overview
 [![Unit-Test](https://github.com/Nicoretti/crc/actions/workflows/unit.yaml/badge.svg)](https://github.com/Nicoretti/crc/actions/workflows/unit.yaml)
-[![Lint](https://github.com/Nicoretti/crc/actions/workflows/lint.yaml/badge.svg)](https://github.com/Nicoretti/crc/actions/workflows/lint.yaml)
 [![coveralls](https://coveralls.io/repos/github/Nicoretti/crc/badge.svg?branch=master)](https://coveralls.io/github/Nicoretti/crc)
 [![python](https://img.shields.io/pypi/pyversions/crc)](https://pypi.org/project/crc/)
 [![pypi](https://img.shields.io/pypi/v/crc)](https://pypi.org/project/crc/)

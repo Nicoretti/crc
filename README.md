@@ -1,13 +1,13 @@
 # Summary
 
+Library and CLI tool for calculating and verifying CRC checksums.
+
 [![Unit-Test](https://github.com/Nicoretti/crc/actions/workflows/unit.yaml/badge.svg)](https://github.com/Nicoretti/crc/actions/workflows/unit.yaml)
 [![coveralls](https://coveralls.io/repos/github/Nicoretti/crc/badge.svg?branch=master)](https://coveralls.io/github/Nicoretti/crc)
 [![python](https://img.shields.io/pypi/pyversions/crc)](https://pypi.org/project/crc/)
 [![pypi](https://img.shields.io/pypi/v/crc)](https://pypi.org/project/crc/)
 [![downloads](https://img.shields.io/pypi/dm/crc)](https://pypi.org/project/crc/)
 [![license](https://img.shields.io/pypi/l/crc)](https://opensource.org/licenses/BSD-2-Clause)
-
-Library and CLI tool for calculating and verifying CRC checksums.
 
 ## Provided Default Configuration(s) of CRC Algorithms:
 

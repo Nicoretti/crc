@@ -1,0 +1,63 @@
+name: CI/CD
+
+on:
+  push:
+    tags:
+      - '**'
+
+jobs:
+
+  check-tag-version-job:
+
+    name: Check Tag Version
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: SCM Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Python & Poetry Environment
+        uses: ./.github/actions/python-environment
+
+      - name: Check Tag Version
+        # make sure the pushed/created tag matched the project version
+        run: "[[ `poetry version --short` == ${{ github.ref_name }} ]]"
+
+  ci-job:
+    name: Checks
+    needs: [ check-tag-version-job ]
+    uses: ./.github/workflows/checks.yml
+
+  cd-job:
+    name: Continues Delivery
+    needs: [ ci-job ]
+
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: SCM Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Python & Poetry Environment
+        uses: ./.github/actions/python-environment
+
+      - name: Build Artifacts
+        run: poetry build
+
+      - name: PyPi Release
+        env:
+          POETRY_HTTP_BASIC_PYPI_USERNAME: "__token__"
+          POETRY_HTTP_BASIC_PYPI_PASSWORD: "${{ secrets.PYPI_TOKEN }}"
+        run: poetry publish
+
+      - name: GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: >
+          gh release create ${GITHUB_REF_NAME}
+          --title ${GITHUB_REF_NAME}
+          dist/*
+
+#checks
+#publish coverage data
+#realease

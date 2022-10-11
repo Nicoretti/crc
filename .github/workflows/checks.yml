@@ -23,7 +23,7 @@ jobs:
 
     steps:
       - name: SCM Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Python & Poetry Environment
         uses: ./.github/actions/python-environment
@@ -52,7 +52,7 @@ jobs:
 
     steps:
       - name: SCM Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Python & Poetry Environment
         uses: ./.github/actions/python-environment
@@ -81,7 +81,7 @@ jobs:
 
     steps:
       - name: SCM Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Python & Poetry Environment
         uses: ./.github/actions/python-environment

@@ -6,12 +6,12 @@ inputs:
   python-version:
     description: 'Python version to use'
     required: true
-    default: '3.8'
+    default: 3.8
 
   poetry-version:
     description: 'Poetry version to use'
     required: true
-    default: '1.2.0'
+    default: 1.2.2
 
 runs:
 
@@ -19,7 +19,7 @@ runs:
   steps:
 
     - name: Setup Python (${{ inputs.python-version}})
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: ${{ inputs.python-version }}
 

@@ -28,7 +28,7 @@ jobs:
       - name: Setup Python & Poetry Environment
         uses: ./.github/actions/python-environment
         with:
-          python-version: "${{ matrix.python_version }}"
+          python-version: ${{ matrix.python-version }}
 
       - name: Run Unit-Tests
         run: poetry run python -m nox -s unit
@@ -57,7 +57,7 @@ jobs:
       - name: Setup Python & Poetry Environment
         uses: ./.github/actions/python-environment
         with:
-          python-version: "${{ matrix.python_version }}"
+          python-version: ${{ matrix.python-version }}
 
       - name: Run Linter
         run: poetry run python -m nox -s lint
@@ -86,7 +86,7 @@ jobs:
       - name: Setup Python & Poetry Environment
         uses: ./.github/actions/python-environment
         with:
-          python-version: "${{ matrix.python_version }}"
+          python-version: ${{ matrix.python-version }}
 
       - name: Run Coverage
         run: poetry run python -m nox -s coverage

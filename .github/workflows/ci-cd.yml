@@ -57,7 +57,3 @@ jobs:
           gh release create ${GITHUB_REF_NAME}
           --title ${GITHUB_REF_NAME}
           dist/*
-
-#checks
-#publish coverage data
-#realease

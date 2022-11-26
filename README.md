@@ -25,11 +25,13 @@ Library and CLI tool for calculating and verifying CRC checksums.
 ## Examples
 
 ### Calculate crc using the `CrcCalculator`
+
 ```python
-from crc import CrcCalculator, Crc8
-data = bytes([0, 1, 2, 3, 4, 5 ])
+from crc import Calculator, Crc8
+
+data = bytes([0, 1, 2, 3, 4, 5])
 expected_checksum = 0xBC
-crc_calculator = CrcCalculator(Crc8.CCITT)
+crc_calculator = Calculator(Crc8.CCITT)
 
 checksum = crc_calculator.calculate_checksum(data)
 
@@ -38,13 +40,14 @@ assert crc_calculator.verify_checksum(data, expected_checksum)
 ```
 
 ### Speed up the calculation by using a table based `CrcCalculator`
-```python
-from crc import CrcCalculator, Crc8
 
-data = bytes([0, 1, 2, 3, 4, 5 ])
+```python
+from crc import Calculator, Crc8
+
+data = bytes([0, 1, 2, 3, 4, 5])
 expected_checksum = 0xBC
 use_table = True
-crc_calculator = CrcCalculator(Crc8.CCITT, use_table)
+crc_calculator = Calculator(Crc8.CCITT, use_table)
 
 checksum = crc_calculator.calculate_checksum(data)
 
@@ -52,24 +55,25 @@ assert checksum == expected_checksum
 assert crc_calculator.verify_checksum(data, expected_checksum)
 ```
 
-### Create a custom crc configuration for the crc calculation 
-```python
-from crc import CrcCalculator, Configuration
+### Create a custom crc configuration for the crc calculation
 
-data = bytes([0, 1, 2, 3, 4, 5 ])
+```python
+from crc import Calculator, Configuration
+
+data = bytes([0, 1, 2, 3, 4, 5])
 expected_checksum = 0xBC
 
 width = 8
-poly=0x07
-init_value=0x00
-final_xor_value=0x00
-reverse_input=False
-reverse_output=False
+poly = 0x07
+init_value = 0x00
+final_xor_value = 0x00
+reverse_input = False
+reverse_output = False
 
 configuration = Configuration(width, poly, init_value, final_xor_value, reverse_input, reverse_output)
 
 use_table = True
-crc_calculator = CrcCalculator(configuration, use_table)
+crc_calculator = Calculator(configuration, use_table)
 
 checksum = crc_calculator.calculate_checksum(data)
 assert checksum == expected_checksum
@@ -77,14 +81,15 @@ assert crc_calculator.verify_checksum(data, expected_checksum)
 ```
 
 ### Use bare bones crc registers
-```python
-from crc import Crc8, TableBasedCrcRegister, CrcRegister
 
-data = bytes([0, 1, 2, 3, 4, 5 ])
+```python
+from crc import Crc8, TableBasedRegister, Register
+
+data = bytes([0, 1, 2, 3, 4, 5])
 expected_checksum = 0xBC
 
-reg = CrcRegister(Crc8.CCITT)
-table_reg = TableBasedCrcRegister(Crc8.CCITT)
+reg = Register(Crc8.CCITT)
+table_reg = TableBasedRegister(Crc8.CCITT)
 
 reg.init()
 reg.update(data)

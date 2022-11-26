@@ -11,14 +11,14 @@ from crc import (
     Configuration,
     Crc8,
     Crc16,
-    CrcCalculator,
-    CrcRegister,
-    TableBasedCrcRegister,
+    Calculator,
+    Register,
+    TableBasedRegister,
     _generate_template,
     create_lookup_table,
 )
 
-CrcTestData = namedtuple("CrcTestData", "data checksum")
+TestData = namedtuple("TestData", "data checksum")
 
 
 class TemplateTest(unittest.TestCase):
@@ -123,7 +123,7 @@ class ByteTest(unittest.TestCase):
         self.assertEqual(int(Byte(0x0F).reversed()), 0xF0)
 
 
-class CrcConfigurationTest(unittest.TestCase):
+class ConfigurationTest(unittest.TestCase):
     def setUp(self):
         self.width = 8
         self.polynom = 0x07
@@ -159,9 +159,9 @@ class CrcConfigurationTest(unittest.TestCase):
         self.assertEqual(configuration.reverse_output, self.reverse_output)
 
 
-class CrcRegisterTest(unittest.TestCase):
+class RegisterTest(unittest.TestCase):
     def setUp(self):
-        self._register_types = [CrcRegister, TableBasedCrcRegister]
+        self._register_types = [Register, TableBasedRegister]
 
     def test_crc_register_index_error(self):
         config = Crc8.CCITT
@@ -175,11 +175,11 @@ class CrcRegisterTest(unittest.TestCase):
         for register_type in self._register_types:
             crc_register = register_type(config)
             test_suit = [
-                CrcTestData(data="", checksum=0x00),
-                CrcTestData(data=string.digits[1:], checksum=0xF4),
-                CrcTestData(data=string.digits[1:][::-1], checksum=0x91),
-                CrcTestData(data=string.digits, checksum=0x45),
-                CrcTestData(data=string.digits[::-1], checksum=0x6E),
+                TestData(data="", checksum=0x00),
+                TestData(data=string.digits[1:], checksum=0xF4),
+                TestData(data=string.digits[1:][::-1], checksum=0x91),
+                TestData(data=string.digits, checksum=0x45),
+                TestData(data=string.digits[::-1], checksum=0x6E),
             ]
             for test in test_suit:
                 crc_register.init()
@@ -191,11 +191,11 @@ class CrcRegisterTest(unittest.TestCase):
         for register_type in self._register_types:
             crc_register = register_type(config)
             test_suit = [
-                CrcTestData(data="", checksum=0x00),
-                CrcTestData(data=string.digits[1:], checksum=0x37),
-                CrcTestData(data=string.digits[1:][::-1], checksum=0xAA),
-                CrcTestData(data=string.digits, checksum=0x8A),
-                CrcTestData(data=string.digits[::-1], checksum=0x39),
+                TestData(data="", checksum=0x00),
+                TestData(data=string.digits[1:], checksum=0x37),
+                TestData(data=string.digits[1:][::-1], checksum=0xAA),
+                TestData(data=string.digits, checksum=0x8A),
+                TestData(data=string.digits[::-1], checksum=0x39),
             ]
             for test in test_suit:
                 crc_register.init()
@@ -207,11 +207,11 @@ class CrcRegisterTest(unittest.TestCase):
         for register_type in self._register_types:
             crc_register = register_type(config)
             test_suit = [
-                CrcTestData(data="", checksum=0x0000),
-                CrcTestData(data=string.digits[1:], checksum=0x31C3),
-                CrcTestData(data=string.digits[1:][::-1], checksum=0x9CAD),
-                CrcTestData(data=string.digits, checksum=0x9C58),
-                CrcTestData(data=string.digits[::-1], checksum=0xD966),
+                TestData(data="", checksum=0x0000),
+                TestData(data=string.digits[1:], checksum=0x31C3),
+                TestData(data=string.digits[1:][::-1], checksum=0x9CAD),
+                TestData(data=string.digits, checksum=0x9C58),
+                TestData(data=string.digits[::-1], checksum=0xD966),
             ]
             for test in test_suit:
                 crc_register.init()
@@ -223,11 +223,11 @@ class CrcRegisterTest(unittest.TestCase):
         for register_type in self._register_types:
             crc_register = register_type(config)
             test_suit = [
-                CrcTestData(data="", checksum=0x0000),
-                CrcTestData(data=string.digits[1:], checksum=0x9184),
-                CrcTestData(data=string.digits[1:][::-1], checksum=0xF92C),
-                CrcTestData(data=string.digits, checksum=0x76FA),
-                CrcTestData(data=string.digits[::-1], checksum=0x93BA),
+                TestData(data="", checksum=0x0000),
+                TestData(data=string.digits[1:], checksum=0x9184),
+                TestData(data=string.digits[1:][::-1], checksum=0xF92C),
+                TestData(data=string.digits, checksum=0x76FA),
+                TestData(data=string.digits[::-1], checksum=0x93BA),
             ]
             for test in test_suit:
                 crc_register.init()
@@ -239,11 +239,11 @@ class CrcRegisterTest(unittest.TestCase):
         for register_type in self._register_types:
             crc_register = register_type(config)
             test_suit = [
-                CrcTestData(data="", checksum=0x0000),
-                CrcTestData(data=string.digits[1:], checksum=0xC38C),
-                CrcTestData(data=string.digits[1:][::-1], checksum=0xB539),
-                CrcTestData(data=string.digits, checksum=0x1A39),
-                CrcTestData(data=string.digits[::-1], checksum=0x669B),
+                TestData(data="", checksum=0x0000),
+                TestData(data=string.digits[1:], checksum=0xC38C),
+                TestData(data=string.digits[1:][::-1], checksum=0xB539),
+                TestData(data=string.digits, checksum=0x1A39),
+                TestData(data=string.digits[::-1], checksum=0x669B),
             ]
             for test in test_suit:
                 crc_register.init()
@@ -251,27 +251,27 @@ class CrcRegisterTest(unittest.TestCase):
                 self.assertEqual(test.checksum, crc_register.digest())
 
 
-class CrcCalculatorTest(unittest.TestCase):
+class CalculatorTest(unittest.TestCase):
     def test_register_based(self):
-        calculator = CrcCalculator(Crc8.CCITT)
+        calculator = Calculator(Crc8.CCITT)
         test_suit = [
-            CrcTestData(data="", checksum=0x00),
-            CrcTestData(data=string.digits[1:], checksum=0xF4),
-            CrcTestData(data=string.digits[1:][::-1], checksum=0x91),
-            CrcTestData(data=string.digits, checksum=0x45),
-            CrcTestData(data=string.digits[::-1], checksum=0x6E),
+            TestData(data="", checksum=0x00),
+            TestData(data=string.digits[1:], checksum=0xF4),
+            TestData(data=string.digits[1:][::-1], checksum=0x91),
+            TestData(data=string.digits, checksum=0x45),
+            TestData(data=string.digits[::-1], checksum=0x6E),
         ]
         for test in test_suit:
             calculator.verify_checksum(test.data.encode("utf-8"), test.checksum)
 
     def test_table_based_calculator(self):
-        calculator = CrcCalculator(Crc8.CCITT, True)
+        calculator = Calculator(Crc8.CCITT, True)
         test_suit = [
-            CrcTestData(data="", checksum=0x00),
-            CrcTestData(data=string.digits[1:], checksum=0xF4),
-            CrcTestData(data=string.digits[1:][::-1], checksum=0x91),
-            CrcTestData(data=string.digits, checksum=0x45),
-            CrcTestData(data=string.digits[::-1], checksum=0x6E),
+            TestData(data="", checksum=0x00),
+            TestData(data=string.digits[1:], checksum=0xF4),
+            TestData(data=string.digits[1:][::-1], checksum=0x91),
+            TestData(data=string.digits, checksum=0x45),
+            TestData(data=string.digits[::-1], checksum=0x6E),
         ]
         for test in test_suit:
             calculator.verify_checksum(test.data.encode("utf-8"), test.checksum)

@@ -15,7 +15,7 @@ __author__ = "Nicola Coretti"
 __email__ = "nico.coretti@gmail.com"
 
 
-class AbstractCrcRegister(metaclass=abc.ABCMeta):
+class AbstractRegister(metaclass=abc.ABCMeta):
     """
     Abstract base class / Interface a crc register needs to implement.
 
@@ -74,7 +74,7 @@ class Configuration:
     reverse_output: bool = False
 
 
-class CrcRegisterBase(AbstractCrcRegister):
+class BasicRegister(AbstractRegister):
     """
     Implements the common crc algorithm, assuming a user of this base
     class will provide an overwrite for the _process_byte method.
@@ -171,7 +171,7 @@ class CrcRegisterBase(AbstractCrcRegister):
         self._register = value & self._bitmask
 
 
-class CrcRegister(CrcRegisterBase):
+class Register(BasicRegister):
     """
     Simple crc register, which will process one bit at the time.
 
@@ -194,7 +194,7 @@ class CrcRegister(CrcRegisterBase):
         return self.register
 
 
-class TableBasedCrcRegister(CrcRegisterBase):
+class TableBasedRegister(BasicRegister):
     """
     Lookup table based crc register.
 
@@ -294,7 +294,7 @@ def create_lookup_table(width, polynomial):
     :parma int polynomial: which is used for the crc calculation.
     """
     config = Configuration(width=width, polynomial=polynomial)
-    crc_register = CrcRegister(config)
+    crc_register = Register(config)
     lookup_table = []
     for index in range(0, 256):
         crc_register.init()
@@ -304,7 +304,7 @@ def create_lookup_table(width, polynomial):
     return lookup_table
 
 
-class CrcCalculator:
+class Calculator:
     def __init__(self, configuration, table_based=False):
         """
         Creates a new CrcCalculator.
@@ -316,9 +316,9 @@ class CrcCalculator:
                     fact that the lookup table need to be initialized.
         """
         if table_based:
-            self._crc_register = TableBasedCrcRegister(configuration)
+            self._crc_register = TableBasedRegister(configuration)
         else:
-            self._crc_register = CrcRegister(configuration)
+            self._crc_register = Register(configuration)
 
     def calculate_checksum(self, data):
         self._crc_register.init()
@@ -541,7 +541,7 @@ def checksum(args):
         print(
             "{name}: 0x{result:X}".format(
                 name=f"{algorithm}".split(".")[1],
-                result=CrcCalculator(algorithm, True).calculate_checksum(data),
+                result=Calculator(algorithm, True).calculate_checksum(data),
             )
         )
     return True

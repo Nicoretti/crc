@@ -24,7 +24,7 @@ Library and CLI tool for calculating and verifying CRC checksums.
 
 ## Examples
 
-### Calculate crc using the `CrcCalculator`
+### Calculate crc using the `Calculator`
 
 ```python
 from crc import Calculator, Crc8
@@ -39,7 +39,7 @@ assert checksum == expected_checksum
 assert crc_calculator.verify_checksum(data, expected_checksum)
 ```
 
-### Speed up the calculation by using a table based `CrcCalculator`
+### Speed up the calculation by using a table based `Calculator`
 
 ```python
 from crc import Calculator, Crc8

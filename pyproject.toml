@@ -32,6 +32,9 @@ nox = "^2022.1.7"
 black = "^22.1.0"
 isort = "^5.10.1"
 coveralls = "^3.3.1"
+mkdocs = "^1.4.2"
+mkdocs-material = "^8.5.10"
+pyupgrade = "^3.2.2"
 
 
 [build-system]
@@ -60,4 +63,5 @@ include = "\\.pyi?$"
 
 [tool.isort]
 profile = "black"
+force_grid_wrap = 2
 skip = [".gitignore", "venv", ".nox"]

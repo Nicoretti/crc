@@ -10,7 +10,10 @@ import numbers
 import sys
 from dataclasses import dataclass
 from itertools import chain
-from typing import Optional, Union
+from typing import (
+    Optional,
+    Union,
+)
 
 __author__ = "Nicola Coretti"
 __email__ = "nico.coretti@gmail.com"
@@ -150,7 +153,7 @@ class BasicRegister(AbstractRegister):
         if isinstance(configuration, enum.Enum):
             configuration = configuration.value
         self._topbit = 1 << (configuration.width - 1)
-        self._bitmask = 2 ** configuration.width - 1
+        self._bitmask = 2**configuration.width - 1
         self._config = configuration
         self._register = configuration.init_value & self._bitmask
 
@@ -547,8 +550,8 @@ def table(args: argparse.Namespace) -> bool:
     polynomial = args.polynomial
     lookup_table = create_lookup_table(width, polynomial)
     template = _generate_template(width)
-    rows = (lookup_table[i: i + columns] for i in range(0, len(lookup_table), columns))
-    print("\n".join((" ".join((template.format(value) for value in r)) for r in rows)))
+    rows = (lookup_table[i : i + columns] for i in range(0, len(lookup_table), columns))
+    print("\n".join(" ".join(template.format(value) for value in r) for r in rows))
     return True
 
 
@@ -559,7 +562,7 @@ def checksum(args: argparse.Namespace) -> bool:
         print(
             "{name}: 0x{result:X}".format(
                 name=f"{algorithm}".split(".")[1],
-                result=Calculator(algorithm, True).checksum(data),
+                result=Calculator(algorithm, optimized=True).checksum(data),
             )
         )
     return True

@@ -10,9 +10,66 @@ import numbers
 import sys
 from dataclasses import dataclass
 from itertools import chain
+from typing import Optional, Union
 
 __author__ = "Nicola Coretti"
 __email__ = "nico.coretti@gmail.com"
+
+
+class Byte(numbers.Number):
+    BIT_LENGTH: int = 8
+    BIT_MASK: int = 0xFF
+
+    def __init__(self, value: int = 0x00):
+        self._value = value & Byte.BIT_MASK
+
+    def __add__(self, other: Union["Byte", int]) -> "Byte":
+        if not isinstance(other, Byte):
+            other = Byte(other)
+        return Byte(self.value + other.value)
+
+    def __radd__(self, other: Union["Byte", int]) -> "Byte":
+        return self + other
+
+    def __iadd__(self, other: Union["Byte", int]) -> "Byte":
+        result = self + other
+        self.value = result.value
+        return self
+
+    def __eq__(self, other: Union["Byte", int]) -> "Byte":
+        if not isinstance(other, Byte):
+            raise TypeError("unsupported operand")
+        return self.value == other.value
+
+    def __hash__(self) -> int:
+        return hash(self.value)
+
+    def __len__(self) -> int:
+        return Byte.BIT_LENGTH
+
+    def __getitem__(self, index: int) -> int:
+        if index >= Byte.BIT_LENGTH or index < 0:
+            raise IndexError
+        return (self.value & (1 << index)) >> index
+
+    def __int__(self):
+        return self.value
+
+    @property
+    def value(self) -> "Byte":
+        return self._value & Byte.BIT_MASK
+
+    @value.setter
+    def value(self, value) -> None:
+        self._value = value & Byte.BIT_MASK
+
+    def reversed(self) -> "Byte":
+        value = 0
+        index = 0
+        for bit in reversed(self):
+            value += bit << index
+            index += 1
+        return Byte(value)
 
 
 class AbstractRegister(metaclass=abc.ABCMeta):
@@ -32,30 +89,33 @@ class AbstractRegister(metaclass=abc.ABCMeta):
         """
 
     @abc.abstractmethod
-    def update(self, data):
+    def update(self, data: bytes) -> int:
         """
-        Feeds the provided data into the crc register.
+        Feeds data into the register.
 
-        :param bytes data: a bytes like object or ann object which can be converted to a bytes
-                     like object using the built in bytes() function.
-        :return: the current value of the crc register.
+        Args:
+            data: which will be feed into the register.
+
+        Returns:
+            Register content after the update.
         """
 
     @abc.abstractmethod
-    def digest(self):
+    def digest(self) -> int:
         """
         Final crc checksum will be calculated.
 
-        :return: the final crc checksum.
-        :rtype: int.
+        Returns:
+            Final crc result/value (applies pending operations like final xor).
         """
 
     @abc.abstractmethod
-    def reverse(self):
+    def reverse(self) -> int:
         """
         Calculates the reversed value of the crc register.
 
-        :return: the reversed value of the crc register.
+        Returns:
+            The reversed value of the crc register.
         """
 
 
@@ -80,49 +140,54 @@ class BasicRegister(AbstractRegister):
     class will provide an overwrite for the _process_byte method.
     """
 
-    def __init__(self, configuration):
+    def __init__(self, configuration: Configuration):
         """
-        Create a new CrcRegisterBase.
+        Create a new BasicRegister.
 
-        :param configuration: used for the crc algorithm.
+        Args:
+            configuration: Used to configure the crc algorithm.
         """
         if isinstance(configuration, enum.Enum):
             configuration = configuration.value
         self._topbit = 1 << (configuration.width - 1)
-        self._bitmask = 2**configuration.width - 1
+        self._bitmask = 2 ** configuration.width - 1
         self._config = configuration
         self._register = configuration.init_value & self._bitmask
 
-    def __len__(self):
+    def __len__(self) -> int:
         """
-        Returns the length (width) of the register.
-
-        :return: the register size/width in bytes.
+        Returns:
+            The width of the register.
         """
         return self._config.width // 8
 
-    def __getitem__(self, index):
+    def __getitem__(self, index: int) -> int:
         """
         Gets a single byte of the register.
 
-        :param index: byte which shall be returned.
-        :return: the byte at the specified index.
-        :raises IndexError: if the index is out of bounce.
+        Args:
+            index: byte which shall be returned.
+
+        Returns:
+            The byte at the specified index.
+
+        Raises:
+            IndexError: Invalid index for this register.
         """
         if index >= (self._config.width / 8) or index < 0:
             raise IndexError
         shift_offset = index * 8
         return (self.register & (0xFF << shift_offset)) >> shift_offset
 
-    def init(self):
+    def init(self) -> None:
         """
-        See AbstractCrcRegister.init
+        See AbstractRegister.init
         """
         self.register = self._config.init_value
 
-    def update(self, data):
+    def update(self, data: bytes) -> int:
         """
-        See AbstractCrcRegister.update
+        See AbstractRegister.update
         """
         for byte in data:
             byte = Byte(byte)
@@ -132,25 +197,28 @@ class BasicRegister(AbstractRegister):
         return self.register
 
     @abc.abstractmethod
-    def _process_byte(self, byte):
+    def _process_byte(self, byte: Byte) -> int:
         """
-        Processes an entire byte feed to the crc register.
+        Feed a byte into the crc register.
 
-        :param byte: the byte which shall be processed by the crc register.
-        :return: the new value of the crc register will have after the byte have been processed.
+        Args:
+            byte: the byte which shall be processed by the crc register.
+
+        Returns:
+            The value/state the crc register needs to be put in after this byte has been processed.
         """
 
-    def digest(self):
+    def digest(self) -> int:
         """
-        See AbstractCrcRegister.digest
+        See AbstractRegister.digest
         """
         if self._config.reverse_output:
             self.register = self.reverse()
         return self.register ^ self._config.final_xor_value
 
-    def reverse(self):
+    def reverse(self) -> int:
         """
-        See AbstractCrcRegister.digest
+        See AbstractRegister.digest
         """
         index = 0
         reversed_value = 0
@@ -159,15 +227,15 @@ class BasicRegister(AbstractRegister):
             index += 8
         return reversed_value
 
-    def _is_division_possible(self):
+    def _is_division_possible(self) -> bool:
         return (self.register & self._topbit) > 0
 
     @property
-    def register(self):
+    def register(self) -> int:
         return self._register & self._bitmask
 
     @register.setter
-    def register(self, value):
+    def register(self, value) -> None:
         self._register = value & self._bitmask
 
 
@@ -181,9 +249,9 @@ class Register(BasicRegister):
         based register.
     """
 
-    def _process_byte(self, byte):
+    def _process_byte(self, byte: Byte) -> int:
         """
-        See CrcRegisterBase._process_byte
+        See BasicRegister._process_byte
         """
         self.register ^= int(byte) << (self._config.width - 8)
         for _ in byte:
@@ -201,14 +269,15 @@ class TableBasedRegister(BasicRegister):
     .. note::
 
         this register type will be much faster than a simple bit by bit based crc register.
-        (e.g. CrcRegister)
+        (e.g. Register)
     """
 
-    def __init__(self, configuration):
+    def __init__(self, configuration: Configuration):
         """
         Creates a new table based crc register.
 
-        :param configuration: used for the crc algorithm.
+        Args:
+            configuration: used for the crc algorithm.
 
         :attention: creating a table based register initially might take some extra time, due to the
                     fact that some lookup tables need to be calculated/initialized .
@@ -220,112 +289,61 @@ class TableBasedRegister(BasicRegister):
             configuration.width, configuration.polynomial
         )
 
-    def _process_byte(self, byte):
+    def _process_byte(self, byte: Byte) -> int:
         """
-        See CrcRegisterBase._process_byte
+        See BasicRegister._process_byte
         """
         index = int(byte) ^ (self.register >> (self._config.width - 8))
         self.register = self._lookup_table[index] ^ (self.register << 8)
         return self.register
 
 
-class Byte(numbers.Number):
-    BIT_LENGTH = 8
-    BIT_MASK = 0xFF
-
-    def __init__(self, value=0x00):
-        self._value = value & Byte.BIT_MASK
-
-    def __add__(self, other):
-        if not isinstance(other, Byte):
-            other = Byte(other)
-        return Byte(self.value + other.value)
-
-    def __radd__(self, other):
-        return self + other
-
-    def __iadd__(self, other):
-        result = self + other
-        self.value = result.value
-        return self
-
-    def __eq__(self, other):
-        if not isinstance(other, Byte):
-            raise TypeError("unsupported operand")
-        return self.value == other.value
-
-    def __hash__(self):
-        return hash(self.value)
-
-    def __len__(self):
-        return Byte.BIT_LENGTH
-
-    def __getitem__(self, index):
-        if index >= Byte.BIT_LENGTH or index < 0:
-            raise IndexError
-        return (self.value & (1 << index)) >> index
-
-    def __int__(self):
-        return self.value
-
-    @property
-    def value(self):
-        return self._value & Byte.BIT_MASK
-
-    @value.setter
-    def value(self, value):
-        self._value = value & Byte.BIT_MASK
-
-    def reversed(self):
-        value = 0
-        index = 0
-        for bit in reversed(self):
-            value += bit << index
-            index += 1
-        return Byte(value)
-
-
 @functools.lru_cache()
-def create_lookup_table(width, polynomial):
+def create_lookup_table(width: int, polynomial: int) -> list[int]:
     """
     Creates a crc lookup table.
 
-    :param int width: of the crc checksum.
-    :parma int polynomial: which is used for the crc calculation.
+    Args:
+        width: of the crc checksum.
+        polynomial: which is used for the crc calculation.
+
+    Returns:
+        The lookup table for the specified width and polynomial.
     """
     config = Configuration(width=width, polynomial=polynomial)
     crc_register = Register(config)
     lookup_table = []
     for index in range(0, 256):
         crc_register.init()
-        data = bytes((index).to_bytes(1, byteorder="big"))
+        data = bytes(index.to_bytes(1, byteorder="big"))
         crc_register.update(data)
         lookup_table.append(crc_register.digest())
     return lookup_table
 
 
 class Calculator:
-    def __init__(self, configuration, optimized=False):
+    def __init__(self, configuration: Configuration, optimized: bool = False):
         """
-        Creates a new CrcCalculator.
+        Creates a new Calculator.
 
-        :param configuration: for the crc algorithm.
-        :param optimized: if true a tables based register will be used for the calculations.
+        Args:
+            configuration: for the crc algorithm.
+            optimized: whether a register optimized for speed shall be used.
 
-        :attention: initializing a table based calculator might take some extra time, due to the
-                    fact that the lookup table need to be initialized.
+        :attention: initializing an optimized calculator might take some extra time,
+                    calculation itself will be faster though.
         """
         if optimized:
             self._crc_register = TableBasedRegister(configuration)
         else:
             self._crc_register = Register(configuration)
 
-    def checksum(self, data):
+    def checksum(self, data: bytes) -> int:
         self._crc_register.init()
         self._crc_register.update(data)
         return self._crc_register.digest()
 
-    def verify(self, data, expected_checksum):
+    def verify(self, data: bytes, expected_checksum: int) -> bool:
         return self.checksum(data) == expected_checksum
 
 
@@ -466,7 +484,7 @@ CRC_TYPES = {
 }
 
 
-def argument_parser():
+def _argument_parser() -> argparse.ArgumentParser:
     into_int = functools.partial(int, base=0)
     program = "crc"
     description = "A set of crc checksum related command line tools."
@@ -517,11 +535,11 @@ def argument_parser():
     return parser
 
 
-def _generate_template(width):
+def _generate_template(width: int) -> str:
     return f"0x{{:0{(width + 3) // 4}X}}"
 
 
-def table(args):
+def table(args: argparse.Namespace) -> bool:
     if not (args.width and args.polynomial):
         return False
     columns = 8
@@ -529,12 +547,12 @@ def table(args):
     polynomial = args.polynomial
     lookup_table = create_lookup_table(width, polynomial)
     template = _generate_template(width)
-    rows = (lookup_table[i : i + columns] for i in range(0, len(lookup_table), columns))
+    rows = (lookup_table[i: i + columns] for i in range(0, len(lookup_table), columns))
     print("\n".join((" ".join((template.format(value) for value in r)) for r in rows)))
     return True
 
 
-def checksum(args):
+def checksum(args: argparse.Namespace) -> bool:
     category = CRC_TYPES[args.category]
     data = bytearray(chain.from_iterable(src.read() for src in args.inputs))
     for algorithm in sorted(category, key=str):
@@ -547,8 +565,8 @@ def checksum(args):
     return True
 
 
-def main(argv=None):
-    parser = argument_parser()
+def main(argv: Optional[list[str]] = None):
+    parser = _argument_parser()
     args = parser.parse_args(argv)
     if "func" in args:
         exit_code = 0 if args.func(args) else -1

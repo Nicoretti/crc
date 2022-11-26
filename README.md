@@ -30,29 +30,24 @@ Library and CLI tool for calculating and verifying CRC checksums.
 from crc import Calculator, Crc8
 
 data = bytes([0, 1, 2, 3, 4, 5])
-expected_checksum = 0xBC
-crc_calculator = Calculator(Crc8.CCITT)
+expected = 0xBC
+calculator = Calculator(Crc8.CCITT)
 
-checksum = crc_calculator.calculate_checksum(data)
-
-assert checksum == expected_checksum
-assert crc_calculator.verify_checksum(data, expected_checksum)
+assert expected == calculator.checksum(data)
+assert calculator.verify(data, expected)
 ```
 
-### Speed up the calculation by using a table based `Calculator`
+### Speed up the calculation by using a optimized crc `Calculator`
 
 ```python
 from crc import Calculator, Crc8
 
 data = bytes([0, 1, 2, 3, 4, 5])
-expected_checksum = 0xBC
-use_table = True
-crc_calculator = Calculator(Crc8.CCITT, use_table)
+expected = 0xBC
+calculator = Calculator(Crc8.CCITT, optimized=True)
 
-checksum = crc_calculator.calculate_checksum(data)
-
-assert checksum == expected_checksum
-assert crc_calculator.verify_checksum(data, expected_checksum)
+assert expected == calculator.checksum(data)
+assert calculator.verify(data, expected)
 ```
 
 ### Create a custom crc configuration for the crc calculation
@@ -61,23 +56,22 @@ assert crc_calculator.verify_checksum(data, expected_checksum)
 from crc import Calculator, Configuration
 
 data = bytes([0, 1, 2, 3, 4, 5])
-expected_checksum = 0xBC
+expected = 0xBC
 
-width = 8
-poly = 0x07
-init_value = 0x00
-final_xor_value = 0x00
-reverse_input = False
-reverse_output = False
+calculator = Calculator(
+    Configuration(
+        width=8,
+        poly=0x07,
+        init_value=0x00,
+        final_xor_value=0x00,
+        reverse_input=False,
+        reverse_output=False
+    ),
+    optimized=True
+)
 
-configuration = Configuration(width, poly, init_value, final_xor_value, reverse_input, reverse_output)
-
-use_table = True
-crc_calculator = Calculator(configuration, use_table)
-
-checksum = crc_calculator.calculate_checksum(data)
-assert checksum == expected_checksum
-assert crc_calculator.verify_checksum(data, expected_checksum)
+assert expected == calculator.checksum(data)
+assert calculator.verify(data, expected)
 ```
 
 ### Use bare bones crc registers
@@ -86,18 +80,17 @@ assert crc_calculator.verify_checksum(data, expected_checksum)
 from crc import Crc8, TableBasedRegister, Register
 
 data = bytes([0, 1, 2, 3, 4, 5])
-expected_checksum = 0xBC
+expected = 0xBC
 
-reg = Register(Crc8.CCITT)
-table_reg = TableBasedRegister(Crc8.CCITT)
+register = Register(Crc8.CCITT)
+register.init()
+register.update(data)
+assert expected == register.digest()
 
-reg.init()
-reg.update(data)
-assert expected_checksum == reg.digest()
-
-table_reg.init()
-table_reg.update(data)
-assert expected_checksum == table_reg.digest()
+register = TableBasedRegister(Crc8.CCITT)
+register.init()
+register.update(data)
+assert expected == register.digest()
 ```
 
 ## Command line tool

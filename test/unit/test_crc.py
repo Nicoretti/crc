@@ -262,7 +262,7 @@ class CalculatorTest(unittest.TestCase):
             TestData(data=string.digits[::-1], checksum=0x6E),
         ]
         for test in test_suit:
-            calculator.verify_checksum(test.data.encode("utf-8"), test.checksum)
+            calculator.verify(test.data.encode("utf-8"), test.checksum)
 
     def test_table_based_calculator(self):
         calculator = Calculator(Crc8.CCITT, True)
@@ -274,7 +274,7 @@ class CalculatorTest(unittest.TestCase):
             TestData(data=string.digits[::-1], checksum=0x6E),
         ]
         for test in test_suit:
-            calculator.verify_checksum(test.data.encode("utf-8"), test.checksum)
+            calculator.verify(test.data.encode("utf-8"), test.checksum)
 
 
 class CreateLookupTableTest(unittest.TestCase):

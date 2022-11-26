@@ -305,28 +305,28 @@ def create_lookup_table(width, polynomial):
 
 
 class Calculator:
-    def __init__(self, configuration, table_based=False):
+    def __init__(self, configuration, optimized=False):
         """
         Creates a new CrcCalculator.
 
         :param configuration: for the crc algorithm.
-        :param table_based: if true a tables based register will be used for the calculations.
+        :param optimized: if true a tables based register will be used for the calculations.
 
         :attention: initializing a table based calculator might take some extra time, due to the
                     fact that the lookup table need to be initialized.
         """
-        if table_based:
+        if optimized:
             self._crc_register = TableBasedRegister(configuration)
         else:
             self._crc_register = Register(configuration)
 
-    def calculate_checksum(self, data):
+    def checksum(self, data):
         self._crc_register.init()
         self._crc_register.update(data)
         return self._crc_register.digest()
 
-    def verify_checksum(self, data, expected_checksum):
-        return self.calculate_checksum(data) == expected_checksum
+    def verify(self, data, expected_checksum):
+        return self.checksum(data) == expected_checksum
 
 
 @enum.unique
@@ -541,7 +541,7 @@ def checksum(args):
         print(
             "{name}: 0x{result:X}".format(
                 name=f"{algorithm}".split(".")[1],
-                result=Calculator(algorithm, True).calculate_checksum(data),
+                result=Calculator(algorithm, True).checksum(data),
             )
         )
     return True

@@ -153,7 +153,7 @@ class BasicRegister(AbstractRegister):
         if isinstance(configuration, enum.Enum):
             configuration = configuration.value
         self._topbit = 1 << (configuration.width - 1)
-        self._bitmask = 2 ** configuration.width - 1
+        self._bitmask = 2**configuration.width - 1
         self._config = configuration
         self._register = configuration.init_value & self._bitmask
 

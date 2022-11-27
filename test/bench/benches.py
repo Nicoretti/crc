@@ -7,12 +7,12 @@ class CrcRegisterBenchTest(unittest.TestCase):
         reg = "\n".join(
             [
                 "import string",
-                "from crc import CrcRegister",
+                "from crc import Register",
                 "from crc import Configuration, Crc8",
                 "from collections import namedtuple",
                 "CrcTestData = namedtuple('CrcTestData', 'data checksum')",
                 "config = Crc8.CCITT",
-                "crc_register = CrcRegister(config)",
+                "crc_register = Register(config)",
                 "test_suit = [",
                 "    CrcTestData(data='', checksum=0x00),",
                 "    CrcTestData(data=string.digits[1:], checksum=0xF4),",
@@ -31,12 +31,12 @@ class CrcRegisterBenchTest(unittest.TestCase):
         table_reg = "\n".join(
             [
                 "import string",
-                "from crc import TableBasedCrcRegister",
+                "from crc import TableBasedRegister",
                 "from crc import Configuration, Crc8",
                 "from collections import namedtuple",
                 "CrcTestData = namedtuple('CrcTestData', 'data checksum')",
                 "config = Crc8.CCITT",
-                "crc_register = TableBasedCrcRegister(config)",
+                "crc_register = TableBasedRegister(config)",
                 "test_suit = [",
                 "    CrcTestData(data='', checksum=0x00),",
                 "    CrcTestData(data=string.digits[1:], checksum=0xF4),",

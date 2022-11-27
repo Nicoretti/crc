@@ -11,6 +11,7 @@ import sys
 from dataclasses import dataclass
 from typing import (
     Iterator,
+    List,
     Optional,
 )
 
@@ -153,7 +154,7 @@ class BasicRegister(AbstractRegister):
         if isinstance(configuration, enum.Enum):
             configuration = configuration.value
         self._topbit = 1 << (configuration.width - 1)
-        self._bitmask = 2 ** configuration.width - 1
+        self._bitmask = 2**configuration.width - 1
         self._config = configuration
         self._register = configuration.init_value & self._bitmask
 
@@ -304,7 +305,7 @@ class TableBasedRegister(BasicRegister):
 
 
 @functools.lru_cache()
-def create_lookup_table(width: int, polynomial: int) -> list[int]:
+def create_lookup_table(width: int, polynomial: int) -> List[int]:
     """
     Creates a crc lookup table.
 
@@ -526,12 +527,12 @@ def table(args: argparse.Namespace) -> bool:
     polynomial = args.polynomial
     lookup_table = create_lookup_table(width, polynomial)
     template = _generate_template(width)
-    rows = (lookup_table[i: i + columns] for i in range(0, len(lookup_table), columns))
+    rows = (lookup_table[i : i + columns] for i in range(0, len(lookup_table), columns))
     print("\n".join(" ".join(template.format(value) for value in r) for r in rows))
     return True
 
 
-def main(argv: Optional[list[str]] = None):
+def main(argv: Optional[List[str]] = None):
     parser = _argument_parser()
     args = parser.parse_args(argv)
     if "func" in args:

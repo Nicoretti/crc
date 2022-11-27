@@ -2,6 +2,8 @@
 
 ## Latest Changes
 
+## 2.0.0 - 2022-11-27
+
 ### 🚨 Breaking API Changes 
 
 ** Renamed **

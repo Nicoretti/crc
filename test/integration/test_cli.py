@@ -5,7 +5,10 @@
 import inspect
 import io
 import unittest
-from unittest.mock import call, patch
+from unittest.mock import (
+    call,
+    patch,
+)
 
 from crc import main
 

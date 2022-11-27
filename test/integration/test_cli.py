@@ -81,35 +81,6 @@ class CliTests(unittest.TestCase):
             self.assertEqual(expected, actual)
             self.assertEqual(exit.call_args, (call(expected_exit_code)))
 
-    def test_checksum_command(self):
-        expected_output = io.StringIO(
-            inspect.cleandoc(
-                """
-        AUTOSAR: 0x43
-        BLUETOOTH: 0xB3
-        CCITT: 0x9E
-        MAXIM_DOW: 0x73
-        SAEJ1850: 0x5B
-        """
-            )
-            + "\n"
-        )
-        expected_exit_code = 0
-        argv = ["checksum"]
-        with patch("sys.exit") as exit, patch(
-            "sys.stdout", new_callable=io.StringIO
-        ) as stdout:
-            with patch("sys.stdin") as stdin:
-                stdin.buffer = io.BytesIO(b"Some Data To Checksum")
-                main(argv)
-
-                stdout.seek(0)
-                actual = stdout.read().split("\n")
-                expected = expected_output.read().split("\n")
-
-                self.assertEqual(expected, actual)
-                self.assertEqual(exit.call_args, (call(expected_exit_code)))
-
 
 if __name__ == "__main__":
     unittest.main()

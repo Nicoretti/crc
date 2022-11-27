@@ -207,7 +207,8 @@ class BasicRegister(AbstractRegister):
             byte: the byte which shall be processed by the crc register.
 
         Returns:
-            The value/state the crc register needs to be put in after this byte has been processed.
+            The value/state the crc register needs to be put in
+            after this byte has been processed.
         """
 
     def digest(self) -> int:
@@ -270,8 +271,8 @@ class TableBasedRegister(BasicRegister):
 
     .. note::
 
-        this register type will be much faster than a simple bit by bit based crc register.
-        (e.g. Register)
+        this register type will be much faster than a simple bit
+        by bit based crc register (e.g. Register).
     """
 
     def __init__(self, configuration: Configuration):
@@ -281,8 +282,10 @@ class TableBasedRegister(BasicRegister):
         Args:
             configuration: used for the crc algorithm.
 
-        :attention: creating a table based register initially might take some extra time, due to the
-                    fact that some lookup tables need to be calculated/initialized .
+        :attention:
+
+            creating a table based register initially might take some extra time,
+            due to the fact that some lookup tables need to be calculated/initialized .
         """
         super().__init__(configuration)
         if isinstance(configuration, enum.Enum):
@@ -478,14 +481,6 @@ class Crc64(enum.Enum):
         reverse_input=False,
         reverse_output=False,
     )
-
-
-CRC_TYPES = {
-    Crc8.__name__: Crc8,
-    Crc16.__name__: Crc16,
-    Crc32.__name__: Crc32,
-    Crc64.__name__: Crc64,
-}
 
 
 def _argument_parser() -> argparse.ArgumentParser:

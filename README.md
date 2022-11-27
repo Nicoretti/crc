@@ -44,7 +44,7 @@ For convince various frequently used crc configurations ship with the library ou
 | MAXIM-DOW | | | | |
 
 If you find yourself in the position, where having a new configuration available out of the
-box would be desirable, feel free to create a [:material-source-pull: PR](https://github.com/Nicoretti/crc/pulls) or file an [:octicons-issue-opened-16: issue](https://github.com/Nicoretti/crc/issues).
+box would be desirable, feel free to create a [PR](https://github.com/Nicoretti/crc/pulls) or file an [issue](https://github.com/Nicoretti/crc/issues).
 
 ## Custom Configurations
 

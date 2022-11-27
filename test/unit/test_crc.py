@@ -74,11 +74,10 @@ class ByteTest(unittest.TestCase):
             self.assertEqual(Byte(value) == Byte(value), True)
             self.assertEqual(Byte(value) == Byte(value + 1), False)
 
-    def test_is_equal_operator_raises_type_error(self):
-        with self.assertRaises(TypeError):
-            lhs = Byte(1)
-            rhs = 1
-            lhs == rhs
+    def test_is_equal_operator_returns_false_for_non_byte_type(self):
+        lhs = Byte(1)
+        rhs = 1
+        self.assertFalse(lhs == rhs)
 
     def test_hash_byte(self):
         self.assertEqual(hash(1), hash(Byte(1)))

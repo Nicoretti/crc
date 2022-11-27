@@ -8,10 +8,10 @@ from collections import namedtuple
 
 from crc import (
     Byte,
+    Calculator,
     Configuration,
     Crc8,
     Crc16,
-    Calculator,
     Register,
     TableBasedRegister,
     _generate_template,

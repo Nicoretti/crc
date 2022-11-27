@@ -27,4 +27,4 @@ jobs:
           branch: gh-pages
           folder: .html-documentation
           git-config-name: Github Action
-          git-config-email: opensource@exasol.com
+          git-config-email: nico.coretti@gmail.com

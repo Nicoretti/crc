@@ -1,0 +1,44 @@
+site_name: CRC
+repo_name: nicoretti/crc
+repo_url: https://github.com/Nicoretti/crc
+theme:
+  name: material
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+  - media: '(prefers-color-scheme: light)'
+    scheme: default
+    primary: lime
+    accent: amber
+    toggle:
+      icon: material/toggle-switch
+      name: Switch to light mode
+  - media: '(prefers-color-scheme: dark)'
+    scheme: slate
+    primary: lime
+    accent: amber
+    toggle:
+      icon: material/toggle-switch-off-outline
+      name: Switch to dark mode
+  features:
+  - search.suggest
+  - search.highlight
+  - content.tabs.link
+  font: false
+copyright: >
+  Copyright &copy; 2022 Nicola Coretti
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight:
+      use_pygments: true
+  - pymdownx.superfences
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+
+
+

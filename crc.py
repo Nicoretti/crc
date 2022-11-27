@@ -9,10 +9,9 @@ import functools
 import numbers
 import sys
 from dataclasses import dataclass
-from itertools import chain
 from typing import (
+    Iterator,
     Optional,
-    Union,
 )
 
 __author__ = "Nicola Coretti"
@@ -26,22 +25,22 @@ class Byte(numbers.Number):
     def __init__(self, value: int = 0x00):
         self._value = value & Byte.BIT_MASK
 
-    def __add__(self, other: Union["Byte", int]) -> "Byte":
+    def __add__(self, other: "Byte") -> "Byte":
         if not isinstance(other, Byte):
             other = Byte(other)
         return Byte(self.value + other.value)
 
-    def __radd__(self, other: Union["Byte", int]) -> "Byte":
+    def __radd__(self, other: "Byte") -> "Byte":
         return self + other
 
-    def __iadd__(self, other: Union["Byte", int]) -> "Byte":
+    def __iadd__(self, other: "Byte") -> "Byte":
         result = self + other
         self.value = result.value
         return self
 
-    def __eq__(self, other: Union["Byte", int]) -> "Byte":
+    def __eq__(self, other: object) -> bool:
         if not isinstance(other, Byte):
-            raise TypeError("unsupported operand")
+            return False
         return self.value == other.value
 
     def __hash__(self) -> int:
@@ -55,11 +54,14 @@ class Byte(numbers.Number):
             raise IndexError
         return (self.value & (1 << index)) >> index
 
+    def __iter__(self) -> Iterator[int]:
+        return (self[i] for i in range(0, len(self)))
+
     def __int__(self):
         return self.value
 
     @property
-    def value(self) -> "Byte":
+    def value(self) -> int:
         return self._value & Byte.BIT_MASK
 
     @value.setter
@@ -68,10 +70,8 @@ class Byte(numbers.Number):
 
     def reversed(self) -> "Byte":
         value = 0
-        index = 0
-        for bit in reversed(self):
+        for index, bit in enumerate(reversed(self)):
             value += bit << index
-            index += 1
         return Byte(value)
 
 
@@ -153,7 +153,7 @@ class BasicRegister(AbstractRegister):
         if isinstance(configuration, enum.Enum):
             configuration = configuration.value
         self._topbit = 1 << (configuration.width - 1)
-        self._bitmask = 2**configuration.width - 1
+        self._bitmask = 2 ** configuration.width - 1
         self._config = configuration
         self._register = configuration.init_value & self._bitmask
 
@@ -192,8 +192,7 @@ class BasicRegister(AbstractRegister):
         """
         See AbstractRegister.update
         """
-        for byte in data:
-            byte = Byte(byte)
+        for byte in (Byte(b) for b in data):
             if self._config.reverse_input:
                 byte = byte.reversed()
             self._register = self._process_byte(byte)
@@ -336,10 +335,12 @@ class Calculator:
         :attention: initializing an optimized calculator might take some extra time,
                     calculation itself will be faster though.
         """
-        if optimized:
-            self._crc_register = TableBasedRegister(configuration)
-        else:
-            self._crc_register = Register(configuration)
+        _types = {
+            False: Register,
+            True: TableBasedRegister,
+        }
+        klass = _types[optimized]
+        self._crc_register = klass(configuration)
 
     def checksum(self, data: bytes) -> int:
         self._crc_register.init()
@@ -515,26 +516,6 @@ def _argument_parser() -> argparse.ArgumentParser:
         help="hex value of the polynomial used for calculating the crc table",
     )
     table_command.set_defaults(func=table)
-
-    checksum_command = subparsers.add_parser(
-        "checksum", help="Calculate checksum(s) for the specified input(s)"
-    )
-    checksum_command.add_argument(
-        "inputs",
-        nargs="*",
-        type=argparse.FileType("rb"),
-        default=[sys.stdin.buffer],
-        help="who will be feed into the crc calculation",
-    )
-    checksum_command.add_argument(
-        "-c",
-        "--category",
-        choices=list(CRC_TYPES),
-        default=Crc8.__name__,
-        help="of crc algorithms which shall be used for calculation",
-    )
-    checksum_command.set_defaults(func=checksum)
-
     return parser
 
 
@@ -550,21 +531,8 @@ def table(args: argparse.Namespace) -> bool:
     polynomial = args.polynomial
     lookup_table = create_lookup_table(width, polynomial)
     template = _generate_template(width)
-    rows = (lookup_table[i : i + columns] for i in range(0, len(lookup_table), columns))
+    rows = (lookup_table[i: i + columns] for i in range(0, len(lookup_table), columns))
     print("\n".join(" ".join(template.format(value) for value in r) for r in rows))
-    return True
-
-
-def checksum(args: argparse.Namespace) -> bool:
-    category = CRC_TYPES[args.category]
-    data = bytearray(chain.from_iterable(src.read() for src in args.inputs))
-    for algorithm in sorted(category, key=str):
-        print(
-            "{name}: 0x{result:X}".format(
-                name=f"{algorithm}".split(".")[1],
-                result=Calculator(algorithm, optimized=True).checksum(data),
-            )
-        )
     return True
 
 

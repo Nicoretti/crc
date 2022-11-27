@@ -1,15 +1,39 @@
-# Summary
+<h1 align="center">CRC</h1>
+<p align="center">
 
-Library and CLI tool for calculating and verifying CRC checksums.
+Calculate CRC checksums, verify CRC checksum, predefined CRC configurations, custom CRC configurations
+</p>
 
-[![CI](https://github.com/Nicoretti/crc/actions/workflows/ci.yml/badge.svg)](https://github.com/Nicoretti/crc/actions/workflows/unit.yaml)
-[![coveralls](https://coveralls.io/repos/github/Nicoretti/crc/badge.svg?branch=master)](https://coveralls.io/github/Nicoretti/crc)
-[![python](https://img.shields.io/pypi/pyversions/crc)](https://pypi.org/project/crc/)
-[![pypi](https://img.shields.io/pypi/v/crc)](https://pypi.org/project/crc/)
-[![downloads](https://img.shields.io/pypi/dm/crc)](https://pypi.org/project/crc/)
-[![license](https://img.shields.io/pypi/l/crc)](https://opensource.org/licenses/BSD-2-Clause)
+<p align="center">
 
-## Provided Default Configuration(s) of CRC Algorithms:
+<a href="https://github.com/Nicoretti/crc/actions/workflows/unit.yaml">
+    <img src="https://github.com/Nicoretti/crc/actions/workflows/unit.yaml/badge.svg" alt="Test">
+</a>
+<a href="https://coveralls.io/github/Nicoretti/crc">
+    <img src="https://coveralls.io/repos/github/Nicoretti/crc/badge.svg?branch=master" alt="Coverage">
+</a>
+<a href="https://pypi.org/project/crc/">
+    <img src="https://img.shields.io/pypi/dm/crc" alt="Downloads">
+</a>
+<a href="https://opensource.org/licenses/BSD-2-Clause">
+    <img src="https://img.shields.io/pypi/l/crc" alt="License">
+</a>
+<a href="https://pypi.org/project/crc/">
+    <img src="https://img.shields.io/pypi/pyversions/crc" alt="Supported Python Versions">
+</a>
+<a href="https://pypi.org/project/crc/">
+    <img src="https://img.shields.io/pypi/v/crc" alt="PyPi Package">
+</a>
+</p>
+
+---
+* Documentation: [https://nicoretti.github.io/crc](https://nicoretti.github.io/crc)
+* Source Code: [https://github.com/Nicoretti/crc](https://github.com/Nicoretti/crc)
+* Release Notes: [https://nicoretti.github.io/crc](https://nicoretti.github.io/crc/release-notes)
+---
+
+## Available CRC Configurations
+For convince various frequently used crc configurations ship with the library out of the box.
 
 | CRC8 | CRC16 | CRC32 | CRC64 |
 |------|-------|-------|-------|
@@ -19,92 +43,148 @@ Library and CLI tool for calculating and verifying CRC checksums.
 | BLUETOOTH | | POSIX | |
 | MAXIM-DOW | | | | |
 
+If you find yourself in the position, where having a new configuration available out of the
+box would be desirable, feel free to create a [:material-source-pull: PR](https://github.com/Nicoretti/crc/pulls) or file an [:octicons-issue-opened-16: issue](https://github.com/Nicoretti/crc/issues).
+
+## Custom Configurations
+
+If you want to create a custom configuration, you should have the following information available:
+
+🗒 Note: 
+
+    This library currently only supports bit widths of full bytes 8, 16, 24, 32, ...
+
+* **width**
+* **polynom**
+* **init value**
+* **final xor value**
+* **reversed input**
+* **reversed output**
+
+In case you only have a name of a specific crc configuration/algorithm and you are unsure what are the specific parameters
+of it, a look into this [crc-catalogue](http://reveng.sourceforge.net/crc-catalogue/all.htm) might help.
+
+
 ## Requirements
-* Python 3.7 and newer
+* [\>= Python 3.7](https://www.python.org)
+
+## Installation
+
+```shell
+pip install crc
+```
 
 ## Examples
 
-### Calculate crc using the `Calculator`
+### Create a Calculator
+
+#### Pre defined configuration
 
 ```python
 from crc import Calculator, Crc8
 
-data = bytes([0, 1, 2, 3, 4, 5])
-expected = 0xBC
 calculator = Calculator(Crc8.CCITT)
-
-assert expected == calculator.checksum(data)
-assert calculator.verify(data, expected)
 ```
-
-### Speed up the calculation by using a optimized crc `Calculator`
-
-```python
-from crc import Calculator, Crc8
-
-data = bytes([0, 1, 2, 3, 4, 5])
-expected = 0xBC
-calculator = Calculator(Crc8.CCITT, optimized=True)
-
-assert expected == calculator.checksum(data)
-assert calculator.verify(data, expected)
-```
-
-### Create a custom crc configuration for the crc calculation
+#### Custom configuration
 
 ```python
 from crc import Calculator, Configuration
 
-data = bytes([0, 1, 2, 3, 4, 5])
-expected = 0xBC
-
-calculator = Calculator(
-    Configuration(
-        width=8,
-        poly=0x07,
-        init_value=0x00,
-        final_xor_value=0x00,
-        reverse_input=False,
-        reverse_output=False
-    ),
-    optimized=True
+config = Configuration(
+    width=8,
+    poly=0x07,
+    init_value=0x00,
+    final_xor_value=0x00,
+    reverse_input=False,
+    reverse_output=False,
 )
 
+calculator = Calculator(config)
+```
+
+### Calculate a checksum
+
+#### Standard
+
+```python
+from crc import Calculator, Crc8
+
+expected = 0xBC
+data = bytes([0, 1, 2, 3, 4, 5])
+calculator = Calculator(Crc8.CCITT)
+
 assert expected == calculator.checksum(data)
+```
+
+#### Optimized for speed
+
+```python
+from crc import Calculator, Crc8
+
+expected = 0xBC
+data = bytes([0, 1, 2, 3, 4, 5])
+calculator = Calculator(Crc8.CCITT, optimized=True)
+
+assert expected == calculator.checksum(data)
+```
+
+### Verify a checksum
+
+#### Standard
+
+```python
+from crc import Calculator, Crc8
+
+expected = 0xBC
+data = bytes([0, 1, 2, 3, 4, 5])
+calculator = Calculator(Crc8.CCITT)
+
 assert calculator.verify(data, expected)
 ```
 
-### Use bare bones crc registers
+#### Optimized for speed
 
 ```python
-from crc import Crc8, TableBasedRegister, Register
+from crc import Calculator, Crc8
 
-data = bytes([0, 1, 2, 3, 4, 5])
 expected = 0xBC
+data = bytes([0, 1, 2, 3, 4, 5])
+calculator = Calculator(Crc8.CCITT, optimized=True)
 
+assert calculator.verify(data, expected)
+```
+
+### Calculate a checksum with raw registers
+
+#### Register
+
+```python
+from crc import Crc8, Register
+
+expected = 0xBC
+data = bytes([0, 1, 2, 3, 4, 5])
 register = Register(Crc8.CCITT)
-register.init()
-register.update(data)
-assert expected == register.digest()
 
-register = TableBasedRegister(Crc8.CCITT)
 register.init()
 register.update(data)
 assert expected == register.digest()
 ```
+#### TableBasedRegister
 
-## Command line tool
-See `crc --help`
+```python
+from crc import Crc8, TableBasedRegister
 
-### subcommand(s)
-#### table
-Subcommand to pre-compute crc lookup tables. See also `crc table --help`.
-#### checksum
-Subcommand to calculate crc checksums of input file(s). See also `crc checksum --help`.
+expected = 0xBC
+data = bytes([0, 1, 2, 3, 4, 5])
+register = TableBasedRegister(Crc8.CCITT)
+
+register.init()
+register.update(data)
+assert expected == register.digest()
+```
 
 References & Resources
 -----------------------
 * [A Painless guide to crc error detection algorithms](http://www.zlib.net/crc_v3.txt)
-* [Project on Github](https://github.com/Nicoretti/crc)
 * [CRC-Catalogue](http://reveng.sourceforge.net/crc-catalogue/all.htm)
 

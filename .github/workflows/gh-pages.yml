@@ -18,7 +18,7 @@ jobs:
 
       - name: Build Documentation
         run: |
-          poetry run mkdocs build -c -s ../.html-documentation -f docs/mkdocs.yml
+          poetry run mkdocs build -c -s -d ../.html-documentation -f docs/mkdocs.yml
           touch .html-documentation/.nojekyll
 
       - name: Deploy

@@ -2,9 +2,12 @@
 #
 # Copyright (c) 2018, Nicola Coretti
 # All rights reserved.
+import io
 import string
 import unittest
 from collections import namedtuple
+
+import pytest
 
 from crc import (
     Byte,
@@ -63,7 +66,6 @@ class TemplateTest(unittest.TestCase):
 
 
 class ByteTest(unittest.TestCase):
-
     def test_index_operator(self):
         byte = Byte(129)
         self.assertEqual(byte[0], 1)
@@ -293,6 +295,39 @@ class CalculatorTest(unittest.TestCase):
         ]
         for test in test_suit:
             calculator.verify(test.data.encode("utf-8"), test.checksum)
+
+
+@pytest.mark.parametrize(
+    "config,data,expected",
+    [
+        (Crc8.CCITT, 0, 0x00),
+        (Crc8.CCITT, b"", 0x00),
+        (Crc8.CCITT, io.BytesIO(b""), 0x00),
+        (Crc8.CCITT, (b"", b"", b""), 0x00),
+        (Crc8.CCITT, (b"" for i in range(0, 10)), 0x00),
+        (Crc8.CCITT, 97, 32),
+        (Crc8.CCITT, b"123456789", 0xF4),
+        (Crc8.CCITT, io.BytesIO(b"123456789"), 0xF4),
+        (Crc8.CCITT, (b"12", b"34", b"56", b"78", b"9"), 0xF4),
+        (Crc8.CCITT, (chunk for chunk in (b"12", b"34", b"56", b"78", b"9")), 0xF4),
+    ],
+)
+def test_calculator_with_different_input_types(config, data, expected):
+    calculator = Calculator(config)
+    assert calculator.checksum(data) == expected
+
+
+@pytest.mark.parametrize(
+    "config,data,expected",
+    [
+        (Crc8.CCITT, 2.00, TypeError),
+        (Crc8.CCITT, "some string", TypeError),
+    ],
+)
+def test_calculator_throws_exception_for_unsupported_input_type(config, data, expected):
+    calculator = Calculator(config)
+    with pytest.raises(expected):
+        calculator.checksum(data)
 
 
 class CreateLookupTableTest(unittest.TestCase):

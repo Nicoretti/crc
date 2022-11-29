@@ -153,6 +153,103 @@ pip install crc
     assert calculator.verify(data, expected)
     ```
 
+### Supported data types 
+
+=== "int"
+
+    ```python
+    from crc import Calculator, Crc8
+
+    expected = 0x20
+    data = 97
+    calculator = Calculator(Crc8.CCITT, optimized=True)
+
+    assert calculator.checksum(data) == expected
+    ```
+
+=== "bytes"
+
+    ```python
+    from crc import Calculator, Crc8
+
+    expected = 0xF4
+    data = b"123456789"
+    calculator = Calculator(Crc8.CCITT, optimized=True)
+
+    assert calculator.checksum(data) == expected
+    ```
+
+=== "bytearray"
+
+    ```python
+    from crc import Calculator, Crc8
+
+    expected = 0xF4
+    data = bytearray(b"123456789")
+    calculator = Calculator(Crc8.CCITT, optimized=True)
+
+    assert calculator.checksum(data) == expected
+    ```
+
+=== "File"
+
+    ```python
+    from crc import Calculator, Crc8
+
+    expected = 0xF4
+    calculator = Calculator(Crc8.CCITT, optimized=True)
+
+    with open("afile.txt", "rb") as f:
+        assert calculator.checksum(f) == expected
+    ```
+
+=== "ByteIo"
+
+    ```python
+    import io
+
+    from crc import Calculator, Crc8
+
+    expected = 0xF4
+    data = io.ByteIo(b"123456789")
+    calculator = Calculator(Crc8.CCITT, optimized=True)
+
+    assert calculator.checksum(data) == expected
+    ```
+
+=== "Iterable of bytes"
+
+    ```python
+    from crc import Calculator, Crc8
+
+    expected = 0xF4
+    calculator = Calculator(Crc8.CCITT, optimized=True)
+    data = (data for data in [b"12", b"34", b"56", b"78", b"9"])
+
+    assert calculator.checksum(data) == expected
+    ```
+
+=== "Byte convertibles"
+
+    ```python
+    from crc import Calculator, Crc8
+
+
+    class ByteConvertible:
+        def __init__(self, data):
+            self._data = data
+
+        def __bytes__(self):
+            return self._data.encode("utf-8")
+
+
+    expected = 0xF4
+    calculator = Calculator(Crc8.CCITT, optimized=True)
+    data = ByteConvertible("123456789")
+
+    assert calculator.checksum(bytes(data)) == expected
+    ```
+
 ### Calculate a checksum with raw registers
 
 === "Register"
@@ -167,7 +264,6 @@ pip install crc
     register.init()
     register.update(data)
     assert expected == register.digest()
-
     ```
 === "TableBasedRegister"
 

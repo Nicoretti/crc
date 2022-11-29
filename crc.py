@@ -10,9 +10,13 @@ import numbers
 import sys
 from dataclasses import dataclass
 from typing import (
+    BinaryIO,
+    ByteString,
+    Iterable,
     Iterator,
     List,
     Optional,
+    Union,
 )
 
 __author__ = "Nicola Coretti"
@@ -346,13 +350,52 @@ class Calculator:
         klass = _types[optimized]
         self._crc_register = klass(configuration)
 
-    def checksum(self, data: bytes) -> int:
+    def checksum(
+        self, data: Union[int, ByteString, BinaryIO, Iterable[ByteString]]
+    ) -> int:
+        """
+        Calculates the checksum for the given data.
+
+        Args:
+            data: which will be used as input for the checksum.
+
+        Returns:
+            Checksum for the given input data.
+        """
         self._crc_register.init()
-        self._crc_register.update(data)
+        for chunk in _bytes_generator(data):
+            self._crc_register.update(chunk)
         return self._crc_register.digest()
 
-    def verify(self, data: bytes, expected_checksum: int) -> bool:
-        return self.checksum(data) == expected_checksum
+    def verify(
+        self,
+        data: Union[int, ByteString, BinaryIO, Iterable[ByteString]],
+        expected: int,
+    ) -> bool:
+        """
+        Verifies that the checksum for the given data is the expected one.
+
+        Args:
+            data: which will be used as input for the checksum.
+            expected: checksum.
+
+        Returns:
+            True if the expected checksum matches the actual checksum for the given data, otherwise False.
+        """
+        return self.checksum(data) == expected
+
+
+def _bytes_generator(
+    data: Union[int, ByteString, BinaryIO, Iterable[ByteString]]
+) -> Iterable[bytes]:
+    if isinstance(data, int):
+        yield data.to_bytes(1, "big")
+    elif isinstance(data, ByteString):
+        yield data
+    elif isinstance(data, (Iterable, BinaryIO)):
+        yield from data
+    else:
+        raise TypeError(f"Unsupported parameter type: {type(data)}")
 
 
 @enum.unique

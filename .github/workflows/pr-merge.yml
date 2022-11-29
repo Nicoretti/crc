@@ -11,6 +11,18 @@ jobs:
     name: Checks
     uses: ./.github/workflows/checks.yml
 
+  publish-coverage:
+      name: Publish Code Coverage
+      uses: ./.github/actions/python-environment
+      with:
+        python-version: ${{ matrix.python-version }}
+      env:
+        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+      run: |
+        nox -s coverage
+        coveralls
+
+
   publish-docs:
     name: Publish Documentation
     uses: ./.github/workflows/gh-pages.yml

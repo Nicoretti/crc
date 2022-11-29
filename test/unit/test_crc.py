@@ -63,6 +63,25 @@ class TemplateTest(unittest.TestCase):
 
 
 class ByteTest(unittest.TestCase):
+
+    def test_index_operator(self):
+        byte = Byte(129)
+        self.assertEqual(byte[0], 1)
+        self.assertEqual(byte[1], 0)
+        self.assertEqual(byte[2], 0)
+        self.assertEqual(byte[3], 0)
+        self.assertEqual(byte[4], 0)
+        self.assertEqual(byte[5], 0)
+        self.assertEqual(byte[6], 0)
+        self.assertEqual(byte[7], 1)
+
+    def test_index_operator_raises_error(self):
+        byte = Byte(129)
+        with self.assertRaises(IndexError):
+            byte[-1]
+        with self.assertRaises(IndexError):
+            byte[8]
+
     def test_conversion_to_int(self):
         int_value = 0x01
         byte = Byte(int_value)

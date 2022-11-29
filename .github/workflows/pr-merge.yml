@@ -13,14 +13,25 @@ jobs:
 
   publish-coverage:
       name: Publish Code Coverage
-      uses: ./.github/actions/python-environment
-      with:
-        python-version: ${{ matrix.python-version }}
-      env:
-        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
-      run: |
-        nox -s coverage
-        coveralls
+      runs-on: ubuntu-latest
+      steps:
+        - name: SCM Checkout
+          uses: actions/checkout@v3
+
+        - name: Setup Python & Poetry Environment
+          uses: ./.github/actions/python-environment
+          with:
+            python-version: ${{ matrix.python-version }}
+
+        - name: Collect Code Coverage
+          run: poetry run nox -s coverage
+          env:
+            COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+
+        - name: Publish Code Coverage
+          env:
+            COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+          run: poetry run coveralls
 
 
   publish-docs:

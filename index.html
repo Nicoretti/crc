@@ -316,6 +316,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#supported-data-types" class="md-nav__link">
+    Supported data types
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#calculate-a-checksum-with-raw-registers" class="md-nav__link">
     Calculate a checksum with raw registers
   </a>
@@ -449,6 +456,13 @@
           <li class="md-nav__item">
   <a href="#verify-a-checksum" class="md-nav__link">
     Verify a checksum
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supported-data-types" class="md-nav__link">
+    Supported data types
   </a>
   
 </li>
@@ -672,8 +686,94 @@ of it, a look into this <a href="http://reveng.sourceforge.net/crc-catalogue/all
 </div>
 </div>
 </div>
+<h3 id="supported-data-types">Supported data types</h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:7"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><input id="__tabbed_4_4" name="__tabbed_4" type="radio" /><input id="__tabbed_4_5" name="__tabbed_4" type="radio" /><input id="__tabbed_4_6" name="__tabbed_4" type="radio" /><input id="__tabbed_4_7" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">int</label><label for="__tabbed_4_2">bytes</label><label for="__tabbed_4_3">bytearray</label><label for="__tabbed_4_4">File</label><label for="__tabbed_4_5">ByteIo</label><label for="__tabbed_4_6">Iterable of bytes</label><label for="__tabbed_4_7">Byte convertibles</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">crc</span> <span class="kn">import</span> <span class="n">Calculator</span><span class="p">,</span> <span class="n">Crc8</span>
+
+<span class="n">expected</span> <span class="o">=</span> <span class="mh">0x20</span>
+<span class="n">data</span> <span class="o">=</span> <span class="mi">97</span>
+<span class="n">calculator</span> <span class="o">=</span> <span class="n">Calculator</span><span class="p">(</span><span class="n">Crc8</span><span class="o">.</span><span class="n">CCITT</span><span class="p">,</span> <span class="n">optimized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">calculator</span><span class="o">.</span><span class="n">checksum</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="n">expected</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">crc</span> <span class="kn">import</span> <span class="n">Calculator</span><span class="p">,</span> <span class="n">Crc8</span>
+
+<span class="n">expected</span> <span class="o">=</span> <span class="mh">0xF4</span>
+<span class="n">data</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;123456789&quot;</span>
+<span class="n">calculator</span> <span class="o">=</span> <span class="n">Calculator</span><span class="p">(</span><span class="n">Crc8</span><span class="o">.</span><span class="n">CCITT</span><span class="p">,</span> <span class="n">optimized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">calculator</span><span class="o">.</span><span class="n">checksum</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="n">expected</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">crc</span> <span class="kn">import</span> <span class="n">Calculator</span><span class="p">,</span> <span class="n">Crc8</span>
+
+<span class="n">expected</span> <span class="o">=</span> <span class="mh">0xF4</span>
+<span class="n">data</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;123456789&quot;</span><span class="p">)</span>
+<span class="n">calculator</span> <span class="o">=</span> <span class="n">Calculator</span><span class="p">(</span><span class="n">Crc8</span><span class="o">.</span><span class="n">CCITT</span><span class="p">,</span> <span class="n">optimized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">calculator</span><span class="o">.</span><span class="n">checksum</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="n">expected</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">crc</span> <span class="kn">import</span> <span class="n">Calculator</span><span class="p">,</span> <span class="n">Crc8</span>
+
+<span class="n">expected</span> <span class="o">=</span> <span class="mh">0xF4</span>
+<span class="n">calculator</span> <span class="o">=</span> <span class="n">Calculator</span><span class="p">(</span><span class="n">Crc8</span><span class="o">.</span><span class="n">CCITT</span><span class="p">,</span> <span class="n">optimized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;afile.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">assert</span> <span class="n">calculator</span><span class="o">.</span><span class="n">checksum</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">==</span> <span class="n">expected</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">io</span>
+
+<span class="kn">from</span> <span class="nn">crc</span> <span class="kn">import</span> <span class="n">Calculator</span><span class="p">,</span> <span class="n">Crc8</span>
+
+<span class="n">expected</span> <span class="o">=</span> <span class="mh">0xF4</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">ByteIo</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;123456789&quot;</span><span class="p">)</span>
+<span class="n">calculator</span> <span class="o">=</span> <span class="n">Calculator</span><span class="p">(</span><span class="n">Crc8</span><span class="o">.</span><span class="n">CCITT</span><span class="p">,</span> <span class="n">optimized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">calculator</span><span class="o">.</span><span class="n">checksum</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="n">expected</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">crc</span> <span class="kn">import</span> <span class="n">Calculator</span><span class="p">,</span> <span class="n">Crc8</span>
+
+<span class="n">expected</span> <span class="o">=</span> <span class="mh">0xF4</span>
+<span class="n">calculator</span> <span class="o">=</span> <span class="n">Calculator</span><span class="p">(</span><span class="n">Crc8</span><span class="o">.</span><span class="n">CCITT</span><span class="p">,</span> <span class="n">optimized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span> <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="p">[</span><span class="sa">b</span><span class="s2">&quot;12&quot;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;34&quot;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;56&quot;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;78&quot;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;9&quot;</span><span class="p">])</span>
+
+<span class="k">assert</span> <span class="n">calculator</span><span class="o">.</span><span class="n">checksum</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="n">expected</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">crc</span> <span class="kn">import</span> <span class="n">Calculator</span><span class="p">,</span> <span class="n">Crc8</span>
+
+
+<span class="k">class</span> <span class="nc">ByteConvertible</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">data</span>
+
+    <span class="k">def</span> <span class="fm">__bytes__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+
+
+<span class="n">expected</span> <span class="o">=</span> <span class="mh">0xF4</span>
+<span class="n">calculator</span> <span class="o">=</span> <span class="n">Calculator</span><span class="p">(</span><span class="n">Crc8</span><span class="o">.</span><span class="n">CCITT</span><span class="p">,</span> <span class="n">optimized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">ByteConvertible</span><span class="p">(</span><span class="s2">&quot;123456789&quot;</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">calculator</span><span class="o">.</span><span class="n">checksum</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="o">==</span> <span class="n">expected</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 <h3 id="calculate-a-checksum-with-raw-registers">Calculate a checksum with raw registers</h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Register</label><label for="__tabbed_4_2">TableBasedRegister</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Register</label><label for="__tabbed_5_2">TableBasedRegister</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">crc</span> <span class="kn">import</span> <span class="n">Crc8</span><span class="p">,</span> <span class="n">Register</span>

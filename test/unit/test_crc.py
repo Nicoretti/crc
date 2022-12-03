@@ -21,7 +21,7 @@ from crc import (
     create_lookup_table,
 )
 
-TestData = namedtuple("TestData", "data checksum")
+Fixture = namedtuple("TestData", "data checksum")
 
 
 class TemplateTest(unittest.TestCase):
@@ -195,11 +195,11 @@ class RegisterTest(unittest.TestCase):
         for register_type in self._register_types:
             crc_register = register_type(config)
             test_suit = [
-                TestData(data="", checksum=0x00),
-                TestData(data=string.digits[1:], checksum=0xF4),
-                TestData(data=string.digits[1:][::-1], checksum=0x91),
-                TestData(data=string.digits, checksum=0x45),
-                TestData(data=string.digits[::-1], checksum=0x6E),
+                Fixture(data="", checksum=0x00),
+                Fixture(data=string.digits[1:], checksum=0xF4),
+                Fixture(data=string.digits[1:][::-1], checksum=0x91),
+                Fixture(data=string.digits, checksum=0x45),
+                Fixture(data=string.digits[::-1], checksum=0x6E),
             ]
             for test in test_suit:
                 crc_register.init()
@@ -211,11 +211,11 @@ class RegisterTest(unittest.TestCase):
         for register_type in self._register_types:
             crc_register = register_type(config)
             test_suit = [
-                TestData(data="", checksum=0x00),
-                TestData(data=string.digits[1:], checksum=0x37),
-                TestData(data=string.digits[1:][::-1], checksum=0xAA),
-                TestData(data=string.digits, checksum=0x8A),
-                TestData(data=string.digits[::-1], checksum=0x39),
+                Fixture(data="", checksum=0x00),
+                Fixture(data=string.digits[1:], checksum=0x37),
+                Fixture(data=string.digits[1:][::-1], checksum=0xAA),
+                Fixture(data=string.digits, checksum=0x8A),
+                Fixture(data=string.digits[::-1], checksum=0x39),
             ]
             for test in test_suit:
                 crc_register.init()
@@ -227,11 +227,11 @@ class RegisterTest(unittest.TestCase):
         for register_type in self._register_types:
             crc_register = register_type(config)
             test_suit = [
-                TestData(data="", checksum=0x0000),
-                TestData(data=string.digits[1:], checksum=0x31C3),
-                TestData(data=string.digits[1:][::-1], checksum=0x9CAD),
-                TestData(data=string.digits, checksum=0x9C58),
-                TestData(data=string.digits[::-1], checksum=0xD966),
+                Fixture(data="", checksum=0x0000),
+                Fixture(data=string.digits[1:], checksum=0x31C3),
+                Fixture(data=string.digits[1:][::-1], checksum=0x9CAD),
+                Fixture(data=string.digits, checksum=0x9C58),
+                Fixture(data=string.digits[::-1], checksum=0xD966),
             ]
             for test in test_suit:
                 crc_register.init()
@@ -243,11 +243,11 @@ class RegisterTest(unittest.TestCase):
         for register_type in self._register_types:
             crc_register = register_type(config)
             test_suit = [
-                TestData(data="", checksum=0x0000),
-                TestData(data=string.digits[1:], checksum=0x9184),
-                TestData(data=string.digits[1:][::-1], checksum=0xF92C),
-                TestData(data=string.digits, checksum=0x76FA),
-                TestData(data=string.digits[::-1], checksum=0x93BA),
+                Fixture(data="", checksum=0x0000),
+                Fixture(data=string.digits[1:], checksum=0x9184),
+                Fixture(data=string.digits[1:][::-1], checksum=0xF92C),
+                Fixture(data=string.digits, checksum=0x76FA),
+                Fixture(data=string.digits[::-1], checksum=0x93BA),
             ]
             for test in test_suit:
                 crc_register.init()
@@ -259,11 +259,11 @@ class RegisterTest(unittest.TestCase):
         for register_type in self._register_types:
             crc_register = register_type(config)
             test_suit = [
-                TestData(data="", checksum=0x0000),
-                TestData(data=string.digits[1:], checksum=0xC38C),
-                TestData(data=string.digits[1:][::-1], checksum=0xB539),
-                TestData(data=string.digits, checksum=0x1A39),
-                TestData(data=string.digits[::-1], checksum=0x669B),
+                Fixture(data="", checksum=0x0000),
+                Fixture(data=string.digits[1:], checksum=0xC38C),
+                Fixture(data=string.digits[1:][::-1], checksum=0xB539),
+                Fixture(data=string.digits, checksum=0x1A39),
+                Fixture(data=string.digits[::-1], checksum=0x669B),
             ]
             for test in test_suit:
                 crc_register.init()
@@ -275,11 +275,11 @@ class CalculatorTest(unittest.TestCase):
     def test_register_based(self):
         calculator = Calculator(Crc8.CCITT)
         test_suit = [
-            TestData(data="", checksum=0x00),
-            TestData(data=string.digits[1:], checksum=0xF4),
-            TestData(data=string.digits[1:][::-1], checksum=0x91),
-            TestData(data=string.digits, checksum=0x45),
-            TestData(data=string.digits[::-1], checksum=0x6E),
+            Fixture(data="", checksum=0x00),
+            Fixture(data=string.digits[1:], checksum=0xF4),
+            Fixture(data=string.digits[1:][::-1], checksum=0x91),
+            Fixture(data=string.digits, checksum=0x45),
+            Fixture(data=string.digits[::-1], checksum=0x6E),
         ]
         for test in test_suit:
             calculator.verify(test.data.encode("utf-8"), test.checksum)
@@ -287,11 +287,11 @@ class CalculatorTest(unittest.TestCase):
     def test_table_based_calculator(self):
         calculator = Calculator(Crc8.CCITT, True)
         test_suit = [
-            TestData(data="", checksum=0x00),
-            TestData(data=string.digits[1:], checksum=0xF4),
-            TestData(data=string.digits[1:][::-1], checksum=0x91),
-            TestData(data=string.digits, checksum=0x45),
-            TestData(data=string.digits[::-1], checksum=0x6E),
+            Fixture(data="", checksum=0x00),
+            Fixture(data=string.digits[1:], checksum=0xF4),
+            Fixture(data=string.digits[1:][::-1], checksum=0x91),
+            Fixture(data=string.digits, checksum=0x45),
+            Fixture(data=string.digits[::-1], checksum=0x6E),
         ]
         for test in test_suit:
             calculator.verify(test.data.encode("utf-8"), test.checksum)

@@ -1,6 +1,6 @@
 # Release Notes
 
-## Latest Changes
+## Unreleased 
 
 ### 🚨 Breaking API Changes 
 
@@ -29,6 +29,8 @@
  
      (`int`, `ByteString`, `BinaryIO`, `Iterable[ByteString]`)
 
+### 📚 Documentation
+* Renamed "Latest - Changes" to "Unreleased"
 
 ## 2.0.0 - 2022-11-27
 

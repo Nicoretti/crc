@@ -1,4 +1,5 @@
 site_name: CRC
+site_url: https://nicoretti.github.io/crc/
 repo_name: nicoretti/crc
 repo_url: https://github.com/Nicoretti/crc
 theme:

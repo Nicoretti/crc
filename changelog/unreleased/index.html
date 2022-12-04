@@ -536,62 +536,24 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Unreleased
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         Unreleased
       </a>
       
-        
+    </li>
+  
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+            
+          
+            
+              
   
   
   
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#breaking-api-changes" class="md-nav__link">
-    🚨 Breaking API Changes
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#fixes" class="md-nav__link">
-    🐛 Fixes
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#added" class="md-nav__link">
-    ✨ Added
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#documentation" class="md-nav__link">
-    📚 Documentation
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
+    <li class="md-nav__item">
+      <a href="../changes_3.0.0/" class="md-nav__link">
+        3.0.0 - 2022-12-04
+      </a>
     </li>
   
 
@@ -637,42 +599,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#breaking-api-changes" class="md-nav__link">
-    🚨 Breaking API Changes
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#fixes" class="md-nav__link">
-    🐛 Fixes
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#added" class="md-nav__link">
-    ✨ Added
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#documentation" class="md-nav__link">
-    📚 Documentation
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -692,45 +618,6 @@
 
 
 <h1 id="unreleased">Unreleased</h1>
-<h2 id="breaking-api-changes">🚨 Breaking API Changes</h2>
-<p><strong> Renamed </strong></p>
-<p><em>Functions &amp; Methods:</em></p>
-<ul>
-<li>
-<p>Renamed keyword argument <code>expected_checksum</code> of method <code>Calculator.verify</code> to <code>expected</code></p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Old API</label><label for="__tabbed_1_2">New API</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">verify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">expected_checksum</span><span class="p">:</span> <span class="nb">int</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-    <span class="o">...</span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">verify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">ByteString</span><span class="p">,</span> <span class="n">BinaryIO</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">ByteString</span><span class="p">]],</span> <span class="n">expected</span><span class="p">:</span> <span class="nb">int</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-    <span class="o">...</span>
-</code></pre></div>
-</div>
-</div>
-</div>
-</li>
-</ul>
-<h2 id="fixes">🐛 Fixes</h2>
-<ul>
-<li>Fixed return type for all inputs of ByteString types</li>
-</ul>
-<h2 id="added">✨ Added</h2>
-<ul>
-<li>
-<p>Added support for other data types than <code>bytes</code> to <code>Calculator.checksum</code> and <code>Calculator.verify</code></p>
-<p>(<code>int</code>, <code>ByteString</code>, <code>BinaryIO</code>, <code>Iterable[ByteString]</code>)</p>
-</li>
-</ul>
-<h2 id="documentation">📚 Documentation</h2>
-<ul>
-<li>Renamed "Latest - Changes" to "Unreleased"</li>
-<li>Added "API" section</li>
-<li>Added "development" section</li>
-</ul>
 
 
 
@@ -769,13 +656,13 @@
       
       
         
-        <a href="../changes_2.0.0/" class="md-footer__link md-footer__link--next" aria-label="Next: 2.0.0 - 2022-11-27" rel="next">
+        <a href="../changes_3.0.0/" class="md-footer__link md-footer__link--next" aria-label="Next: 3.0.0 - 2022-12-04" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              2.0.0 - 2022-11-27
+              3.0.0 - 2022-12-04
             </div>
           </div>
           <div class="md-footer__button md-icon">

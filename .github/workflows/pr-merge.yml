@@ -21,7 +21,7 @@ jobs:
         - name: Setup Python & Poetry Environment
           uses: ./.github/actions/python-environment
           with:
-            python-version: ${{ matrix.python-version }}
+            python-version: 3.8
 
         - name: Collect Code Coverage
           run: poetry run nox -s coverage

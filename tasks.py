@@ -264,7 +264,7 @@ def release_prepare(context, version):
         sys.exit(-1)
     context.run(_cmd("poetry", "version", version))
     context.run(_cmd("git", "add", "pyproject.toml"))
-    context.run(_cmd("git", "commit"))
+    context.run(_cmd("git", "commit", "-m", f'"Prepare release {version}"'))
     context.run(_cmd("git", "tag", version))
 
 

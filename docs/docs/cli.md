@@ -1,7 +1,7 @@
-# Command Line Tools
+# CLI Tools
 The crc library comes with a small command line tool which can generate crc lookup tables if needed.
 
-```
+```console
 usage: crc table [-h] <width> <polynomial>
 
 positional arguments:

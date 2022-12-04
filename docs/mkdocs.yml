@@ -5,33 +5,47 @@ repo_url: https://github.com/Nicoretti/crc
 
 nav:
   - "index.md"
+  - API:
+    - "api/calculator.md"
+    - "api/configuration.md"
+    - "api/crc8.md"
+    - "api/crc16.md"
+    - "api/crc32.md"
+    - "api/crc64.md"
+    - "api/abstract_register.md"
+    - "api/basic_register.md"
+    - "api/register.md"
+    - "api/table_based_register.md"
   - "cli.md"
+  - Development:
+      - "development/setup.md"
+      - "development/release.md"
   - Changelog:
-    - "changelog/unreleased.md"
-    - "changelog/changes_2.0.0.md"
+      - "changelog/unreleased.md"
+      - "changelog/changes_2.0.0.md"
 theme:
   name: material
   icon:
     repo: fontawesome/brands/github
   palette:
-  - media: '(prefers-color-scheme: light)'
-    scheme: default
-    primary: lime
-    accent: amber
-    toggle:
-      icon: material/toggle-switch
-      name: Switch to light mode
-  - media: '(prefers-color-scheme: dark)'
-    scheme: slate
-    primary: lime
-    accent: amber
-    toggle:
-      icon: material/toggle-switch-off-outline
-      name: Switch to dark mode
+    - media: '(prefers-color-scheme: light)'
+      scheme: default
+      primary: lime
+      accent: amber
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+    - media: '(prefers-color-scheme: dark)'
+      scheme: slate
+      primary: lime
+      accent: amber
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
   features:
-  - search.suggest
-  - search.highlight
-  - content.tabs.link
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
   font: false
 copyright: >
   Copyright &copy; 2022 Nicola Coretti
@@ -50,3 +64,19 @@ markdown_extensions:
 
 
 
+plugins:
+- search
+- autorefs
+- mkdocstrings:
+    default_handler: python
+    handlers:
+      python:
+        setup_commands:
+          - import sys
+          - sys.path.append(".")
+        selection:
+          new_path_syntax: yes
+        options:
+          show_source: false
+    watch:
+    - .

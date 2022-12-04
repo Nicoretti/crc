@@ -1,8 +1,6 @@
-# Changelog
+# Unreleased 
 
-## Unreleased 
-
-### 🚨 Breaking API Changes 
+## 🚨 Breaking API Changes 
 
 ** Renamed **
 
@@ -24,13 +22,15 @@
             ...
         ```
  
-### 🐛 Fixes
+## 🐛 Fixes
 * Fixed return type for all inputs of ByteString types
 
-### ✨ Added
+## ✨ Added
 * Added support for other data types than `bytes` to `Calculator.checksum` and `Calculator.verify`
  
      (`int`, `ByteString`, `BinaryIO`, `Iterable[ByteString]`)
 
-### 📚 Documentation
+## 📚 Documentation
 * Renamed "Latest - Changes" to "Unreleased"
+* Added "API" section
+* Added "development" section

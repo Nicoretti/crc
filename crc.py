@@ -132,6 +132,23 @@ class Configuration:
     """
     A Configuration provides all settings necessary to determine the concrete
     implementation of a specific crc algorithm/register.
+
+    Example:
+
+        Create a custom configuration
+
+        ```python
+        from crc import Configuration
+
+        saej1850 = Configuration(
+            width=8,
+            polynomial=0x1D,
+            init_value=0,
+            final_xor_value=0,
+            reverse_input=False,
+            reverse_output=False
+        )
+        ```
     """
 
     width: int
@@ -189,13 +206,13 @@ class BasicRegister(AbstractRegister):
 
     def init(self) -> None:
         """
-        See AbstractRegister.init
+        See `AbstractRegister.init`
         """
         self.register = self._config.init_value
 
     def update(self, data: bytes) -> int:
         """
-        See AbstractRegister.update
+        See `AbstractRegister.update`
         """
         for byte in (Byte(b) for b in data):
             if self._config.reverse_input:
@@ -218,7 +235,7 @@ class BasicRegister(AbstractRegister):
 
     def digest(self) -> int:
         """
-        See AbstractRegister.digest
+        See `AbstractRegister.digest`
         """
         if self._config.reverse_output:
             self.register = self.reverse()
@@ -226,7 +243,7 @@ class BasicRegister(AbstractRegister):
 
     def reverse(self) -> int:
         """
-        See AbstractRegister.digest
+        See `AbstractRegister.digest`
         """
         index = 0
         reversed_value = 0
@@ -251,7 +268,7 @@ class Register(BasicRegister):
     """
     Simple crc register, which will process one bit at the time.
 
-    .. note:
+    Note:
 
         If performance is an important issue for the crc calculation use a table
         based register.
@@ -274,10 +291,10 @@ class TableBasedRegister(BasicRegister):
     """
     Lookup table based crc register.
 
-    .. note::
+    Info:
 
         this register type will be much faster than a simple bit
-        by bit based crc register (e.g. Register).
+        by bit based crc register like `Register`.
     """
 
     def __init__(self, configuration: Configuration):
@@ -287,7 +304,7 @@ class TableBasedRegister(BasicRegister):
         Args:
             configuration: used for the crc algorithm.
 
-        :attention:
+        Attention:
 
             creating a table based register initially might take some extra time,
             due to the fact that some lookup tables need to be calculated/initialized .

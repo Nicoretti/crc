@@ -391,7 +391,7 @@ def _bytes_generator(
     if isinstance(data, int):
         yield data.to_bytes(1, "big")
     elif isinstance(data, ByteString):
-        yield data
+        yield bytes(data)
     elif isinstance(data, (Iterable, BinaryIO)):
         yield from data
     else:

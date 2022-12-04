@@ -23,6 +23,9 @@
         def verify(self, data: Union[int, ByteString, BinaryIO, Iterable[ByteString]], expected: int ) -> bool:
             ...
         ```
+ 
+### 🐛 Fixes
+* Fixed return type for all inputs of ByteString types
 
 ### ✨ Added
 * Added support for other data types than `bytes` to `Calculator.checksum` and `Calculator.verify`
@@ -31,6 +34,7 @@
 
 ### 📚 Documentation
 * Renamed "Latest - Changes" to "Unreleased"
+ 
 
 ## 2.0.0 - 2022-11-27
 

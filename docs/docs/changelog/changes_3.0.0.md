@@ -8,19 +8,19 @@
 
 * Renamed keyword argument `expected_checksum` of method `Calculator.verify` to `expected`
 
-  === "Old API"
+    === "Old API"
 
-        ```python
-        def verify(self, data: bytes, expected_checksum: int ) -> bool:
-            ...
-        ```
+          ```python
+          def verify(self, data: bytes, expected_checksum: int ) -> bool:
+              ...
+          ```
 
-  === "New API"
+    === "New API"
 
-        ```python
-        def verify(self, data: Union[int, ByteString, BinaryIO, Iterable[ByteString]], expected: int ) -> bool:
-            ...
-        ```
+          ```python
+          def verify(self, data: Union[int, ByteString, BinaryIO, Iterable[ByteString]], expected: int ) -> bool:
+              ...
+          ```
 
 ## 🐛 Fixes
 * Fixed return type for all inputs of ByteString types

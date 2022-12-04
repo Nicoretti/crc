@@ -271,7 +271,6 @@ def release_prepare(context, version):
 @task
 def release_workflow(context, version):
     """Start/Trigger a GitHub action based release workflow"""
-    release_prepare(context, version)
     context.run(_cmd("git", "push", "origin", version))
     context.run(_cmd("gh", "workflow", "view", "ci-cd.yml", "--web"))
 

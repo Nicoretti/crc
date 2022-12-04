@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "crc"
-version = "2.0.0"
+version = "2.1.0"
 description = "Library and CLI to calculate and verify all kinds of CRC checksums"
 packages = [
     { include = "crc.py" },
@@ -37,6 +37,7 @@ mkdocs-material = "^8.5.10"
 pyupgrade = "^3.2.2"
 shed = "^0.10.7"
 mypy = "^0.991"
+invoke = "^1.7.3"
 
 
 

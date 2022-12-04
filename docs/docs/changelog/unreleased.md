@@ -5,3 +5,4 @@
  
 ## 🔩  Internal
 *  Adjust release.workflow task
+*  Update dev dependencies

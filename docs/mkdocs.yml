@@ -2,6 +2,13 @@ site_name: CRC
 site_url: https://nicoretti.github.io/crc/
 repo_name: nicoretti/crc
 repo_url: https://github.com/Nicoretti/crc
+
+nav:
+  - "index.md"
+  - "cli.md"
+  - Changelog:
+    - "changelog/unreleased.md"
+    - "changelog/changes_2.0.0.md"
 theme:
   name: material
   icon:

@@ -710,20 +710,24 @@
 <p><strong> Renamed </strong></p>
 <p><em>Functions &amp; Methods:</em></p>
 <ul>
-<li>Renamed keyword argument <code>expected_checksum</code> of method <code>Calculator.verify</code> to <code>expected</code></li>
+<li>
+<p>Renamed keyword argument <code>expected_checksum</code> of method <code>Calculator.verify</code> to <code>expected</code></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Old API</label><label for="__tabbed_1_2">New API</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">verify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">expected_checksum</span><span class="p">:</span> <span class="nb">int</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="o">...</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">verify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">ByteString</span><span class="p">,</span> <span class="n">BinaryIO</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">ByteString</span><span class="p">]],</span> <span class="n">expected</span><span class="p">:</span> <span class="nb">int</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="o">...</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</li>
 </ul>
-<p>=== "Old API"</p>
-<div class="highlight"><pre><span></span><code>    ```python
-    def verify(self, data: bytes, expected_checksum: int ) -&gt; bool:
-        ...
-    ```
-</code></pre></div>
-<p>=== "New API"</p>
-<div class="highlight"><pre><span></span><code>    ```python
-    def verify(self, data: Union[int, ByteString, BinaryIO, Iterable[ByteString]], expected: int ) -&gt; bool:
-        ...
-    ```
-</code></pre></div>
 <h2 id="fixes">🐛 Fixes</h2>
 <ul>
 <li>Fixed return type for all inputs of ByteString types</li>

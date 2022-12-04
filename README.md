@@ -6,17 +6,17 @@ Calculate CRC checksums, verify CRC checksum, predefined CRC configurations, cus
 
 <p align="center">
 
-<a href="https://github.com/Nicoretti/crc/actions/workflows/unit.yaml">
-    <img src="https://github.com/Nicoretti/crc/actions/workflows/unit.yaml/badge.svg" alt="Test">
+<a href="https://github.com/Nicoretti/crc/actions/workflows/pr-merge.yml">
+    <img src="https://img.shields.io/github/workflow/status/Nicoretti/crc/PR-Merge/master" alt="Test">
 </a>
 <a href="https://coveralls.io/github/Nicoretti/crc">
-    <img src="https://coveralls.io/repos/github/Nicoretti/crc/badge.svg?branch=master" alt="Coverage">
-</a>
-<a href="https://pypi.org/project/crc/">
-    <img src="https://img.shields.io/pypi/dm/crc" alt="Downloads">
+    <img src="https://img.shields.io/coverallsCoverage/github/Nicoretti/crc" alt="Coverage">
 </a>
 <a href="https://opensource.org/licenses/BSD-2-Clause">
     <img src="https://img.shields.io/pypi/l/crc" alt="License">
+</a>
+<a href="https://pypi.org/project/crc/">
+    <img src="https://img.shields.io/pypi/dm/crc" alt="Downloads">
 </a>
 <a href="https://pypi.org/project/crc/">
     <img src="https://img.shields.io/pypi/pyversions/crc" alt="Supported Python Versions">

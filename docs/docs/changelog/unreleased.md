@@ -5,3 +5,6 @@
 
 ## 📚 Documentation
 * Update repository status badge
+ 
+## 🔩  Internal
+* Remove nox support

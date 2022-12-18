@@ -6,3 +6,4 @@
 
 ## 🔩  Internal
 * Remove custom python version classifiers from pyproject.toml
+* Add support for GitHub release notes

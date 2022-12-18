@@ -81,6 +81,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://nicoretti.github.io/crc/changelog/changes_4.0.0/</loc>
+         <lastmod>2022-12-18</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://nicoretti.github.io/crc/changelog/unreleased/</loc>
          <lastmod>2022-12-18</lastmod>
          <changefreq>daily</changefreq>

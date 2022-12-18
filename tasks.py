@@ -122,7 +122,7 @@ def unit_test(context, root=BASEPATH / "test" / "unit", coverage=False):
     """Run all unit tests"""
     command = ["coverage", "run", "-m", "-a"] if coverage else []
     command = _poetry(*command, "pytest", f"{root}")
-    context.run(command, pty=True)
+    context.run(command)
 
 
 @task(aliases=["it"])
@@ -130,7 +130,7 @@ def integration_test(context, root=BASEPATH / "test" / "integration", coverage=F
     """Run all integration tests"""
     command = ["coverage", "run", "-m", "-a"] if coverage else []
     command = _poetry(*command, "pytest", f"{root}")
-    context.run(command, pty=True)
+    context.run(command)
 
 
 @task(
@@ -145,7 +145,7 @@ def coverage(context, root=BASEPATH):
     unit_test(context, root=root / "test" / "unit", coverage=True)
     integration_test(context, root=root / "test" / "integration", coverage=True)
     report = _poetry("coverage", "report", "--fail-under=98")
-    context.run(report, pty=True)
+    context.run(report)
 
 
 @task(

@@ -6,7 +6,7 @@ jobs:
 
   format-job:
 
-    name: "Coverage (Python-${{ matrix.python-version }} on ${{ matrix.os }})"
+    name: "Format (Python-${{ matrix.python-version }} on ${{ matrix.os }})"
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: true
@@ -17,9 +17,6 @@ jobs:
           - windows-latest
         python-version:
           - "3.8"
-          - "3.9"
-          - "3.10"
-          - "3.11"
 
     steps:
       - name: SCM Checkout
@@ -35,7 +32,7 @@ jobs:
 
   typing-job:
 
-    name: "Coverage (Python-${{ matrix.python-version }} on ${{ matrix.os }})"
+    name: "Typing (Python-${{ matrix.python-version }} on ${{ matrix.os }})"
     needs: [format-job]
     runs-on: ${{ matrix.os }}
     strategy:
@@ -49,7 +46,6 @@ jobs:
           - "3.8"
           - "3.9"
           - "3.10"
-          - "3.11"
 
     steps:
       - name: SCM Checkout
@@ -77,9 +73,6 @@ jobs:
           - windows-latest
         python-version:
           - "3.8"
-          - "3.9"
-          - "3.10"
-          - "3.11"
 
     steps:
       - name: SCM Checkout
@@ -95,7 +88,7 @@ jobs:
 
   tests-job:
 
-    name: "Unit Tests (Python-${{ matrix.python-version }} on ${{ matrix.os }})"
+    name: "Tests (Python-${{ matrix.python-version }} on ${{ matrix.os }})"
     needs: [format-job, linting-job, typing-job]
     runs-on: ${{ matrix.os }}
     strategy:
@@ -109,7 +102,6 @@ jobs:
           - "3.8"
           - "3.9"
           - "3.10"
-          - "3.11"
 
     steps:
       - name: SCM Checkout

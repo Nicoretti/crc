@@ -65,7 +65,7 @@ of it, a look into this [:material-note-search: crc-catalogue](http://reveng.sou
 
 
 ## Requirements
-* [\>= :material-language-python: Python 3.7](https://www.python.org)
+* [\>= :material-language-python: Python 3.8](https://www.python.org)
 
 ## Installation
 

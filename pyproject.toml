@@ -17,7 +17,13 @@ classifiers = [
 ]
 keywords = ['CRC', 'CRC8', 'CRC16', 'CRC32', 'CRC64']
 repository = "https://github.com/Nicoretti/crc"
-homepage = "https://github.com/Nicoretti/crc"
+
+[tool.poetry.urls]
+"Homepage" = "https://nicoretti.github.io/crc/"
+"Documentation" = "https://nicoretti.github.io/crc/"
+"Source" = "https://github.com/Nicoretti/crc"
+"Issues" = "https://github.com/Nicoretti/crc/issues"
+"Changelog" = "https://nicoretti.github.io/crc/changelog/unreleased/"
 
 [tool.poetry.scripts]
 crc = "crc:main"

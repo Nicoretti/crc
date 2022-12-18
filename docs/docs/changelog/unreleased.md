@@ -8,3 +8,4 @@
  
 ## 🔩  Internal
 * Remove nox support
+* Add additional pypi metadata

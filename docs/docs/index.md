@@ -6,8 +6,8 @@ Calculate CRC checksums, verify CRC checksum, predefined CRC configurations, cus
 
 <p align="center">
 
-<a href="https://github.com/Nicoretti/crc/actions/workflows/pr-merge.yml">
-    <img src="https://img.shields.io/github/workflow/status/Nicoretti/crc/PR-Merge/master" alt="Test">
+<a href="https://github.com/Nicoretti/crc/actions">
+    <img src="https://img.shields.io/github/checks-status/nicoretti/crc/master" alt="Checks Master">
 </a>
 <a href="https://coveralls.io/github/Nicoretti/crc">
     <img src="https://img.shields.io/coverallsCoverage/github/Nicoretti/crc" alt="Coverage">

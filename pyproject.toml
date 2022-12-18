@@ -10,9 +10,6 @@ maintainers = ["Nicola Coretti <nico.coretti@gmail.com>"]
 license = "BSD-2-Clause"
 readme = "README.md"
 classifiers = [
-    "Programming Language :: Python :: 3.7",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
     "License :: OSI Approved :: BSD License",
 ]
 keywords = ['CRC', 'CRC8', 'CRC16', 'CRC32', 'CRC64']

@@ -5,6 +5,7 @@
 
 ## 📚 Documentation
 * Update repository status badge
+* Fix heading in 3.0.1 changelog
  
 ## 🔩  Internal
 * Remove nox support

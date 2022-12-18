@@ -22,6 +22,7 @@ nav:
       - "development/release.md"
   - Changelog:
       - "changelog/unreleased.md"
+      - "changelog/changes_4.0.0.md"
       - "changelog/changes_3.0.1.md"
       - "changelog/changes_3.0.0.md"
       - "changelog/changes_2.0.0.md"

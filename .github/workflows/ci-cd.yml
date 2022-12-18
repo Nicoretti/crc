@@ -55,5 +55,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: >
           gh release create ${GITHUB_REF_NAME}
-          --title ${GITHUB_REF_NAME} --notes-file docs/changelog/changes_${GITHUB_REF_NAME}.md
+          --title ${GITHUB_REF_NAME} --notes-file docs/docs/changelog/changes_${GITHUB_REF_NAME}.md
           dist/*

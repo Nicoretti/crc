@@ -582,6 +582,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../changelog/changes_4.1.0/" class="md-nav__link">
+        4.1.0 - 2022-12-18
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../changelog/changes_4.0.0/" class="md-nav__link">
         4.0.0 - 2022-12-18
       </a>
@@ -693,10 +707,20 @@
 
 <h1 id="release">Release</h1>
 <h2 id="create-a-release-using-the-github-release-workflow">Create a release using the GitHub release workflow</h2>
-<p>Execute the <code>release.workflow</code> task and follow potential instructions.</p>
-<p>Example:
-<div class="highlight"><pre><span></span><code>invoke release.workflow -v 2.0.0
-</code></pre></div></p>
+<ol>
+<li>Rename <code>unreleased.md</code> to <code>changes_{X.Y.Z}.md</code></li>
+<li>Update heading in <code>changes_{X.Y.Z}.md</code> to reflect the release version</li>
+<li>Add the current date behind the release number
+   <div class="highlight"><pre><span></span><code><span class="gh"># X.Y.Z - YYYY-MM-DD</span>
+</code></pre></div></li>
+<li>Prepare the release
+   <div class="highlight"><pre><span></span><code><span class="go">invoke release.prepare X.Y.Z</span>
+</code></pre></div></li>
+<li>Run the CI/CD pipeline to publish the release:
+   Execute the <code>release.workflow</code> task and follow potential instructions.
+   <div class="highlight"><pre><span></span><code>invoke release.workflow X.Y.Z
+</code></pre></div></li>
+</ol>
 
 
 

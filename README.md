@@ -29,7 +29,6 @@ Calculate CRC checksums, verify CRC checksum, predefined CRC configurations, cus
 ---
 * Documentation: [https://nicoretti.github.io/crc](https://nicoretti.github.io/crc)
 * Source Code: [https://github.com/Nicoretti/crc](https://github.com/Nicoretti/crc)
-* Release Notes: [https://nicoretti.github.io/crc/release-notes](https://nicoretti.github.io/crc/release-notes)
 ---
 
 ## Available CRC Configurations

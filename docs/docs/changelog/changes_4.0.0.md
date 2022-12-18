@@ -10,3 +10,4 @@
 ## 🔩  Internal
 * Remove nox support
 * Add additional pypi metadata
+* Fix CI/CD checks and tasks

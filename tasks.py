@@ -49,7 +49,9 @@ def _select_files(root, files):
             "either specify --files or --root but not both."
         )
     return (
-        list(files) if files is not None else [f"{f}" for f in _python_files(BASEPATH)]
+        list(files)
+        if files is not None and len(files) > 0
+        else [f"{f}" for f in _python_files(BASEPATH)]
     )
 
 
@@ -97,6 +99,7 @@ def initialize_workspace(context):
 @task(
     name="format",
     optional=["root", "files", "fix"],
+    iterable=["files"],
     help={
         "root": f"default: {BASEPATH}",
         "fix": "default: True",
@@ -147,6 +150,7 @@ def coverage(context, root=BASEPATH):
 
 @task(
     optional=["root", "files"],
+    iterable=["files"],
     help={
         "root": f"default: {BASEPATH}",
         "files": "default: None",
@@ -161,6 +165,7 @@ def lint(context, root=BASEPATH, files=None):
 
 @task(
     optional=["root", "files"],
+    iterable=["files"],
     help={
         "root": f"default: {BASEPATH}",
         "files": "default: None",
@@ -175,6 +180,7 @@ def typing(context, root=BASEPATH, files=None):
 
 @task(
     optional=["root", "files"],
+    iterable=["files"],
     help={
         "root": f"default: {BASEPATH}",
         "files": "default: None",
@@ -183,16 +189,6 @@ def typing(context, root=BASEPATH, files=None):
 def check(context, root=BASEPATH, files=None):
     """Run all code format checks"""
     fmt(context, root, files, fix=False)
-    lint(
-        context,
-        root,
-        files,
-    )
-    typing(
-        context,
-        root,
-        files,
-    )
 
 
 @task

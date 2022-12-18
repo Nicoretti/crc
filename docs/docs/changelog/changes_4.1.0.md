@@ -1,4 +1,4 @@
-# Unreleased
+# 4.1.0 - 2022-12-18
 
 ## 📚 Documentation
 * Update repository status badge in documentation

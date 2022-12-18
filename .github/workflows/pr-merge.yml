@@ -24,7 +24,7 @@ jobs:
             python-version: 3.8
 
         - name: Collect Code Coverage
-          run: poetry run nox -s coverage
+          run: poetry run invoke test.coverage
           env:
             COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
 

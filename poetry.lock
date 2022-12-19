@@ -1,16 +1,18 @@
 [[package]]
 name = "astroid"
-version = "2.11.7"
+version = "2.12.13"
 description = "An abstract syntax tree for Python with inference support."
 category = "dev"
 optional = false
-python-versions = ">=3.6.2"
+python-versions = ">=3.7.2"
 
 [package.dependencies]
 lazy-object-proxy = ">=1.4.0"
-setuptools = ">=20.0"
 typing-extensions = {version = ">=3.10", markers = "python_version < \"3.10\""}
-wrapt = ">=1.11,<2"
+wrapt = [
+    {version = ">=1.11,<2", markers = "python_version < \"3.11\""},
+    {version = ">=1.14,<2", markers = "python_version >= \"3.11\""},
+]
 
 [[package]]
 name = "astunparse"
@@ -36,7 +38,7 @@ python-versions = ">=3.5"
 dev = ["cloudpickle", "coverage[toml] (>=5.0.2)", "furo", "hypothesis", "mypy (>=0.900,!=0.940)", "pre-commit", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "sphinx", "sphinx-notfound-page", "zope.interface"]
 docs = ["furo", "sphinx", "sphinx-notfound-page", "zope.interface"]
 tests = ["cloudpickle", "coverage[toml] (>=5.0.2)", "hypothesis", "mypy (>=0.900,!=0.940)", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "zope.interface"]
-tests_no_zope = ["cloudpickle", "coverage[toml] (>=5.0.2)", "hypothesis", "mypy (>=0.900,!=0.940)", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins"]
+tests-no-zope = ["cloudpickle", "coverage[toml] (>=5.0.2)", "hypothesis", "mypy (>=0.900,!=0.940)", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins"]
 
 [[package]]
 name = "autoflake"
@@ -89,7 +91,7 @@ optional = false
 python-versions = ">=3.6.0"
 
 [package.extras]
-unicode_backport = ["unicodedata2"]
+unicode-backport = ["unicodedata2"]
 
 [[package]]
 name = "click"
@@ -516,24 +518,29 @@ plugins = ["importlib-metadata"]
 
 [[package]]
 name = "pylint"
-version = "2.13.9"
+version = "2.15.9"
 description = "python code static checker"
 category = "dev"
 optional = false
-python-versions = ">=3.6.2"
+python-versions = ">=3.7.2"
 
 [package.dependencies]
-astroid = ">=2.11.5,<=2.12.0-dev0"
-colorama = {version = "*", markers = "sys_platform == \"win32\""}
-dill = ">=0.2"
+astroid = ">=2.12.13,<=2.14.0-dev0"
+colorama = {version = ">=0.4.5", markers = "sys_platform == \"win32\""}
+dill = [
+    {version = ">=0.2", markers = "python_version < \"3.11\""},
+    {version = ">=0.3.6", markers = "python_version >= \"3.11\""},
+]
 isort = ">=4.2.5,<6"
 mccabe = ">=0.6,<0.8"
 platformdirs = ">=2.2.0"
 tomli = {version = ">=1.1.0", markers = "python_version < \"3.11\""}
+tomlkit = ">=0.10.1"
 typing-extensions = {version = ">=3.10.0", markers = "python_version < \"3.10\""}
 
 [package.extras]
-testutil = ["gitpython (>3)"]
+spelling = ["pyenchant (>=3.2,<4.0)"]
+testutils = ["gitpython (>3)"]
 
 [[package]]
 name = "pymdown-extensions"
@@ -637,20 +644,7 @@ urllib3 = ">=1.21.1,<1.27"
 
 [package.extras]
 socks = ["PySocks (>=1.5.6,!=1.5.7)"]
-use_chardet_on_py3 = ["chardet (>=3.0.2,<6)"]
-
-[[package]]
-name = "setuptools"
-version = "65.6.3"
-description = "Easily download, build, install, upgrade, and uninstall Python packages"
-category = "dev"
-optional = false
-python-versions = ">=3.7"
-
-[package.extras]
-docs = ["furo", "jaraco.packaging (>=9)", "jaraco.tidelift (>=1.4)", "pygments-github-lexers (==0.0.5)", "rst.linker (>=1.9)", "sphinx (>=3.5)", "sphinx-favicon", "sphinx-hoverxref (<2)", "sphinx-inline-tabs", "sphinx-notfound-page (==0.8.3)", "sphinx-reredirects", "sphinxcontrib-towncrier"]
-testing = ["build[virtualenv]", "filelock (>=3.4.0)", "flake8 (<5)", "flake8-2020", "ini2toml[lite] (>=0.9)", "jaraco.envs (>=2.2)", "jaraco.path (>=3.2.0)", "pip (>=19.1)", "pip-run (>=8.8)", "pytest (>=6)", "pytest-black (>=0.3.7)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=1.3)", "pytest-flake8", "pytest-mypy (>=0.9.1)", "pytest-perf", "pytest-timeout", "pytest-xdist", "tomli-w (>=1.0.0)", "virtualenv (>=13.0.0)", "wheel"]
-testing-integration = ["build[virtualenv]", "filelock (>=3.4.0)", "jaraco.envs (>=2.2)", "jaraco.path (>=3.2.0)", "pytest", "pytest-enabler", "pytest-xdist", "tomli", "virtualenv (>=13.0.0)", "wheel"]
+use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
 name = "shed"
@@ -691,6 +685,14 @@ description = "A lil' TOML parser"
 category = "dev"
 optional = false
 python-versions = ">=3.7"
+
+[[package]]
+name = "tomlkit"
+version = "0.11.6"
+description = "Style preserving TOML library"
+category = "dev"
+optional = false
+python-versions = ">=3.6"
 
 [[package]]
 name = "typing-extensions"
@@ -770,12 +772,12 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8,<4.0"
-content-hash = "f249af2d61c400280dba57fcb7da40129a036520fb10546a631d9a640f377c50"
+content-hash = "32b7f9b0b4307ba3b2bc31d39bf6e893a24dca4c7d591bbd19db45062da44b9f"
 
 [metadata.files]
 astroid = [
-    {file = "astroid-2.11.7-py3-none-any.whl", hash = "sha256:86b0a340a512c65abf4368b80252754cda17c02cdbbd3f587dddf98112233e7b"},
-    {file = "astroid-2.11.7.tar.gz", hash = "sha256:bb24615c77f4837c707669d16907331374ae8a964650a66999da3f5ca68dc946"},
+    {file = "astroid-2.12.13-py3-none-any.whl", hash = "sha256:10e0ad5f7b79c435179d0d0f0df69998c4eef4597534aae44910db060baeb907"},
+    {file = "astroid-2.12.13.tar.gz", hash = "sha256:1493fe8bd3dfd73dc35bd53c9d5b6e49ead98497c47b2307662556a5692d29d7"},
 ]
 astunparse = [
     {file = "astunparse-1.6.3-py2.py3-none-any.whl", hash = "sha256:c2652417f2c8b5bb325c885ae329bdf3f86424075c4fd1a128674bc6fba4b8e8"},
@@ -1114,8 +1116,8 @@ Pygments = [
     {file = "Pygments-2.13.0.tar.gz", hash = "sha256:56a8508ae95f98e2b9bdf93a6be5ae3f7d8af858b43e02c5a2ff083726be40c1"},
 ]
 pylint = [
-    {file = "pylint-2.13.9-py3-none-any.whl", hash = "sha256:705c620d388035bdd9ff8b44c5bcdd235bfb49d276d488dd2c8ff1736aa42526"},
-    {file = "pylint-2.13.9.tar.gz", hash = "sha256:095567c96e19e6f57b5b907e67d265ff535e588fe26b12b5ebe1fc5645b2c731"},
+    {file = "pylint-2.15.9-py3-none-any.whl", hash = "sha256:349c8cd36aede4d50a0754a8c0218b43323d13d5d88f4b2952ddfe3e169681eb"},
+    {file = "pylint-2.15.9.tar.gz", hash = "sha256:18783cca3cfee5b83c6c5d10b3cdb66c6594520ffae61890858fe8d932e1c6b4"},
 ]
 pymdown-extensions = [
     {file = "pymdown_extensions-9.9-py3-none-any.whl", hash = "sha256:ac698c15265680db5eb13cd4342abfcde2079ac01e5486028f47a1b41547b859"},
@@ -1187,10 +1189,6 @@ requests = [
     {file = "requests-2.28.1-py3-none-any.whl", hash = "sha256:8fefa2a1a1365bf5520aac41836fbee479da67864514bdb821f31ce07ce65349"},
     {file = "requests-2.28.1.tar.gz", hash = "sha256:7c5599b102feddaa661c826c56ab4fee28bfd17f5abca1ebbe3e7f19d7c97983"},
 ]
-setuptools = [
-    {file = "setuptools-65.6.3-py3-none-any.whl", hash = "sha256:57f6f22bde4e042978bcd50176fdb381d7c21a9efa4041202288d3737a0c6a54"},
-    {file = "setuptools-65.6.3.tar.gz", hash = "sha256:a7620757bf984b58deaf32fc8a4577a9bbc0850cf92c20e1ce41c38c19e5fb75"},
-]
 shed = [
     {file = "shed-0.10.8-py3-none-any.whl", hash = "sha256:5625a41842ef433bc1ddf1360d039cbeb205d5dcb33b706515ec410f865b4551"},
     {file = "shed-0.10.8.tar.gz", hash = "sha256:06030eb5ecb7708cc81628f61493725b46614b6d80444352bcead27c5f0da47d"},
@@ -1206,6 +1204,10 @@ tokenize-rt = [
 tomli = [
     {file = "tomli-2.0.1-py3-none-any.whl", hash = "sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc"},
     {file = "tomli-2.0.1.tar.gz", hash = "sha256:de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f"},
+]
+tomlkit = [
+    {file = "tomlkit-0.11.6-py3-none-any.whl", hash = "sha256:07de26b0d8cfc18f871aec595fda24d95b08fef89d147caa861939f37230bf4b"},
+    {file = "tomlkit-0.11.6.tar.gz", hash = "sha256:71b952e5721688937fb02cf9d354dbcf0785066149d2855e44531ebdd2b65d73"},
 ]
 typing-extensions = [
     {file = "typing_extensions-4.4.0-py3-none-any.whl", hash = "sha256:16fa4864408f655d35ec496218b85f79b3437c829e93320c7c9215ccfd92489e"},

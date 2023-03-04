@@ -45,21 +45,21 @@ Make sure the poetry environment is setup properly and all dependencies are inst
     ```
     poetry shell
     ```
-  
+
 2. Install the project dependencies
- 
+
     ```
     poetry install
     ```
 
 ## Run the `init` task
 In order to bootstrap the remaining parts of the workspace setup, just
-execute the following command: 
+execute the following command:
 
 ```
 invoke init
 ```
 
-!!! note 
+!!! note
 
     Follow potential instructions.

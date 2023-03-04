@@ -49,7 +49,7 @@ box would be desirable, feel free to create a [PR](https://github.com/Nicoretti/
 
 If you want to create a custom configuration, you should have the following information available:
 
-🗒 Note: 
+🗒 Note:
 
     This library currently only supports bit widths of full bytes 8, 16, 24, 32, ...
 
@@ -186,4 +186,3 @@ References & Resources
 -----------------------
 * [A Painless guide to crc error detection algorithms](http://www.zlib.net/crc_v3.txt)
 * [CRC-Catalogue](http://reveng.sourceforge.net/crc-catalogue/all.htm)
-

@@ -70,6 +70,7 @@ def initialize_workspace(context):
     """
     Prepare/Initialize the workspace
     """
+    context.run("pre-commit install")
     if not _is_command_available("gh"):
         Console.stdout(
             cleandoc(

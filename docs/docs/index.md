@@ -32,7 +32,7 @@ Calculate CRC checksums, verify CRC checksum, predefined CRC configurations, cus
 ---
 
 ## Available CRC Configurations
-For convince various frequently used crc configurations ship with the library out of the box. 
+For convince various frequently used crc configurations ship with the library out of the box.
 
 | CRC8 | CRC16 | CRC32 | CRC64 |
 |------|-------|-------|-------|
@@ -59,7 +59,7 @@ If you want to create a custom configuration, you should have the following info
 * **final xor value**
 * **reversed input**
 * **reversed output**
- 
+
 In case you only have a name of a specific crc configuration/algorithm and you are unsure what are the specific parameters
 of it, a look into this [:material-note-search: crc-catalogue](http://reveng.sourceforge.net/crc-catalogue/all.htm) might help.
 
@@ -153,7 +153,7 @@ pip install crc
     assert calculator.verify(data, expected)
     ```
 
-### Supported data types 
+### Supported data types
 
 === "int"
 
@@ -283,4 +283,3 @@ References & Resources
 -----------------------
 * [A Painless guide to crc error detection algorithms](http://www.zlib.net/crc_v3.txt)
 * [CRC-Catalogue](http://reveng.sourceforge.net/crc-catalogue/all.htm)
-

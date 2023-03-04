@@ -6,5 +6,6 @@
 ## 🔩  Internal
 * Fix path to changelog file for GitHub release
 * Add python 3.11 to test matrix
+* Add pre-commit support
 * Update dev dependencies
 * Fix mypy warnings

@@ -7,3 +7,4 @@
 * Fix path to changelog file for GitHub release
 * Add python 3.11 to test matrix
 * Update dev dependencies
+* Fix mypy warnings

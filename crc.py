@@ -175,7 +175,7 @@ class BasicRegister(AbstractRegister):
         if isinstance(configuration, enum.Enum):
             configuration = configuration.value
         self._topbit = 1 << (configuration.width - 1)
-        self._bitmask = 2 ** configuration.width - 1
+        self._bitmask = 2**configuration.width - 1
         self._config = configuration
         self._register = configuration.init_value & self._bitmask
 
@@ -368,7 +368,7 @@ class Calculator:
         self._crc_register = klass(configuration)
 
     def checksum(
-            self, data: Union[int, ByteString, BinaryIO, Iterable[ByteString]]
+        self, data: Union[int, ByteString, BinaryIO, Iterable[ByteString]]
     ) -> int:
         """
         Calculates the checksum for the given data.
@@ -385,9 +385,9 @@ class Calculator:
         return self._crc_register.digest()
 
     def verify(
-            self,
-            data: Union[int, ByteString, BinaryIO, Iterable[ByteString]],
-            expected: int,
+        self,
+        data: Union[int, ByteString, BinaryIO, Iterable[ByteString]],
+        expected: int,
     ) -> bool:
         """
         Verifies that the checksum for the given data is the expected one.
@@ -403,7 +403,7 @@ class Calculator:
 
 
 def _bytes_generator(
-        data: Union[int, ByteString, BinaryIO, Iterable[ByteString]]
+    data: Union[int, ByteString, BinaryIO, Iterable[ByteString]]
 ) -> Iterable[bytes]:
     if isinstance(data, int):
         yield data.to_bytes(1, "big")
@@ -587,7 +587,7 @@ def table(args: argparse.Namespace) -> bool:
     polynomial = args.polynomial
     lookup_table = create_lookup_table(width, polynomial)
     template = _generate_template(width)
-    rows = (lookup_table[i: i + columns] for i in range(0, len(lookup_table), columns))
+    rows = (lookup_table[i : i + columns] for i in range(0, len(lookup_table), columns))
     print("\n".join(" ".join(template.format(value) for value in r) for r in rows))
     return True
 

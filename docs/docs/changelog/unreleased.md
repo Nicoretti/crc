@@ -1,5 +1,8 @@
 # Unreleased
 
+## ✨ Features 
+* Add support for MODBUS
+
 ## 📚 Documentation
 * Add copy button support for code snippets
 

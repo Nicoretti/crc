@@ -492,6 +492,15 @@ class Crc16(enum.Enum):
         reverse_output=False,
     )
 
+    MODBUS = Configuration(
+        width=16,
+        polynomial=0x8005,
+        init_value=0xFFFF,
+        final_xor_value=0x0000,
+        reverse_input=True,
+        reverse_output=True,
+    )
+
 
 @enum.unique
 class Crc32(enum.Enum):

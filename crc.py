@@ -10,6 +10,7 @@ import numbers
 import sys
 from dataclasses import dataclass
 from typing import (
+    Any,
     BinaryIO,
     ByteString,
     Iterable,
@@ -403,13 +404,13 @@ class Calculator:
 
 
 def _bytes_generator(
-    data: Union[int, ByteString, BinaryIO, Iterable[ByteString]]
+    data: Union[int, ByteString, BinaryIO, Iterable[ByteString]]  # type: ignore
 ) -> Iterable[bytes]:
     if isinstance(data, int):
         yield data.to_bytes(1, "big")
-    elif isinstance(data, ByteString):
-        yield bytes(data)
-    elif isinstance(data, (Iterable, BinaryIO)):
+    elif isinstance(data, ByteString):  # type: ignore
+        yield bytes(data)  # type: ignore
+    elif isinstance(data, (Iterable, BinaryIO)):  # type: ignore
         yield from (bytes(e) for e in data)
     else:
         raise TypeError(f"Unsupported parameter type: {type(data)}")

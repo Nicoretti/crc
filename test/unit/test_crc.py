@@ -21,7 +21,7 @@ from crc import (
     create_lookup_table,
 )
 
-Fixture = namedtuple("TestData", "data checksum")
+Fixture = namedtuple("Fixture", "data checksum")
 
 
 class TemplateTest(unittest.TestCase):

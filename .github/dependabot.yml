@@ -18,4 +18,5 @@ updates:
     open-pull-requests-limit: 5
     groups:
       dev:
-        patterns: "*"
+        patterns:
+          - "*"

@@ -15,4 +15,7 @@ updates:
     schedule:
       interval: "monthly"
       day: "monday"
-    open-pull-requests-limit: 10
+    open-pull-requests-limit: 5
+    groups:
+      dev:
+        patterns: "*"

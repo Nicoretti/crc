@@ -135,7 +135,6 @@ class Configuration:
     implementation of a specific crc algorithm/register.
 
     Example:
-
         Create a custom configuration
 
         ```python
@@ -270,7 +269,6 @@ class Register(BasicRegister):
     Simple crc register, which will process one bit at the time.
 
     Note:
-
         If performance is an important issue for the crc calculation use a table
         based register.
     """
@@ -293,7 +291,6 @@ class TableBasedRegister(BasicRegister):
     Lookup table based crc register.
 
     Info:
-
         this register type will be much faster than a simple bit
         by bit based crc register like `Register`.
     """
@@ -306,7 +303,6 @@ class TableBasedRegister(BasicRegister):
             configuration: used for the crc algorithm.
 
         Attention:
-
             creating a table based register initially might take some extra time,
             due to the fact that some lookup tables need to be calculated/initialized .
         """

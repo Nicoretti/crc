@@ -11,7 +11,6 @@ import sys
 from dataclasses import dataclass
 from typing import (
     BinaryIO,
-    ByteString,
     Iterable,
     Iterator,
     List,
@@ -27,7 +26,7 @@ class Byte(numbers.Number):
     BIT_LENGTH: int = 8
     BIT_MASK: int = 0xFF
 
-    def __init__(self, value: int = 0x00):
+    def __init__(self, value: int = 0x00) -> None:
         self._value = value & Byte.BIT_MASK
 
     def __add__(self, other: "Byte") -> "Byte":
@@ -62,7 +61,7 @@ class Byte(numbers.Number):
     def __iter__(self) -> Iterator[int]:
         return (self[i] for i in range(0, len(self)))
 
-    def __int__(self):
+    def __int__(self) -> int:
         return self.value
 
     @property
@@ -70,7 +69,7 @@ class Byte(numbers.Number):
         return self._value & Byte.BIT_MASK
 
     @value.setter
-    def value(self, value) -> None:
+    def value(self, value: int) -> None:
         self._value = value & Byte.BIT_MASK
 
     def reversed(self) -> "Byte":
@@ -91,7 +90,7 @@ class AbstractRegister(metaclass=abc.ABCMeta):
     """
 
     @abc.abstractmethod
-    def init(self):
+    def init(self) -> None:
         """
         Initializes the crc register.
         """
@@ -164,7 +163,7 @@ class BasicRegister(AbstractRegister):
     an overwrite for the _process_byte method.
     """
 
-    def __init__(self, configuration: Configuration):
+    def __init__(self, configuration: Configuration) -> None:
         """
         Create a new BasicRegister.
 
@@ -174,7 +173,7 @@ class BasicRegister(AbstractRegister):
         if isinstance(configuration, enum.Enum):
             configuration = configuration.value
         self._topbit = 1 << (configuration.width - 1)
-        self._bitmask = 2**configuration.width - 1
+        self._bitmask = int(2**configuration.width - 1)
         self._config = configuration
         self._register = configuration.init_value & self._bitmask
 
@@ -259,7 +258,7 @@ class BasicRegister(AbstractRegister):
         return self._register & self._bitmask
 
     @register.setter
-    def register(self, value) -> None:
+    def register(self, value: int) -> None:
         self._register = value & self._bitmask
 
 
@@ -294,7 +293,7 @@ class TableBasedRegister(BasicRegister):
         register like `Register`.
     """
 
-    def __init__(self, configuration: Configuration):
+    def __init__(self, configuration: Configuration) -> None:
         """
         Creates a new table based crc register.
 
@@ -345,7 +344,7 @@ def create_lookup_table(width: int, polynomial: int) -> List[int]:
 
 
 class Calculator:
-    def __init__(self, configuration: Configuration, optimized: bool = False):
+    def __init__(self, configuration: Configuration, optimized: bool = False) -> None:
         """
         Creates a new Calculator.
 
@@ -364,7 +363,15 @@ class Calculator:
         self._crc_register = klass(configuration)
 
     def checksum(
-        self, data: Union[int, ByteString, BinaryIO, Iterable[ByteString]]
+        self,
+        data: Union[
+            int,
+            bytes,
+            bytearray,
+            memoryview,
+            BinaryIO,
+            Iterable[Union[bytes, bytearray, memoryview]],
+        ],
     ) -> int:
         """
         Calculates the checksum for the given data.
@@ -382,7 +389,14 @@ class Calculator:
 
     def verify(
         self,
-        data: Union[int, ByteString, BinaryIO, Iterable[ByteString]],
+        data: Union[
+            int,
+            bytes,
+            bytearray,
+            memoryview,
+            BinaryIO,
+            Iterable[Union[bytes, bytearray, memoryview]],
+        ],
         expected: int,
     ) -> bool:
         """
@@ -400,13 +414,22 @@ class Calculator:
 
 
 def _bytes_generator(
-    data: Union[int, ByteString, BinaryIO, Iterable[ByteString]]  # type: ignore
+    data: Union[
+        int,
+        bytes,
+        bytearray,
+        memoryview,
+        BinaryIO,
+        Iterable[Union[bytes, bytearray, memoryview]],
+    ]
 ) -> Iterable[bytes]:
     if isinstance(data, int):
         yield data.to_bytes(1, "big")
-    elif isinstance(data, ByteString):  # type: ignore
-        yield bytes(data)  # type: ignore
-    elif isinstance(data, (Iterable, BinaryIO)):  # type: ignore
+    elif isinstance(data, bytes):
+        yield data
+    elif isinstance(data, (bytearray, memoryview)):
+        yield bytes(data)
+    elif isinstance(data, (Iterable, BinaryIO)):
         yield from (bytes(e) for e in data)
     else:
         raise TypeError(f"Unsupported parameter type: {type(data)}")
@@ -598,7 +621,7 @@ def table(args: argparse.Namespace) -> bool:
     return True
 
 
-def main(argv: Optional[List[str]] = None):
+def main(argv: Optional[List[str]] = None) -> None:
     parser = _argument_parser()
     args = parser.parse_args(argv)
     if "func" in args:

@@ -20,6 +20,7 @@ from typing import (
 
 __author__ = [
     "Nicola Coretti <nico.coretti@gmail.com>",
+    "Gert van Dijk <github@gertvandijk.nl>",
 ]
 
 InputType = Union[

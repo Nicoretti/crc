@@ -15,10 +15,21 @@ from typing import (
     Final,
     Iterable,
     Iterator,
+    Union,
 )
 
 __author__ = "Nicola Coretti"
 __email__ = "nico.coretti@gmail.com"
+
+InputType = Union[
+    int,
+    bytes,
+    bytearray,
+    memoryview,
+    BinaryIO,
+    Iterable[Union[bytes, bytearray, memoryview]],
+]
+"""Type alias for acceptable input types for [Calculator][crc.Calculator]."""
 
 
 class Byte(numbers.Number):
@@ -367,15 +378,7 @@ class Calculator:
         klass = _types[optimized]
         self._crc_register = klass(configuration)
 
-    def checksum(
-        self,
-        data: int
-        | bytes
-        | bytearray
-        | memoryview
-        | BinaryIO
-        | Iterable[bytes | bytearray | memoryview],
-    ) -> int:
+    def checksum(self, data: InputType) -> int:
         """
         Calculates the checksum for the given data.
 
@@ -390,16 +393,7 @@ class Calculator:
             self._crc_register.update(chunk)
         return self._crc_register.digest()
 
-    def verify(
-        self,
-        data: int
-        | bytes
-        | bytearray
-        | memoryview
-        | BinaryIO
-        | Iterable[bytes | bytearray | memoryview],
-        expected: int,
-    ) -> bool:
+    def verify(self, data: InputType, expected: int) -> bool:
         """
         Verifies that the checksum for the given data is the expected one.
 
@@ -414,14 +408,7 @@ class Calculator:
         return self.checksum(data) == expected
 
 
-def _bytes_generator(
-    data: int
-    | bytes
-    | bytearray
-    | memoryview
-    | BinaryIO
-    | Iterable[bytes | bytearray | memoryview],
-) -> Iterable[bytes]:
+def _bytes_generator(data: InputType) -> Iterable[bytes]:
     if isinstance(data, int):
         yield data.to_bytes(1, "big")
     elif isinstance(data, bytes):

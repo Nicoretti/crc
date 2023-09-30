@@ -354,8 +354,8 @@ class Calculator:
             configuration: for the crc algorithm.
             optimized: whether a register optimized for speed shall be used.
 
-        :attention: initializing an optimized calculator might take some extra time,
-                    calculation itself will be faster though.
+        :warning: initializing an optimized calculator might take some extra time,
+                  calculation itself will be faster though.
         """
         _types = {
             False: Register,

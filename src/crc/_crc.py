@@ -618,5 +618,7 @@ def main(argv: list[str] | None = None) -> None:
         sys.exit(-1)
 
 
+# Although there's a __main__.py to invoke main(), let's keep this in for users who
+# would like to use crc as a single-file.
 if __name__ == "__main__":
-    main()
+    main()  # pragma: no cover

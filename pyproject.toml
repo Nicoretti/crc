@@ -72,3 +72,6 @@ include = "\\.pyi?$"
 profile = "black"
 force_grid_wrap = 2
 skip = [".gitignore", "venv", ".nox"]
+
+[tool.mypy]
+strict = true

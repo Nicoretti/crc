@@ -9,3 +9,4 @@ docs/_build/*
 *.egg-info/
 *.pyc
 */__pychache__/*
+.envrc

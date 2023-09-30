@@ -161,8 +161,8 @@ class Configuration:
 
 class BasicRegister(AbstractRegister):
     """
-    Implements the common crc algorithm, assuming a user of this base
-    class will provide an overwrite for the _process_byte method.
+    Implements the common crc algorithm, assuming a user of this base class will provide
+    an overwrite for the _process_byte method.
     """
 
     def __init__(self, configuration: Configuration):
@@ -229,8 +229,8 @@ class BasicRegister(AbstractRegister):
             byte: the byte which shall be processed by the crc register.
 
         Returns:
-            The value/state the crc register needs to be put in
-            after this byte has been processed.
+            The value/state the crc register needs to be put in after this byte has been
+            processed.
         """
 
     def digest(self) -> int:
@@ -269,8 +269,8 @@ class Register(BasicRegister):
     Simple crc register, which will process one bit at the time.
 
     Note:
-        If performance is an important issue for the crc calculation use a table
-        based register.
+        If performance is an important issue for the crc calculation use a table based
+        register.
     """
 
     def _process_byte(self, byte: Byte) -> int:
@@ -291,8 +291,8 @@ class TableBasedRegister(BasicRegister):
     Lookup table based crc register.
 
     Info:
-        this register type will be much faster than a simple bit
-        by bit based crc register like `Register`.
+        This register type will be much faster than a simple bit by bit based crc
+        register like `Register`.
     """
 
     def __init__(self, configuration: Configuration):
@@ -303,8 +303,8 @@ class TableBasedRegister(BasicRegister):
             configuration: used for the crc algorithm.
 
         Attention:
-            creating a table based register initially might take some extra time,
-            due to the fact that some lookup tables need to be calculated/initialized .
+            Creating a table based register initially might take some extra time,
+            due to the fact that some lookup tables need to be calculated/initialized.
         """
         super().__init__(configuration)
         if isinstance(configuration, enum.Enum):
@@ -394,7 +394,8 @@ class Calculator:
             expected: checksum.
 
         Returns:
-            True if the expected checksum matches the actual checksum for the given data, otherwise False.
+            True if the expected checksum matches the actual checksum for the given
+                data, False otherwise.
         """
         return self.checksum(data) == expected
 

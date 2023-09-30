@@ -18,8 +18,9 @@ from typing import (
     Union,
 )
 
-__author__ = "Nicola Coretti"
-__email__ = "nico.coretti@gmail.com"
+__author__ = [
+    "Nicola Coretti <nico.coretti@gmail.com>",
+]
 
 InputType = Union[
     int,

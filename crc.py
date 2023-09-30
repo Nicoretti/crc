@@ -9,6 +9,7 @@ import sys
 from dataclasses import dataclass
 from typing import (
     BinaryIO,
+    Final,
     Iterable,
     Iterator,
     List,
@@ -21,8 +22,8 @@ __email__ = "nico.coretti@gmail.com"
 
 
 class Byte(numbers.Number):
-    BIT_LENGTH: int = 8
-    BIT_MASK: int = 0xFF
+    BIT_LENGTH: Final[int] = 8
+    BIT_MASK: Final[int] = 0xFF
 
     def __init__(self, value: int = 0x00) -> None:
         self._value = value & Byte.BIT_MASK

@@ -10,7 +10,6 @@ import numbers
 import sys
 from dataclasses import dataclass
 from typing import (
-    Any,
     BinaryIO,
     ByteString,
     Iterable,

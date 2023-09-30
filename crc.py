@@ -162,6 +162,11 @@ class BasicRegister(AbstractRegister):
     an overwrite for the _process_byte method.
     """
 
+    _topbit: int
+    _bitmask: int
+    _config: Configuration
+    _register: int
+
     def __init__(self, configuration: Configuration) -> None:
         """
         Create a new BasicRegister.

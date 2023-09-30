@@ -350,7 +350,7 @@ def create_lookup_table(width: int, polynomial: int) -> list[int]:
     """
     config = Configuration(width=width, polynomial=polynomial)
     crc_register = Register(config)
-    lookup_table = []
+    lookup_table: list[int] = []
     for index in range(256):
         crc_register.init()
         data = bytes(index.to_bytes(1, byteorder="big"))

@@ -24,6 +24,7 @@ __email__ = "nico.coretti@gmail.com"
 class Byte(numbers.Number):
     BIT_LENGTH: Final[int] = 8
     BIT_MASK: Final[int] = 0xFF
+    _value: int
 
     def __init__(self, value: int = 0x00) -> None:
         self._value = value & Byte.BIT_MASK

@@ -70,7 +70,7 @@ class Byte(numbers.Number):
         return (self.value & (1 << index)) >> index
 
     def __iter__(self) -> Iterator[int]:
-        return (self[i] for i in range(0, len(self)))
+        return (self[i] for i in range(len(self)))
 
     def __int__(self) -> int:
         return self.value
@@ -351,7 +351,7 @@ def create_lookup_table(width: int, polynomial: int) -> list[int]:
     config = Configuration(width=width, polynomial=polynomial)
     crc_register = Register(config)
     lookup_table = []
-    for index in range(0, 256):
+    for index in range(256):
         crc_register.init()
         data = bytes(index.to_bytes(1, byteorder="big"))
         crc_register.update(data)

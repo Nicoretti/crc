@@ -79,10 +79,6 @@ plugins:
     default_handler: python
     handlers:
       python:
-        setup_commands:
-          - import sys
-          - sys.path.append(".")
-        selection:
-          new_path_syntax: yes
+        paths: ["../src"]
         options:
           show_source: false

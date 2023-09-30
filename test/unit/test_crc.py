@@ -316,11 +316,13 @@ class CalculatorTest(unittest.TestCase):
     [
         (Crc8.CCITT, 0, 0x00),
         (Crc8.CCITT, b"", 0x00),
+        (Crc8.CCITT, bytearray(), 0x00),
         (Crc8.CCITT, io.BytesIO(b""), 0x00),
         (Crc8.CCITT, (b"", b"", b""), 0x00),
         (Crc8.CCITT, (b"" for i in range(0, 10)), 0x00),
         (Crc8.CCITT, 97, 32),
         (Crc8.CCITT, b"123456789", 0xF4),
+        (Crc8.CCITT, bytearray((49, 50, 51, 52, 53, 54, 55, 56, 57)), 0xF4),
         (Crc8.CCITT, io.BytesIO(b"123456789"), 0xF4),
         (Crc8.CCITT, (b"12", b"34", b"56", b"78", b"9"), 0xF4),
         (Crc8.CCITT, (chunk for chunk in (b"12", b"34", b"56", b"78", b"9")), 0xF4),

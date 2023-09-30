@@ -1,5 +1,8 @@
 # Copyright (c) 2018, Nicola Coretti
 # All rights reserved.
+
+from __future__ import annotations
+
 import abc
 import argparse
 import enum
@@ -12,9 +15,6 @@ from typing import (
     Final,
     Iterable,
     Iterator,
-    List,
-    Optional,
-    Union,
 )
 
 __author__ = "Nicola Coretti"
@@ -29,15 +29,15 @@ class Byte(numbers.Number):
     def __init__(self, value: int = 0x00) -> None:
         self._value = value & Byte.BIT_MASK
 
-    def __add__(self, other: "Byte") -> "Byte":
+    def __add__(self, other: Byte) -> Byte:
         if not isinstance(other, Byte):
             other = Byte(other)
         return Byte(self.value + other.value)
 
-    def __radd__(self, other: "Byte") -> "Byte":
+    def __radd__(self, other: Byte) -> Byte:
         return self + other
 
-    def __iadd__(self, other: "Byte") -> "Byte":
+    def __iadd__(self, other: Byte) -> Byte:
         result = self + other
         self.value = result.value
         return self
@@ -72,7 +72,7 @@ class Byte(numbers.Number):
     def value(self, value: int) -> None:
         self._value = value & Byte.BIT_MASK
 
-    def reversed(self) -> "Byte":
+    def reversed(self) -> Byte:
         value = 0
         for index, bit in enumerate(reversed(self)):
             value += bit << index
@@ -326,7 +326,7 @@ class TableBasedRegister(BasicRegister):
 
 
 @functools.lru_cache()
-def create_lookup_table(width: int, polynomial: int) -> List[int]:
+def create_lookup_table(width: int, polynomial: int) -> list[int]:
     """
     Creates a crc lookup table.
 
@@ -369,14 +369,12 @@ class Calculator:
 
     def checksum(
         self,
-        data: Union[
-            int,
-            bytes,
-            bytearray,
-            memoryview,
-            BinaryIO,
-            Iterable[Union[bytes, bytearray, memoryview]],
-        ],
+        data: int
+        | bytes
+        | bytearray
+        | memoryview
+        | BinaryIO
+        | Iterable[bytes | bytearray | memoryview],
     ) -> int:
         """
         Calculates the checksum for the given data.
@@ -394,14 +392,12 @@ class Calculator:
 
     def verify(
         self,
-        data: Union[
-            int,
-            bytes,
-            bytearray,
-            memoryview,
-            BinaryIO,
-            Iterable[Union[bytes, bytearray, memoryview]],
-        ],
+        data: int
+        | bytes
+        | bytearray
+        | memoryview
+        | BinaryIO
+        | Iterable[bytes | bytearray | memoryview],
         expected: int,
     ) -> bool:
         """
@@ -419,14 +415,12 @@ class Calculator:
 
 
 def _bytes_generator(
-    data: Union[
-        int,
-        bytes,
-        bytearray,
-        memoryview,
-        BinaryIO,
-        Iterable[Union[bytes, bytearray, memoryview]],
-    ]
+    data: int
+    | bytes
+    | bytearray
+    | memoryview
+    | BinaryIO
+    | Iterable[bytes | bytearray | memoryview],
 ) -> Iterable[bytes]:
     if isinstance(data, int):
         yield data.to_bytes(1, "big")
@@ -626,7 +620,7 @@ def table(args: argparse.Namespace) -> bool:
     return True
 
 
-def main(argv: Optional[List[str]] = None) -> None:
+def main(argv: list[str] | None = None) -> None:
     parser = _argument_parser()
     args = parser.parse_args(argv)
     if "func" in args:

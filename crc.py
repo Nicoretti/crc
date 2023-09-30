@@ -336,7 +336,7 @@ class TableBasedRegister(BasicRegister):
         return self.register
 
 
-@functools.lru_cache()
+@functools.lru_cache
 def create_lookup_table(width: int, polynomial: int) -> list[int]:
     """
     Creates a crc lookup table.

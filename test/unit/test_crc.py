@@ -7,7 +7,7 @@ from collections import namedtuple
 
 import pytest
 
-from crc import (
+from crc._crc import (
     Byte,
     Calculator,
     Configuration,

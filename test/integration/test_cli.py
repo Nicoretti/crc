@@ -8,7 +8,7 @@ from unittest.mock import (
     patch,
 )
 
-from crc import main
+from crc._crc import main
 
 
 class CliTests(unittest.TestCase):

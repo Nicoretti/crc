@@ -145,7 +145,7 @@ def coverage(context, root=BASEPATH):
     coverage_file.unlink(missing_ok=True)
     unit_test(context, root=root / "test" / "unit", coverage=True)
     integration_test(context, root=root / "test" / "integration", coverage=True)
-    report = _poetry("coverage", "report", "--fail-under=98")
+    report = _poetry("coverage", "report", "--fail-under=98", "--show-missing")
     context.run(report)
 
 

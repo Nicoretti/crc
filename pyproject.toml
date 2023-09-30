@@ -75,3 +75,5 @@ skip = [".gitignore", "venv", ".nox"]
 
 [tool.mypy]
 strict = true
+show_column_numbers = true
+show_error_context = true

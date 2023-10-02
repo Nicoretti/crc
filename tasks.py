@@ -133,6 +133,13 @@ def integration_test(context, root=BASEPATH / "test" / "integration", coverage=F
     command = _poetry(*command, "pytest", f"{root}")
     context.run(command)
 
+@task(aliases=["rt"])
+def regression_test(context, root=BASEPATH / "test" / "regression", coverage=False):
+    """Run all integration tests"""
+    command = ["coverage", "run", "-m", "-a"] if coverage else []
+    command = _poetry(*command, "pytest", f"{root}")
+    context.run(command)
+
 
 @task(
     optional=["root"],
@@ -145,6 +152,7 @@ def coverage(context, root=BASEPATH):
     coverage_file.unlink(missing_ok=True)
     unit_test(context, root=root / "test" / "unit", coverage=True)
     integration_test(context, root=root / "test" / "integration", coverage=True)
+    regression_test(context, root=root / "test" / "regression", coverage=True)
     report = _poetry("coverage", "report", "--fail-under=100", "--show-missing")
     context.run(report)
 
@@ -288,6 +296,7 @@ def release_local(context, version):
 test = Collection("test")
 test.add_task(unit_test, name="unit")
 test.add_task(integration_test, name="integration")
+test.add_task(regression_test, name="regression")
 test.add_task(coverage, name="coverage")
 
 checks = Collection("check")

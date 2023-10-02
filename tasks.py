@@ -133,6 +133,7 @@ def integration_test(context, root=BASEPATH / "test" / "integration", coverage=F
     command = _poetry(*command, "pytest", f"{root}")
     context.run(command)
 
+
 @task(aliases=["rt"])
 def regression_test(context, root=BASEPATH / "test" / "regression", coverage=False):
     """Run all integration tests"""

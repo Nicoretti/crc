@@ -20,7 +20,6 @@ nav:
   - Development:
       - "development/setup.md"
       - "development/release.md"
-  - "contributors.md"
   - Changelog:
       - "changelog/unreleased.md"
       - "changelog/changes_4.3.0.md"
@@ -30,6 +29,7 @@ nav:
       - "changelog/changes_3.0.1.md"
       - "changelog/changes_3.0.0.md"
       - "changelog/changes_2.0.0.md"
+  - "contributors.md"
 theme:
   name: material
   icon:

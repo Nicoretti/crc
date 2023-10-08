@@ -20,6 +20,7 @@ nav:
   - Development:
       - "development/setup.md"
       - "development/release.md"
+  - "contributors.md"
   - Changelog:
       - "changelog/unreleased.md"
       - "changelog/changes_4.3.0.md"

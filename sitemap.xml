@@ -11,6 +11,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://nicoretti.github.io/crc/contributors/</loc>
+         <lastmod>2023-10-08</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://nicoretti.github.io/crc/api/abstract_register/</loc>
          <lastmod>2023-10-08</lastmod>
          <changefreq>daily</changefreq>

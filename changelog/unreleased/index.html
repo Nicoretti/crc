@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://nicoretti.github.io/crc/changelog/unreleased/">
       
       
-        <link rel="prev" href="../../contributors/">
+        <link rel="prev" href="../../development/release/">
       
       
         <link rel="next" href="../changes_4.3.0/">
@@ -612,25 +612,6 @@
       
   
   
-  
-    <li class="md-nav__item">
-      <a href="../../contributors/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Contributors
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
     
   
   
@@ -644,10 +625,10 @@
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -658,8 +639,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_6">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Changelog
           </label>
@@ -680,17 +661,6 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Unreleased
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -700,46 +670,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#breaking-changes" class="md-nav__link">
-    🚨 Breaking Changes
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#added" class="md-nav__link">
-    ✨ Added
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#internal-development" class="md-nav__link">
-    🔩  Internal / Development
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -893,6 +823,25 @@
   
 
     
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contributors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -913,35 +862,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#breaking-changes" class="md-nav__link">
-    🚨 Breaking Changes
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#added" class="md-nav__link">
-    ✨ Added
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#internal-development" class="md-nav__link">
-    🔩  Internal / Development
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -959,59 +879,6 @@
 
 
 <h1 id="unreleased">Unreleased</h1>
-<h2 id="breaking-changes">🚨 Breaking Changes</h2>
-<ul>
-<li>
-<p>Move from a single-file/module to an ‘src-based layout’ package.</p>
-<p>The layout of the source repository has changed from single file <code>crc.py</code> in the
-root into a package where <code>crc.py</code> is now a private module <code>_crc.py</code> of package
-<code>crc</code>.</p>
-<div class="highlight"><pre><span></span><code>src/
-└── crc/
-    ├── _crc.py
-    └── __init__.py
-</code></pre></div>
-<p><code>__init__.py</code> re-exports all the public entities from the private module, so that
-typical imports like <code>from crc import Calculator</code> remain working as-is.</p>
-<p>The need and choice for this new layout is discussed in <a href="https://github.com/Nicoretti/crc/issues/110">Issue #110</a>.</p>
-</li>
-<li>
-<p>The shebang line on the main <code>src/crc/_crc.py</code> file (formerly <code>crc.py</code>) has been
-  removed.</p>
-<p>This shouldn't affect anyone installing <code>crc</code> as package. Both the entrypoint <code>crc</code>
-and the package-level <code>__main__</code> remain in place.</p>
-<p>However, in case you were to obtain the <code>src/crc/_crc.py</code> file (formerly <code>crc.py</code>)
-and mark it as executable afterwards to run it directly, then this change may affect
-you. Running the <code>main()</code> function can then still be achieved by either:</p>
-<ul>
-<li><code>python path/to/crc.py</code></li>
-<li><code>python -m crc</code> (if the module is on your <code>PYTHON_PATH</code>)</li>
-</ul>
-</li>
-</ul>
-<h2 id="added">✨ Added</h2>
-<ul>
-<li>Add <code>py.typed</code> marker to indicate the <code>crc</code> package ships with type information. The
-  type information was added inline since <a href="../changes_2.0.0/">2.0.0</a>, but the marker file
-  was missing in the package, so type checkers did not consider the type information.
-  This eliminates the use of <code>ignore_missing_imports</code> (mypy) or <code>reportMissingTypeStubs</code>
-  (Pylance/Pyright) in downstream projects.</li>
-</ul>
-<h2 id="internal-development">🔩  Internal / Development</h2>
-<ul>
-<li>Several improvements to type annotations:<ul>
-<li>Conform to mypy in strict mode.</li>
-<li>Type information now follows a more modern syntax by implementing recommendations
-    from PEPs <a href="https://peps.python.org/pep-0563/">563</a>, <a href="https://peps.python.org/pep-0585/">585</a>, <a href="https://peps.python.org/pep-0604/">604</a> while maintaining
-    support for Python 3.8.</li>
-<li>Declare all instance variables on classes.</li>
-<li>Create a Type Alias for a complex Union used repetitively.</li>
-</ul>
-</li>
-<li>Remove unnecessary parentheses and <code>start</code> argument in <code>range()</code>.</li>
-<li>Remove unused imports.</li>
-<li>Update lockfile.</li>
-</ul>
 
 
 

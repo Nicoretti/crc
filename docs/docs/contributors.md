@@ -1,6 +1,6 @@
 # Contributors
 
-Thank you to all contributors for helping to improve this project. 🚀
+Thank you to all contributors for your help in improving this project. 🚀
 
 * Gert van Dijk
 * Dependabot

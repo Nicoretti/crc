@@ -210,6 +210,22 @@ class RegisterTest(unittest.TestCase):
             crc_register = register_type(config)
             test_suit = [
                 Fixture(data="", checksum=0x00),
+                Fixture(data=string.digits[1:], checksum=0x4B),
+                Fixture(data=string.digits[1:][::-1], checksum=0xD6),
+                Fixture(data=string.digits, checksum=0x74),
+                Fixture(data=string.digits[::-1], checksum=0xC7),
+            ]
+            for test in test_suit:
+                crc_register.init()
+                crc_register.update(test.data.encode("utf-8"))
+                self.assertEqual(test.checksum, crc_register.digest())
+
+    def test_crc8_saej1850_zero(self):
+        config = Crc8.SAEJ1850_ZERO
+        for register_type in self._register_types:
+            crc_register = register_type(config)
+            test_suit = [
+                Fixture(data="", checksum=0x00),
                 Fixture(data=string.digits[1:], checksum=0x37),
                 Fixture(data=string.digits[1:][::-1], checksum=0xAA),
                 Fixture(data=string.digits, checksum=0x8A),

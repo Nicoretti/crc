@@ -154,8 +154,8 @@ class Configuration:
         saej1850 = Configuration(
             width=8,
             polynomial=0x1D,
-            init_value=0,
-            final_xor_value=0,
+            init_value=0xFF,
+            final_xor_value=0xFF,
             reverse_input=False,
             reverse_output=False
         )
@@ -435,6 +435,15 @@ class Crc8(enum.Enum):
     )
 
     SAEJ1850 = Configuration(
+        width=8,
+        polynomial=0x1D,
+        init_value=0xFF,
+        final_xor_value=0xFF,
+        reverse_input=False,
+        reverse_output=False,
+    )
+
+    SAEJ1850_ZERO = Configuration(
         width=8,
         polynomial=0x1D,
         init_value=0x00,

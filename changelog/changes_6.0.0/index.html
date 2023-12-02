@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://nicoretti.github.io/crc/changelog/unreleased/">
+        <link rel="canonical" href="https://nicoretti.github.io/crc/changelog/changes_6.0.0/">
       
       
-        <link rel="prev" href="../../development/release/">
+        <link rel="prev" href="../unreleased/">
       
       
-        <link rel="next" href="../changes_6.0.0/">
+        <link rel="next" href="../changes_5.0.0/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Unreleased - CRC</title>
+        <title>6.0.0 - 2023-12-02 - CRC</title>
       
     
     
@@ -73,7 +73,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#unreleased" class="md-skip">
+        <a href="#600-2023-12-02" class="md-skip">
           Skip to content
         </a>
       
@@ -109,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Unreleased
+              6.0.0 - 2023-12-02
             
           </span>
         </div>
@@ -667,6 +667,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../unreleased/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Unreleased
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -679,29 +700,18 @@
         
       
       
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
   
   <span class="md-ellipsis">
-    Unreleased
+    6.0.0 - 2023-12-02
   </span>
   
 
-      </a>
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../changes_6.0.0/" class="md-nav__link">
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -710,6 +720,53 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#breaking-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚨️ Breaking Changes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bug-fix" class="md-nav__link">
+    <span class="md-ellipsis">
+      🐞 Bug Fix
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#internal-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔩  Internal / Development
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -930,6 +987,41 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#breaking-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚨️ Breaking Changes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bug-fix" class="md-nav__link">
+    <span class="md-ellipsis">
+      🐞 Bug Fix
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#internal-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔩  Internal / Development
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -946,7 +1038,24 @@
   
 
 
-<h1 id="unreleased">Unreleased</h1>
+<h1 id="600-2023-12-02">6.0.0 - 2023-12-02</h1>
+<h2 id="breaking-changes">🚨️ Breaking Changes</h2>
+<ul>
+<li>Remove Python 3.7 support</li>
+<li>Changed SAE1850J configuration (see Bug fixes)</li>
+</ul>
+<h2 id="bug-fix">🐞 Bug Fix</h2>
+<ul>
+<li>
+<p>Adjusted the SAE-J1850 configuration to match the specification</p>
+<p>🚨️ For users which do rely on the previously misconfigured <code>SAEJ1850</code> settings a configuration named <code>SAE_J1850_ZERO</code> was added.</p>
+</li>
+</ul>
+<h2 id="internal-development">🔩  Internal / Development</h2>
+<ul>
+<li>Add <code>python 3.12</code> to test matrix</li>
+<li>Re-lock dev dependencies</li>
+</ul>
 
 
 

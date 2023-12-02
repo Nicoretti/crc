@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "crc"
-version = "5.0.1"
+version = "6.0.0"
 description = "Library and CLI to calculate and verify all kinds of CRC checksums"
 packages = [
     { include = "crc", from = "src" },

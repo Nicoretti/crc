@@ -8,7 +8,7 @@
 ## 🐞 Bug Fix
 * Adjusted the SAE-J1850 configuration to match the specification
     
-    🚨️ For users which do rely on the previously misconfigured `SAEJ1850` settings a configuration named `SAE_J1850_ZERO` was added.
+    🚨️ For users which do rely on the previously misconfigured `SAEJ1850` settings a configuration named `SAEJ1850_ZERO` was added.
 
 
 ## 🔩  Internal / Development

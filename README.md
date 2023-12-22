@@ -40,7 +40,7 @@ For convince various frequently used crc configurations ship with the library ou
 | AUTOSAR | GSM      | AUTOSAR | |
 | SAJ1850 | PROFIBUS | BZIP2 | |
 | BLUETOOTH | MODBUS   | POSIX | |
-| MAXIM-DOW |          | | | |
+| MAXIM-DOW | IBM-3740 | | | |
 
 If you find yourself in the position, where having a new configuration available out of the
 box would be desirable, feel free to create a [PR](https://github.com/Nicoretti/crc/pulls) or file an [issue](https://github.com/Nicoretti/crc/issues).

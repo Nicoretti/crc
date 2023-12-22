@@ -518,6 +518,15 @@ class Crc16(enum.Enum):
         reverse_output=True,
     )
 
+    IBM_3740 = Configuration(
+        width=16,
+        polynomial=0x1021,
+        init_value=0x0000,
+        final_xor_value=0x0000,
+        reverse_input=False,
+        reverse_output=False,
+    )
+
 
 @enum.unique
 class Crc32(enum.Enum):

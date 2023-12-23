@@ -268,6 +268,23 @@ class RegisterTest(unittest.TestCase):
                 crc_register.update(test.data.encode("utf-8"))
                 self.assertEqual(test.checksum, crc_register.digest())
 
+    def test_cr16_ibm_3740(self):
+        config = Crc16.IBM_3740
+        for register_type in self._register_types:
+            crc_register = register_type(config)
+            test_suit = [
+                Fixture(data="", checksum=0xFFFF),
+                Fixture(data=string.digits[1:], checksum=0x29B1),
+                Fixture(data=string.digits[1:][::-1], checksum=0x84DF),
+                Fixture(data=string.digits, checksum=0x7D61),
+                Fixture(data=string.digits[::-1], checksum=0x385F),
+            ]
+            for test in test_suit:
+                crc_register.init()
+                crc_register.update(test.data.encode("utf-8"))
+                self.assertEqual(test.checksum, crc_register.digest())
+            
+
     def test_crc16_with_reflected_input(self):
         config = Configuration(16, 0x1021, 0, 0, True, False)
         for register_type in self._register_types:

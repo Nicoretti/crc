@@ -283,7 +283,6 @@ class RegisterTest(unittest.TestCase):
                 crc_register.init()
                 crc_register.update(test.data.encode("utf-8"))
                 self.assertEqual(test.checksum, crc_register.digest())
-            
 
     def test_crc16_with_reflected_input(self):
         config = Configuration(16, 0x1021, 0, 0, True, False)

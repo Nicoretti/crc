@@ -32,13 +32,13 @@ Calculate CRC checksums, verify CRC checksum, predefined CRC configurations, cus
 ---
 
 ## Available CRC Configurations
-For convince various frequently used crc configurations ship with the library out of the box.
+For convenience various frequently used crc configurations ship with the library out of the box.
 
 | CRC8 | CRC16    | CRC32 | CRC64 |
 |------|----------|-------|-------|
 | CCITT | CCITT    | CRC32 | CRC64 |
 | AUTOSAR | GSM      | AUTOSAR | |
-| SAJ1850 | PROFIBUS | BZIP2 | |
+| SAEJ1850 | PROFIBUS | BZIP2 | |
 | BLUETOOTH | MODBUS   | POSIX | |
 | MAXIM-DOW | IBM-3740 | | | |
 

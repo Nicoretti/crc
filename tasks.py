@@ -1,4 +1,5 @@
 """Automation tasks for the crc project"""
+
 import shutil
 import sys
 from functools import partial

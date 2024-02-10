@@ -2,132 +2,137 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://nicoretti.github.io/crc/</loc>
-         <lastmod>2024-01-31</lastmod>
+         <lastmod>2024-02-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://nicoretti.github.io/crc/cli/</loc>
-         <lastmod>2024-01-31</lastmod>
+         <lastmod>2024-02-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://nicoretti.github.io/crc/contributors/</loc>
-         <lastmod>2024-01-31</lastmod>
+         <lastmod>2024-02-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://nicoretti.github.io/crc/api/abstract_register/</loc>
-         <lastmod>2024-01-31</lastmod>
+         <lastmod>2024-02-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://nicoretti.github.io/crc/api/basic_register/</loc>
-         <lastmod>2024-01-31</lastmod>
+         <lastmod>2024-02-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://nicoretti.github.io/crc/api/calculator/</loc>
-         <lastmod>2024-01-31</lastmod>
+         <lastmod>2024-02-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://nicoretti.github.io/crc/api/configuration/</loc>
-         <lastmod>2024-01-31</lastmod>
+         <lastmod>2024-02-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://nicoretti.github.io/crc/api/crc16/</loc>
-         <lastmod>2024-01-31</lastmod>
+         <lastmod>2024-02-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://nicoretti.github.io/crc/api/crc32/</loc>
-         <lastmod>2024-01-31</lastmod>
+         <lastmod>2024-02-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://nicoretti.github.io/crc/api/crc64/</loc>
-         <lastmod>2024-01-31</lastmod>
+         <lastmod>2024-02-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://nicoretti.github.io/crc/api/crc8/</loc>
-         <lastmod>2024-01-31</lastmod>
+         <lastmod>2024-02-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://nicoretti.github.io/crc/api/register/</loc>
-         <lastmod>2024-01-31</lastmod>
+         <lastmod>2024-02-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://nicoretti.github.io/crc/api/table_based_register/</loc>
-         <lastmod>2024-01-31</lastmod>
+         <lastmod>2024-02-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://nicoretti.github.io/crc/changelog/changes_2.0.0/</loc>
-         <lastmod>2024-01-31</lastmod>
+         <lastmod>2024-02-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://nicoretti.github.io/crc/changelog/changes_3.0.0/</loc>
-         <lastmod>2024-01-31</lastmod>
+         <lastmod>2024-02-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://nicoretti.github.io/crc/changelog/changes_3.0.1/</loc>
-         <lastmod>2024-01-31</lastmod>
+         <lastmod>2024-02-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://nicoretti.github.io/crc/changelog/changes_4.0.0/</loc>
-         <lastmod>2024-01-31</lastmod>
+         <lastmod>2024-02-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://nicoretti.github.io/crc/changelog/changes_4.1.0/</loc>
-         <lastmod>2024-01-31</lastmod>
+         <lastmod>2024-02-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://nicoretti.github.io/crc/changelog/changes_4.2.0/</loc>
-         <lastmod>2024-01-31</lastmod>
+         <lastmod>2024-02-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://nicoretti.github.io/crc/changelog/changes_4.3.0/</loc>
-         <lastmod>2024-01-31</lastmod>
+         <lastmod>2024-02-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://nicoretti.github.io/crc/changelog/changes_5.0.0/</loc>
-         <lastmod>2024-01-31</lastmod>
+         <lastmod>2024-02-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://nicoretti.github.io/crc/changelog/changes_6.0.0/</loc>
-         <lastmod>2024-01-31</lastmod>
+         <lastmod>2024-02-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://nicoretti.github.io/crc/changelog/changes_6.1.0/</loc>
-         <lastmod>2024-01-31</lastmod>
+         <lastmod>2024-02-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://nicoretti.github.io/crc/changelog/changes_6.1.1/</loc>
+         <lastmod>2024-02-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://nicoretti.github.io/crc/changelog/unreleased/</loc>
-         <lastmod>2024-01-31</lastmod>
+         <lastmod>2024-02-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://nicoretti.github.io/crc/development/release/</loc>
-         <lastmod>2024-01-31</lastmod>
+         <lastmod>2024-02-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://nicoretti.github.io/crc/development/setup/</loc>
-         <lastmod>2024-01-31</lastmod>
+         <lastmod>2024-02-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

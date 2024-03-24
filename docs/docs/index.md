@@ -32,26 +32,13 @@ Calculate CRC checksums, verify CRC checksum, predefined CRC configurations, cus
 ---
 
 ## Available CRC Configurations
-For convince various frequently used crc configurations ship with the library out of the box.
 
-| CRC8 | CRC16    | CRC32 | CRC64 |
-|------|----------|-------|-------|
-| CCITT | CCITT    | CRC32 | CRC64 |
-| AUTOSAR | GSM      | AUTOSAR | |
-| SAJ1850 | PROFIBUS | BZIP2 | |
-| BLUETOOTH | MODBUS   | POSIX | |
-| MAXIM-DOW |          | | | |
+The library includes a variety of common CRC configurations for convenience. To explore the full range of available CRC configurations, please checkout the [configurations](configurations.md) section of the documentation. If you need a new configuration to be readily available, consider submitting a [PR](https://github.com/Nicoretti/crc/pulls) or raising an [issue](https://github.com/Nicoretti/crc/issues).
 
-If you find yourself in the position, where having a new configuration available out of the
-box would be desirable, feel free to create a [:material-source-pull: PR](https://github.com/Nicoretti/crc/pulls) or file an [:octicons-issue-opened-16: issue](https://github.com/Nicoretti/crc/issues).
 
 ## Custom Configurations
 
 If you want to create a custom configuration, you should have the following information available:
-
-!!! note
-
-    This library currently only supports bit widths of full bytes 8, 16, 24, 32, ...
 
 * **width**
 * **polynom**
@@ -62,6 +49,10 @@ If you want to create a custom configuration, you should have the following info
 
 In case you only have a name of a specific crc configuration/algorithm and you are unsure what are the specific parameters
 of it, a look into this [:material-note-search: crc-catalogue](http://reveng.sourceforge.net/crc-catalogue/all.htm) might help.
+
+??? note
+
+    This library currently only supports bit widths of full bytes 8, 16, 24, 32, ...
 
 
 ## Requirements

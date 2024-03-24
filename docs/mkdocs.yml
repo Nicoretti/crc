@@ -5,6 +5,7 @@ repo_url: https://github.com/Nicoretti/crc
 
 nav:
   - "index.md"
+  - "configurations.md"
   - API:
     - "api/calculator.md"
     - "api/configuration.md"
@@ -63,6 +64,7 @@ copyright: >
   Copyright &copy; 2022 Nicola Coretti
 markdown_extensions:
   - admonition
+  - pymdownx.details
   - pymdownx.highlight:
       use_pygments: true
   - pymdownx.superfences
@@ -79,6 +81,9 @@ watch:
 
 plugins:
 - search
+- gen-files:
+    scripts:
+      - "scripts/configurations.py"
 - autorefs
 - mkdocstrings:
     default_handler: python

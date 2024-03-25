@@ -5,6 +5,8 @@ repo_url: https://github.com/Nicoretti/crc
 
 nav:
   - "index.md"
+  # Configurations will be gernerated on the fly,
+  # for more details see docs/scripts/configurations.py
   - "configurations.md"
   - API:
     - "api/calculator.md"

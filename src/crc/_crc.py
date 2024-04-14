@@ -481,7 +481,7 @@ class Crc8(enum.Enum):
 
 @enum.unique
 class Crc16(enum.Enum):
-    CCITT = Configuration(
+    XMODEM = Configuration(
         width=16,
         polynomial=0x1021,
         init_value=0x0000,

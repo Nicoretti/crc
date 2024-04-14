@@ -237,7 +237,7 @@ class RegisterTest(unittest.TestCase):
                 self.assertEqual(test.checksum, crc_register.digest())
 
     def test_crc16_ccitt(self):
-        config = Crc16.CCITT
+        config = Crc16.XMODEM
         for register_type in self._register_types:
             crc_register = register_type(config)
             test_suit = [

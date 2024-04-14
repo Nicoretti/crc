@@ -730,6 +730,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#bug-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🐞 Bug Fixes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#documentation" class="md-nav__link">
     <span class="md-ellipsis">
       📚 Documentation
@@ -1032,6 +1041,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#bug-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🐞 Bug Fixes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#documentation" class="md-nav__link">
     <span class="md-ellipsis">
       📚 Documentation
@@ -1059,6 +1077,17 @@
 
 
 <h1 id="unreleased">Unreleased</h1>
+<h2 id="bug-fixes">🐞 Bug Fixes</h2>
+<ul>
+<li>
+<p>Fixed unstable return values of <code>digest</code> function. For more details, see issue <a href="https://github.com/Nicoretti/crc/issues/151">#151</a>.</p>
+<div class="admonition bug">
+<p class="admonition-title">Bug</p>
+<p>This issue specifically affected scenarios where the CRC register was manually manipulated. Standard usages of the <code>Calculator</code> class were not impacted.
+Furthermore, this issue primarily occurred in configurations that required reverse output.</p>
+</div>
+</li>
+</ul>
 <h2 id="documentation">📚 Documentation</h2>
 <ul>
 <li>Add overview of crc configurations</li>

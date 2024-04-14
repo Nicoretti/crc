@@ -253,9 +253,8 @@ class BasicRegister(AbstractRegister):
         """
         See `AbstractRegister.digest`
         """
-        if self._config.reverse_output:
-            self.register = self.reverse()
-        return self.register ^ self._config.final_xor_value
+        value = self.reverse() if self._config.reverse_output else self.register
+        return value ^ self._config.final_xor_value
 
     def reverse(self) -> int:
         """

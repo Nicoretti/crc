@@ -19,9 +19,9 @@ _TAB_META_TEMPLATE = cleandoc(
      - *Width:* **{{width}}**
      - *Final Xor:* **0x{{final_xor:0{length}X}}**
      - *Init Value:* **0x{{init_value:0{length}X}}**
-     - *Rev Input:* **0x{{reverse_input:0{length}X}}**
+     - *Rev Input:* **{{reverse_input}}**
      - *Polynomial:* **0x{{polynomial:0{length}X}}**
-     - *Rev Output:* **0x{{reverse_output:0{length}X}}**
+     - *Rev Output:* **{{reverse_output}}**
 
     </div>
 """

@@ -10,3 +10,5 @@
 ## 📚 Documentation
 * Add overview of crc configurations
 
+## 🔩  Internal
+* Re-lock dependencies

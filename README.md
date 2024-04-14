@@ -34,13 +34,14 @@ Calculate CRC checksums, verify CRC checksum, predefined CRC configurations, cus
 ## Available CRC Configurations
 For convenience various frequently used crc configurations ship with the library out of the box.
 
-| CRC8 | CRC16    | CRC32 | CRC64 |
-|------|----------|-------|-------|
-| CCITT | CCITT    | CRC32 | CRC64 |
-| AUTOSAR | GSM      | AUTOSAR | |
-| SAEJ1850 | PROFIBUS | BZIP2 | |
-| BLUETOOTH | MODBUS   | POSIX | |
-| MAXIM-DOW | IBM-3740 | | | |
+| CRC8          | CRC16    | CRC32   | CRC64 |
+|---------------|----------|---------|-------|
+| CCITT         | XMODEM   | CRC32   | CRC64 |
+| AUTOSAR       | GSM      | AUTOSAR |       |
+| SAEJ1850      | PROFIBUS | BZIP2   |       |
+| SAEJ1850_ZERO | MODBUS   | POSIX   |       |
+| BLUETOOTH     | IBM-3740 |         |       |
+| MAXIM-DOW     | KERMIT   |         |       | 
 
 If you find yourself in the position, where having a new configuration available out of the
 box would be desirable, feel free to create a [PR](https://github.com/Nicoretti/crc/pulls) or file an [issue](https://github.com/Nicoretti/crc/issues).

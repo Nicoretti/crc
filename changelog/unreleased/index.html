@@ -730,6 +730,63 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#breaking-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚨 Breaking Changes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚨 Breaking Changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#update-of-crc-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update of crc configurations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Update of crc configurations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#decision-rationale" class="md-nav__link">
+    <span class="md-ellipsis">
+      Decision Rationale
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migration-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Migration Guide
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#related-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Related Issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#internal" class="md-nav__link">
     <span class="md-ellipsis">
       🔩 Internal
@@ -1053,6 +1110,63 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#breaking-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚨 Breaking Changes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚨 Breaking Changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#update-of-crc-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update of crc configurations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Update of crc configurations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#decision-rationale" class="md-nav__link">
+    <span class="md-ellipsis">
+      Decision Rationale
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migration-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Migration Guide
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#related-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Related Issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#internal" class="md-nav__link">
     <span class="md-ellipsis">
       🔩 Internal
@@ -1080,6 +1194,31 @@
 
 
 <h1 id="unreleased">Unreleased</h1>
+<h2 id="breaking-changes">🚨 Breaking Changes</h2>
+<h3 id="update-of-crc-configurations">Update of crc configurations</h3>
+<ul>
+<li><strong>Rename:</strong> The <code>Crc16.CCITT</code> configuration to <code>Crc16.XMODEM</code>.</li>
+<li><strong>New Addition:</strong> Introduced <code>Crc16.KERMIT</code>, which matches the official configuration for <code>Crc16.CCITT</code>.</li>
+</ul>
+<h4 id="decision-rationale">Decision Rationale</h4>
+<p>It was intentionally decided not to reintroduce <code>Crc16.CCITT</code> with the updated configuration. While it could have been added as an alias for <code>Crc16.KERMIT</code> or a replacement, omitting <code>Crc16.CCITT</code> ensures that client code will break upon update, thereby forcing maintainers to take notice and react accordingly.</p>
+<h4 id="migration-guide">Migration Guide</h4>
+<p>Below are solutions to the two common scenarios that need to be addressed due to this change:</p>
+<ol>
+<li>
+<p><strong>If you previously used <code>Crc16.CCITT</code> and expected the configuration defined <a href="https://reveng.sourceforge.io/crc-catalogue/all.htm#crc.cat.crc-16-kermit">here</a>:</strong></p>
+<p><strong>Solution:</strong> Replace all usages of <code>Crc16.CCITT</code> in your code with <code>Crc16.KERMIT</code>.</p>
+</li>
+<li>
+<p><strong>If you depended on or wanted to use the configuration values that <code>Crc16.CCITT</code> provided so far:</strong></p>
+<p><strong>Solution:</strong> Replace all usages of <code>Crc16.CCITT</code> in your code with <code>Crc16.XMODEM</code>.</p>
+</li>
+</ol>
+<h4 id="related-issues">Related Issues</h4>
+<ul>
+<li><a href="https://github.com/Nicoretti/crc/issues/148">#148</a></li>
+<li><a href="https://github.com/Nicoretti/crc/issues/145">#145</a></li>
+</ul>
 <h2 id="internal">🔩  Internal</h2>
 <ul>
 <li>Update <code>python-environment</code> action</li>

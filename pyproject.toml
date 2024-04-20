@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "crc"
 version = "7.0.0"
-description = "Library and CLI to calculate and verify all kinds of CRC checksums"
+description = "Pure Python CRC library"
 packages = [
     { include = "crc", from = "src" },
 ]

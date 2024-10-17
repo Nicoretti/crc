@@ -4,4 +4,4 @@
 
 ::: crc.Crc8
     options:
-        members: ["CCITT", "AUTOSAR", "BLUETOOTH", "SAEJ1850", "MAXIM_DOW"]
+        members: ["CCITT", "AUTOSAR", "BLUETOOTH", "SAEJ1850", "MAXIM_DOW","ITU","MAXIM","ROHC"]

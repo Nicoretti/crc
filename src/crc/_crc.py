@@ -478,6 +478,33 @@ class Crc8(enum.Enum):
         reverse_output=True,
     )
 
+    ITU = Configuration(
+        width=8,
+        polynomial=0x07,
+        init_value=0x00,
+        final_xor_value=0x55,
+        reverse_input=False,
+        reverse_output=False,
+    )
+
+    ROHC = Configuration(
+        width=8,
+        polynomial=0x07,
+        init_value=0xff,
+        final_xor_value=0x00,
+        reverse_input=True,
+        reverse_output=True,
+    )
+
+    MAXIM = Configuration(
+        width=8,
+        polynomial=0x31,
+        init_value=0x00,
+        final_xor_value=0x00,
+        reverse_input=True,
+        reverse_output=True,
+    )
+
 
 @enum.unique
 class Crc16(enum.Enum):
@@ -531,6 +558,69 @@ class Crc16(enum.Enum):
         polynomial=0x1021,
         init_value=0x0000,
         final_xor_value=0x0000,
+        reverse_input=True,
+        reverse_output=True,
+    )
+
+    CCITT_FALSE = Configuration(
+        width=16,
+        polynomial=0x1021,
+        init_value=0xffff,
+        final_xor_value=0,
+        reverse_input=False,
+        reverse_output=False,
+    )
+
+    CCITT = Configuration(
+        width=16,
+        polynomial=0x1021,
+        init_value=0x0000,
+        final_xor_value=0,
+        reverse_input=True,
+        reverse_output=True,
+    )
+
+    IBM = Configuration(
+        width=16,
+        polynomial=0x8005,
+        init_value=0x0000,
+        final_xor_value=0,
+        reverse_input=True,
+        reverse_output=True,
+    )
+
+    MAXIM = Configuration(
+        width=16,
+        polynomial=0x8005,
+        init_value=0x0000,
+        final_xor_value=0xffff,
+        reverse_input=True,
+        reverse_output=True,
+    )
+
+    USB = Configuration(
+        width=16,
+        polynomial=0x8005,
+        init_value=0xffff,
+        final_xor_value=0xffff,
+        reverse_input=True,
+        reverse_output=True,
+    )
+
+    X25 = Configuration(
+        width=16,
+        polynomial=0x1021,
+        init_value=0xffff,
+        final_xor_value=0xffff,
+        reverse_input=True,
+        reverse_output=True,
+    )
+
+    DNP = Configuration(
+        width=16,
+        polynomial=0x3D65,
+        init_value=0x0000,
+        final_xor_value=0xffff,
         reverse_input=True,
         reverse_output=True,
     )

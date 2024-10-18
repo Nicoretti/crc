@@ -236,6 +236,38 @@ class RegisterTest(unittest.TestCase):
                 crc_register.update(test.data.encode("utf-8"))
                 self.assertEqual(test.checksum, crc_register.digest())
 
+    def test_crc8_itu(self):
+        config = Crc8.ITU
+        for register_type in self._register_types:
+            crc_register = register_type(config)
+            test_suit = [
+                Fixture(data="", checksum=0x55),
+                Fixture(data=string.digits[1:], checksum=0xA1),
+                Fixture(data=string.digits[1:][::-1], checksum=0xC4),
+                Fixture(data=string.digits, checksum=0x10),
+                Fixture(data=string.digits[::-1], checksum=0x3B),
+            ]
+            for test in test_suit:
+                crc_register.init()
+                crc_register.update(test.data.encode("utf-8"))
+                self.assertEqual(test.checksum, crc_register.digest())
+
+    def test_crc8_rohc(self):
+        config = Crc8.ROHC
+        for register_type in self._register_types:
+            crc_register = register_type(config)
+            test_suit = [
+                Fixture(data="", checksum=0xFF),
+                Fixture(data=string.digits[1:], checksum=0xD0),
+                Fixture(data=string.digits[1:][::-1], checksum=0x68),
+                Fixture(data=string.digits, checksum=0xE3),
+                Fixture(data=string.digits[::-1], checksum=0x62),
+            ]
+            for test in test_suit:
+                crc_register.init()
+                crc_register.update(test.data.encode("utf-8"))
+                self.assertEqual(test.checksum, crc_register.digest())
+
     def test_crc16_ccitt(self):
         config = Crc16.XMODEM
         for register_type in self._register_types:
@@ -294,6 +326,86 @@ class RegisterTest(unittest.TestCase):
                 Fixture(data=string.digits[1:][::-1], checksum=0x349F),
                 Fixture(data=string.digits, checksum=0x5F6E),
                 Fixture(data=string.digits[::-1], checksum=0x5DC9),
+            ]
+            for test in test_suit:
+                crc_register.init()
+                crc_register.update(test.data.encode("utf-8"))
+                self.assertEqual(test.checksum, crc_register.digest())
+
+    def test_cr16_ibm(self):
+        config = Crc16.IBM
+        for register_type in self._register_types:
+            crc_register = register_type(config)
+            test_suit = [
+                Fixture(data="", checksum=0x0000),
+                Fixture(data=string.digits[1:], checksum=0xBB3D),
+                Fixture(data=string.digits[1:][::-1], checksum=0x39D9),
+                Fixture(data=string.digits, checksum=0x443D),
+                Fixture(data=string.digits[::-1], checksum=0x8EF8),
+            ]
+            for test in test_suit:
+                crc_register.init()
+                crc_register.update(test.data.encode("utf-8"))
+                self.assertEqual(test.checksum, crc_register.digest())
+
+    def test_cr16_maxim(self):
+        config = Crc16.MAXIM
+        for register_type in self._register_types:
+            crc_register = register_type(config)
+            test_suit = [
+                Fixture(data="", checksum=0xFFFF),
+                Fixture(data=string.digits[1:], checksum=0x44C2),
+                Fixture(data=string.digits[1:][::-1], checksum=0xC626),
+                Fixture(data=string.digits, checksum=0xBBC2),
+                Fixture(data=string.digits[::-1], checksum=0x7107),
+            ]
+            for test in test_suit:
+                crc_register.init()
+                crc_register.update(test.data.encode("utf-8"))
+                self.assertEqual(test.checksum, crc_register.digest())
+
+    def test_cr16_usb(self):
+        config = Crc16.USB
+        for register_type in self._register_types:
+            crc_register = register_type(config)
+            test_suit = [
+                Fixture(data="", checksum=0x0000),
+                Fixture(data=string.digits[1:], checksum=0xB4C8),
+                Fixture(data=string.digits[1:][::-1], checksum=0x362C),
+                Fixture(data=string.digits, checksum=0xBCB2),
+                Fixture(data=string.digits[::-1], checksum=0x7677),
+            ]
+            for test in test_suit:
+                crc_register.init()
+                crc_register.update(test.data.encode("utf-8"))
+                self.assertEqual(test.checksum, crc_register.digest())
+
+    def test_cr16_x25(self):
+        config = Crc16.X25
+        for register_type in self._register_types:
+            crc_register = register_type(config)
+            test_suit = [
+                Fixture(data="", checksum=0x0000),
+                Fixture(data=string.digits[1:], checksum=0x906E),
+                Fixture(data=string.digits[1:][::-1], checksum=0x8578),
+                Fixture(data=string.digits, checksum=0x3C16),
+                Fixture(data=string.digits[::-1], checksum=0x3EB1),
+            ]
+            for test in test_suit:
+                crc_register.init()
+                crc_register.update(test.data.encode("utf-8"))
+                self.assertEqual(test.checksum, crc_register.digest())
+    
+    def test_cr16_dnp(self):
+        config = Crc16.DNP
+        for register_type in self._register_types:
+            crc_register = register_type(config)
+            test_suit = [
+                Fixture(data="", checksum=0xFFFF),
+                Fixture(data=string.digits[1:], checksum=0xEA82),
+                Fixture(data=string.digits[1:][::-1], checksum=0x51A6),
+                Fixture(data=string.digits, checksum=0x6772),
+                Fixture(data=string.digits[::-1], checksum=0x4C77),
             ]
             for test in test_suit:
                 crc_register.init()

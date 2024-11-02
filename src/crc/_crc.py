@@ -486,9 +486,6 @@ class Crc8(enum.Enum):
         reverse_input=False,
         reverse_output=False,
     )
-    """
-    :Alias: ATM
-    """
 
     ROHC = Configuration(
         width=8,

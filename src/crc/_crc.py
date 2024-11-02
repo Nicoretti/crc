@@ -549,9 +549,6 @@ class Crc16(enum.Enum):
         reverse_input=False,
         reverse_output=False,
     )
-    """
-    :Alias: CCITT_FALSE
-    """
 
     KERMIT = Configuration(
         width=16,
@@ -561,15 +558,12 @@ class Crc16(enum.Enum):
         reverse_input=True,
         reverse_output=True,
     )
-    """
-    :Alias: CCITT
-    """
 
     IBM = Configuration(
         width=16,
         polynomial=0x8005,
         init_value=0x0000,
-        final_xor_value=0,
+        final_xor_value=0x0000,
         reverse_input=True,
         reverse_output=True,
     )

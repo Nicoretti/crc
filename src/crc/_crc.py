@@ -486,19 +486,18 @@ class Crc8(enum.Enum):
         reverse_input=False,
         reverse_output=False,
     )
-    '''
+    """
     :Alias: ATM
-    '''
+    """
 
     ROHC = Configuration(
         width=8,
         polynomial=0x07,
-        init_value=0xff,
+        init_value=0xFF,
         final_xor_value=0x00,
         reverse_input=True,
         reverse_output=True,
     )
-
 
 
 @enum.unique
@@ -511,9 +510,9 @@ class Crc16(enum.Enum):
         reverse_input=False,
         reverse_output=False,
     )
-    '''
+    """
     :Alias: ZMODEM,ACORN
-    '''
+    """
 
     GSM = Configuration(
         width=16,
@@ -550,9 +549,9 @@ class Crc16(enum.Enum):
         reverse_input=False,
         reverse_output=False,
     )
-    '''
+    """
     :Alias: CCITT_FALSE
-    '''
+    """
 
     KERMIT = Configuration(
         width=16,
@@ -562,10 +561,10 @@ class Crc16(enum.Enum):
         reverse_input=True,
         reverse_output=True,
     )
-    '''
+    """
     :Alias: CCITT
-    '''
-    
+    """
+
     IBM = Configuration(
         width=16,
         polynomial=0x8005,
@@ -574,15 +573,15 @@ class Crc16(enum.Enum):
         reverse_input=True,
         reverse_output=True,
     )
-    '''
+    """
     :Alias: ARC,LHA
-    '''
+    """
 
     MAXIM = Configuration(
         width=16,
         polynomial=0x8005,
         init_value=0x0000,
-        final_xor_value=0xffff,
+        final_xor_value=0xFFFF,
         reverse_input=True,
         reverse_output=True,
     )
@@ -590,8 +589,8 @@ class Crc16(enum.Enum):
     USB = Configuration(
         width=16,
         polynomial=0x8005,
-        init_value=0xffff,
-        final_xor_value=0xffff,
+        init_value=0xFFFF,
+        final_xor_value=0xFFFF,
         reverse_input=True,
         reverse_output=True,
     )
@@ -599,8 +598,8 @@ class Crc16(enum.Enum):
     X25 = Configuration(
         width=16,
         polynomial=0x1021,
-        init_value=0xffff,
-        final_xor_value=0xffff,
+        init_value=0xFFFF,
+        final_xor_value=0xFFFF,
         reverse_input=True,
         reverse_output=True,
     )
@@ -609,7 +608,7 @@ class Crc16(enum.Enum):
         width=16,
         polynomial=0x3D65,
         init_value=0x0000,
-        final_xor_value=0xffff,
+        final_xor_value=0xFFFF,
         reverse_input=True,
         reverse_output=True,
     )

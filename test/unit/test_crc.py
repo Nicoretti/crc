@@ -395,7 +395,7 @@ class RegisterTest(unittest.TestCase):
                 crc_register.init()
                 crc_register.update(test.data.encode("utf-8"))
                 self.assertEqual(test.checksum, crc_register.digest())
-    
+
     def test_cr16_dnp(self):
         config = Crc16.DNP
         for register_type in self._register_types:

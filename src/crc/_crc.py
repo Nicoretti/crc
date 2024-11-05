@@ -507,9 +507,6 @@ class Crc16(enum.Enum):
         reverse_input=False,
         reverse_output=False,
     )
-    """
-    :Alias: ZMODEM,ACORN
-    """
 
     GSM = Configuration(
         width=16,
@@ -564,9 +561,6 @@ class Crc16(enum.Enum):
         reverse_input=True,
         reverse_output=True,
     )
-    """
-    :Alias: ARC,LHA
-    """
 
     MAXIM = Configuration(
         width=16,

@@ -1146,7 +1146,7 @@
   <h1>Configurations</h1>
 
 <h2 id="crc8">Crc8</h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:6"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><input id="__tabbed_1_6" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">CCITT</label><label for="__tabbed_1_2">SAEJ1850</label><label for="__tabbed_1_3">SAEJ1850_ZERO</label><label for="__tabbed_1_4">AUTOSAR</label><label for="__tabbed_1_5">BLUETOOTH</label><label for="__tabbed_1_6">MAXIM_DOW</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:8"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><input id="__tabbed_1_6" name="__tabbed_1" type="radio" /><input id="__tabbed_1_7" name="__tabbed_1" type="radio" /><input id="__tabbed_1_8" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">CCITT</label><label for="__tabbed_1_2">SAEJ1850</label><label for="__tabbed_1_3">SAEJ1850_ZERO</label><label for="__tabbed_1_4">AUTOSAR</label><label for="__tabbed_1_5">BLUETOOTH</label><label for="__tabbed_1_6">MAXIM_DOW</label><label for="__tabbed_1_7">ITU</label><label for="__tabbed_1_8">ROHC</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="grid cards" markdown>
@@ -1220,10 +1220,34 @@
 </ul>
 </div>
 </div>
+<div class="tabbed-block">
+<div class="grid cards" markdown>
+<ul>
+<li><em>Width:</em> <strong>8</strong></li>
+<li><em>Final Xor:</em> <strong>0x55</strong></li>
+<li><em>Init Value:</em> <strong>0x00</strong></li>
+<li><em>Rev Input:</em> <strong>False</strong></li>
+<li><em>Polynomial:</em> <strong>0x07</strong></li>
+<li><em>Rev Output:</em> <strong>False</strong></li>
+</ul>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="grid cards" markdown>
+<ul>
+<li><em>Width:</em> <strong>8</strong></li>
+<li><em>Final Xor:</em> <strong>0x00</strong></li>
+<li><em>Init Value:</em> <strong>0xFF</strong></li>
+<li><em>Rev Input:</em> <strong>True</strong></li>
+<li><em>Polynomial:</em> <strong>0x07</strong></li>
+<li><em>Rev Output:</em> <strong>True</strong></li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <h2 id="crc16">Crc16</h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:6"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><input id="__tabbed_2_5" name="__tabbed_2" type="radio" /><input id="__tabbed_2_6" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">XMODEM</label><label for="__tabbed_2_2">GSM</label><label for="__tabbed_2_3">PROFIBUS</label><label for="__tabbed_2_4">MODBUS</label><label for="__tabbed_2_5">IBM_3740</label><label for="__tabbed_2_6">KERMIT</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:11"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><input id="__tabbed_2_5" name="__tabbed_2" type="radio" /><input id="__tabbed_2_6" name="__tabbed_2" type="radio" /><input id="__tabbed_2_7" name="__tabbed_2" type="radio" /><input id="__tabbed_2_8" name="__tabbed_2" type="radio" /><input id="__tabbed_2_9" name="__tabbed_2" type="radio" /><input id="__tabbed_2_10" name="__tabbed_2" type="radio" /><input id="__tabbed_2_11" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">XMODEM</label><label for="__tabbed_2_2">GSM</label><label for="__tabbed_2_3">PROFIBUS</label><label for="__tabbed_2_4">MODBUS</label><label for="__tabbed_2_5">IBM_3740</label><label for="__tabbed_2_6">KERMIT</label><label for="__tabbed_2_7">IBM</label><label for="__tabbed_2_8">MAXIM</label><label for="__tabbed_2_9">USB</label><label for="__tabbed_2_10">X25</label><label for="__tabbed_2_11">DNP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="grid cards" markdown>
@@ -1293,6 +1317,66 @@
 <li><em>Init Value:</em> <strong>0x0000</strong></li>
 <li><em>Rev Input:</em> <strong>True</strong></li>
 <li><em>Polynomial:</em> <strong>0x1021</strong></li>
+<li><em>Rev Output:</em> <strong>True</strong></li>
+</ul>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="grid cards" markdown>
+<ul>
+<li><em>Width:</em> <strong>16</strong></li>
+<li><em>Final Xor:</em> <strong>0x0000</strong></li>
+<li><em>Init Value:</em> <strong>0x0000</strong></li>
+<li><em>Rev Input:</em> <strong>True</strong></li>
+<li><em>Polynomial:</em> <strong>0x8005</strong></li>
+<li><em>Rev Output:</em> <strong>True</strong></li>
+</ul>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="grid cards" markdown>
+<ul>
+<li><em>Width:</em> <strong>16</strong></li>
+<li><em>Final Xor:</em> <strong>0xFFFF</strong></li>
+<li><em>Init Value:</em> <strong>0x0000</strong></li>
+<li><em>Rev Input:</em> <strong>True</strong></li>
+<li><em>Polynomial:</em> <strong>0x8005</strong></li>
+<li><em>Rev Output:</em> <strong>True</strong></li>
+</ul>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="grid cards" markdown>
+<ul>
+<li><em>Width:</em> <strong>16</strong></li>
+<li><em>Final Xor:</em> <strong>0xFFFF</strong></li>
+<li><em>Init Value:</em> <strong>0xFFFF</strong></li>
+<li><em>Rev Input:</em> <strong>True</strong></li>
+<li><em>Polynomial:</em> <strong>0x8005</strong></li>
+<li><em>Rev Output:</em> <strong>True</strong></li>
+</ul>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="grid cards" markdown>
+<ul>
+<li><em>Width:</em> <strong>16</strong></li>
+<li><em>Final Xor:</em> <strong>0xFFFF</strong></li>
+<li><em>Init Value:</em> <strong>0xFFFF</strong></li>
+<li><em>Rev Input:</em> <strong>True</strong></li>
+<li><em>Polynomial:</em> <strong>0x1021</strong></li>
+<li><em>Rev Output:</em> <strong>True</strong></li>
+</ul>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="grid cards" markdown>
+<ul>
+<li><em>Width:</em> <strong>16</strong></li>
+<li><em>Final Xor:</em> <strong>0xFFFF</strong></li>
+<li><em>Init Value:</em> <strong>0x0000</strong></li>
+<li><em>Rev Input:</em> <strong>True</strong></li>
+<li><em>Polynomial:</em> <strong>0x3D65</strong></li>
 <li><em>Rev Output:</em> <strong>True</strong></li>
 </ul>
 </div>

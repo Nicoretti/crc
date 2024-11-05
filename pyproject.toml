@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "crc"
-version = "7.0.0"
+version = "7.1.0"
 description = "Pure Python CRC library"
 packages = [
     { include = "crc", from = "src" },

@@ -263,12 +263,12 @@ def release_prepare(context, version):
     context.run(_cmd("poetry", "version", version))
     context.run(_cmd("git", "add", "pyproject.toml"))
     context.run(_cmd("git", "commit", "-m", f'"Prepare release {version}"'))
-    context.run(_cmd("git", "tag", version))
 
 
 @task
 def release_workflow(context, version):
     """Start/Trigger a GitHub action based release workflow"""
+    context.run(_cmd("git", "tag", version))
     context.run(_cmd("git", "push", "origin", version))
     context.run(_cmd("gh", "workflow", "view", "ci-cd.yml", "--web"))
 

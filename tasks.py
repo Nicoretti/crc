@@ -18,7 +18,7 @@ BASEPATH = Path(__file__).parent.resolve()
 
 
 def _python_files(
-    project_root: Path, path_filters: Iterable[str] = ("dist", ".eggs", "venv")
+    project_root: Path, path_filters: Iterable[str] = ("dist", ".eggs", "venv", ".venv")
 ) -> Iterable[Path]:
     """Returns all relevant"""
     return _deny_filter(project_root.glob("**/*.py"), deny_list=path_filters)
@@ -39,8 +39,8 @@ def _cmd(*args):
     return " ".join(args)
 
 
-def _poetry(*args):
-    return _cmd("poetry", "run", *args)
+def _uv(*args):
+    return _cmd("uv", "run", *args)
 
 
 def _select_files(root, files):
@@ -113,8 +113,8 @@ def fmt(context, root=BASEPATH, files=None, fix=True):
     """Run code formatter(s)"""
     mode_filter = lambda v: v != "--check" if fix else lambda v: True
     files = _select_files(root, files)
-    isort = _poetry(*filter(mode_filter, ["isort", "--check", "-v"]), *files)
-    black = _poetry(*filter(mode_filter, ["black", "--check", "--color"]), *files)
+    isort = _uv(*filter(mode_filter, ["isort", "--check", "-v"]), *files)
+    black = _uv(*filter(mode_filter, ["black", "--check", "--color"]), *files)
     context.run(isort)
     context.run(black)
 
@@ -123,7 +123,7 @@ def fmt(context, root=BASEPATH, files=None, fix=True):
 def unit_test(context, root=BASEPATH / "test" / "unit", coverage=False):
     """Run all unit tests"""
     command = ["coverage", "run", "-m", "-a"] if coverage else []
-    command = _poetry(*command, "pytest", f"{root}")
+    command = _uv(*command, "pytest", f"{root}")
     context.run(command)
 
 
@@ -131,7 +131,7 @@ def unit_test(context, root=BASEPATH / "test" / "unit", coverage=False):
 def integration_test(context, root=BASEPATH / "test" / "integration", coverage=False):
     """Run all integration tests"""
     command = ["coverage", "run", "-m", "-a"] if coverage else []
-    command = _poetry(*command, "pytest", f"{root}")
+    command = _uv(*command, "pytest", f"{root}")
     context.run(command)
 
 
@@ -146,7 +146,7 @@ def coverage(context, root=BASEPATH):
     coverage_file.unlink(missing_ok=True)
     unit_test(context, root=root / "test" / "unit", coverage=True)
     integration_test(context, root=root / "test" / "integration", coverage=True)
-    report = _poetry("coverage", "report", "--fail-under=100", "--show-missing")
+    report = _uv("coverage", "report", "--fail-under=100", "--show-missing")
     context.run(report)
 
 
@@ -161,7 +161,7 @@ def coverage(context, root=BASEPATH):
 def lint(context, root=BASEPATH, files=None):
     """Run linting"""
     files = _select_files(root, files)
-    pylint = _poetry("pylint", *files)
+    pylint = _uv("pylint", *files)
     context.run(pylint)
 
 
@@ -176,7 +176,7 @@ def lint(context, root=BASEPATH, files=None):
 def typing(context, root=BASEPATH, files=None):
     """Run type check(s)"""
     files = _select_files(root, files)
-    mypy = _poetry("mypy", *files)
+    mypy = _uv("mypy", *files)
     context.run(mypy)
 
 
@@ -205,7 +205,7 @@ def clean_docs(_context):
 def build_docs(context):
     """Build project documentation"""
     context.run(
-        _poetry(
+        _uv(
             "mkdocs",
             "build",
             "-c",
@@ -221,20 +221,20 @@ def build_docs(context):
 @task
 def serve_docs(context):
     """Serve project documentation"""
-    context.run(_poetry("mkdocs", "serve", "-f", f"{BASEPATH / 'docs' / 'mkdocs.yml'}"))
+    context.run(_uv("mkdocs", "serve", "-f", f"{BASEPATH / 'docs' / 'mkdocs.yml'}"))
 
 
 @task
 def release_pypi(context):
     """Create a PyPi release"""
-    context.run(_cmd("poetry", "build"))
-    context.run(_cmd("poetry", "publish"))
+    context.run(_cmd("uv", "build"))
+    context.run(_cmd("uv", "publish"))
 
 
 @task(aliases=["gh"])
 def release_github(context, version):
     """Create a GitHub release"""
-    context.run(_cmd("poetry", "build"))
+    context.run(_cmd("uv", "build"))
     context.run(_cmd("gh", "release", "create", version, "--title", version, "dist/*"))
 
 
@@ -242,7 +242,7 @@ def release_github(context, version):
 def release_docs(context):
     """Deploy documentation to GitHub pages"""
     context.run(
-        _poetry(
+        _uv(
             "mkdocs",
             "deploy",
             "-f",
@@ -260,7 +260,7 @@ def release_prepare(context, version):
     if answer not in ["yes", "y"]:
         Console.stdout("Aborting, re run once the changelog have been updated.")
         sys.exit(-1)
-    context.run(_cmd("poetry", "version", version))
+    context.run(_cmd("hatch", "version", version))
     context.run(_cmd("git", "add", "pyproject.toml"))
     context.run(_cmd("git", "commit", "-m", f'"Prepare release {version}"'))
 

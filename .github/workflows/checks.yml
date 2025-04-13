@@ -5,7 +5,6 @@ on: workflow_call
 jobs:
 
   format-job:
-
     name: "Format (Python-${{ matrix.python-version }} on ${{ matrix.os }})"
     runs-on: ${{ matrix.os }}
     strategy:
@@ -14,19 +13,19 @@ jobs:
         os:
           - ubuntu-latest
         python-version:
-          - "3.8"
+          - "3.12"
 
     steps:
       - name: SCM Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Python & Poetry Environment
+      - name: Setup Python Environment
         uses: ./.github/actions/python-environment
         with:
           python-version: ${{ matrix.python-version }}
 
       - name: Run Coverage
-        run: poetry run invoke check.format
+        run: uv run invoke check.format
 
   typing-job:
 
@@ -44,18 +43,19 @@ jobs:
           - "3.10"
           - "3.11"
           - "3.12"
+          - "3.13"
 
     steps:
       - name: SCM Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Python & Poetry Environment
+      - name: Setup Python Environment
         uses: ./.github/actions/python-environment
         with:
           python-version: ${{ matrix.python-version }}
 
       - name: Run Coverage
-        run: poetry run invoke check.typing --files src/
+        run: uv run invoke check.typing --files src/
 
   linting-job:
 
@@ -68,19 +68,19 @@ jobs:
         os:
           - ubuntu-latest
         python-version:
-          - "3.8"
+          - "3.12"
 
     steps:
       - name: SCM Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Python & Poetry Environment
+      - name: Setup Python Environment
         uses: ./.github/actions/python-environment
         with:
           python-version: ${{ matrix.python-version }}
 
       - name: Run Linter
-        run: poetry run invoke check.lint --files src/
+        run: uv run invoke check.lint --files src/
 
   tests-job:
 
@@ -100,15 +100,16 @@ jobs:
           - "3.10"
           - "3.11"
           - "3.12"
+          - "3.13"
 
     steps:
       - name: SCM Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Python & Poetry Environment
+      - name: Setup Python Environment
         uses: ./.github/actions/python-environment
         with:
           python-version: ${{ matrix.python-version }}
 
       - name: Run Tests
-        run: poetry run invoke test.coverage
+        run: uv run invoke test.coverage

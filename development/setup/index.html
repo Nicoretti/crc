@@ -1232,11 +1232,11 @@
 <h1 id="setup">Setup</h1>
 <h2 id="requirements-tldr">Requirements TL;DR</h2>
 <ul>
-<li><a href="https://python-poetry.org">poetry</a></li>
+<li><a href="https://docs.astral.sh/uv/">uv</a></li>
 <li><a href="https://cli.github.com">gh</a></li>
 </ul>
 <h2 id="1-install-poetry">1. Install Poetry</h2>
-<p>Follow the poetry <a href="https://python-poetry.org/docs/#installation">installation instructions</a>.</p>
+<p>Follow the uv <a href="https://docs.astral.sh/uv/getting-started/installation/">installation instructions</a>.</p>
 <h2 id="2-install-gh">2. Install gh</h2>
 <p>Follow the gh <a href="https://cli.github.com">installation instructions</a>.</p>
 <h2 id="3-checkout-the-project">3. Checkout the project</h2>
@@ -1263,20 +1263,20 @@
 <p>Make sure the poetry environment is setup properly and all dependencies are installed.</p>
 <ol>
 <li>
-<p>Activate the Poetry shell</p>
-<div class="highlight"><pre><span></span><code>poetry shell
+<p>Sync the UV environment</p>
+<div class="highlight"><pre><span></span><code>uv sync
 </code></pre></div>
 </li>
 <li>
-<p>Install the project dependencies</p>
-<div class="highlight"><pre><span></span><code>poetry install
+<p>Activate the uv managed virtual environment</p>
+<div class="highlight"><pre><span></span><code>source activate .venv/bin/activate
 </code></pre></div>
 </li>
 </ol>
 <h2 id="run-the-init-task">Run the <code>init</code> task</h2>
 <p>In order to bootstrap the remaining parts of the workspace setup, just
 execute the following command:</p>
-<div class="highlight"><pre><span></span><code>invoke init
+<div class="highlight"><pre><span></span><code>uv run invoke init
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

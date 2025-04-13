@@ -1,14 +1,19 @@
-[tool.poetry]
+[project]
 name = "crc"
 version = "7.1.0"
 description = "Pure Python CRC library"
-packages = [
-    { include = "crc", from = "src" },
-]
-authors = ["Nicola Coretti <nico.coretti@gmail.com>"]
-maintainers = ["Nicola Coretti <nico.coretti@gmail.com>"]
-license = "BSD-2-Clause"
+authors = [{ name = "Nicola Coretti", email = "nico.coretti@gmail.com" }]
+requires-python = ">=3.8,<4.0"
 readme = "README.md"
+license = "BSD-2-Clause"
+maintainers = [{ name = "Nicola Coretti", email = "nico.coretti@gmail.com" }]
+keywords = [
+    "CRC",
+    "CRC8",
+    "CRC16",
+    "CRC32",
+    "CRC64",
+]
 classifiers = [
     "License :: OSI Approved :: BSD License",
     "Programming Language :: Python :: 3",
@@ -17,46 +22,51 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
 ]
-keywords = ['CRC', 'CRC8', 'CRC16', 'CRC32', 'CRC64']
-repository = "https://github.com/Nicoretti/crc"
 
-[tool.poetry.urls]
-"Homepage" = "https://nicoretti.github.io/crc/"
-"Documentation" = "https://nicoretti.github.io/crc/"
-"Source" = "https://github.com/Nicoretti/crc"
-"Issues" = "https://github.com/Nicoretti/crc/issues"
-"Changelog" = "https://nicoretti.github.io/crc/changelog/unreleased/"
+[project.urls]
+Repository = "https://github.com/Nicoretti/crc"
+Homepage = "https://nicoretti.github.io/crc/"
+Documentation = "https://nicoretti.github.io/crc/"
+Source = "https://github.com/Nicoretti/crc"
+Issues = "https://github.com/Nicoretti/crc/issues"
+Changelog = "https://nicoretti.github.io/crc/changelog/unreleased/"
 
-[tool.poetry.scripts]
+[project.scripts]
 crc = "crc._crc:main"
 
-[tool.poetry.dependencies]
-python = ">=3.8,<4.0"
+[dependency-groups]
+dev = [
+    "pytest>=7.2.0",
+    "pylint>=2.12.2",
+    "black>=22.1.0",
+    "isort>=5.10.1",
+    "coveralls>=3.3.1",
+    "mkdocs>=1.4.2",
+    "mkdocs-material>=9.0.6",
+    "mypy>=0.991",
+    "invoke>=2",
+    "mkdocs-autorefs>=0.4.1",
+    "mkdocstrings>=0.20.0",
+    "mkdocstrings-python>=0.8.2",
+    "pre-commit>=3.1.1,<4",
+    "mkdocs-gen-files>=0.5.0,<0.6",
+    "hatch>=1.14.1",
+]
 
-[tool.poetry.dev-dependencies]
-pytest = ">=7.2.0"
-pylint = ">=2.12.2"
-black = ">=22.1.0"
-isort = ">=5.10.1"
-coveralls = ">=3.3.1"
-mkdocs = ">=1.4.2"
-mkdocs-material = ">=9.0.6"
-pyupgrade = ">=3.2.2"
-shed = ">=0.10.7"
-mypy = ">=0.991"
-invoke = ">=2"
-mkdocs-autorefs = ">=0.4.1"
-mkdocstrings = ">=0.20.0"
-mkdocstrings-python = ">=0.8.2"
-pytkdocs = ">=0.16.1"
-pre-commit = "^3.1.1"
-mkdocs-gen-files = "^0.5.0"
+[tool.hatch.build.targets.sdist]
+include = ["src/crc"]
 
+[tool.hatch.build.targets.wheel]
+include = ["src/crc"]
+
+[tool.hatch.build.targets.wheel.sources]
+"src/crc" = "crc"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.coverage.run]
 source = [
@@ -78,7 +88,7 @@ include = "\\.pyi?$"
 [tool.isort]
 profile = "black"
 force_grid_wrap = 2
-skip = [".gitignore", "venv", ".nox"]
+skip = [".gitignore", "venv", ".venv", ".nox"]
 
 [tool.mypy]
 strict = true

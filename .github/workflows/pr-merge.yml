@@ -18,20 +18,20 @@ jobs:
         - name: SCM Checkout
           uses: actions/checkout@v4
 
-        - name: Setup Python & Poetry Environment
+        - name: Setup Python Environment
           uses: ./.github/actions/python-environment
           with:
-            python-version: 3.8
+            python-version: 3.12
 
         - name: Collect Code Coverage
-          run: poetry run invoke test.coverage
+          run: uv run invoke test.coverage
           env:
             COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
 
         - name: Publish Code Coverage
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          run: poetry run coveralls --service=github
+          run: uv run coveralls --service=github
 
 
   publish-docs:

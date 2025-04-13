@@ -16,12 +16,12 @@ jobs:
       - name: SCM Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Python & Poetry Environment
+      - name: Setup Python Environment
         uses: ./.github/actions/python-environment
 
       - name: Check Tag Version
         # make sure the pushed/created tag matched the project version
-        run: "[[ `poetry version --short` == ${{ github.ref_name }} ]]"
+        run: "[[ `uv run hatch version` == ${{ github.ref_name }} ]]"
 
   ci-job:
     name: Checks
@@ -38,17 +38,17 @@ jobs:
       - name: SCM Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Python & Poetry Environment
+      - name: Setup Python Environment
         uses: ./.github/actions/python-environment
 
       - name: Build Artifacts
-        run: poetry build
+        run: uv build
 
       - name: PyPi Release
         env:
-          POETRY_HTTP_BASIC_PYPI_USERNAME: "__token__"
-          POETRY_HTTP_BASIC_PYPI_PASSWORD: "${{ secrets.PYPI_TOKEN }}"
-        run: poetry publish
+          UV_PUBLISH_USERNAME: "__token__"
+          UV_PUBLISH_PASSWORD: "${{ secrets.PYPI_TOKEN }}"
+        run: uv publish
 
       - name: GitHub Release
         env:

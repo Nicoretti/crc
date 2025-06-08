@@ -6,6 +6,5 @@ Thank you to all contributors for your help in improving this project. 🚀
 * Riccardo Malavolti
 * Ramya-Ab
 * Allen-saltedfish
+* Thomas Boyer-Chammard
 * Dependabot
-
-

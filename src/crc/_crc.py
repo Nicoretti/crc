@@ -11,17 +11,32 @@ import numbers
 import sys
 from dataclasses import dataclass
 from typing import (
+    Protocol,
     BinaryIO,
     Final,
     Iterable,
     Iterator,
     Union,
+    Any,
 )
 
 __author__ = [
     "Nicola Coretti <nico.coretti@gmail.com>",
     "Gert van Dijk <github@gertvandijk.nl>",
 ]
+
+class ByteConvertible(Protocol):
+    """Anything which implements __bytes__"""
+
+    def __bytes__(self) -> bytes:
+        pass
+
+def is_byte_convertible(d: Any) -> bool:
+    try:
+        bytes(d)
+    except TypeError:
+        return False
+    return True
 
 InputType = Union[
     int,
@@ -30,6 +45,7 @@ InputType = Union[
     memoryview,
     BinaryIO,
     Iterable[Union[bytes, bytearray, memoryview]],
+    ByteConvertible,
 ]
 """Type alias for acceptable input types for [Calculator][crc.Calculator]."""
 
@@ -418,6 +434,8 @@ def _bytes_generator(data: InputType) -> Iterable[bytes]:
         yield bytes(data)
     elif isinstance(data, (Iterable, BinaryIO)):
         yield from (bytes(e) for e in data)
+    elif is_byte_convertible(data):
+        yield bytes(data)
     else:
         raise TypeError(f"Unsupported parameter type: {type(data)}")
 

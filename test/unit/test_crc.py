@@ -1,6 +1,7 @@
 # Copyright (c) 2018, Nicola Coretti
 # All rights reserved.
 import io
+import array
 import string
 import unittest
 from collections import namedtuple
@@ -491,6 +492,29 @@ class CalculatorTest(unittest.TestCase):
 def test_calculator_with_different_input_types(config, data, expected):
     calculator = Calculator(config)
     assert calculator.checksum(data) == expected
+
+
+class TestByteConvertibleSupport:
+
+    @pytest.fixture
+    def calculator(self):
+        return Calculator(Crc8.CCITT)
+
+    class ByteConvertibleType:
+        def __bytes__(self) -> bytes:
+            return b"123456789"
+
+    @pytest.mark.parametrize(
+        "data,expected",
+        [
+            (ByteConvertibleType(), 0xF4),
+            ([49, 50, 51, 52, 53, 54, 55, 56, 57] , 0xF4), # NOTE: does not work matches with iterable branch
+            (array.array('B', b"123456789"), 0xF4) # NOTE:  does not work matches with iterable branch
+        ],
+        ids=type
+    )
+    def test_custom_byte_convertible_type(self, calculator, data, expected):
+        assert calculator.checksum(data) == expected
 
 
 @pytest.mark.parametrize(

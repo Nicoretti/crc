@@ -11,13 +11,13 @@ import numbers
 import sys
 from dataclasses import dataclass
 from typing import (
-    Protocol,
+    Any,
     BinaryIO,
     Final,
     Iterable,
     Iterator,
+    Protocol,
     Union,
-    Any,
 )
 
 __author__ = [
@@ -25,11 +25,13 @@ __author__ = [
     "Gert van Dijk <github@gertvandijk.nl>",
 ]
 
+
 class ByteConvertible(Protocol):
     """Anything which implements __bytes__"""
 
     def __bytes__(self) -> bytes:
         pass
+
 
 def is_byte_convertible(d: Any) -> bool:
     try:
@@ -37,6 +39,7 @@ def is_byte_convertible(d: Any) -> bool:
     except TypeError:
         return False
     return True
+
 
 InputType = Union[
     int,

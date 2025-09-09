@@ -1,7 +1,7 @@
 # Copyright (c) 2018, Nicola Coretti
 # All rights reserved.
-import io
 import array
+import io
 import string
 import unittest
 from collections import namedtuple
@@ -508,10 +508,16 @@ class TestByteConvertibleSupport:
         "data,expected",
         [
             (ByteConvertibleType(), 0xF4),
-            ([49, 50, 51, 52, 53, 54, 55, 56, 57] , 0xF4), # NOTE: does not work matches with iterable branch
-            (array.array('B', b"123456789"), 0xF4) # NOTE:  does not work matches with iterable branch
+            (
+                [49, 50, 51, 52, 53, 54, 55, 56, 57],
+                0xF4,
+            ),  # NOTE: does not work matches with iterable branch
+            (
+                array.array("B", b"123456789"),
+                0xF4,
+            ),  # NOTE:  does not work matches with iterable branch
         ],
-        ids=type
+        ids=type,
     )
     def test_custom_byte_convertible_type(self, calculator, data, expected):
         assert calculator.checksum(data) == expected

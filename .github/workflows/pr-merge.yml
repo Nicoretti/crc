@@ -24,7 +24,7 @@ jobs:
             python-version: 3.12
 
         - name: Collect Code Coverage
-          run: uv run invoke test.coverage
+          run: uv run camas coverage
           env:
             COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
 

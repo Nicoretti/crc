@@ -57,7 +57,7 @@ In order to bootstrap the remaining parts of the workspace setup, just
 execute the following command:
 
 ```
-uv run invoke init
+uv run camas init
 ```
 
 !!! note

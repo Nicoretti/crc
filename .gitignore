@@ -10,3 +10,4 @@ docs/_build/*
 *.pyc
 */__pychache__/*
 .envrc
+.claude

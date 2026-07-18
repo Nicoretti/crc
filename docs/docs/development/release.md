@@ -10,10 +10,9 @@
    ```
 4. Prepare the release
    ```console
-   invoke release.prepare X.Y.Z
+   uv run camas release_prepare --VERSION X.Y.Z
    ```
 5. Run the CI/CD pipeline to publish the release:
-   Execute the `release.workflow` task and follow potential instructions.
-   ```
-   invoke release.workflow X.Y.Z
+   ```console
+   uv run camas release_workflow --VERSION X.Y.Z
    ```

@@ -70,9 +70,10 @@ class CliTests(unittest.TestCase):
         )
         expected_exit_code = 0
         argv = ["table", "8", "0x1D"]
-        with patch("sys.exit") as exit, patch(
-            "sys.stdout", new_callable=io.StringIO
-        ) as stdout:
+        with (
+            patch("sys.exit") as exit,
+            patch("sys.stdout", new_callable=io.StringIO) as stdout,
+        ):
             main(argv)
 
             stdout.seek(0)

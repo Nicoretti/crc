@@ -1,6 +1,10 @@
+---
+icon: material/tag-outline
+---
+
 # 2.0.0 - 2022-11-27
 
-## 🚨 Breaking API Changes
+## :material-alert-decagram: Breaking API Changes
 
 ** Renamed **
 
@@ -28,13 +32,13 @@
 * Removed `CRC_TYPES` mapping
 * Removed `checksum` function/cli-entry-point
 
-## 🗑 Removed
+## :material-delete: Removed
 * Removed checksum subcommand from CLI
 * Removed `CRC_TYPES` mapping
 
-## ✨ Added
+## :material-star-four-points: Added
 * Added typing support
 * Added Documentation [see here](https://nicoretti.github.io/crc)
 
-## 🔧 Refactorings
+## :material-wrench: Refactorings
 * Fixed various linter warnings

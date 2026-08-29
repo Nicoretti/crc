@@ -73,27 +73,19 @@ def initialize_workspace(context):
     """
     context.run("pre-commit install")
     if not _is_command_available("gh"):
-        Console.stdout(
-            cleandoc(
-                """
+        Console.stdout(cleandoc("""
             ❌  Error
             Please install the gh command line tool, and then rerun this task.
             Details: https://cli.github.com/manual/installation
-            """
-            )
-        )
+            """))
         sys.exit(-1)
     result = context.run(_cmd("gh", "auth", "status"), warn=True, pty=True)
     if not result.ok:
-        Console.stdout(
-            cleandoc(
-                """
+        Console.stdout(cleandoc("""
             ❌  Error
             Please authenticate the gh command line tool, and then rerun this task.
             Details see: gh auth -h
-            """
-            )
-        )
+            """))
         sys.exit(-1)
     Console.stdout("✅  You are all set, happy hacking!")
 
@@ -201,27 +193,31 @@ def clean_docs(_context):
         shutil.rmtree(doc_output_folder)
 
 
-@task
+@task(aliases=["gen"])
+def generate_docs(context):
+    """Generate dynamic documentation content (e.g. configurations.md)"""
+    context.run(_uv("python", f"{BASEPATH / 'docs' / 'scripts' / 'configurations.py'}"))
+
+
+@task(pre=[generate_docs])
 def build_docs(context):
     """Build project documentation"""
     context.run(
         _uv(
-            "mkdocs",
+            "zensical",
             "build",
             "-c",
             "-s",
-            "-d",
-            f"{BASEPATH / '.html-documentation'}",
             "-f",
-            f"{BASEPATH / 'docs' / 'mkdocs.yml'}",
+            f"{BASEPATH / 'zensical.toml'}",
         )
     )
 
 
-@task
+@task(pre=[generate_docs])
 def serve_docs(context):
     """Serve project documentation"""
-    context.run(_uv("mkdocs", "serve", "-f", f"{BASEPATH / 'docs' / 'mkdocs.yml'}"))
+    context.run(_uv("zensical", "serve", "-f", f"{BASEPATH / 'zensical.toml'}"))
 
 
 @task
@@ -236,21 +232,6 @@ def release_github(context, version):
     """Create a GitHub release"""
     context.run(_cmd("uv", "build"))
     context.run(_cmd("gh", "release", "create", version, "--title", version, "dist/*"))
-
-
-@task
-def release_docs(context):
-    """Deploy documentation to GitHub pages"""
-    context.run(
-        _uv(
-            "mkdocs",
-            "deploy",
-            "-f",
-            f"{BASEPATH / 'docs' / 'mkdocs.yml'}",
-            "--remote-branch",
-            "gh-pages",
-        )
-    )
 
 
 @task(aliases=["prep"])
@@ -271,6 +252,20 @@ def release_workflow(context, version):
     context.run(_cmd("git", "tag", version))
     context.run(_cmd("git", "push", "origin", version))
     context.run(_cmd("gh", "workflow", "view", "ci-cd.yml", "--web"))
+
+
+@task(pre=[generate_docs])
+def release_docs(context):
+    """Build and publish the documentation to GitHub pages"""
+    build_docs(context)
+    context.run(
+        _cmd(
+            "gh",
+            "workflow",
+            "run",
+            "gh-pages.yml",
+        )
+    )
 
 
 @task
@@ -298,6 +293,7 @@ checks.add_task(check, name="format")
 
 docs = Collection("docs")
 docs.add_task(clean_docs, name="clean")
+docs.add_task(generate_docs, name="generate")
 docs.add_task(build_docs, name="build")
 docs.add_task(serve_docs, name="serve")
 

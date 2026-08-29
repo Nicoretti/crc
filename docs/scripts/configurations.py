@@ -1,7 +1,8 @@
+"""Generate tables for `configurations.md` page of the documentation."""
+
 from inspect import cleandoc
 from io import StringIO
-
-import mkdocs_gen_files
+from pathlib import Path
 
 from crc import (
     Crc8,
@@ -10,8 +11,7 @@ from crc import (
     Crc64,
 )
 
-_TAB_META_TEMPLATE = cleandoc(
-    """
+_TAB_META_TEMPLATE = cleandoc("""
 === "{{name}}"
 
     <div class="grid cards" markdown>
@@ -24,8 +24,7 @@ _TAB_META_TEMPLATE = cleandoc(
      - *Rev Output:* **{{reverse_output}}**
 
     </div>
-"""
-)
+""")
 
 
 def as_content_tabs(config_group):
@@ -50,12 +49,11 @@ def as_content_tabs(config_group):
 
 
 def main():
-    filename = "configurations.md"
-    with mkdocs_gen_files.open(filename, "w") as f:
-        config_groups = (Crc8, Crc16, Crc32, Crc64)
-        for group in config_groups:
-            t = as_content_tabs(config_group=group)
-            print(t, file=f)
+    config_groups = (Crc8, Crc16, Crc32, Crc64)
+    for group in config_groups:
+        t = as_content_tabs(config_group=group)
+        print(t)
 
 
-main()
+if __name__ == "__main__":
+    main()

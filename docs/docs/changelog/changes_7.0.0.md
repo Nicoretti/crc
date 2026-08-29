@@ -1,6 +1,10 @@
+---
+icon: material/tag-outline
+---
+
 # 7.0.0 - 2024-04-19 
 
-## 🚨 Breaking Changes
+## :material-alert-decagram: Breaking Changes
 
 ### Update of crc configurations
 - **Rename:** The `Crc16.CCITT` configuration to `Crc16.XMODEM`.
@@ -24,6 +28,6 @@ Below are solutions to the two common scenarios that need to be addressed due to
 - [#148](https://github.com/Nicoretti/crc/issues/148)
 - [#145](https://github.com/Nicoretti/crc/issues/145)
 
-## 🔩  Internal
+## :material-cog: Internal
 * Update `python-environment` action
 * Add classifiers to `pyproject.toml`

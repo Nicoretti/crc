@@ -66,7 +66,7 @@ of it, a look into this [crc-catalogue](http://reveng.sourceforge.net/crc-catalo
 
 
 ## Requirements
-* [\>= Python 3.8](https://www.python.org)
+* [\>= Python 3.11](https://www.python.org)
 
 ## Installation
 

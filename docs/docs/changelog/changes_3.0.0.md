@@ -1,6 +1,10 @@
+---
+icon: material/tag-outline
+---
+
 # 3.0.0 - 2022-12-04
 
-## 🚨 Breaking API Changes
+## :material-alert-decagram: Breaking API Changes
 
 ** Renamed **
 
@@ -22,15 +26,15 @@
               ...
           ```
 
-## 🐛 Fixes
+## :material-bug: Fixes
 * Fixed return type for all inputs of ByteString types
 
-## ✨ Added
+## :material-star-four-points: Added
 * Added support for other data types than `bytes` to `Calculator.checksum` and `Calculator.verify`
 
   (`int`, `ByteString`, `BinaryIO`, `Iterable[ByteString]`)
 
-## 📚 Documentation
+## :material-book-open-variant: Documentation
 * Renamed "Latest - Changes" to "Unreleased"
 * Added "API" section
 * Added "development" section

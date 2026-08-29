@@ -1,7 +1,11 @@
+---
+icon: material/tag-outline
+---
+
 # 4.3.0 - 2023-06-25
 
-## 📚 Documentation
+## :material-book-open-variant: Documentation
 * Fix typo in license file
 
-## 🔩  Internal
+## :material-cog: Internal
 * Update lockfile

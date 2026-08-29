@@ -41,16 +41,12 @@ dev = [
     "black>=22.1.0",
     "isort>=5.10.1",
     "coveralls>=3.3.1",
-    "mkdocs>=1.4.2",
-    "mkdocs-material>=9.0.6",
+    "zensical>=0.0.57",
     "mypy>=0.991",
     "invoke>=2",
-    "mkdocs-autorefs>=0.4.1",
-    "mkdocstrings>=0.20.0",
-    "mkdocstrings-python>=0.8.2",
     "pre-commit>=3.1.1,<4",
-    "mkdocs-gen-files>=0.5.0,<0.6",
     "hatch>=1.14.1",
+    "mkdocstrings-python>=1.11.1",
 ]
 
 [tool.hatch.build.targets.sdist]

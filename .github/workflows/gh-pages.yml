@@ -1,6 +1,8 @@
 name: Publish Documentation
 
-on: workflow_call
+on:
+  workflow_call:
+  workflow_dispatch:
 
 jobs:
 
@@ -18,7 +20,7 @@ jobs:
 
       - name: Build Documentation
         run: |
-          uv run mkdocs build -c -s -d ../.html-documentation -f docs/mkdocs.yml
+          uv run invoke docs.build
           touch .html-documentation/.nojekyll
 
       - name: Deploy

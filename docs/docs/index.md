@@ -1,276 +1,161 @@
-<h1 align="center">CRC</h1>
-<p align="center">
-
-Calculate CRC checksums, verify CRC checksum, predefined CRC configurations, custom CRC configurations
-</p>
-
-<p align="center">
-
-<a href="https://github.com/Nicoretti/crc/actions">
-    <img src="https://img.shields.io/github/checks-status/nicoretti/crc/master" alt="Checks Master">
-</a>
-<a href="https://coveralls.io/github/Nicoretti/crc">
-    <img src="https://img.shields.io/coverallsCoverage/github/Nicoretti/crc" alt="Coverage">
-</a>
-<a href="https://opensource.org/licenses/BSD-2-Clause">
-    <img src="https://img.shields.io/pypi/l/crc" alt="License">
-</a>
-<a href="https://pypi.org/project/crc/">
-    <img src="https://img.shields.io/pypi/dm/crc" alt="Downloads">
-</a>
-<a href="https://pypi.org/project/crc/">
-    <img src="https://img.shields.io/pypi/pyversions/crc" alt="Supported Python Versions">
-</a>
-<a href="https://pypi.org/project/crc/">
-    <img src="https://img.shields.io/pypi/v/crc" alt="PyPi Package">
-</a>
-</p>
-
 ---
-* :books: Documentation: [https://nicoretti.github.io/crc](https://nicoretti.github.io/crc)
-* :simple-git: Source Code: [https://github.com/Nicoretti/crc](https://github.com/Nicoretti/crc)
+title: CRC
+icon: material/home
 ---
 
-## Available CRC Configurations
+# CRC
 
-The library includes a variety of common CRC configurations for convenience. To explore the full range of available CRC configurations, please checkout the [configurations](configurations.md) section of the documentation. If you need a new configuration to be readily available, consider submitting a [PR](https://github.com/Nicoretti/crc/pulls) or raising an [issue](https://github.com/Nicoretti/crc/issues).
+A pure Python library to calculate and verify CRC checksums.
 
-
-## Custom Configurations
-
-If you want to create a custom configuration, you should have the following information available:
-
-* **width**
-* **polynom**
-* **init value**
-* **final xor value**
-* **reversed input**
-* **reversed output**
-
-In case you only have a name of a specific crc configuration/algorithm and you are unsure what are the specific parameters
-of it, a look into this [:material-note-search: crc-catalogue](http://reveng.sourceforge.net/crc-catalogue/all.htm) might help.
-
-??? note
-
-    This library currently only supports bit widths of full bytes 8, 16, 24, 32, ...
+[![Checks](https://img.shields.io/github/checks-status/nicoretti/crc/master?style=flat-square&labelColor=414a52&color=00796b#only-light)](https://github.com/Nicoretti/crc/actions)
+[![Coverage](https://img.shields.io/coverallsCoverage/github/Nicoretti/crc?style=flat-square&labelColor=414a52&color=00796b#only-light)](https://coveralls.io/github/Nicoretti/crc)
+[![License](https://img.shields.io/pypi/l/crc?style=flat-square&labelColor=414a52&color=00796b#only-light)](https://opensource.org/licenses/BSD-2-Clause)
+[![Downloads](https://img.shields.io/pypi/dm/crc?style=flat-square&labelColor=414a52&color=00796b#only-light)](https://pypi.org/project/crc/)
+[![Supported Python Versions](https://img.shields.io/pypi/pyversions/crc?style=flat-square&labelColor=414a52&color=00796b#only-light)](https://pypi.org/project/crc/)
+[![PyPi Package](https://img.shields.io/pypi/v/crc?style=flat-square&labelColor=414a52&color=00796b#only-light)](https://pypi.org/project/crc/)
+[![Checks](https://img.shields.io/github/checks-status/nicoretti/crc/master?style=flat-square&labelColor=444c56&color=00857a#only-dark)](https://github.com/Nicoretti/crc/actions)
+[![Coverage](https://img.shields.io/coverallsCoverage/github/Nicoretti/crc?style=flat-square&labelColor=444c56&color=00857a#only-dark)](https://coveralls.io/github/Nicoretti/crc)
+[![License](https://img.shields.io/pypi/l/crc?style=flat-square&labelColor=444c56&color=00857a#only-dark)](https://opensource.org/licenses/BSD-2-Clause)
+[![Downloads](https://img.shields.io/pypi/dm/crc?style=flat-square&labelColor=444c56&color=00857a#only-dark)](https://pypi.org/project/crc/)
+[![Supported Python Versions](https://img.shields.io/pypi/pyversions/crc?style=flat-square&labelColor=444c56&color=00857a#only-dark)](https://pypi.org/project/crc/)
+[![PyPi Package](https://img.shields.io/pypi/v/crc?style=flat-square&labelColor=444c56&color=00857a#only-dark)](https://pypi.org/project/crc/)
 
 
-## Requirements
-* [\>= :material-language-python: Python 3.8](https://www.python.org)
 
-## Installation
+## What it does
 
-```shell
-pip install crc
+```python
+from crc import Calculator, Crc8
+
+calculator = Calculator(Crc8.CCITT)
+
+calculator.checksum(b"123456789")      # (1)!
+calculator.verify(b"123456789", 0xF4)  # (2)!
 ```
 
-## Examples
+1. Returns the checksum as an `int`, here `0xF4`.
+2. Returns `True` if the data matches the expected checksum.
 
-### Create a Calculator
+## Why use it
 
-=== "Pre defined configuration"
+<div class="grid cards" markdown>
 
-    ```python
-    from crc import Calculator, Crc8
+-   :simple-python: **No dependencies**
 
-    calculator = Calculator(Crc8.CCITT)
-    ```
-=== "Custom configuration"
+    ---
 
-    ```python
-    from crc import Calculator, Configuration
+    Does not contribute to potentional dependency conflicts, easy to vendor if needed.
 
-    config = Configuration(
-        width=8,
-        polynomial=0x07,
-        init_value=0x00,
-        final_xor_value=0x00,
-        reverse_input=False,
-        reverse_output=False,
-    )
+    
+-   :material-book-open-variant: **Batteries included**
 
-    calculator = Calculator(config)
-    ```
+    ---
 
-### Calculate a checksum
+    More than 20 predefined configurations, plus support for custom configurations.
 
-=== "Standard"
+-   :material-devices: **Portable**
 
-    ```python
-    from crc import Calculator, Crc8
+    ---
 
-    expected = 0xBC
-    data = bytes([0, 1, 2, 3, 4, 5])
-    calculator = Calculator(Crc8.CCITT)
+    As pure Python library with no native dependencies it runs wherever a python runs.
 
-    assert expected == calculator.checksum(data)
-    ```
+-   :material-file-tree: **Flexible input**
 
-=== "Optimized for speed"
+    ---
 
-    ```python hl_lines="5"
-    from crc import Calculator, Crc8
+    Works with `bytes`, `int`, `files`, `streams`, `iterables` and anything
+    convertible to `bytes`.
 
-    expected = 0xBC
-    data = bytes([0, 1, 2, 3, 4, 5])
-    calculator = Calculator(Crc8.CCITT, optimized=True)
+</div>
 
-    assert expected == calculator.checksum(data)
-    ```
+## Where to go next
 
-### Verify a checksum
+<div class="grid cards" markdown>
 
-=== "Standard"
+-   :material-rocket-launch: **Getting started**
 
-    ```python
-    from crc import Calculator, Crc8
+    ---
 
-    expected = 0xBC
-    data = bytes([0, 1, 2, 3, 4, 5])
-    calculator = Calculator(Crc8.CCITT)
+    Install the library and calculate your first checksum.
 
-    assert calculator.verify(data, expected)
-    ```
+    [:octicons-arrow-right-24: Getting started](getting-started/installation.md)
 
-=== "Optimized for speed"
+-   :material-school: **Usage guide**
 
-    ```python hl_lines="5"
-    from crc import Calculator, Crc8
+    ---
 
-    expected = 0xBC
-    data = bytes([0, 1, 2, 3, 4, 5])
-    calculator = Calculator(Crc8.CCITT, optimized=True)
+    Task oriented guides for calculating, verifying and configuring CRCs.
 
-    assert calculator.verify(data, expected)
-    ```
+    [:octicons-arrow-right-24: Usage guide](usage/calculator.md)
 
-### Supported data types
+-   :material-table: **Configurations**
 
-=== "int"
+    ---
 
-    ```python
-    from crc import Calculator, Crc8
+    Browse every CRC configuration that ships with the library, including all
+    of their parameters.
 
-    expected = 0x20
-    data = 97
-    calculator = Calculator(Crc8.CCITT, optimized=True)
+    [:octicons-arrow-right-24: Configurations](configurations.md)
 
-    assert calculator.checksum(data) == expected
-    ```
+-   :material-api: **API reference**
 
-=== "bytes"
+    ---
 
-    ```python
-    from crc import Calculator, Crc8
+    Detailed documentation for the `Calculator`, `Configuration` and the
+    low level register types.
 
-    expected = 0xF4
-    data = b"123456789"
-    calculator = Calculator(Crc8.CCITT, optimized=True)
+    [:octicons-arrow-right-24: API reference](api/calculator.md)
 
-    assert calculator.checksum(data) == expected
-    ```
+-   :material-console: **Command line**
 
-=== "bytearray"
+    ---
 
-    ```python
-    from crc import Calculator, Crc8
+    Generate CRC lookup tables straight from your terminal with the bundled
+    `crc` command.
 
-    expected = 0xF4
-    data = bytearray(b"123456789")
-    calculator = Calculator(Crc8.CCITT, optimized=True)
+    [:octicons-arrow-right-24: CLI](cli.md)
 
-    assert calculator.checksum(data) == expected
-    ```
+-   :material-hammer-wrench: **Development**
 
-=== "File"
+    ---
 
-    ```python
-    from crc import Calculator, Crc8
+    Set up a development environment and learn how to contribute.
 
-    expected = 0xF4
-    calculator = Calculator(Crc8.CCITT, optimized=True)
+    [:octicons-arrow-right-24: Development](development/index.md)
 
-    with open("afile.txt", "rb") as f:
-        assert calculator.checksum(f) == expected
-    ```
+</div>
 
-=== "ByteIo"
+## Project links
 
-    ```python
-    import io
+<div class="grid cards" markdown>
 
-    from crc import Calculator, Crc8
+-   :simple-github: **Source code**
 
-    expected = 0xF4
-    data = io.ByteIo(b"123456789")
-    calculator = Calculator(Crc8.CCITT, optimized=True)
+    ---
 
-    assert calculator.checksum(data) == expected
-    ```
+    [github.com/Nicoretti/crc](https://github.com/Nicoretti/crc)
 
-=== "Iterable of bytes"
+-   :simple-pypi: **Package**
 
-    ```python
-    from crc import Calculator, Crc8
+    ---
 
-    expected = 0xF4
-    calculator = Calculator(Crc8.CCITT, optimized=True)
-    data = (data for data in [b"12", b"34", b"56", b"78", b"9"])
+    [pypi.org/project/crc](https://pypi.org/project/crc/)
 
-    assert calculator.checksum(data) == expected
-    ```
+-   :material-bug: **Issues**
 
-=== "Byte convertibles"
+    ---
 
-    ```python
-    from crc import Calculator, Crc8
+    [Report a bug or request a feature](https://github.com/Nicoretti/crc/issues)
 
+-   :material-scale-balance: **License**
 
-    class ByteConvertible:
-        def __init__(self, data):
-            self._data = data
+    ---
 
-        def __bytes__(self):
-            return self._data.encode("utf-8")
+    [BSD-2-Clause](https://opensource.org/licenses/BSD-2-Clause)
 
+</div>
 
-    expected = 0xF4
-    calculator = Calculator(Crc8.CCITT, optimized=True)
-    data = ByteConvertible("123456789")
+## References & resources
 
-    assert calculator.checksum(bytes(data)) == expected
-    ```
-
-### Calculate a checksum with raw registers
-
-=== "Register"
-
-    ```python
-    from crc import Crc8, Register
-
-    expected = 0xBC
-    data = bytes([0, 1, 2, 3, 4, 5])
-    register = Register(Crc8.CCITT)
-
-    register.init()
-    register.update(data)
-    assert expected == register.digest()
-    ```
-=== "TableBasedRegister"
-
-    ```python
-    from crc import Crc8, TableBasedRegister
-
-    expected = 0xBC
-    data = bytes([0, 1, 2, 3, 4, 5])
-    register = TableBasedRegister(Crc8.CCITT)
-
-    register.init()
-    register.update(data)
-    assert expected == register.digest()
-    ```
-
-References & Resources
------------------------
-* [A Painless guide to crc error detection algorithms](http://www.zlib.net/crc_v3.txt)
-* [CRC-Catalogue](http://reveng.sourceforge.net/crc-catalogue/all.htm)
+- [A painless guide to CRC error detection algorithms](http://www.zlib.net/crc_v3.txt)
+- [CRC catalogue](http://reveng.sourceforge.net/crc-catalogue/all.htm)

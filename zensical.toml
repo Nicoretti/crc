@@ -1,0 +1,146 @@
+[project]
+site_name = "CRC"
+site_url = "https://nicoretti.github.io/crc/"
+site_description = "Pure Python CRC library"
+repo_name = "nicoretti/crc"
+repo_url = "https://github.com/Nicoretti/crc"
+edit_uri = "edit/master/docs/docs/"
+copyright = "Copyright &copy; 2022 Nicola Coretti"
+
+docs_dir = "docs/docs"
+site_dir = ".html-documentation"
+
+nav = [
+  { "Home" = "index.md" },
+  { "Getting started" = [
+    "getting-started/index.md",
+    "getting-started/installation.md",
+    "getting-started/quick-start.md",
+  ] },
+  { "Usage" = [
+    "usage/index.md",
+    "usage/calculator.md",
+    "usage/configurations.md",
+    "usage/registers.md",
+  ] },
+  # The configurations page is generated, for details see
+  # docs/scripts/configurations.py and the `docs.generate` task
+  { "Configurations" = "configurations.md" },
+  { "API" = [
+    "api/index.md",
+    "api/calculator.md",
+    "api/configuration.md",
+    "api/abstract_register.md",
+    "api/basic_register.md",
+    "api/register.md",
+    "api/table_based_register.md",
+  ] },
+  { "CLI" = "cli.md" },
+  { "Development" = [
+    "development/index.md",
+    "development/setup.md",
+    "development/release.md",
+  ] },
+  { "Changelog" = [
+    "changelog/index.md",
+    "changelog/unreleased.md",
+    "changelog/changes_8.0.0.md",
+    "changelog/changes_7.1.0.md",
+    "changelog/changes_7.0.0.md",
+    "changelog/changes_6.1.2.md",
+    "changelog/changes_6.1.1.md",
+    "changelog/changes_6.1.0.md",
+    "changelog/changes_6.0.0.md",
+    "changelog/changes_5.0.0.md",
+    "changelog/changes_4.3.0.md",
+    "changelog/changes_4.2.0.md",
+    "changelog/changes_4.1.0.md",
+    "changelog/changes_4.0.0.md",
+    "changelog/changes_3.0.1.md",
+    "changelog/changes_3.0.0.md",
+    "changelog/changes_2.0.0.md",
+  ] },
+  { "Contributors" = "contributors.md" },
+]
+
+watch = ["src"]
+
+[project.theme]
+language = "en"
+# Do not load webfonts from Google Fonts (data privacy)
+font = false
+features = [
+  "content.code.annotate",
+  "content.code.copy",
+  "content.tabs.link",
+  "content.tooltips",
+  "navigation.footer",
+  "navigation.indexes",
+  "navigation.instant",
+  "navigation.top",
+  "navigation.tracking",
+  "search.highlight",
+  "search.suggest",
+  "toc.follow",
+]
+
+[project.theme.icon]
+repo = "fontawesome/brands/github"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme)"
+primary = "purple"
+accent = "teal"
+toggle.icon = "material/brightness-auto"
+toggle.name = "Switch to light mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+primary = "purple"
+accent = "teal"
+toggle.icon = "material/toggle-switch"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+primary = "purple"
+accent = "teal"
+toggle.icon = "material/toggle-switch-off-outline"
+toggle.name = "Switch to system preference"
+
+[project.markdown_extensions]
+admonition = {}
+attr_list = {}
+def_list = {}
+footnotes = {}
+md_in_html = {}
+tables = {}
+toc.permalink = true
+toc.title = "On this page"
+pymdownx.betterem = {}
+pymdownx.critic = {}
+pymdownx.details = {}
+pymdownx.keys = {}
+pymdownx.mark = {}
+pymdownx.smartsymbols = {}
+pymdownx.tasklist.custom_checkbox = true
+pymdownx.emoji.emoji_generator = "zensical.extensions.emoji.to_svg"
+pymdownx.emoji.emoji_index = "zensical.extensions.emoji.twemoji"
+pymdownx.highlight.anchor_linenums = true
+pymdownx.highlight.line_spans = "__span"
+pymdownx.highlight.pygments_lang_class = true
+pymdownx.inlinehilite = {}
+pymdownx.superfences = {}
+pymdownx.tabbed.alternate_style = true
+
+[project.plugins.search]
+enabled = true
+
+[project.plugins.mkdocstrings.handlers.python]
+inventories = ["https://docs.python.org/3/objects.inv"]
+paths = ["src"]
+options.docstring_style = "google"
+options.inherited_members = true
+options.show_source = false

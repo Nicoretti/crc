@@ -1,9 +1,13 @@
+---
+icon: material/tag-outline
+---
+
 # 6.1.1 - 2024-02-10 
 
-🚀 This release is powered by **Ramya-Ab**, thank you for your contribution!
+:material-rocket-launch: This release is powered by **Ramya-Ab**, thank you for your contribution!
 
-## 📚 Documentation
+## :material-book-open-variant: Documentation
 * Fix typos in README
 
-## 🔩  Internal
+## :material-cog: Internal
 * Re-lock dependencies

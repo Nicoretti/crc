@@ -28,6 +28,11 @@ jobs:
     needs: [ check-tag-version-job ]
     uses: ./.github/workflows/checks.yml
 
+  publish-docs-job:
+    name: Publish Documentation
+    needs: [ ci-job ]
+    uses: ./.github/workflows/gh-pages.yml
+
   cd-job:
     name: Continues Delivery
     needs: [ ci-job ]

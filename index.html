@@ -6,28 +6,38 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="Pure Python CRC library">
+      
       
       
         <link rel="canonical" href="https://nicoretti.github.io/crc/">
       
       
       
-        <link rel="next" href="configurations/">
+        <link rel="next" href="./getting-started/">
       
-      
-      <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
-    
-    
-      
-        <title>CRC</title>
-      
-    
-    
-      <link rel="stylesheet" href="assets/stylesheets/main.0253249f.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+      
+      
+      <link rel="icon" href="./assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.57">
+    
+    
+      
+        <title>CRC - CRC</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="./assets/stylesheets/modern/main.5da3a30f.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="./assets/stylesheets/modern/palette.812a03bb.min.css">
       
       
 
@@ -40,13 +50,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/_mkdocstrings.css">
-    
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL(".",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
     
       
 
-    
     
     
   </head>
@@ -59,16 +66,16 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="lime" data-md-color-accent="amber">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="purple" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer"></label>
+    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
     <div data-md-component="skip">
       
         
-        <a href="#available-crc-configurations" class="md-skip">
+        <a href="#crc" class="md-skip">
           Skip to content
         </a>
       
@@ -84,15 +91,15 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="CRC" class="md-header__button md-logo" aria-label="CRC" data-md-component="logo">
+    <a href="" title="CRC" class="md-header__button md-logo" aria-label="CRC" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
 
     </a>
-    <label class="md-header__button md-icon" for="__drawer">
+    <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -104,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              CRC
             
           </span>
         </div>
@@ -117,9 +124,19 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="lime" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="purple" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="purple" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
       </label>
     
@@ -127,9 +144,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="lime" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="purple" data-md-color-accent="teal"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
     
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
       </label>
     
@@ -142,58 +159,32 @@
     
     
     
-      <label class="md-header__button md-icon" for="__search">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-      </label>
-      <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
-      <label class="md-search__icon md-icon" for="__search">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-      </label>
-      <nav class="md-search__options" aria-label="Search">
-        
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+      
+      
+        <label class="md-header__button md-icon" for="__search" aria-label="Search">
           
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-        </button>
-      </nav>
-      
-        <div class="md-search__suggest" data-md-component="search-suggest"></div>
-      
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list" role="presentation"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
 </div>
+      
     
-    
-      <div class="md-header__source">
+    <div class="md-header__source">
+      
         <a href="https://github.com/Nicoretti/crc" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M216.5 362.5c-66-8-112.5-55.5-112.5-117 0-25 9-52 24-70-6.5-16.5-5.5-51.5 2-66 20-2.5 47 8 63 22.5 19-6 39-9 63.5-9s44.5 3 62.5 8.5c15.5-14 43-24.5 63-22 7 13.5 8 48.5 1.5 65.5 16 19 24.5 44.5 24.5 70.5 0 61.5-46.5 108-113.5 116.5 17 11 28.5 35 28.5 62.5v52c0 15 12.5 23.5 27.5 17.5C441 459.5 512 369 512 257 512 115.5 397 0 255.5 0S0 115.5 0 257c0 111 70.5 203 165.5 237.5 13.5 5 26.5-4 26.5-17.5v-40c-7 3-16 5-24 5-33 0-52.5-18-66.5-51.5-5.5-13.5-11.5-21.5-23-23-6-.5-8-3-8-6 0-6 10-10.5 20-10.5 14.5 0 27 9 40 27.5 10 14.5 20.5 21 33 21s20.5-4.5 32-16c8.5-8.5 15-16 21-21"/></svg>
   </div>
   <div class="md-source__repository">
     nicoretti/crc
   </div>
 </a>
-      </div>
-    
+      
+    </div>
   </nav>
   
 </header>
@@ -219,10 +210,10 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="CRC" class="md-nav__button md-logo" aria-label="CRC" data-md-component="logo">
+    <a href="" title="CRC" class="md-nav__button md-logo" aria-label="CRC" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
 
     </a>
     CRC
@@ -232,7 +223,7 @@
       <a href="https://github.com/Nicoretti/crc" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M216.5 362.5c-66-8-112.5-55.5-112.5-117 0-25 9-52 24-70-6.5-16.5-5.5-51.5 2-66 20-2.5 47 8 63 22.5 19-6 39-9 63.5-9s44.5 3 62.5 8.5c15.5-14 43-24.5 63-22 7 13.5 8 48.5 1.5 65.5 16 19 24.5 44.5 24.5 70.5 0 61.5-46.5 108-113.5 116.5 17 11 28.5 35 28.5 62.5v52c0 15 12.5 23.5 27.5 17.5C441 459.5 512 369 512 257 512 115.5 397 0 255.5 0S0 115.5 0 257c0 111 70.5 203 165.5 237.5 13.5 5 26.5-4 26.5-17.5v-40c-7 3-16 5-24 5-33 0-52.5-18-66.5-51.5-5.5-13.5-11.5-21.5-23-23-6-.5-8-3-8-6 0-6 10-10.5 20-10.5 14.5 0 27 9 40 27.5 10 14.5 20.5 21 33 21s20.5-4.5 32-16c8.5-8.5 15-16 21-21"/></svg>
   </div>
   <div class="md-source__repository">
     nicoretti/crc
@@ -252,144 +243,117 @@
   
     <li class="md-nav__item md-nav__item--active">
       
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
+      
+      
+        
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
   
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+  
   <span class="md-ellipsis">
-    Home
+    
+  
+  Home
+
+    
   </span>
+  
   
 
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="." class="md-nav__link md-nav__link--active">
+      <a href="" class="md-nav__link md-nav__link--active">
         
   
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+  
   <span class="md-ellipsis">
-    Home
+    
+  
+  Home
+
+    
   </span>
+  
   
 
       </a>
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
   
   
+  
+    
   
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      On this page
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#available-crc-configurations" class="md-nav__link">
+  <a href="#what-it-does" class="md-nav__link">
     <span class="md-ellipsis">
-      Available CRC Configurations
+      <span class="md-typeset">
+        What it does
+      </span>
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#custom-configurations" class="md-nav__link">
+  <a href="#why-use-it" class="md-nav__link">
     <span class="md-ellipsis">
-      Custom Configurations
+      <span class="md-typeset">
+        Why use it
+      </span>
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#requirements" class="md-nav__link">
+  <a href="#where-to-go-next" class="md-nav__link">
     <span class="md-ellipsis">
-      Requirements
+      <span class="md-typeset">
+        Where to go next
+      </span>
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
+  <a href="#project-links" class="md-nav__link">
     <span class="md-ellipsis">
-      Installation
+      <span class="md-typeset">
+        Project links
+      </span>
     </span>
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      Examples
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Examples">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#create-a-calculator" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create a Calculator
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#calculate-a-checksum" class="md-nav__link">
-    <span class="md-ellipsis">
-      Calculate a checksum
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#verify-a-checksum" class="md-nav__link">
-    <span class="md-ellipsis">
-      Verify a checksum
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#supported-data-types" class="md-nav__link">
-    <span class="md-ellipsis">
-      Supported data types
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#calculate-a-checksum-with-raw-registers" class="md-nav__link">
-    <span class="md-ellipsis">
-      Calculate a checksum with raw registers
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#references-resources" class="md-nav__link">
     <span class="md-ellipsis">
-      References &amp; Resources
+      <span class="md-typeset">
+        References &amp; resources
+      </span>
     </span>
   </a>
   
@@ -409,16 +373,127 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="configurations/" class="md-nav__link">
+    
+    
+      
         
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="./getting-started/" class="md-nav__link ">
+              
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m13.13 22.19-1.63-3.83c1.57-.58 3.04-1.36 4.4-2.27zM5.64 12.5l-3.83-1.63 6.1-2.77C7 9.46 6.22 10.93 5.64 12.5M19.22 4c.28 0 .53 0 .74.05.17 1.39-.02 4.25-3.3 7.53-1.7 1.71-3.73 3.02-6.01 3.89l-2.15-2.1c.92-2.31 2.23-4.34 3.92-6.03C15.18 4.58 17.64 4 19.22 4m0-2c-1.98 0-4.98.69-8.22 3.93-2.19 2.19-3.5 4.6-4.35 6.71-.28.75-.09 1.57.46 2.13l2.13 2.12c.38.38.89.61 1.42.61.23 0 .47-.06.7-.15A19.1 19.1 0 0 0 18.07 13c5.66-5.66 3.54-10.61 3.54-10.61S20.7 2 19.22 2m-4.68 7.46c-.78-.78-.78-2.05 0-2.83s2.05-.78 2.83 0c.77.78.78 2.05 0 2.83s-2.05.78-2.83 0m-5.66 7.07-1.41-1.41zM6.24 22l3.64-3.64c-.34-.09-.67-.24-.97-.45L4.83 22zM2 22h1.41l4.77-4.76-1.42-1.41L2 20.59zm0-2.83 4.09-4.08c-.21-.3-.36-.62-.45-.97L2 17.76z"/></svg>
   
   <span class="md-ellipsis">
-    Configurations
+    
+  
+  Getting started
+
+    
   </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Getting started
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./getting-started/installation/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+  Installation
+
+    
+  </span>
+  
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./getting-started/quick-start/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m13.13 22.19-1.63-3.83c1.57-.58 3.04-1.36 4.4-2.27zM5.64 12.5l-3.83-1.63 6.1-2.77C7 9.46 6.22 10.93 5.64 12.5M19.22 4c.28 0 .53 0 .74.05.17 1.39-.02 4.25-3.3 7.53-1.7 1.71-3.73 3.02-6.01 3.89l-2.15-2.1c.92-2.31 2.23-4.34 3.92-6.03C15.18 4.58 17.64 4 19.22 4m0-2c-1.98 0-4.98.69-8.22 3.93-2.19 2.19-3.5 4.6-4.35 6.71-.28.75-.09 1.57.46 2.13l2.13 2.12c.38.38.89.61 1.42.61.23 0 .47-.06.7-.15A19.1 19.1 0 0 0 18.07 13c5.66-5.66 3.54-10.61 3.54-10.61S20.7 2 19.22 2m-4.68 7.46c-.78-.78-.78-2.05 0-2.83s2.05-.78 2.83 0c.77.78.78 2.05 0 2.83s-2.05.78-2.83 0m-5.66 7.07-1.41-1.41zM6.24 22l3.64-3.64c-.34-.09-.67-.24-.97-.45L4.83 22zM2 22h1.41l4.77-4.76-1.42-1.41L2 20.59zm0-2.83 4.09-4.08c-.21-.3-.36-.62-.45-.97L2 17.76z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+  Quick start
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -429,6 +504,19 @@
   
   
   
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -440,37 +528,65 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="./usage/" class="md-nav__link ">
+              
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 21.5c-1.35-.85-3.8-1.5-5.5-1.5-1.65 0-3.35.3-4.75 1.05-.1.05-.15.05-.25.05-.25 0-.5-.25-.5-.5V6c.6-.45 1.25-.75 2-1 1.11-.35 2.33-.5 3.5-.5 1.95 0 4.05.4 5.5 1.5 1.45-1.1 3.55-1.5 5.5-1.5 1.17 0 2.39.15 3.5.5.75.25 1.4.55 2 1v14.6c0 .25-.25.5-.5.5-.1 0-.15 0-.25-.05-1.4-.75-3.1-1.05-4.75-1.05-1.7 0-4.15.65-5.5 1.5M12 8v11.5c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5V7c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5m1 3.5c1.11-.68 2.6-1 4.5-1 .91 0 1.76.09 2.5.28V9.23c-.87-.15-1.71-.23-2.5-.23q-2.655 0-4.5.84zm4.5.17c-1.71 0-3.21.26-4.5.79v1.69c1.11-.65 2.6-.99 4.5-.99 1.04 0 1.88.08 2.5.24v-1.5c-.87-.16-1.71-.23-2.5-.23m2.5 2.9c-.87-.16-1.71-.24-2.5-.24-1.83 0-3.33.27-4.5.8v1.69c1.11-.66 2.6-.99 4.5-.99 1.04 0 1.88.08 2.5.24z"/></svg>
   
   <span class="md-ellipsis">
-    API
+    
+  
+  Usage
+
+    
   </span>
   
+  
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
-            API
+            
+  
+  Usage
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
               
+            
+              
                 
   
   
   
   
     <li class="md-nav__item">
-      <a href="api/calculator/" class="md-nav__link">
+      <a href="./usage/calculator/" class="md-nav__link">
         
   
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-6 4.1L14.1 6l1.4 1.4L16.9 6 18 7.1l-1.4 1.4L18 9.9 16.9 11l-1.4-1.4-1.4 1.4L13 9.9l1.4-1.4zm-6.8.6h5v1.5h-5zm5.3 8.3h-2v2H8v-2H6v-1.5h2v-2h1.5v2h2zm6.5 1.2h-5v-1.5h5zm0-2.4h-5v-1.5h5z"/></svg>
+  
   <span class="md-ellipsis">
-    Calculator
+    
+  
+  Calculating checksums
+
+    
   </span>
+  
   
 
       </a>
@@ -486,12 +602,20 @@
   
   
     <li class="md-nav__item">
-      <a href="api/configuration/" class="md-nav__link">
+      <a href="./usage/configurations/" class="md-nav__link">
         
   
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 13c-1.86 0-3.41 1.28-3.86 3H2v2h2.14c.45 1.72 2 3 3.86 3s3.41-1.28 3.86-3H22v-2H11.86c-.45-1.72-2-3-3.86-3m0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2M19.86 6c-.45-1.72-2-3-3.86-3s-3.41 1.28-3.86 3H2v2h10.14c.45 1.72 2 3 3.86 3s3.41-1.28 3.86-3H22V6zM16 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2"/></svg>
+  
   <span class="md-ellipsis">
-    Configuration
+    
+  
+  Configurations
+
+    
   </span>
+  
   
 
       </a>
@@ -507,159 +631,20 @@
   
   
     <li class="md-nav__item">
-      <a href="api/crc8/" class="md-nav__link">
+      <a href="./usage/registers/" class="md-nav__link">
         
   
-  <span class="md-ellipsis">
-    Crc8
-  </span>
   
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="api/crc16/" class="md-nav__link">
-        
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 17H7V7h10m4 4V9h-2V7a2 2 0 0 0-2-2h-2V3h-2v2h-2V3H9v2H7c-1.11 0-2 .89-2 2v2H3v2h2v2H3v2h2v2a2 2 0 0 0 2 2h2v2h2v-2h2v2h2v-2h2a2 2 0 0 0 2-2v-2h2v-2h-2v-2m-6 2h-2v-2h2m2-2H9v6h6z"/></svg>
   
   <span class="md-ellipsis">
-    Crc16
+    
+  
+  Raw registers
+
+    
   </span>
   
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="api/crc32/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Crc32
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="api/crc64/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Crc64
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="api/abstract_register/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    AbstractRegister
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="api/basic_register/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    BasicRegister
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="api/register/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Register
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="api/table_based_register/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    TableBasedRegister
-  </span>
   
 
       </a>
@@ -682,12 +667,18 @@
   
   
     <li class="md-nav__item">
-      <a href="cli/" class="md-nav__link">
+      <a href="./configurations.md" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
-    CLI Tools
+    
+  
+  Configurations
+
+    
   </span>
+  
   
 
       </a>
@@ -701,6 +692,25 @@
   
   
   
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -712,23 +722,43 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="./api/" class="md-nav__link ">
+              
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 7H5a2 2 0 0 0-2 2v8h2v-4h2v4h2V9a2 2 0 0 0-2-2m0 4H5V9h2m7-2h-4v10h2v-4h2a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2m0 4h-2V9h2m6 0v6h1v2h-4v-2h1V9h-1V7h4v2Z"/></svg>
   
   <span class="md-ellipsis">
-    Development
+    
+  
+  API
+
+    
   </span>
   
+  
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
-            Development
+            
+  
+  API
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
             
               
                 
@@ -737,12 +767,20 @@
   
   
     <li class="md-nav__item">
-      <a href="development/setup/" class="md-nav__link">
+      <a href="./api/calculator/" class="md-nav__link">
         
   
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-6 4.1L14.1 6l1.4 1.4L16.9 6 18 7.1l-1.4 1.4L18 9.9 16.9 11l-1.4-1.4-1.4 1.4L13 9.9l1.4-1.4zm-6.8.6h5v1.5h-5zm5.3 8.3h-2v2H8v-2H6v-1.5h2v-2h1.5v2h2zm6.5 1.2h-5v-1.5h5zm0-2.4h-5v-1.5h5z"/></svg>
+  
   <span class="md-ellipsis">
-    Setup
+    
+  
+  Calculator
+
+    
   </span>
+  
   
 
       </a>
@@ -758,12 +796,136 @@
   
   
     <li class="md-nav__item">
-      <a href="development/release/" class="md-nav__link">
+      <a href="./api/configuration/" class="md-nav__link">
         
   
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 13c-1.86 0-3.41 1.28-3.86 3H2v2h2.14c.45 1.72 2 3 3.86 3s3.41-1.28 3.86-3H22v-2H11.86c-.45-1.72-2-3-3.86-3m0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2M19.86 6c-.45-1.72-2-3-3.86-3s-3.41 1.28-3.86 3H2v2h10.14c.45 1.72 2 3 3.86 3s3.41-1.28 3.86-3H22V6zM16 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2"/></svg>
+  
   <span class="md-ellipsis">
-    Release
+    
+  
+  Configuration
+
+    
   </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./api/abstract_register/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 2h6v2h8V2h6v6h-2v8h2v6h-6v-2H8v2H2v-6h2V8H2zm14 6V6H8v2H6v8h2v2h8v-2h2V8zM4 4v2h2V4zm14 0v2h2V4zM4 18v2h2v-2zm14 0v2h2v-2z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+  AbstractRegister
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./api/basic_register/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 17H7V7h10m4 4V9h-2V7a2 2 0 0 0-2-2h-2V3h-2v2h-2V3H9v2H7c-1.11 0-2 .89-2 2v2H3v2h2v2H3v2h2v2a2 2 0 0 0 2 2h2v2h2v-2h2v2h2v-2h2a2 2 0 0 0 2-2v-2h2v-2h-2v-2m-6 2h-2v-2h2m2-2H9v6h6z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+  BasicRegister
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./api/register/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 17H7V7h10m4 4V9h-2V7a2 2 0 0 0-2-2h-2V3h-2v2h-2V3H9v2H7c-1.11 0-2 .89-2 2v2H3v2h2v2H3v2h2v2a2 2 0 0 0 2 2h2v2h2v-2h2v2h2v-2h2a2 2 0 0 0 2-2v-2h2v-2h-2v-2m-6 2h-2v-2h2m2-2H9v6h6z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+  Register
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./api/table_based_register/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 3h16a2 2 0 0 1 2 2v15a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2m0 4v3h4V7zm6 0v3h4V7zm10 3V7h-4v3zM4 12v3h4v-3zm0 8h4v-3H4zm6-8v3h4v-3zm0 8h4v-3h-4zm10 0v-3h-4v3zm0-8h-4v3h4z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+  TableBasedRegister
+
+    
+  </span>
+  
   
 
       </a>
@@ -785,6 +947,45 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="./cli/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 19V7H4v12zm0-16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-7 14v-2h5v2zm-3.42-4L5.57 9H8.4l3.3 3.3c.39.39.39 1.03 0 1.42L8.42 17H5.59z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+  CLI
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
     
     
     
@@ -793,40 +994,68 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="./development/" class="md-nav__link ">
+              
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m13.78 15.3 6 6 2.11-2.16-6-6zm3.72-5.2c-.39 0-.81-.05-1.14-.19L4.97 21.25l-2.11-2.11 7.41-7.4L8.5 9.96l-.72.7-1.45-1.41v2.86l-.7.7-3.52-3.56.7-.7h2.81l-1.4-1.41 3.56-3.56a2.976 2.976 0 0 1 4.22 0L9.89 5.74l1.41 1.4-.71.71 1.79 1.78 1.82-1.88c-.14-.33-.2-.75-.2-1.12a3.49 3.49 0 0 1 3.5-3.52c.59 0 1.11.14 1.58.42L16.41 6.2l1.5 1.5 2.67-2.67c.28.47.42.97.42 1.6 0 1.92-1.55 3.47-3.5 3.47"/></svg>
   
   <span class="md-ellipsis">
-    Changelog
+    
+  
+  Development
+
+    
   </span>
   
+  
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
-            Changelog
+            
+  
+  Development
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
               
+            
+              
                 
   
   
   
   
     <li class="md-nav__item">
-      <a href="changelog/unreleased/" class="md-nav__link">
+      <a href="./development/setup/" class="md-nav__link">
         
   
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m13.78 15.3 6 6 2.11-2.16-6-6zm3.72-5.2c-.39 0-.81-.05-1.14-.19L4.97 21.25l-2.11-2.11 7.41-7.4L8.5 9.96l-.72.7-1.45-1.41v2.86l-.7.7-3.52-3.56.7-.7h2.81l-1.4-1.41 3.56-3.56a2.976 2.976 0 0 1 4.22 0L9.89 5.74l1.41 1.4-.71.71 1.79 1.78 1.82-1.88c-.14-.33-.2-.75-.2-1.12a3.49 3.49 0 0 1 3.5-3.52c.59 0 1.11.14 1.58.42L16.41 6.2l1.5 1.5 2.67-2.67c.28.47.42.97.42 1.6 0 1.92-1.55 3.47-3.5 3.47"/></svg>
+  
   <span class="md-ellipsis">
-    Unreleased
+    
+  
+  Setup
+
+    
   </span>
+  
   
 
       </a>
@@ -842,12 +1071,150 @@
   
   
     <li class="md-nav__item">
-      <a href="changelog/changes_7.1.0/" class="md-nav__link">
+      <a href="./development/release/" class="md-nav__link">
         
   
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"/></svg>
+  
   <span class="md-ellipsis">
-    7.1.0 - 2024-11-05
+    
+  
+  Release
+
+    
   </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="./changelog/" class="md-nav__link ">
+              
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.5 8H12v5l4.28 2.54.72-1.21-3.5-2.08zM13 3a9 9 0 0 0-9 9H1l3.96 4.03L9 12H6a7 7 0 0 1 7-7 7 7 0 0 1 7 7 7 7 0 0 1-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.9 8.9 0 0 0 13 21a9 9 0 0 0 9-9 9 9 0 0 0-9-9"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+  Changelog
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Changelog
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./changelog/unreleased/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.84 10.2-1.01 1.01-2.07-2.03 1.01-1.02c.2-.21.54-.22.78 0l1.29 1.25c.21.21.22.55 0 .79M8 13.91l4.17-4.19 2.07 2.08-4.16 4.2H8zM13 2v2c4.39.54 7.5 4.53 6.96 8.92A8.014 8.014 0 0 1 13 19.88v2c5.5-.6 9.45-5.54 8.85-11.03C21.33 6.19 17.66 2.5 13 2m-2 0c-1.96.18-3.81.95-5.33 2.2L7.1 5.74c1.12-.9 2.47-1.48 3.9-1.68v-2M4.26 5.67A9.8 9.8 0 0 0 2.05 11h2c.19-1.42.75-2.77 1.64-3.9zM2.06 13c.2 1.96.97 3.81 2.21 5.33l1.42-1.43A8 8 0 0 1 4.06 13zm5 5.37-1.39 1.37A10 10 0 0 0 11 22v-2a8 8 0 0 1-3.9-1.63z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+  Unreleased
+
+    
+  </span>
+  
   
 
       </a>
@@ -863,12 +1230,20 @@
   
   
     <li class="md-nav__item">
-      <a href="changelog/changes_7.0.0/" class="md-nav__link">
+      <a href="./changelog/changes_8.0.0/" class="md-nav__link">
         
   
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"/></svg>
+  
   <span class="md-ellipsis">
-    7.0.0 - 2024-04-19
+    
+  
+  8.0.0 - 2026-08-29
+
+    
   </span>
+  
   
 
       </a>
@@ -884,12 +1259,20 @@
   
   
     <li class="md-nav__item">
-      <a href="changelog/changes_6.1.2/" class="md-nav__link">
+      <a href="./changelog/changes_7.1.0/" class="md-nav__link">
         
   
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"/></svg>
+  
   <span class="md-ellipsis">
-    6.1.2 - 2024-04-14
+    
+  
+  7.1.0 - 2024-11-05
+
+    
   </span>
+  
   
 
       </a>
@@ -905,12 +1288,20 @@
   
   
     <li class="md-nav__item">
-      <a href="changelog/changes_6.1.1/" class="md-nav__link">
+      <a href="./changelog/changes_7.0.0/" class="md-nav__link">
         
   
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"/></svg>
+  
   <span class="md-ellipsis">
-    6.1.1 - 2024-02-10
+    
+  
+  7.0.0 - 2024-04-19
+
+    
   </span>
+  
   
 
       </a>
@@ -926,12 +1317,20 @@
   
   
     <li class="md-nav__item">
-      <a href="changelog/changes_6.1.0/" class="md-nav__link">
+      <a href="./changelog/changes_6.1.2/" class="md-nav__link">
         
   
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"/></svg>
+  
   <span class="md-ellipsis">
-    6.1.0 - 2023-12-30
+    
+  
+  6.1.2 - 2024-04-14
+
+    
   </span>
+  
   
 
       </a>
@@ -947,12 +1346,20 @@
   
   
     <li class="md-nav__item">
-      <a href="changelog/changes_6.0.0/" class="md-nav__link">
+      <a href="./changelog/changes_6.1.1/" class="md-nav__link">
         
   
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"/></svg>
+  
   <span class="md-ellipsis">
-    6.0.0 - 2023-12-02
+    
+  
+  6.1.1 - 2024-02-10
+
+    
   </span>
+  
   
 
       </a>
@@ -968,12 +1375,20 @@
   
   
     <li class="md-nav__item">
-      <a href="changelog/changes_5.0.0/" class="md-nav__link">
+      <a href="./changelog/changes_6.1.0/" class="md-nav__link">
         
   
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"/></svg>
+  
   <span class="md-ellipsis">
-    5.0.0 - 2023-10-08
+    
+  
+  6.1.0 - 2023-12-30
+
+    
   </span>
+  
   
 
       </a>
@@ -989,12 +1404,20 @@
   
   
     <li class="md-nav__item">
-      <a href="changelog/changes_4.3.0/" class="md-nav__link">
+      <a href="./changelog/changes_6.0.0/" class="md-nav__link">
         
   
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"/></svg>
+  
   <span class="md-ellipsis">
-    4.3.0 - 2023-06-25
+    
+  
+  6.0.0 - 2023-12-02
+
+    
   </span>
+  
   
 
       </a>
@@ -1010,12 +1433,20 @@
   
   
     <li class="md-nav__item">
-      <a href="changelog/changes_4.2.0/" class="md-nav__link">
+      <a href="./changelog/changes_5.0.0/" class="md-nav__link">
         
   
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"/></svg>
+  
   <span class="md-ellipsis">
-    4.2.0 - 2023-04-16
+    
+  
+  5.0.0 - 2023-10-08
+
+    
   </span>
+  
   
 
       </a>
@@ -1031,12 +1462,20 @@
   
   
     <li class="md-nav__item">
-      <a href="changelog/changes_4.1.0/" class="md-nav__link">
+      <a href="./changelog/changes_4.3.0/" class="md-nav__link">
         
   
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"/></svg>
+  
   <span class="md-ellipsis">
-    4.1.0 - 2022-12-18
+    
+  
+  4.3.0 - 2023-06-25
+
+    
   </span>
+  
   
 
       </a>
@@ -1052,12 +1491,20 @@
   
   
     <li class="md-nav__item">
-      <a href="changelog/changes_4.0.0/" class="md-nav__link">
+      <a href="./changelog/changes_4.2.0/" class="md-nav__link">
         
   
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"/></svg>
+  
   <span class="md-ellipsis">
-    4.0.0 - 2022-12-18
+    
+  
+  4.2.0 - 2023-04-16
+
+    
   </span>
+  
   
 
       </a>
@@ -1073,12 +1520,20 @@
   
   
     <li class="md-nav__item">
-      <a href="changelog/changes_3.0.1/" class="md-nav__link">
+      <a href="./changelog/changes_4.1.0/" class="md-nav__link">
         
   
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"/></svg>
+  
   <span class="md-ellipsis">
-    3.0.1 - 2022-12-18
+    
+  
+  4.1.0 - 2022-12-18
+
+    
   </span>
+  
   
 
       </a>
@@ -1094,12 +1549,20 @@
   
   
     <li class="md-nav__item">
-      <a href="changelog/changes_3.0.0/" class="md-nav__link">
+      <a href="./changelog/changes_4.0.0/" class="md-nav__link">
         
   
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"/></svg>
+  
   <span class="md-ellipsis">
-    3.0.0 - 2022-12-04
+    
+  
+  4.0.0 - 2022-12-18
+
+    
   </span>
+  
   
 
       </a>
@@ -1115,12 +1578,78 @@
   
   
     <li class="md-nav__item">
-      <a href="changelog/changes_2.0.0/" class="md-nav__link">
+      <a href="./changelog/changes_3.0.1/" class="md-nav__link">
         
   
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"/></svg>
+  
   <span class="md-ellipsis">
-    2.0.0 - 2022-11-27
+    
+  
+  3.0.1 - 2022-12-18
+
+    
   </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./changelog/changes_3.0.0/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+  3.0.0 - 2022-12-04
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./changelog/changes_2.0.0/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+  2.0.0 - 2022-11-27
+
+    
+  </span>
+  
   
 
       </a>
@@ -1143,12 +1672,20 @@
   
   
     <li class="md-nav__item">
-      <a href="contributors/" class="md-nav__link">
+      <a href="./contributors/" class="md-nav__link">
         
   
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 5.5A3.5 3.5 0 0 1 15.5 9a3.5 3.5 0 0 1-3.5 3.5A3.5 3.5 0 0 1 8.5 9 3.5 3.5 0 0 1 12 5.5M5 8c.56 0 1.08.15 1.53.42-.15 1.43.27 2.85 1.13 3.96C7.16 13.34 6.16 14 5 14a3 3 0 0 1-3-3 3 3 0 0 1 3-3m14 0a3 3 0 0 1 3 3 3 3 0 0 1-3 3c-1.16 0-2.16-.66-2.66-1.62a5.54 5.54 0 0 0 1.13-3.96c.45-.27.97-.42 1.53-.42M5.5 18.25c0-2.07 2.91-3.75 6.5-3.75s6.5 1.68 6.5 3.75V20h-13zM0 20v-1.5c0-1.39 1.89-2.56 4.45-2.9-.59.68-.95 1.62-.95 2.65V20zm24 0h-3.5v-1.75c0-1.03-.36-1.97-.95-2.65 2.56.34 4.45 1.51 4.45 2.9z"/></svg>
+  
   <span class="md-ellipsis">
-    Contributors
+    
+  
+  Contributors
+
+    
   </span>
+  
   
 
       </a>
@@ -1166,120 +1703,88 @@
               
               <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
   
   
+  
+    
   
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      On this page
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#available-crc-configurations" class="md-nav__link">
+  <a href="#what-it-does" class="md-nav__link">
     <span class="md-ellipsis">
-      Available CRC Configurations
+      <span class="md-typeset">
+        What it does
+      </span>
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#custom-configurations" class="md-nav__link">
+  <a href="#why-use-it" class="md-nav__link">
     <span class="md-ellipsis">
-      Custom Configurations
+      <span class="md-typeset">
+        Why use it
+      </span>
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#requirements" class="md-nav__link">
+  <a href="#where-to-go-next" class="md-nav__link">
     <span class="md-ellipsis">
-      Requirements
+      <span class="md-typeset">
+        Where to go next
+      </span>
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
+  <a href="#project-links" class="md-nav__link">
     <span class="md-ellipsis">
-      Installation
+      <span class="md-typeset">
+        Project links
+      </span>
     </span>
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      Examples
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Examples">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#create-a-calculator" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create a Calculator
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#calculate-a-checksum" class="md-nav__link">
-    <span class="md-ellipsis">
-      Calculate a checksum
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#verify-a-checksum" class="md-nav__link">
-    <span class="md-ellipsis">
-      Verify a checksum
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#supported-data-types" class="md-nav__link">
-    <span class="md-ellipsis">
-      Supported data types
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#calculate-a-checksum-with-raw-registers" class="md-nav__link">
-    <span class="md-ellipsis">
-      Calculate a checksum with raw registers
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#references-resources" class="md-nav__link">
     <span class="md-ellipsis">
-      References &amp; Resources
+      <span class="md-typeset">
+        References &amp; resources
+      </span>
     </span>
   </a>
   
@@ -1295,269 +1800,139 @@
           
           
             <div class="md-content" data-md-component="content">
+              
               <article class="md-content__inner md-typeset">
                 
                   
-
   
   
 
 
-<h1 align="center">CRC</h1>
-<p align="center">
-
-Calculate CRC checksums, verify CRC checksum, predefined CRC configurations, custom CRC configurations
-</p>
-
-<p align="center">
-
-<a href="https://github.com/Nicoretti/crc/actions">
-    <img src="https://img.shields.io/github/checks-status/nicoretti/crc/master" alt="Checks Master">
-</a>
-<a href="https://coveralls.io/github/Nicoretti/crc">
-    <img src="https://img.shields.io/coverallsCoverage/github/Nicoretti/crc" alt="Coverage">
-</a>
-<a href="https://opensource.org/licenses/BSD-2-Clause">
-    <img src="https://img.shields.io/pypi/l/crc" alt="License">
-</a>
-<a href="https://pypi.org/project/crc/">
-    <img src="https://img.shields.io/pypi/dm/crc" alt="Downloads">
-</a>
-<a href="https://pypi.org/project/crc/">
-    <img src="https://img.shields.io/pypi/pyversions/crc" alt="Supported Python Versions">
-</a>
-<a href="https://pypi.org/project/crc/">
-    <img src="https://img.shields.io/pypi/v/crc" alt="PyPi Package">
-</a>
-</p>
-
+<h1 id="crc">CRC<a class="headerlink" href="#crc" title="Permanent link">&para;</a></h1>
+<p>A pure Python library to calculate and verify CRC checksums.</p>
+<p><a href="https://github.com/Nicoretti/crc/actions"><img alt="Checks" src="https://img.shields.io/github/checks-status/nicoretti/crc/master?style=flat-square&amp;labelColor=414a52&amp;color=00796b#only-light" /></a>
+<a href="https://coveralls.io/github/Nicoretti/crc"><img alt="Coverage" src="https://img.shields.io/coverallsCoverage/github/Nicoretti/crc?style=flat-square&amp;labelColor=414a52&amp;color=00796b#only-light" /></a>
+<a href="https://opensource.org/licenses/BSD-2-Clause"><img alt="License" src="https://img.shields.io/pypi/l/crc?style=flat-square&amp;labelColor=414a52&amp;color=00796b#only-light" /></a>
+<a href="https://pypi.org/project/crc/"><img alt="Downloads" src="https://img.shields.io/pypi/dm/crc?style=flat-square&amp;labelColor=414a52&amp;color=00796b#only-light" /></a>
+<a href="https://pypi.org/project/crc/"><img alt="Supported Python Versions" src="https://img.shields.io/pypi/pyversions/crc?style=flat-square&amp;labelColor=414a52&amp;color=00796b#only-light" /></a>
+<a href="https://pypi.org/project/crc/"><img alt="PyPi Package" src="https://img.shields.io/pypi/v/crc?style=flat-square&amp;labelColor=414a52&amp;color=00796b#only-light" /></a>
+<a href="https://github.com/Nicoretti/crc/actions"><img alt="Checks" src="https://img.shields.io/github/checks-status/nicoretti/crc/master?style=flat-square&amp;labelColor=444c56&amp;color=00857a#only-dark" /></a>
+<a href="https://coveralls.io/github/Nicoretti/crc"><img alt="Coverage" src="https://img.shields.io/coverallsCoverage/github/Nicoretti/crc?style=flat-square&amp;labelColor=444c56&amp;color=00857a#only-dark" /></a>
+<a href="https://opensource.org/licenses/BSD-2-Clause"><img alt="License" src="https://img.shields.io/pypi/l/crc?style=flat-square&amp;labelColor=444c56&amp;color=00857a#only-dark" /></a>
+<a href="https://pypi.org/project/crc/"><img alt="Downloads" src="https://img.shields.io/pypi/dm/crc?style=flat-square&amp;labelColor=444c56&amp;color=00857a#only-dark" /></a>
+<a href="https://pypi.org/project/crc/"><img alt="Supported Python Versions" src="https://img.shields.io/pypi/pyversions/crc?style=flat-square&amp;labelColor=444c56&amp;color=00857a#only-dark" /></a>
+<a href="https://pypi.org/project/crc/"><img alt="PyPi Package" src="https://img.shields.io/pypi/v/crc?style=flat-square&amp;labelColor=444c56&amp;color=00857a#only-dark" /></a></p>
+<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">crc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Calculator</span><span class="p">,</span> <span class="n">Crc8</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">calculator</span> <span class="o">=</span> <span class="n">Calculator</span><span class="p">(</span><span class="n">Crc8</span><span class="o">.</span><span class="n">CCITT</span><span class="p">)</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">calculator</span><span class="o">.</span><span class="n">checksum</span><span class="p">(</span><span class="sa">b</span><span class="s2">"123456789"</span><span class="p">)</span>      <span class="c1"># (1)!</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">calculator</span><span class="o">.</span><span class="n">verify</span><span class="p">(</span><span class="sa">b</span><span class="s2">"123456789"</span><span class="p">,</span> <span class="mh">0xF4</span><span class="p">)</span>  <span class="c1"># (2)!</span>
+</span></code></pre></div>
+<ol>
+<li>Returns the checksum as an <code>int</code>, here <code>0xF4</code>.</li>
+<li>Returns <code>True</code> if the data matches the expected checksum.</li>
+</ol>
+<h2 id="why-use-it">Why use it<a class="headerlink" href="#why-use-it" title="Permanent link">&para;</a></h2>
+<div class="grid cards">
+<ul>
+<li>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Python</title><path d="m14.25.18.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05zm-6.3 1.98-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.22-.41-.09-.41.09zm13.09 3.95.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.09-.32.05-.24.02-.16-.01h-8.22v.82h5.84l.01 2.76.02.36-.05.34-.11.31-.17.29-.25.25-.31.24-.38.2-.44.17-.51.15-.58.13-.64.09-.71.07-.77.04-.84.01-1.27-.04-1.07-.14-.9-.2-.73-.25-.59-.3-.45-.33-.34-.34-.25-.34-.16-.33-.1-.3-.04-.25-.02-.2.01-.13v-5.34l.05-.64.13-.54.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.06.26-.04.21-.02.13-.01h5.84l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01zm-6.47 14.25-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08z"/></svg></span> <strong>No dependencies</strong></p>
 <hr />
-<ul>
-<li><img alt="📚" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f4da.svg" title=":books:" /> Documentation: <a href="https://nicoretti.github.io/crc">https://nicoretti.github.io/crc</a></li>
-<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M23.546 10.93 13.067.452a1.55 1.55 0 0 0-2.188 0L8.708 2.627l2.76 2.76a1.838 1.838 0 0 1 2.327 2.341l2.658 2.66a1.838 1.838 0 0 1 1.9 3.039 1.837 1.837 0 0 1-2.6 0 1.85 1.85 0 0 1-.404-1.996L12.86 8.955v6.525c.176.086.342.203.488.348a1.85 1.85 0 0 1 0 2.6 1.844 1.844 0 0 1-2.609 0 1.834 1.834 0 0 1 0-2.598c.182-.18.387-.316.605-.406V8.835a1.834 1.834 0 0 1-.996-2.41L7.636 3.7.45 10.881c-.6.605-.6 1.584 0 2.189l10.48 10.477a1.545 1.545 0 0 0 2.186 0l10.43-10.43a1.544 1.544 0 0 0 0-2.187"/></svg></span> Source Code: <a href="https://github.com/Nicoretti/crc">https://github.com/Nicoretti/crc</a></li>
-</ul>
+<p>Does not contribute to potentional dependency conflicts, easy to vendor if needed.</p>
+</li>
+<li>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 21.5c-1.35-.85-3.8-1.5-5.5-1.5-1.65 0-3.35.3-4.75 1.05-.1.05-.15.05-.25.05-.25 0-.5-.25-.5-.5V6c.6-.45 1.25-.75 2-1 1.11-.35 2.33-.5 3.5-.5 1.95 0 4.05.4 5.5 1.5 1.45-1.1 3.55-1.5 5.5-1.5 1.17 0 2.39.15 3.5.5.75.25 1.4.55 2 1v14.6c0 .25-.25.5-.5.5-.1 0-.15 0-.25-.05-1.4-.75-3.1-1.05-4.75-1.05-1.7 0-4.15.65-5.5 1.5M12 8v11.5c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5V7c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5m1 3.5c1.11-.68 2.6-1 4.5-1 .91 0 1.76.09 2.5.28V9.23c-.87-.15-1.71-.23-2.5-.23q-2.655 0-4.5.84zm4.5.17c-1.71 0-3.21.26-4.5.79v1.69c1.11-.65 2.6-.99 4.5-.99 1.04 0 1.88.08 2.5.24v-1.5c-.87-.16-1.71-.23-2.5-.23m2.5 2.9c-.87-.16-1.71-.24-2.5-.24-1.83 0-3.33.27-4.5.8v1.69c1.11-.66 2.6-.99 4.5-.99 1.04 0 1.88.08 2.5.24z"/></svg></span> <strong>Batteries included</strong></p>
 <hr />
-<h2 id="available-crc-configurations">Available CRC Configurations</h2>
-<p>The library includes a variety of common CRC configurations for convenience. To explore the full range of available CRC configurations, please checkout the <a href="configurations/">configurations</a> section of the documentation. If you need a new configuration to be readily available, consider submitting a <a href="https://github.com/Nicoretti/crc/pulls">PR</a> or raising an <a href="https://github.com/Nicoretti/crc/issues">issue</a>.</p>
-<h2 id="custom-configurations">Custom Configurations</h2>
-<p>If you want to create a custom configuration, you should have the following information available:</p>
-<ul>
-<li><strong>width</strong></li>
-<li><strong>polynom</strong></li>
-<li><strong>init value</strong></li>
-<li><strong>final xor value</strong></li>
-<li><strong>reversed input</strong></li>
-<li><strong>reversed output</strong></li>
+<p>More than 20 predefined configurations, plus support for custom configurations.</p>
+</li>
+<li>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18V4H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h4v-2H3zm10 6H9v1.78c-.61.55-1 1.33-1 2.22s.39 1.67 1 2.22V20h4v-1.78c.61-.55 1-1.34 1-2.22s-.39-1.67-1-2.22zm-2 5.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5M22 8h-6c-.5 0-1 .5-1 1v10c0 .5.5 1 1 1h6c.5 0 1-.5 1-1V9c0-.5-.5-1-1-1m-1 10h-4v-8h4z"/></svg></span> <strong>Portable</strong></p>
+<hr />
+<p>As pure Python library with no native dependencies it runs wherever a python runs.</p>
+</li>
+<li>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 3h6v4H3zm12 7h6v4h-6zm0 7h6v4h-6zm-2-4H7v5h6v2H5V9h2v2h6z"/></svg></span> <strong>Flexible input</strong></p>
+<hr />
+<p>Works with <code>bytes</code>, <code>int</code>, <code>files</code>, <code>streams</code>, <code>iterables</code> and anything
+convertible to <code>bytes</code>.</p>
+</li>
 </ul>
-<p>In case you only have a name of a specific crc configuration/algorithm and you are unsure what are the specific parameters
-of it, a look into this <a href="http://reveng.sourceforge.net/crc-catalogue/all.htm"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 3H5c-1.11 0-2 .89-2 2v5.82a6.505 6.505 0 0 1 9.1.08 6.525 6.525 0 0 1 0 9.2c-.36.35-.75.64-1.16.9H19c1.11 0 2-.89 2-2V9zm-1 7V4.5l5.5 5.5zm-6.5 1C5 11 3 13 3 15.5c0 .88.25 1.71.69 2.4L.61 21 2 22.39l3.12-3.07c.69.43 1.51.68 2.38.68 2.5 0 4.5-2 4.5-4.5S10 11 7.5 11m0 7a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5"/></svg></span> crc-catalogue</a> might help.</p>
-<details class="note">
-<summary>Note</summary>
-<p>This library currently only supports bit widths of full bytes 8, 16, 24, 32, ...</p>
-</details>
-<h2 id="requirements">Requirements</h2>
+</div>
+<h2 id="where-to-go-next">Where to go next<a class="headerlink" href="#where-to-go-next" title="Permanent link">&para;</a></h2>
+<div class="grid cards">
 <ul>
-<li><a href="https://www.python.org">&gt;= <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.14 7.5A2.86 2.86 0 0 1 22 10.36v3.78A2.86 2.86 0 0 1 19.14 17H12c0 .39.32.96.71.96H17v1.68a2.86 2.86 0 0 1-2.86 2.86H9.86A2.86 2.86 0 0 1 7 19.64v-3.75a2.85 2.85 0 0 1 2.86-2.85h5.25a2.85 2.85 0 0 0 2.85-2.86V7.5zm-4.28 11.79c-.4 0-.72.3-.72.89s.32.71.72.71a.71.71 0 0 0 .71-.71c0-.59-.32-.89-.71-.89m-10-1.79A2.86 2.86 0 0 1 2 14.64v-3.78A2.86 2.86 0 0 1 4.86 8H12c0-.39-.32-.96-.71-.96H7V5.36A2.86 2.86 0 0 1 9.86 2.5h4.28A2.86 2.86 0 0 1 17 5.36v3.75a2.85 2.85 0 0 1-2.86 2.85H8.89a2.85 2.85 0 0 0-2.85 2.86v2.68zM9.14 5.71c.4 0 .72-.3.72-.89s-.32-.71-.72-.71c-.39 0-.71.12-.71.71s.32.89.71.89"/></svg></span> Python 3.8</a></li>
+<li>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m13.13 22.19-1.63-3.83c1.57-.58 3.04-1.36 4.4-2.27zM5.64 12.5l-3.83-1.63 6.1-2.77C7 9.46 6.22 10.93 5.64 12.5M21.61 2.39S16.66.269 11 5.93c-2.19 2.19-3.5 4.6-4.35 6.71-.28.75-.09 1.57.46 2.13l2.13 2.12c.55.56 1.37.74 2.12.46A19.1 19.1 0 0 0 18.07 13c5.66-5.66 3.54-10.61 3.54-10.61m-7.07 7.07c-.78-.78-.78-2.05 0-2.83s2.05-.78 2.83 0c.77.78.78 2.05 0 2.83s-2.05.78-2.83 0m-5.66 7.07-1.41-1.41zM6.24 22l3.64-3.64c-.34-.09-.67-.24-.97-.45L4.83 22zM2 22h1.41l4.77-4.76-1.42-1.41L2 20.59zm0-2.83 4.09-4.08c-.21-.3-.36-.62-.45-.97L2 17.76z"/></svg></span> <strong>Getting started</strong></p>
+<hr />
+<p>Install the library and calculate your first checksum.</p>
+<p><a href="getting-started/installation/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Getting started</a></p>
+</li>
+<li>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg></span> <strong>Usage guide</strong></p>
+<hr />
+<p>Task oriented guides for calculating, verifying and configuring CRCs.</p>
+<p><a href="usage/calculator/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Usage guide</a></p>
+</li>
+<li>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2m0 4v4h6V8zm8 0v4h6V8zm-8 6v4h6v-4zm8 0v4h6v-4z"/></svg></span> <strong>Configurations</strong></p>
+<hr />
+<p>Browse every CRC configuration that ships with the library, including all
+of their parameters.</p>
+<p><a href="configurations/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Configurations</a></p>
+</li>
+<li>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 7H5a2 2 0 0 0-2 2v8h2v-4h2v4h2V9a2 2 0 0 0-2-2m0 4H5V9h2m7-2h-4v10h2v-4h2a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2m0 4h-2V9h2m6 0v6h1v2h-4v-2h1V9h-1V7h4v2Z"/></svg></span> <strong>API reference</strong></p>
+<hr />
+<p>Detailed documentation for the <code>Calculator</code>, <code>Configuration</code> and the
+low level register types.</p>
+<p><a href="api/calculator/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> API reference</a></p>
+</li>
+<li>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 19V7H4v12zm0-16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-7 14v-2h5v2zm-3.42-4L5.57 9H8.4l3.3 3.3c.39.39.39 1.03 0 1.42L8.42 17H5.59z"/></svg></span> <strong>Command line</strong></p>
+<hr />
+<p>Generate CRC lookup tables straight from your terminal with the bundled
+<code>crc</code> command.</p>
+<p><a href="cli/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> CLI</a></p>
+</li>
+<li>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m13.78 15.3 6 6 2.11-2.16-6-6zm3.72-5.2c-.39 0-.81-.05-1.14-.19L4.97 21.25l-2.11-2.11 7.41-7.4L8.5 9.96l-.72.7-1.45-1.41v2.86l-.7.7-3.52-3.56.7-.7h2.81l-1.4-1.41 3.56-3.56a2.976 2.976 0 0 1 4.22 0L9.89 5.74l1.41 1.4-.71.71 1.79 1.78 1.82-1.88c-.14-.33-.2-.75-.2-1.12a3.49 3.49 0 0 1 3.5-3.52c.59 0 1.11.14 1.58.42L16.41 6.2l1.5 1.5 2.67-2.67c.28.47.42.97.42 1.6 0 1.92-1.55 3.47-3.5 3.47"/></svg></span> <strong>Development</strong></p>
+<hr />
+<p>Set up a development environment and learn how to contribute.</p>
+<p><a href="development/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Development</a></p>
+</li>
 </ul>
-<h2 id="installation">Installation</h2>
-<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>crc
-</code></pre></div>
-<h2 id="examples">Examples</h2>
-<h3 id="create-a-calculator">Create a Calculator</h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Pre defined configuration</label><label for="__tabbed_1_2">Custom configuration</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">crc</span> <span class="kn">import</span> <span class="n">Calculator</span><span class="p">,</span> <span class="n">Crc8</span>
-
-<span class="n">calculator</span> <span class="o">=</span> <span class="n">Calculator</span><span class="p">(</span><span class="n">Crc8</span><span class="o">.</span><span class="n">CCITT</span><span class="p">)</span>
-</code></pre></div>
 </div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">crc</span> <span class="kn">import</span> <span class="n">Calculator</span><span class="p">,</span> <span class="n">Configuration</span>
-
-<span class="n">config</span> <span class="o">=</span> <span class="n">Configuration</span><span class="p">(</span>
-    <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
-    <span class="n">polynomial</span><span class="o">=</span><span class="mh">0x07</span><span class="p">,</span>
-    <span class="n">init_value</span><span class="o">=</span><span class="mh">0x00</span><span class="p">,</span>
-    <span class="n">final_xor_value</span><span class="o">=</span><span class="mh">0x00</span><span class="p">,</span>
-    <span class="n">reverse_input</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="n">reverse_output</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="n">calculator</span> <span class="o">=</span> <span class="n">Calculator</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
-</code></pre></div>
-</div>
-</div>
-</div>
-<h3 id="calculate-a-checksum">Calculate a checksum</h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Standard</label><label for="__tabbed_2_2">Optimized for speed</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">crc</span> <span class="kn">import</span> <span class="n">Calculator</span><span class="p">,</span> <span class="n">Crc8</span>
-
-<span class="n">expected</span> <span class="o">=</span> <span class="mh">0xBC</span>
-<span class="n">data</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
-<span class="n">calculator</span> <span class="o">=</span> <span class="n">Calculator</span><span class="p">(</span><span class="n">Crc8</span><span class="o">.</span><span class="n">CCITT</span><span class="p">)</span>
-
-<span class="k">assert</span> <span class="n">expected</span> <span class="o">==</span> <span class="n">calculator</span><span class="o">.</span><span class="n">checksum</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">crc</span> <span class="kn">import</span> <span class="n">Calculator</span><span class="p">,</span> <span class="n">Crc8</span>
-
-<span class="n">expected</span> <span class="o">=</span> <span class="mh">0xBC</span>
-<span class="n">data</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
-<span class="hll"><span class="n">calculator</span> <span class="o">=</span> <span class="n">Calculator</span><span class="p">(</span><span class="n">Crc8</span><span class="o">.</span><span class="n">CCITT</span><span class="p">,</span> <span class="n">optimized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span>
-<span class="k">assert</span> <span class="n">expected</span> <span class="o">==</span> <span class="n">calculator</span><span class="o">.</span><span class="n">checksum</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</code></pre></div>
-</div>
-</div>
-</div>
-<h3 id="verify-a-checksum">Verify a checksum</h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Standard</label><label for="__tabbed_3_2">Optimized for speed</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">crc</span> <span class="kn">import</span> <span class="n">Calculator</span><span class="p">,</span> <span class="n">Crc8</span>
-
-<span class="n">expected</span> <span class="o">=</span> <span class="mh">0xBC</span>
-<span class="n">data</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
-<span class="n">calculator</span> <span class="o">=</span> <span class="n">Calculator</span><span class="p">(</span><span class="n">Crc8</span><span class="o">.</span><span class="n">CCITT</span><span class="p">)</span>
-
-<span class="k">assert</span> <span class="n">calculator</span><span class="o">.</span><span class="n">verify</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">crc</span> <span class="kn">import</span> <span class="n">Calculator</span><span class="p">,</span> <span class="n">Crc8</span>
-
-<span class="n">expected</span> <span class="o">=</span> <span class="mh">0xBC</span>
-<span class="n">data</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
-<span class="hll"><span class="n">calculator</span> <span class="o">=</span> <span class="n">Calculator</span><span class="p">(</span><span class="n">Crc8</span><span class="o">.</span><span class="n">CCITT</span><span class="p">,</span> <span class="n">optimized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span>
-<span class="k">assert</span> <span class="n">calculator</span><span class="o">.</span><span class="n">verify</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span>
-</code></pre></div>
-</div>
-</div>
-</div>
-<h3 id="supported-data-types">Supported data types</h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:7"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><input id="__tabbed_4_4" name="__tabbed_4" type="radio" /><input id="__tabbed_4_5" name="__tabbed_4" type="radio" /><input id="__tabbed_4_6" name="__tabbed_4" type="radio" /><input id="__tabbed_4_7" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">int</label><label for="__tabbed_4_2">bytes</label><label for="__tabbed_4_3">bytearray</label><label for="__tabbed_4_4">File</label><label for="__tabbed_4_5">ByteIo</label><label for="__tabbed_4_6">Iterable of bytes</label><label for="__tabbed_4_7">Byte convertibles</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">crc</span> <span class="kn">import</span> <span class="n">Calculator</span><span class="p">,</span> <span class="n">Crc8</span>
-
-<span class="n">expected</span> <span class="o">=</span> <span class="mh">0x20</span>
-<span class="n">data</span> <span class="o">=</span> <span class="mi">97</span>
-<span class="n">calculator</span> <span class="o">=</span> <span class="n">Calculator</span><span class="p">(</span><span class="n">Crc8</span><span class="o">.</span><span class="n">CCITT</span><span class="p">,</span> <span class="n">optimized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="k">assert</span> <span class="n">calculator</span><span class="o">.</span><span class="n">checksum</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="n">expected</span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">crc</span> <span class="kn">import</span> <span class="n">Calculator</span><span class="p">,</span> <span class="n">Crc8</span>
-
-<span class="n">expected</span> <span class="o">=</span> <span class="mh">0xF4</span>
-<span class="n">data</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;123456789&quot;</span>
-<span class="n">calculator</span> <span class="o">=</span> <span class="n">Calculator</span><span class="p">(</span><span class="n">Crc8</span><span class="o">.</span><span class="n">CCITT</span><span class="p">,</span> <span class="n">optimized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="k">assert</span> <span class="n">calculator</span><span class="o">.</span><span class="n">checksum</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="n">expected</span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">crc</span> <span class="kn">import</span> <span class="n">Calculator</span><span class="p">,</span> <span class="n">Crc8</span>
-
-<span class="n">expected</span> <span class="o">=</span> <span class="mh">0xF4</span>
-<span class="n">data</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;123456789&quot;</span><span class="p">)</span>
-<span class="n">calculator</span> <span class="o">=</span> <span class="n">Calculator</span><span class="p">(</span><span class="n">Crc8</span><span class="o">.</span><span class="n">CCITT</span><span class="p">,</span> <span class="n">optimized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="k">assert</span> <span class="n">calculator</span><span class="o">.</span><span class="n">checksum</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="n">expected</span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">crc</span> <span class="kn">import</span> <span class="n">Calculator</span><span class="p">,</span> <span class="n">Crc8</span>
-
-<span class="n">expected</span> <span class="o">=</span> <span class="mh">0xF4</span>
-<span class="n">calculator</span> <span class="o">=</span> <span class="n">Calculator</span><span class="p">(</span><span class="n">Crc8</span><span class="o">.</span><span class="n">CCITT</span><span class="p">,</span> <span class="n">optimized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;afile.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="k">assert</span> <span class="n">calculator</span><span class="o">.</span><span class="n">checksum</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">==</span> <span class="n">expected</span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">io</span>
-
-<span class="kn">from</span> <span class="nn">crc</span> <span class="kn">import</span> <span class="n">Calculator</span><span class="p">,</span> <span class="n">Crc8</span>
-
-<span class="n">expected</span> <span class="o">=</span> <span class="mh">0xF4</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">ByteIo</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;123456789&quot;</span><span class="p">)</span>
-<span class="n">calculator</span> <span class="o">=</span> <span class="n">Calculator</span><span class="p">(</span><span class="n">Crc8</span><span class="o">.</span><span class="n">CCITT</span><span class="p">,</span> <span class="n">optimized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="k">assert</span> <span class="n">calculator</span><span class="o">.</span><span class="n">checksum</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="n">expected</span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">crc</span> <span class="kn">import</span> <span class="n">Calculator</span><span class="p">,</span> <span class="n">Crc8</span>
-
-<span class="n">expected</span> <span class="o">=</span> <span class="mh">0xF4</span>
-<span class="n">calculator</span> <span class="o">=</span> <span class="n">Calculator</span><span class="p">(</span><span class="n">Crc8</span><span class="o">.</span><span class="n">CCITT</span><span class="p">,</span> <span class="n">optimized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span> <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="p">[</span><span class="sa">b</span><span class="s2">&quot;12&quot;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;34&quot;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;56&quot;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;78&quot;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;9&quot;</span><span class="p">])</span>
-
-<span class="k">assert</span> <span class="n">calculator</span><span class="o">.</span><span class="n">checksum</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="n">expected</span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">crc</span> <span class="kn">import</span> <span class="n">Calculator</span><span class="p">,</span> <span class="n">Crc8</span>
-
-
-<span class="k">class</span> <span class="nc">ByteConvertible</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">data</span>
-
-    <span class="k">def</span> <span class="fm">__bytes__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
-
-
-<span class="n">expected</span> <span class="o">=</span> <span class="mh">0xF4</span>
-<span class="n">calculator</span> <span class="o">=</span> <span class="n">Calculator</span><span class="p">(</span><span class="n">Crc8</span><span class="o">.</span><span class="n">CCITT</span><span class="p">,</span> <span class="n">optimized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">ByteConvertible</span><span class="p">(</span><span class="s2">&quot;123456789&quot;</span><span class="p">)</span>
-
-<span class="k">assert</span> <span class="n">calculator</span><span class="o">.</span><span class="n">checksum</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="o">==</span> <span class="n">expected</span>
-</code></pre></div>
-</div>
-</div>
-</div>
-<h3 id="calculate-a-checksum-with-raw-registers">Calculate a checksum with raw registers</h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Register</label><label for="__tabbed_5_2">TableBasedRegister</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">crc</span> <span class="kn">import</span> <span class="n">Crc8</span><span class="p">,</span> <span class="n">Register</span>
-
-<span class="n">expected</span> <span class="o">=</span> <span class="mh">0xBC</span>
-<span class="n">data</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
-<span class="n">register</span> <span class="o">=</span> <span class="n">Register</span><span class="p">(</span><span class="n">Crc8</span><span class="o">.</span><span class="n">CCITT</span><span class="p">)</span>
-
-<span class="n">register</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
-<span class="n">register</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="k">assert</span> <span class="n">expected</span> <span class="o">==</span> <span class="n">register</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">crc</span> <span class="kn">import</span> <span class="n">Crc8</span><span class="p">,</span> <span class="n">TableBasedRegister</span>
-
-<span class="n">expected</span> <span class="o">=</span> <span class="mh">0xBC</span>
-<span class="n">data</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
-<span class="n">register</span> <span class="o">=</span> <span class="n">TableBasedRegister</span><span class="p">(</span><span class="n">Crc8</span><span class="o">.</span><span class="n">CCITT</span><span class="p">)</span>
-
-<span class="n">register</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
-<span class="n">register</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="k">assert</span> <span class="n">expected</span> <span class="o">==</span> <span class="n">register</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
-</code></pre></div>
-</div>
-</div>
-</div>
-<h2 id="references-resources">References &amp; Resources</h2>
+<h2 id="project-links">Project links<a class="headerlink" href="#project-links" title="Permanent link">&para;</a></h2>
+<div class="grid cards">
 <ul>
-<li><a href="http://www.zlib.net/crc_v3.txt">A Painless guide to crc error detection algorithms</a></li>
-<li><a href="http://reveng.sourceforge.net/crc-catalogue/all.htm">CRC-Catalogue</a></li>
+<li>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></span> <strong>Source code</strong></p>
+<hr />
+<p><a href="https://github.com/Nicoretti/crc">github.com/Nicoretti/crc</a></p>
+</li>
+<li>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>PyPI</title><path d="M23.922 13.58v3.912L20.55 18.72l-.078.055.052.037 3.45-1.256.026-.036v-3.997l-.053-.036-.025.092zm-.301-7.962-3.04 1.107v3.912l3.339-1.215V5.509zm.299 7.839V9.544l-3.336 1.215v3.913zm-3.45 1.253V10.8l-3.3 1.2v3.913zm-3.436 5.286v-3.912l-3.313 1.206v3.912zm.136-3.939v3.868l3.314-1.206V14.85zm2.093 1.882c-.367.134-.663-.074-.663-.463s.296-.814.663-.947c.365-.133.662.075.662.464s-.297.814-.662.946m-6.038-8.624.365-.132-3.285-1.197-3.323 1.21.102.037 3.184 1.16zm7.282 1.349V6.751L17.17 7.965v3.913zm-3.449 1.254V8.005l-3.302 1.202v3.912zm-3.415-2.672-3.336 1.215v3.913l3.336-1.215zm-6.736 3.919 3.322 1.209v-3.913L6.907 9.252zm3.433-5.292 3.281 1.193V5.198l-3.28-1.193zm10.167-5.158L17.19 3.922v3.913l3.317-1.207zM16.95 3.903 13.724 2.73l-3.269 1.19 3.225 1.174zm-1.585.703-1.624.592v3.868l3.317-1.207V3.991zm-.391 2.778c-.367.134-.662-.074-.662-.464s.295-.813.662-.946c.366-.133.663.074.663.464s-.297.813-.663.946M10.229 18.41v-3.914l-3.322-1.209V17.2zm3.449-1.228v-3.913l-3.371 1.227v3.913zm.078-.028 3.3-1.2V12.04l-3.3 1.2zm-.078 4.063-3.371 1.227v-3.912h-.078v3.912l-3.322-1.209v-3.913l-.053-.058-.025-.06-3.336-1.21v-3.948l.034.013 3.287 1.196.015-.078-3.261-1.187 3.26-1.187v-.109L3.876 9.62l-.307-.112 3.26-1.188v.877l.079-.055V6.769l3.257 1.185.058-.061L7.084 6.75l-.102-.037 3.24-1.179v-.083L6.854 6.677v.018l-.025.018v1.523L3.44 9.47v.02l-.025.017v4.007l-3.39 1.233v.019L0 14.784v3.995l.025.037 3.4 1.237.008-.006.007.01 3.4 1.238.008-.006.006.01 3.4 1.237.014-.009.012.01 3.45-1.256.026-.037zM3.493 9.563l3.257 1.185-3.257 1.187V9.562zM3.4 19.96.078 18.752v-3.913l2.361.86.96.349zm.015-3.99-3.08-1.12-.182-.066 3.262-1.187zm3.399 5.231-3.321-1.209V16.08l3.321 1.209zM23.791 5.434l-3.21-1.17v2.338zm-3.404-2.791-3.24-1.18-3.27 1.19 3.247 1.182z"/></svg></span> <strong>Package</strong></p>
+<hr />
+<p><a href="https://pypi.org/project/crc/">pypi.org/project/crc</a></p>
+</li>
+<li>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 12h-4v-2h4m0 6h-4v-2h4m6-6h-2.81a6 6 0 0 0-1.82-1.96L17 4.41 15.59 3l-2.17 2.17a6 6 0 0 0-2.83 0L8.41 3 7 4.41l1.62 1.63C7.88 6.55 7.26 7.22 6.81 8H4v2h2.09c-.05.33-.09.66-.09 1v1H4v2h2v1c0 .34.04.67.09 1H4v2h2.81c1.04 1.79 2.97 3 5.19 3s4.15-1.21 5.19-3H20v-2h-2.09c.05-.33.09-.66.09-1v-1h2v-2h-2v-1c0-.34-.04-.67-.09-1H20z"/></svg></span> <strong>Issues</strong></p>
+<hr />
+<p><a href="https://github.com/Nicoretti/crc/issues">Report a bug or request a feature</a></p>
+</li>
+<li>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3c-1.27 0-2.4.8-2.82 2H3v2h1.95L2 14c-.47 2 1 3 3.5 3s4.06-1 3.5-3L6.05 7h3.12c.33.85.98 1.5 1.83 1.83V20H2v2h20v-2h-9V8.82c.85-.32 1.5-.97 1.82-1.82h3.13L15 14c-.47 2 1 3 3.5 3s4.06-1 3.5-3l-2.95-7H21V5h-6.17C14.4 3.8 13.27 3 12 3m0 2a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m-6.5 5.25L7 14H4zm13 0L20 14h-3z"/></svg></span> <strong>License</strong></p>
+<hr />
+<p><a href="https://opensource.org/licenses/BSD-2-Clause">BSD-2-Clause</a></p>
+</li>
+</ul>
+</div>
+<h2 id="references-resources">References &amp; resources<a class="headerlink" href="#references-resources" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="http://www.zlib.net/crc_v3.txt">A painless guide to CRC error detection algorithms</a></li>
+<li><a href="http://reveng.sourceforge.net/crc-catalogue/all.htm">CRC catalogue</a></li>
 </ul>
 
 
@@ -1565,6 +1940,11 @@ of it, a look into this <a href="http://reveng.sourceforge.net/crc-catalogue/all
 
 
 
+
+
+
+  
+  
 
 
 
@@ -1581,9 +1961,39 @@ of it, a look into this <a href="http://reveng.sourceforge.net/crc-catalogue/all
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Back to top
+</button>
+        
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+        
+          
+          <a href="./getting-started/" class="md-footer__link md-footer__link--next" aria-label="Next: Getting started">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Getting started
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -1591,13 +2001,12 @@ of it, a look into this <a href="http://reveng.sourceforge.net/crc-catalogue/all
   
     <div class="md-copyright__highlight">
       Copyright &copy; 2022 Nicola Coretti
-
     </div>
   
   
     Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-      Material for MkDocs
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
     </a>
   
 </div>
@@ -1612,10 +2021,13 @@ of it, a look into this <a href="http://reveng.sourceforge.net/crc-catalogue/all
     </div>
     
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["search.suggest", "search.highlight", "content.tabs.link", "content.code.copy"], "search": "assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":".","features":["content.code.annotate","content.code.copy","content.tabs.link","content.tooltips","navigation.footer","navigation.indexes","navigation.instant","navigation.top","navigation.tracking","search.highlight","search.suggest","toc.follow"],"search":"./assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="assets/javascripts/bundle.83f73b43.min.js"></script>
+      <script src="./assets/javascripts/bundle.49251538.min.js"></script>
       
     
   </body>

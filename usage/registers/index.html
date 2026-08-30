@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://nicoretti.github.io/crc/development/setup/">
+        <link rel="canonical" href="https://nicoretti.github.io/crc/usage/registers/">
       
       
-        <link rel="prev" href="../">
+        <link rel="prev" href="../configurations/">
       
       
-        <link rel="next" href="../release/">
+        <link rel="next" href="../../configurations.md">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Setup - CRC</title>
+        <title>Raw registers - CRC</title>
       
     
     
@@ -77,7 +77,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#setup" class="md-skip">
+        <a href="#raw-registers" class="md-skip">
           Skip to content
         </a>
       
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Setup
+              Raw registers
             
           </span>
         </div>
@@ -398,6 +398,8 @@
       
   
   
+    
+  
   
   
     
@@ -417,15 +419,15 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../usage/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -450,7 +452,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -469,7 +471,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/calculator/" class="md-nav__link">
+      <a href="../calculator/" class="md-nav__link">
         
   
   
@@ -498,7 +500,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/configurations/" class="md-nav__link">
+      <a href="../configurations/" class="md-nav__link">
         
   
   
@@ -524,10 +526,38 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../usage/registers/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 17H7V7h10m4 4V9h-2V7a2 2 0 0 0-2-2h-2V3h-2v2h-2V3H9v2H7c-1.11 0-2 .89-2 2v2H3v2h2v2H3v2h2v2a2 2 0 0 0 2 2h2v2h2v-2h2v2h2v-2h2a2 2 0 0 0 2-2v-2h2v-2h-2v-2m-6 2h-2v-2h2m2-2H9v6h6z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+  Raw registers
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
         
   
   
@@ -544,6 +574,84 @@
   
 
       </a>
+      
+        
+
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#which-register-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Which register to use
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Usage
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#incremental-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Incremental updates
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-registers" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Custom registers
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Next steps
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -869,8 +977,6 @@
       
   
   
-    
-  
   
   
     
@@ -888,15 +994,15 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../../development/" class="md-nav__link ">
               
   
   
@@ -921,7 +1027,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -937,38 +1043,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m13.78 15.3 6 6 2.11-2.16-6-6zm3.72-5.2c-.39 0-.81-.05-1.14-.19L4.97 21.25l-2.11-2.11 7.41-7.4L8.5 9.96l-.72.7-1.45-1.41v2.86l-.7.7-3.52-3.56.7-.7h2.81l-1.4-1.41 3.56-3.56a2.976 2.976 0 0 1 4.22 0L9.89 5.74l1.41 1.4-.71.71 1.79 1.78 1.82-1.88c-.14-.33-.2-.75-.2-1.12a3.49 3.49 0 0 1 3.5-3.52c.59 0 1.11.14 1.58.42L16.41 6.2l1.5 1.5 2.67-2.67c.28.47.42.97.42 1.6 0 1.92-1.55 3.47-3.5 3.47"/></svg>
-  
-  <span class="md-ellipsis">
-    
-  
-  Setup
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="././" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../development/setup/" class="md-nav__link">
         
   
   
@@ -985,106 +1063,6 @@
   
 
       </a>
-      
-        
-
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#requirements" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Requirements
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-install-the-tooling" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        1. Install the tooling
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-check-out-the-project" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        2. Check out the project
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-create-the-environment" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        3. Create the environment
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-bootstrap-the-workspace" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        4. Bootstrap the workspace
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-tasks" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Common tasks
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#documentation" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Documentation
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1097,7 +1075,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release/" class="md-nav__link">
+      <a href="../../development/release/" class="md-nav__link">
         
   
   
@@ -1762,10 +1740,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#requirements" class="md-nav__link">
+  <a href="#which-register-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Requirements
+        Which register to use
       </span>
     </span>
   </a>
@@ -1773,10 +1751,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-install-the-tooling" class="md-nav__link">
+  <a href="#usage" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        1. Install the tooling
+        Usage
       </span>
     </span>
   </a>
@@ -1784,10 +1762,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-check-out-the-project" class="md-nav__link">
+  <a href="#incremental-updates" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        2. Check out the project
+        Incremental updates
       </span>
     </span>
   </a>
@@ -1795,10 +1773,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-create-the-environment" class="md-nav__link">
+  <a href="#custom-registers" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        3. Create the environment
+        Custom registers
       </span>
     </span>
   </a>
@@ -1806,32 +1784,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-bootstrap-the-workspace" class="md-nav__link">
+  <a href="#next-steps" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        4. Bootstrap the workspace
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-tasks" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Common tasks
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#documentation" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Documentation
+        Next steps
       </span>
     </span>
   </a>
@@ -1856,159 +1812,116 @@
   
 
 
-<h1 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h1>
-<h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Tool</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://docs.astral.sh/uv/">uv</a></td>
-<td>Environment and dependency manager</td>
-</tr>
-<tr>
-<td><a href="https://cli.github.com">gh</a></td>
-<td>GitHub CLI, used for releases</td>
-</tr>
-<tr>
-<td><a href="https://git-scm.com">git</a></td>
-<td>Version control</td>
-</tr>
-</tbody>
-</table>
-<h2 id="1-install-the-tooling">1. Install the tooling<a class="headerlink" href="#1-install-the-tooling" title="Permanent link">&para;</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">uv</label><label for="__tabbed_1_2">gh</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p>Follow the uv <a href="https://docs.astral.sh/uv/getting-started/installation/">installation instructions</a>.</p>
-</div>
-<div class="tabbed-block">
-<p>Follow the gh <a href="https://cli.github.com">installation instructions</a>.</p>
-</div>
-</div>
-</div>
-<h2 id="2-check-out-the-project">2. Check out the project<a class="headerlink" href="#2-check-out-the-project" title="Permanent link">&para;</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">GitHub CLI</label><label for="__tabbed_2_2">SSH</label><label for="__tabbed_2_3">HTTPS</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>gh<span class="w"> </span>repo<span class="w"> </span>clone<span class="w"> </span>Nicoretti/crc
-</span></code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:Nicoretti/crc.git
-</span></code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Nicoretti/crc.git
-</span></code></pre></div>
-</div>
-</div>
-</div>
-<p>Then switch into the project directory:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span>crc
-</span></code></pre></div>
-<h2 id="3-create-the-environment">3. Create the environment<a class="headerlink" href="#3-create-the-environment" title="Permanent link">&para;</a></h2>
-<p>Make sure the environment is set up properly and all dependencies are installed:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>uv<span class="w"> </span>sync
-</span></code></pre></div>
-<p>Optionally activate the virtual environment managed by uv:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
-</span></code></pre></div>
+<h1 id="raw-registers">Raw registers<a class="headerlink" href="#raw-registers" title="Permanent link">&para;</a></h1>
+<p>For full control over the calculation you can drive the CRC registers yourself,
+instead of going through a <a href="../calculator/"><code>Calculator</code></a>. This is useful when
+you want to feed data incrementally and inspect or reset the register in
+between.</p>
 <div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Activating is not strictly necessary, prefixing commands with <code>uv run</code>
-works just as well, e.g. <code>uv run invoke test.unit</code>.</p>
+<p class="admonition-title">Prefer the calculator</p>
+<p>For most use cases the <a href="../calculator/"><code>Calculator</code></a> is the more convenient
+choice — it wraps exactly these registers for you.</p>
 </div>
-<h2 id="4-bootstrap-the-workspace">4. Bootstrap the workspace<a class="headerlink" href="#4-bootstrap-the-workspace" title="Permanent link">&para;</a></h2>
-<p>To bootstrap the remaining parts of the workspace setup (git hooks, checks that
-required tools are available, ...), run:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>uv<span class="w"> </span>run<span class="w"> </span>invoke<span class="w"> </span>init
-</span></code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Follow potential instructions printed by the task.</p>
-</div>
-<h2 id="common-tasks">Common tasks<a class="headerlink" href="#common-tasks" title="Permanent link">&para;</a></h2>
-<p>All automation is exposed through <a href="https://www.pyinvoke.org">invoke</a> tasks.
-Run <code>uv run invoke --list</code> to see everything that is available.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Tests</label><label for="__tabbed_3_2">Checks</label><label for="__tabbed_3_3">Documentation</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>invoke<span class="w"> </span>test.unit<span class="w">          </span><span class="c1"># run the unit tests</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>invoke<span class="w"> </span>test.integration<span class="w">   </span><span class="c1"># run the integration tests</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>invoke<span class="w"> </span>test.coverage<span class="w">      </span><span class="c1"># run all tests and report coverage</span>
-</span></code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>invoke<span class="w"> </span>format<span class="w">             </span><span class="c1"># format the code</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>invoke<span class="w"> </span>check.format<span class="w">       </span><span class="c1"># verify formatting</span>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>invoke<span class="w"> </span>check.lint<span class="w">         </span><span class="c1"># run the linter</span>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>invoke<span class="w"> </span>check.typing<span class="w">       </span><span class="c1"># run the type checker</span>
-</span></code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>invoke<span class="w"> </span>docs.serve<span class="w">         </span><span class="c1"># live preview of the documentation</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>invoke<span class="w"> </span>docs.build<span class="w">         </span><span class="c1"># build the documentation</span>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>docs.generate<span class="w"> </span><span class="o">(</span>docs.gen<span class="o">)</span><span class="w">  </span><span class="c1"># Generate dynamic documentation content (e.g. configurations.md)</span>
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>invoke<span class="w"> </span>docs.clean<span class="w">         </span><span class="c1"># remove build artifacts</span>
-</span></code></pre></div>
-</div>
-</div>
-</div>
-<h2 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">&para;</a></h2>
-<p>The documentation is built with <a href="https://zensical.org">Zensical</a> and lives in
-the <code>docs/</code> directory:</p>
+<h2 id="which-register-to-use">Which register to use<a class="headerlink" href="#which-register-to-use" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Path</th>
-<th>Content</th>
+<th></th>
+<th><a class="autorefs autorefs-internal" href="../../api/register/#crc.Register"><code>Register</code></a></th>
+<th><a class="autorefs autorefs-internal" href="../../api/table_based_register/#crc.TableBasedRegister"><code>TableBasedRegister</code></a></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>zensical.toml</code></td>
-<td>Site configuration (nav, theme, plugins)</td>
+<td>Approach</td>
+<td>Bit by bit</td>
+<td>Precomputed lookup table</td>
 </tr>
 <tr>
-<td><code>docs/docs/</code></td>
-<td>The Markdown sources of the documentation</td>
+<td>Setup cost</td>
+<td>None</td>
+<td>Builds a lookup table</td>
 </tr>
 <tr>
-<td><code>docs/overrides/</code></td>
-<td>Theme template overrides</td>
+<td>Speed</td>
+<td>Slower</td>
+<td>Significantly faster</td>
 </tr>
 <tr>
-<td><code>docs/overrides/.icons/</code></td>
-<td>Custom icons, e.g. the project logo</td>
-</tr>
-<tr>
-<td><code>docs/docs/stylesheets/</code></td>
-<td>Additional stylesheets</td>
-</tr>
-<tr>
-<td><code>docs/docs/assets/images/</code></td>
-<td>Images and the favicon</td>
-</tr>
-<tr>
-<td><code>docs/scripts/</code></td>
-<td>Scripts generating documentation content</td>
+<td>Equivalent calculator</td>
+<td><code>Calculator(config)</code></td>
+<td><code>Calculator(config, optimized=True)</code></td>
 </tr>
 </tbody>
 </table>
-<p>Start a live preview with:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>invoke<span class="w"> </span>docs.serve
+<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
+<p>Every register follows the same three step protocol: <code>init()</code>, <code>update()</code> and
+<code>digest()</code>.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Register</label><label for="__tabbed_1_2">TableBasedRegister</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">crc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Crc8</span><span class="p">,</span> <span class="n">Register</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">expected</span> <span class="o">=</span> <span class="mh">0xBC</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">data</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">register</span> <span class="o">=</span> <span class="n">Register</span><span class="p">(</span><span class="n">Crc8</span><span class="o">.</span><span class="n">CCITT</span><span class="p">)</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">register</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>      <span class="c1"># (1)!</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">register</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>  <span class="c1"># (2)!</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">assert</span> <span class="n">expected</span> <span class="o">==</span> <span class="n">register</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>  <span class="c1"># (3)!</span>
+</span></code></pre></div>
+<ol>
+<li>Initializes the register with the configuration's <code>init_value</code>.</li>
+<li>Feeds data into the register, can be called multiple times.</li>
+<li>Applies the final XOR value and returns the checksum.</li>
+</ol>
+</div>
+<div class="tabbed-block">
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">crc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Crc8</span><span class="p">,</span> <span class="n">TableBasedRegister</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">expected</span> <span class="o">=</span> <span class="mh">0xBC</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">data</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">register</span> <span class="o">=</span> <span class="n">TableBasedRegister</span><span class="p">(</span><span class="n">Crc8</span><span class="o">.</span><span class="n">CCITT</span><span class="p">)</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">register</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">register</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="k">assert</span> <span class="n">expected</span> <span class="o">==</span> <span class="n">register</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="incremental-updates">Incremental updates<a class="headerlink" href="#incremental-updates" title="Permanent link">&para;</a></h2>
+<p>Because <code>update</code> can be called repeatedly, data can be processed in chunks:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">crc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Crc8</span><span class="p">,</span> <span class="n">Register</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">register</span> <span class="o">=</span> <span class="n">Register</span><span class="p">(</span><span class="n">Crc8</span><span class="o">.</span><span class="n">CCITT</span><span class="p">)</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">register</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="p">(</span><span class="sa">b</span><span class="s2">"12"</span><span class="p">,</span> <span class="sa">b</span><span class="s2">"34"</span><span class="p">,</span> <span class="sa">b</span><span class="s2">"56"</span><span class="p">,</span> <span class="sa">b</span><span class="s2">"78"</span><span class="p">,</span> <span class="sa">b</span><span class="s2">"9"</span><span class="p">):</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">register</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="k">assert</span> <span class="n">register</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span> <span class="o">==</span> <span class="mh">0xF4</span>
 </span></code></pre></div>
 <div class="admonition note">
-<p class="admonition-title">Generated content</p>
-<p>The <code>configurations.md</code> page is generated from the source code by
-<code>docs/scripts/configurations.py</code>. It is regenerated automatically by the
-<code>docs.build</code> and <code>docs.serve</code> tasks, and is therefore not checked in.</p>
+<p class="admonition-title">Reusing a register</p>
+<p>Call <code>init()</code> again to reset the register before starting a new
+calculation.</p>
 </div>
+<h2 id="custom-registers">Custom registers<a class="headerlink" href="#custom-registers" title="Permanent link">&para;</a></h2>
+<p>Both registers derive from <a href="../../api/basic_register/"><code>BasicRegister</code></a>, which in turn
+implements the <a href="../../api/abstract_register/"><code>AbstractRegister</code></a> interface. Implement
+<code>AbstractRegister</code> if you want to provide your own register.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>AbstractRegister
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>└── BasicRegister
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    ├── Register
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    └── TableBasedRegister
+</span></code></pre></div>
+<h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../calculator/">Calculating checksums</a> — the convenient high level API</li>
+<li><a href="../../api/register/"><code>Register</code> API reference</a></li>
+<li><a href="../../api/table_based_register/"><code>TableBasedRegister</code> API reference</a></li>
+</ul>
 
 
 
@@ -2051,7 +1964,7 @@ the <code>docs/</code> directory:</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Development">
+          <a href="../configurations/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Configurations">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7M19 12H5"/></svg>
@@ -2061,20 +1974,20 @@ the <code>docs/</code> directory:</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                Development
+                Configurations
               </div>
             </div>
           </a>
         
         
           
-          <a href="../release/" class="md-footer__link md-footer__link--next" aria-label="Next: Release">
+          <a href="../../configurations.md" class="md-footer__link md-footer__link--next" aria-label="Next: Configurations">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Release
+                Configurations
               </div>
             </div>
             <div class="md-footer__button md-icon">

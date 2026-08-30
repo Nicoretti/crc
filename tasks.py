@@ -207,7 +207,6 @@ def build_docs(context):
             "zensical",
             "build",
             "-c",
-            "-s",
             "-f",
             f"{BASEPATH / 'zensical.toml'}",
         )

@@ -10,5 +10,4 @@ docs/_build/*
 *.pyc
 */__pychache__/*
 .envrc
-docs/docs/configurations.md
 .cache/

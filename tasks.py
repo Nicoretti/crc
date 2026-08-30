@@ -195,7 +195,7 @@ def clean_docs(_context):
 
 @task(aliases=["gen"])
 def generate_docs(context):
-    """Generate dynamic documentation content (e.g. configurations.md)"""
+    """Generate dynamic documentation content"""
     context.run(_uv("python", f"{BASEPATH / 'docs' / 'scripts' / 'configurations.py'}"))
 
 
@@ -213,7 +213,7 @@ def build_docs(context):
     )
 
 
-@task(pre=[generate_docs])
+@task
 def serve_docs(context):
     """Serve project documentation"""
     context.run(_uv("zensical", "serve", "-f", f"{BASEPATH / 'zensical.toml'}"))

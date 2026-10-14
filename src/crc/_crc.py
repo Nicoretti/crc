@@ -332,6 +332,10 @@ class TableBasedRegister(BasicRegister):
         """
         See `BasicRegister.update`
         """
+        # Only the documented `bytes` input takes the fast loop; anything
+        # else keeps the exact base-class behavior (including errors).
+        if not isinstance(data, bytes):
+            return super().update(data)
         # A subclass may overwrite `_process_byte`; keep that seam intact.
         if type(self)._process_byte is not TableBasedRegister._process_byte:
             return super().update(data)

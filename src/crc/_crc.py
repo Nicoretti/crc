@@ -328,6 +328,33 @@ class TableBasedRegister(BasicRegister):
             configuration.width, configuration.polynomial
         )
 
+    def update(self, data: bytes) -> int:
+        """
+        See `BasicRegister.update`
+        """
+        # Only the documented `bytes` input takes the fast loop; anything
+        # else keeps the exact base-class behavior (including errors).
+        if not isinstance(data, bytes):
+            return super().update(data)
+        # A subclass may overwrite `_process_byte`; keep that seam intact.
+        if type(self)._process_byte is not TableBasedRegister._process_byte:
+            return super().update(data)
+        config = self._config
+        shift = config.width - 8
+        lookup_table = self._lookup_table
+        bitmask = self._bitmask
+        register = self._register & bitmask
+        if config.reverse_input:
+            for byte in data:
+                index = _REVERSED_BYTE[byte] ^ (register >> shift)
+                register = (lookup_table[index] ^ (register << 8)) & bitmask
+        else:
+            for byte in data:
+                index = byte ^ (register >> shift)
+                register = (lookup_table[index] ^ (register << 8)) & bitmask
+        self._register = register
+        return register
+
     def _process_byte(self, byte: Byte) -> int:
         """
         See BasicRegister._process_byte
@@ -335,6 +362,10 @@ class TableBasedRegister(BasicRegister):
         index = int(byte) ^ (self.register >> (self._config.width - 8))
         self.register = self._lookup_table[index] ^ (self.register << 8)
         return self.register
+
+
+_REVERSED_BYTE: Final = bytes(int(f"{value:08b}"[::-1], 2) for value in range(256))
+"""Bit-reversed value of each byte; the int form of `Byte(value).reversed()`."""
 
 
 @functools.lru_cache

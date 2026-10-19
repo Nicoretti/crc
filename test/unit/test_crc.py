@@ -13,6 +13,7 @@ from crc._crc import (
     Configuration,
     Crc8,
     Crc16,
+    Crc32,
     Register,
     TableBasedRegister,
     _generate_template,
@@ -504,6 +505,65 @@ def test_calculator_throws_exception_for_unsupported_input_type(config, data, ex
     calculator = Calculator(config)
     with pytest.raises(expected):
         calculator.checksum(data)
+
+
+@pytest.mark.parametrize(
+    "config",
+    [Crc8.CCITT, Crc16.KERMIT, Crc32.CRC32],
+)
+def test_table_based_update_with_non_bytes_input_matches_bytes(config):
+    data = b"123456789"
+    expected_register = TableBasedRegister(config)
+    expected_register.update(data)
+    expected = expected_register.digest()
+    for variant in (bytearray(data), memoryview(data)):
+        register = TableBasedRegister(config)
+        register.update(variant)
+        assert register.digest() == expected
+    chunked_register = TableBasedRegister(config)
+    chunked_register.update(data[:4])
+    chunked_register.update(data[4:])
+    assert chunked_register.digest() == expected
+
+
+def test_table_based_update_with_unsupported_input_type_raises():
+    register = TableBasedRegister(Crc8.CCITT)
+    with pytest.raises(TypeError):
+        register.update(97)
+
+
+def test_table_based_update_delegates_when_process_byte_is_overridden():
+    processed = []
+
+    class CountingRegister(TableBasedRegister):
+        def _process_byte(self, byte):
+            processed.append(byte)
+            return super()._process_byte(byte)
+
+    data = b"123456789"
+    register = CountingRegister(Crc8.CCITT)
+    register.update(data)
+    expected_register = TableBasedRegister(Crc8.CCITT)
+    expected_register.update(data)
+    assert register.digest() == expected_register.digest()
+    assert len(processed) == len(data)
+
+
+@pytest.mark.parametrize(
+    "config",
+    [Crc8.CCITT, Crc16.KERMIT, Crc32.CRC32],
+)
+def test_table_based_process_byte_matches_update(config):
+    data = b"123456789"
+    by_update = TableBasedRegister(config)
+    by_update.update(data)
+    by_process_byte = TableBasedRegister(config)
+    for value in data:
+        byte = Byte(value)
+        if config.value.reverse_input:
+            byte = byte.reversed()
+        by_process_byte._process_byte(byte)
+    assert by_process_byte.digest() == by_update.digest()
 
 
 class CreateLookupTableTest(unittest.TestCase):

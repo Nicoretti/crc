@@ -1,6 +1,7 @@
 # Copyright (c) 2018, Nicola Coretti
 # All rights reserved.
 import io
+import itertools
 import string
 import unittest
 from collections import namedtuple
@@ -13,6 +14,8 @@ from crc._crc import (
     Configuration,
     Crc8,
     Crc16,
+    Crc32,
+    Crc64,
     Register,
     TableBasedRegister,
     _generate_template,
@@ -20,6 +23,7 @@ from crc._crc import (
 )
 
 Fixture = namedtuple("Fixture", "data checksum")
+UpdateFixture = namedtuple("UpdateFixture", "config data")
 
 
 class TemplateTest(unittest.TestCase):
@@ -443,6 +447,91 @@ class RegisterTest(unittest.TestCase):
                 crc_register.init()
                 crc_register.update(test.data.encode("utf-8"))
                 self.assertEqual(test.checksum, crc_register.digest())
+
+
+class TableBasedRegisterTest(unittest.TestCase):
+    def setUp(self):
+        self._data = b"123456789"
+        self._configurations = [Crc8.CCITT, Crc16.KERMIT, Crc32.CRC32]
+
+    def test_update_produces_the_expected_checksum(self):
+        test_suit = (
+            (Crc8.CCITT, 0xF4),
+            (Crc16.KERMIT, 0x2189),
+            (Crc32.CRC32, 0xCBF43926),
+        )
+        for config, checksum in test_suit:
+            with self.subTest(config=config):
+                register = TableBasedRegister(config)
+                register.init()
+                register.update(self._data)
+                self.assertEqual(checksum, register.digest())
+
+    def test_update_produces_the_same_digest_as_the_bit_by_bit_register(self):
+        test_suit = [
+            UpdateFixture(config=config, data=data)
+            for config in itertools.chain(Crc8, Crc16, Crc32, Crc64)
+            for data in (b"", b"123456789", bytes(range(256)))
+        ]
+        for test in test_suit:
+            with self.subTest(config=test.config, data=test.data):
+                expected = Register(test.config)
+                expected.init()
+                expected.update(test.data)
+                table_based = TableBasedRegister(test.config)
+                table_based.init()
+                table_based.update(test.data)
+                self.assertEqual(expected.digest(), table_based.digest())
+
+    def test_update_can_be_called_with_chunks(self):
+        for config in self._configurations:
+            with self.subTest(config=config):
+                expected = TableBasedRegister(config)
+                expected.init()
+                expected.update(self._data)
+                chunked = TableBasedRegister(config)
+                chunked.init()
+                chunked.update(self._data[:4])
+                chunked.update(self._data[4:])
+                self.assertEqual(expected.digest(), chunked.digest())
+
+    def test_update_with_other_input_types_uses_the_base_implementation(self):
+        for config in self._configurations:
+            with self.subTest(config=config):
+                expected = TableBasedRegister(config)
+                expected.init()
+                expected.update(self._data)
+                for data in (bytearray(self._data), memoryview(self._data)):
+                    register = TableBasedRegister(config)
+                    register.init()
+                    register.update(data)
+                    self.assertEqual(expected.digest(), register.digest())
+
+    def test_update_with_unsupported_input_raises_a_type_error(self):
+        register = TableBasedRegister(Crc8.CCITT)
+        for data in (97, "123456789"):
+            with self.subTest(data=data):
+                with self.assertRaises(TypeError):
+                    register.update(data)
+
+    def test_update_uses_an_overridden_process_byte(self):
+        class CountingRegister(TableBasedRegister):
+            def __init__(self, configuration):
+                super().__init__(configuration)
+                self.processed_bytes = []
+
+            def _process_byte(self, byte):
+                self.processed_bytes.append(byte)
+                return super()._process_byte(byte)
+
+        expected = TableBasedRegister(Crc8.CCITT)
+        expected.init()
+        expected.update(self._data)
+        register = CountingRegister(Crc8.CCITT)
+        register.init()
+        register.update(self._data)
+        self.assertEqual(expected.digest(), register.digest())
+        self.assertEqual(len(self._data), len(register.processed_bytes))
 
 
 class CalculatorTest(unittest.TestCase):

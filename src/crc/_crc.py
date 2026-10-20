@@ -301,6 +301,10 @@ class Register(BasicRegister):
         return self.register
 
 
+_REVERSED_BYTE: Final = bytes(int(f"{value:08b}"[::-1], 2) for value in range(256))
+"""Bit reversed value of every possible byte."""
+
+
 class TableBasedRegister(BasicRegister):
     """
     Lookup table based crc register.
@@ -327,6 +331,35 @@ class TableBasedRegister(BasicRegister):
         self._lookup_table = create_lookup_table(
             configuration.width, configuration.polynomial
         )
+
+    def update(self, data: bytes) -> int:
+        """
+        See `BasicRegister.update`
+        """
+        # The loop below handles plain `bytes` with the standard byte
+        # processing only, everything else keeps the exact behavior of the
+        # base implementation (including its errors).
+        if (
+            not isinstance(data, bytes)
+            or type(self)._process_byte is not TableBasedRegister._process_byte
+        ):
+            return super().update(data)
+
+        config = self._config
+        if config.reverse_input:
+            # Reflecting the input up front keeps the loop below free of any
+            # per byte branching.
+            data = data.translate(_REVERSED_BYTE)
+
+        lookup_table = self._lookup_table
+        bitmask = self._bitmask
+        shift = config.width - 8
+        register = self.register
+        for byte in data:
+            index = byte ^ (register >> shift)
+            register = (lookup_table[index] ^ (register << 8)) & bitmask
+        self._register = register
+        return self.register
 
     def _process_byte(self, byte: Byte) -> int:
         """
